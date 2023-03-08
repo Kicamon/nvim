@@ -18,7 +18,7 @@ autocmd Filetype markdown inoremap <buffer> ,4 ####<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap <buffer> ,l --------<Enter>
 "中文
 autocmd Filetype markdown inoremap <buffer> 《 《》<++><Esc>F》i
-autocmd Filetype markdown inoremap <buffer> 》 >
+autocmd Filetype markdown inoremap <buffer> 》 > 
 autocmd Filetype markdown inoremap <buffer> （ （）<++><Esc>F）i
 autocmd Filetype markdown inoremap <buffer> “ “”<++><Esc>F”i
 autocmd Filetype markdown inoremap <buffer> ” “”<++><Esc>F”i
