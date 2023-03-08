@@ -25,7 +25,7 @@ set termguicolors
 set cursorline
 "复制模式
 map <M-p> :set paste<CR>
-map <M-S-p> :set nopaste<CR> 
+map <M-S-p> :set nopaste<CR>
 "换行
 set nowrap
 map<M-w> :set wrap<CR>
@@ -33,11 +33,6 @@ map<M-S-w> :set nowrap<CR>
 "撤销文件和备份文件保存位置
 set undodir=~/.vimfiles/undofile
 set backupdir=~/.vimfiles/backupfile
-"中文补全
-inoremap 《 《》<ESC>i
-inoremap “ “”<ESC>i
-inoremap ” “”<ESC>i
-inoremap （ （）<ESC>i
 "复制粘贴
 vnoremap <C-Insert> "+y
 nnoremap <S-Insert> "*p
@@ -69,10 +64,9 @@ source ~/.config/nvim/fcitx.vim
 "====================================
 "=== Plug config ====================
 "====================================
-"-----mkardown-----
+"-----markdown-----
 let g:table_mode_corner='|'	" 表格
 map <M-e> :TableModeEnable<CR>
-" command TME TableModeEnable 
 command TMR TableModeRealign
 command TOC GenTocGitLab
 "-----NERDTree-----
