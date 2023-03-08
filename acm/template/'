@@ -1,0 +1,31 @@
+ll get_uler_sum(int n) // 求1~n中所有数的欧拉函数之和
+{
+    vector<int> phi(n + 1, 0), primes;
+    vector<bool> vis(n + 1, 1);
+
+    phi[1] = 1;
+    for (int i = 2; i <= n; ++i)
+    {
+        if (vis[i])
+        {
+            phi[i] = i - 1;
+            primes.push_back(i);
+        }
+        for (int j = 0; primes[j] * i <= n; ++j)
+        {
+            int t = primes[j] * i;
+            vis[t] = false;
+            if (i % primes[j] == 0)
+            {
+                phi[t] = primes[j] * phi[i];
+                break;
+            }
+            phi[t] = phi[i] * (primes[j] - 1);
+        }
+    }
+
+    ll res = 0;
+    for (int i = 1; i <= n; ++i)
+        res += phi[i];
+    return res;
+}
