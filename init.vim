@@ -189,4 +189,5 @@ Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'preservim/nerdcommenter'
 Plug 'vim-autoformat/vim-autoformat'
 Plug 'ryanoasis/vim-devicons'
+Plug 'honza/vim-snippets'
 call plug#end()
