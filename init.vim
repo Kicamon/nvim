@@ -49,8 +49,6 @@ set wildmenu
 imap <A-l> <Right>
 
 " 引用外部文件
-"算法模板
-source ~/.config/nvim/acm/template.vim
 "md-snippets
 source ~/.config/nvim/md-snippets.vim
 "num-key
