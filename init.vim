@@ -63,6 +63,7 @@ source ~/.config/nvim/fcitx.vim
 "=== Plug config ====================
 "====================================
 "-----markdown-----
+let g:mkdp_browser='chromium'
 let g:table_mode_corner='|'	" 表格
 map <M-e> :TableModeEnable<CR>
 command TMR TableModeRealign

@@ -8,7 +8,7 @@ func! Run()
 	elseif &filetype == "cpp"
 		:sp
 		:res 100
-		term g++ % -std=c++17 -O2 -g -Wall -o %< && ./%< && rm -f ./%<
+		term g++ % -std=c++11 -O2 -g -Wall -o %< && ./%< && rm -f ./%< "为了适应蓝桥杯的环境
 	elseif &filetype == 'markdown'
 		exec "MarkdownPreview"
 	endif
