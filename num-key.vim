@@ -18,7 +18,7 @@ noremap <leader>ah' 16j
 noremap <leader>aj' 17j
 noremap <leader>ak' 18j
 noremap <leader>al' 19j
-noremap <leader>a;' 20j
+noremap <leader>s;' 20j
 noremap <leader>sa' 21j
 noremap <leader>ss' 22j
 noremap <leader>sd' 23j
@@ -28,7 +28,7 @@ noremap <leader>sh' 26j
 noremap <leader>sj' 27j
 noremap <leader>sk' 28j
 noremap <leader>sl' 29j
-noremap <leader>s;' 30j
+noremap <leader>d;' 30j
 noremap <leader>da' 31j
 noremap <leader>ds' 32j
 noremap <leader>dd' 33j
@@ -38,7 +38,7 @@ noremap <leader>dh' 36j
 noremap <leader>dj' 37j
 noremap <leader>dk' 38j
 noremap <leader>dl' 39j
-noremap <leader>d;' 40j
+noremap <leader>f;' 40j
 
 noremap <leader>a[ 1k
 noremap <leader>s[ 2k
@@ -59,7 +59,7 @@ noremap <leader>ah[ 16k
 noremap <leader>aj[ 17k
 noremap <leader>ak[ 18k
 noremap <leader>al[ 19k
-noremap <leader>a;[ 20k
+noremap <leader>s;[ 20k
 noremap <leader>sa[ 21k
 noremap <leader>ss[ 22k
 noremap <leader>sd[ 23k
@@ -69,7 +69,7 @@ noremap <leader>sh[ 26k
 noremap <leader>sj[ 27k
 noremap <leader>sk[ 28k
 noremap <leader>sl[ 29k
-noremap <leader>s;[ 30k
+noremap <leader>d;[ 30k
 noremap <leader>da[ 31k
 noremap <leader>ds[ 32k
 noremap <leader>dd[ 33k
@@ -79,4 +79,4 @@ noremap <leader>dh[ 36k
 noremap <leader>dj[ 37k
 noremap <leader>dk[ 38k
 noremap <leader>dl[ 39k
-noremap <leader>d;[ 40k
+noremap <leader>f;[ 40k
