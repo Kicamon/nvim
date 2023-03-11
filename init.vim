@@ -69,7 +69,7 @@ map <M-e> :TableModeEnable<CR>
 command TMR TableModeRealign
 command TOC GenTocGitLab
 "-----NERDTree-----
-map <F12> :NERDTreeMirror<CR> 
+map <F12> :NERDTreeMirror<CR>
 map <F12> :NERDTreeToggle<CR>
 
 

@@ -15,6 +15,8 @@
 coc.nvim插件使用注意：
 进入`./plugged/coc.nvim`文件，运行命令`yarn install`
 
+将 [coc](https://github.com/Kicamon/coc) 插件克隆到.config文件下
+
 ## 通用功能
 #### PASTE模式的开启与关闭
 |     操作     |    快捷键    |
