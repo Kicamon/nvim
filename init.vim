@@ -68,7 +68,18 @@ let g:table_mode_corner='|'	" 表格
 map <M-e> :TableModeEnable<CR>
 command TMR TableModeRealign
 command TOC GenTocGitLab
+" markdown文件中的conceal
+" 基本
 let g:vim_markdown_conceal=0
+" 代码块
+let g:vim_markdown_conceal_code_blocks = 0
+" latex数学公式
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1
+" 关闭折叠
+let g:vim_markdown_folding_disabled = 1
+" 让其他类型文件遵循上列标准
+let g:vim_markdown_auto_extension_ext = 'txt'
 "-----NERDTree-----
 map <F12> :NERDTreeMirror<CR>
 map <F12> :NERDTreeToggle<CR>
