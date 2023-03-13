@@ -47,6 +47,9 @@ set listchars=tab:▸\ ,trail:▫
 set wildmenu
 " insert模式下右移
 imap <A-l> <Right>
+" 关闭markdown文件的conceal
+let g:vim_markdown_conceal=0
+
 
 " 引用外部文件
 "md-snippets
@@ -57,7 +60,6 @@ source ~/.config/nvim/num-key.vim
 source ~/.config/nvim/run.vim
 "输入法切换
 source ~/.config/nvim/fcitx.vim
-
 
 "====================================
 "=== Plug config ====================
@@ -180,6 +182,7 @@ Plug 'crusoexia/vim-monokai'
 Plug 'luochen1990/rainbow'
 Plug 'preservim/nerdtree'
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'preservim/vim-markdown'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
