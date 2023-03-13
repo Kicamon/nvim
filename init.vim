@@ -47,8 +47,6 @@ set listchars=tab:▸\ ,trail:▫
 set wildmenu
 " insert模式下右移
 imap <A-l> <Right>
-" 关闭markdown文件的conceal
-let g:vim_markdown_conceal=0
 
 
 " 引用外部文件
@@ -70,6 +68,7 @@ let g:table_mode_corner='|'	" 表格
 map <M-e> :TableModeEnable<CR>
 command TMR TableModeRealign
 command TOC GenTocGitLab
+let g:vim_markdown_conceal=0
 "-----NERDTree-----
 map <F12> :NERDTreeMirror<CR>
 map <F12> :NERDTreeToggle<CR>
