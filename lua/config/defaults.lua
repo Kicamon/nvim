@@ -5,9 +5,17 @@ vim.o.wrap = false
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.tabstop = 2
-vim.o.smarttab = true
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = { '*.c', '*.cpp', '*.py', '*.txt' },
+	callback = function()
+		vim.o.tabstop = 4
+		vim.o.shiftwidth = 4
+		vim.o.softtabstop = 4
+	end,
+})
+vim.o.smarttab = true
 vim.o.autoindent = true
 vim.o.smartindent = true
 vim.o.ignorecase = true

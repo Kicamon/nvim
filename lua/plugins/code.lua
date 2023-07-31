@@ -12,19 +12,24 @@ return {
 		config = function()
 			require("hlchunk").setup({
 				chunk = {
-					enable = false,
+					enable = true,
+					use_treesitter = true,
+					style = {
+						{ fg = "#806d9c" },
+					},
+
 				},
 				indent = {
 					enable = true,
-					use_treesitter = false,
+					use_treesitter = true,
 					chars = {
-						"┃",
+						"│",
 					},
-					style = {
-						'#00BFFF',
-						'#B0E0E6',
-						'#FF69B4',
-					},
+					--style = {
+						--'#00BFFF',
+						--'#B0E0E6',
+						--'#FF69B4',
+					--},
 				},
 				line_num = {
 					enable = true,
@@ -43,10 +48,4 @@ return {
 			})
 		end
 	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = function()
-      require("nvim-treesitter.install").update({ with_sync = true })
-    end,
-	}
 }

@@ -5,12 +5,12 @@ local mode_v = { "v" }
 local mode_i = { "i" }
 local nmappings = {
 	-- base
-	{ from = "W",                to = ":w<CR>",                                             mode = mode_nv },
-	{ from = "Q",                to = ":q<CR>",                                             mode = mode_nv },
-	{ from = "B",                to = ":bd<CR>",                                            mode = mode_nv },
+	{ from = "W",                to = ":w<CR>",                                             mode = mode_n },
+	{ from = "Q",                to = ":q<CR>",                                             mode = mode_n },
+	{ from = "B",                to = ":bd<CR>",                                            mode = mode_n },
 	{ from = "N",                to = ":normal ",                                           mode = mode_v },
 	{ from = "Y",                to = "\"+y",                                               mode = mode_v },
-	{ from = "ca",               to = ":! xclip -sel c %<CR><CR>:echo \" Copied!\"<CR>", mode = mode_n },
+	{ from = "ca",               to = ":! xclip -sel c %<CR><CR>:echo \" Copied!\"<CR>",   mode = mode_n },
 	{ from = "<leader>sc",       to = ":set spell!<CR>",                                    mode = mode_n },
 	{ from = "<leader>sw",       to = ":set wrap!<CR>",                                     mode = mode_n },
 	{ from = "<leader><cr>",     to = ":noh<CR>",                                           mode = mode_n },
