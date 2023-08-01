@@ -1,5 +1,4 @@
 return {
-
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
@@ -12,7 +11,6 @@ return {
 				tag = "legacy",
 			},
 			"nvimdev/lspsaga.nvim",
-
 		},
 		config = function()
 			local servers = {
@@ -60,7 +58,17 @@ return {
 			require("neoconf").setup()
 			require("neodev").setup()
 			require("fidget").setup()
-			require("lspsaga").setup()
+			require("lspsaga").setup({
+				lightbulb = {
+					enble = false,
+					sign = false,
+				},
+				rename = {
+					keys = {
+						quit = '<esc>',
+					}
+				}
+			})
 			require("mason").setup()
 			local capabilities = require('cmp_nvim_lsp').default_capabilities()
 			require("mason-lspconfig").setup({
@@ -162,6 +170,7 @@ return {
 						{ name = 'cmdline' }
 					})
 				})
+
 				vim.fn.sign_define('DiagnosticSignError', { text = '🤣', texthl = 'DiagnosticSignError' })
 				vim.fn.sign_define('DiagnosticSignWarn', { text = '🧐', texthl = 'DiagnosticSignWarn' })
 				vim.fn.sign_define('DiagnosticSignInfo', { text = '🫠', texthl = 'DiagnosticSignInfo' })

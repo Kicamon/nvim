@@ -15,6 +15,10 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 		vim.o.softtabstop = 4
 	end,
 })
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = { '*.c', '*.cpp', '*.py', '*.txt' },
+	command = "setlocal expandtab"
+})
 vim.o.smarttab = true
 vim.o.autoindent = true
 vim.o.smartindent = true
