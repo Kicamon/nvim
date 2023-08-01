@@ -3,8 +3,8 @@ return {
 	dependencies = {
 		"MunifTanjim/nui.nvim",
 	},
-	ft = {"cpp"},
-	
+	ft = { "cpp" },
+
 	config = function()
 		require('competitest').setup()
 		vim.keymap.set("n", "rr", ":CompetiTestRun<CR>", { noremap = true })

@@ -17,7 +17,7 @@ local MdSnippets = {
 	{ from = ",l", to = "--- " },
 	--中文
 	{ from = "《 《》<++><", to = "sc>F》i" },
-	{ from = "》 >", to = "--- " },
+	{ from = "》", to = "> " },
 	{ from = "（", to = "（）<++><Esc>F）i" },
 	{ from = "“", to = "“”<++><Esc>F”i" },
 	{ from = "”", to = "“”<++><Esc>F”i" },
@@ -54,7 +54,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { '*.md' },
+	pattern = { '*.txt' },
 	callback = function()
 		vim.keymap.set("i", "<c-j>", "<Esc>/<++><CR>:nohlsearch<CR>\"_c4l", { noremap = true, buffer = true })
 	end

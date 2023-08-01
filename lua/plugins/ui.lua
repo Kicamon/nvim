@@ -73,6 +73,10 @@ return {
 					-- style = 'icon' | 'underline' | 'none',
 					style = "icon",
 				},
+				diagnostics_indicator = function(count, level, diagnostics_dict, context)
+					local icon = level:match("error") and " " or " "
+					return " " .. icon .. count
+				end,
 				numbers = function(opts)
 					local NumberIcon = {
 						"❶ ",
@@ -90,9 +94,9 @@ return {
 				end,
 				show_buffer_close_icons = false,
 				show_close_icon = false,
-				enforce_regular_tabs = true,
 				show_duplicate_prefix = false,
-				tab_size = 16,
+				tab_size = 10,
+				enforce_regular_tabs = false,
 				padding = 0,
 				separator_style = "thick",
 			}
@@ -358,7 +362,7 @@ return {
 
 			-- Add components to right sections
 			ins_right {
-				'o:encoding',  -- option component same as &encoding in viml
+				'o:encoding',   -- option component same as &encoding in viml
 				fmt = string.upper, -- I'm not sure why it's upper case either ;)
 				cond = conditions.hide_in_width,
 				color = { fg = colors.green, gui = 'bold' },

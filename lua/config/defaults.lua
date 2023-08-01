@@ -30,6 +30,7 @@ vim.o.virtualedit = 'block'
 vim.o.conceallevel = 0
 vim.o.showtabline = 2
 vim.o.laststatus = 2
+vim.o.formatoptions = vim.o.formatoptions:gsub('tc', '')
 vim.o.list = true
 vim.o.listchars = 'tab:┃ ,trail:▫'
 vim.o.scrolloff = 6
