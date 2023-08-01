@@ -8,18 +8,19 @@ return {
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
-					"html",
-					"javascript",
-					"typescript",
-					"query",
-					"dart",
-					"java",
+					"bash",
 					"c",
 					"cpp",
-					"prisma",
-					"bash",
+					"dart",
+					"html",
 					"go",
+					"java",
+					"javascript",
 					"lua",
+					"prisma",
+					"python",
+					"query",
+					"typescript",
 					"vim"
 				},
 				highlight = {
@@ -55,13 +56,13 @@ return {
 					lua = 'rainbow-blocks',
 				},
 				highlight = {
-					'RainbowDelimiterRed',
-					'RainbowDelimiterYellow',
 					'RainbowDelimiterBlue',
+					'RainbowDelimiterYellow',
+					'RainbowDelimiterCyan',
+					'RainbowDelimiterViolet',
+					'RainbowDelimiterRed',
 					'RainbowDelimiterOrange',
 					'RainbowDelimiterGreen',
-					'RainbowDelimiterViolet',
-					'RainbowDelimiterCyan',
 				},
 			}
 		end

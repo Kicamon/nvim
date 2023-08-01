@@ -4,6 +4,7 @@ return {
 		dependencies = {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig",
+			"nvimdev/guard.nvim",
 			"folke/neoconf.nvim",
 			"folke/neodev.nvim",
 			{
@@ -19,11 +20,18 @@ return {
 				jsonls = {},
 				lua_ls = {
 					Lua = {
+						diagnostics = {
+							globals = {
+								'vim',
+								'require'
+							},
+						},
 						workspace = { checkThirdParty = false },
 						telemetry = { enable = false },
 					},
 				},
 				pyright = {},
+				--black = {},
 			}
 			local on_attach = function(_, bufnr)
 				-- Enable completion triggered by <c-x><c-o>
@@ -34,6 +42,14 @@ return {
 
 					vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
 				end
+
+				--format
+				local ft = require('guard.filetype')
+				ft('c'):fmt('clangd-format')
+				ft('cpp'):fmt('clangd-format')
+				ft('lua'):fmt('stylua')
+						:append('lsp')
+				ft('python'):fmt('black')
 
 				nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 				nmap('gd', require "telescope.builtin".lsp_definitions, '[G]oto [D]efinition')
@@ -51,9 +67,10 @@ return {
 				nmap('<leader>da', require "telescope.builtin".diagnostics, '[D]i[A]gnostics')
 				nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 				-- nmap('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
-				nmap("\\f", function()
-					vim.lsp.buf.format { async = true }
-				end, "[F]ormat code")
+				--nmap("\\f", function()
+				--vim.lsp.buf.format { async = true }
+				--end, "[F]ormat code")
+				nmap("\\f", "<cmd>GuardFmt<CR>", "[F]ormat code")
 			end
 			require("neoconf").setup()
 			require("neodev").setup()
@@ -93,6 +110,7 @@ return {
 				"hrsh7th/cmp-nvim-lsp",
 				"hrsh7th/cmp-buffer",
 				"hrsh7th/cmp-cmdline",
+				"onsails/lspkind.nvim",
 				"saadparwaiz1/cmp_luasnip",
 				{
 					"saadparwaiz1/cmp_luasnip",
@@ -114,7 +132,32 @@ return {
 				require("luasnip.loaders.from_snipmate").lazy_load({ path = { "~/.config/nvim/snippets" } })
 				local luasnip = require("luasnip")
 				local cmp = require 'cmp'
+				--local lspkind = require('lspkind')
 				cmp.setup {
+					window = {
+						completion = {
+							winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+							col_offset = -3,
+							side_padding = 0,
+							border = 'rounded',
+							scrollbar = '║',
+						},
+						Documentation = {
+							border = nil,
+							scrollbar = '',
+						}
+					},
+					formatting = {
+						fields = { "kind", "abbr", "menu" },
+						format = function(entry, vim_item)
+							local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+							local strings = vim.split(kind.kind, "%s", { trimempty = true })
+							kind.kind = " " .. (strings[1] or "") .. " "
+							kind.menu = "    (" .. (strings[2] or "") .. ")"
+
+							return kind
+						end,
+					},
 					snippet = {
 						expand = function(args)
 							require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
@@ -152,9 +195,10 @@ return {
 						end, { "i", "s" }),
 						['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 					},
-					--experimental = {
-					--ghost_text = true,
-					--}
+
+					experimental = {
+						ghost_text = true,
+					},
 				}
 
 				cmp.setup.cmdline('/', {

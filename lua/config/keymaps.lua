@@ -18,8 +18,8 @@ local nmappings = {
 	-- move
 	{ from = "J",                to = "10j",                                                mode = mode_nv },
 	{ from = "K",                to = "10k",                                                mode = mode_nv },
-	{ from = "j",                to = "gj",                                                 mode = mode_nv },
-	{ from = "k",                to = "gk",                                                 mode = mode_nv },
+	{ from = "j",                to = "gj",                                                 mode = mode_n },
+	{ from = "k",                to = "gk",                                                 mode = mode_n },
 	{ from = "<A-l>",            to = "<Right>",                                            mode = mode_i },
 	{ from = "<A-j>",            to = "<cmd>m .+1<cr>==",                                   mode = mode_n },
 	{ from = "<A-k>",            to = "<cmd>m .-2<cr>==",                                   mode = mode_n },
