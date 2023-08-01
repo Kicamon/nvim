@@ -8,7 +8,7 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { '*.c', '*.cpp', '*.py', '*.txt' },
+	pattern = { '*.c', '*.cpp', '*.txt' },
 	callback = function()
 		vim.o.tabstop = 4
 		vim.o.shiftwidth = 4
@@ -34,7 +34,7 @@ vim.o.formatoptions = vim.o.formatoptions:gsub('tc', '')
 vim.o.list = true
 vim.o.listchars = 'tab:┃ ,trail:▫'
 vim.o.scrolloff = 6
-vim.o.colorcolumn = 80
+vim.o.colorcolumn = '80'
 vim.opt.fillchars = { vert = '║' }
 vim.cmd([[
 silent !mkdir -p $HOME/.config/nvim/tmp/undo

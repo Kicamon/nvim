@@ -1,5 +1,6 @@
 return {
 	"xeluxee/competitest.nvim",
+	key = { "rr", "ra", "re", "ri", "rd" },
 	dependencies = {
 		"MunifTanjim/nui.nvim",
 	},

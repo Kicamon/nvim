@@ -7,7 +7,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-file-browser.nvim"
 		},
-		config = true,
+		--config = true,
 		config = function()
 			local builtin = require("veil.builtin")
 			require('veil').setup({
@@ -73,7 +73,7 @@ return {
 					-- style = 'icon' | 'underline' | 'none',
 					style = "icon",
 				},
-				diagnostics_indicator = function(count, level, diagnostics_dict, context)
+				diagnostics_indicator = function(count, level)
 					local icon = level:match("error") and " " or " "
 					return " " .. icon .. count
 				end,
@@ -288,7 +288,7 @@ return {
 
 			ins_left {
 				function()
-					mode2 = ""
+					local mode2 = ""
 					-- if(vim.g.input_toggle == 0) then
 					-- 	mode2 = mode2 .. "汉"
 					-- else
@@ -379,7 +379,6 @@ return {
 				function()
 					return ''
 				end,
-				padding = { left = 1, right = 0 },
 				color = { fg = colors.bgdark, gui = 'bold' },
 				padding = { right = 0 },
 			}
@@ -429,5 +428,48 @@ return {
 			-- Now don't forget to initialize lualine
 			lualine.setup(config)
 		end
-	}
+	},
+	{
+		'petertriho/nvim-scrollbar',
+		dependencies = {
+			'kevinhwang91/nvim-hlslens',
+		},
+		config = function()
+			--nvim-scrollbar---
+			require("scrollbar").setup()
+			require("scrollbar.handlers.search").setup()
+			require("scrollbar").setup({
+				show = true,
+				handle = {
+					text = " ",
+					color = "#696969",
+					hide_if_all_visible = true,
+				},
+				marks = {
+					Search = { color = "yellow" },
+					Misc = { color = "purple" },
+				},
+				handlers = {
+					cursor = true,
+					diagnostic = true,
+					gitsigns = true,
+					handle = true,
+					search = true,
+				},
+			})
+		end
+	},
+	{
+		'm4xshen/smartcolumn.nvim',
+		opts = {},
+		config = function()
+			require("smartcolumn").setup()
+			require("smartcolumn").setup {
+				custom_colorcolumn = {
+					text = "0",
+					veil = "0",
+				}
+			}
+		end
+	},
 }

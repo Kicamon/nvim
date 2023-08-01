@@ -1,5 +1,4 @@
 --move cursor with the middle of the keyboard
-vim.g.mapleader = " "
 vim.keymap.set("n", "'a<leader>", "1j", { noremap = true, silent = true })
 vim.keymap.set("n", "'s<leader>", "2j", { noremap = true, silent = true })
 vim.keymap.set("n", "'d<leader>", "3j", { noremap = true, silent = true })
