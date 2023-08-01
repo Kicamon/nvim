@@ -13,7 +13,7 @@ return {
 		ft = { "markdown", "vimwiki" },
 		config = function()
 			vim.g.table_mode_corner = '|'
-			vim.keymap.set("n", "\f", ":TableModeToggle<CR>", { noremap = true })
+			vim.keymap.set("n", "\\f", ":TableModeToggle<CR>", { noremap = true })
 		end,
 	},
 	{

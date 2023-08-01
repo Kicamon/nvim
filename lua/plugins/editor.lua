@@ -63,6 +63,8 @@ return {
 						aerial = true,
 						dashboard = true,
 						Navbuddy = true,
+						markdown = true,
+						snippets = true,
 					},
 					support_filetypes = {
 						"*.c",
