@@ -78,7 +78,6 @@ return {
 					style = {
 						{ fg = "#806d9c" },
 					},
-
 				},
 				indent = {
 					enable = true,

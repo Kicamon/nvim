@@ -43,7 +43,7 @@ local nmappings = {
 	{ from = "<left>",           to = ":vertical resize-5<CR>",                                        mode = mode_n },
 	{ from = "<right>",          to = ":vertical resize+5<CR>",                                        mode = mode_n },
 	{ from = "<leader><leader>", to = "/<++><CR>:noh<CR>\"_c4l",                                       mode = mode_n },
-	{ from = "<leader>vim",      to = ":e ~/.config/nvim/init.lua<CR>",                                mode = mode_n },
+	{ from = "<leader>vim",      to = ":tabe ~/.config/nvim/init.lua<CR>",                             mode = mode_n },
 
 	-- buffers & tabs
 	{ from = "[b",               to = ":bp<CR>",                                                       mode = mode_n },
