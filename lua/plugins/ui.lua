@@ -47,7 +47,7 @@ return {
 							text = "Config",
 							shortcut = "acm",
 							callback = function()
-								vim.cmd('CompetiTestReceive contest')
+								vim.cmd(':CompetiTest receive contest')
 							end,
 						},
 					}),
@@ -435,7 +435,6 @@ return {
 			'kevinhwang91/nvim-hlslens',
 		},
 		config = function()
-			--nvim-scrollbar---
 			require("scrollbar").setup()
 			require("scrollbar.handlers.search").setup()
 			require("scrollbar").setup({

@@ -60,15 +60,15 @@ python支持`sudo pacman -S python-pynvim` or `pip install pynvim`
 > 大家可以参考配置文件自行围绕自己所使用的编程语言进行配置
 
 #### 一键编译等
-| 操作        | 快捷键       |
-| ----------- | -------------|
-| 编译运行    | \<F5>        |
-| 自动格式化  | \\f  |
+| 操作        | 快捷键        |
+| ----------- | ------------- |
+| 编译运行    | \<F5>         |
+| 自动格式化  | \\f           |
 
 #### 一键注释与解注释
 
-| 操作   | 快捷键 |
-|--------|--------|
+| 操作   | 快捷键     |
+|--------|------------|
 | 注释   | \<space>cc |
 | 解注释 | \<space>cc |
 
@@ -90,54 +90,51 @@ pip3 install autopep8
 ![Navbuddy](./usr/pictures/navbuddy.gif)
 
 #### 代码模板
-代码模板使用的是`coc-snippets` 这个插件，比如我想要存储一个cpp的基本模板，按照下面步骤操作：
-1. 打开一个cpp文件
-2. 运行命令：`:CocCommand snippets.editSnippets`
-3. 在文件的末尾加上：
+代码模板使用的是`luasnip` 这个插件，比如我想要存储一个cpp的基本模板，按照下面步骤操作：
+进入到`~/.config/nvim/snippets`目录当中，创建`cpp.snippets`文件，在文件中输入下面代码
 
 ```snippets
-snippet acm "template" b
-/*
-[[ ⣇⣿⠘⣿⣿⣿⡿⡿⣟⣟⢟⢟⢝⠵⡝⣿⡿⢂⣼⣿⣷⣌⠩⡫⡻⣝⠹⢿⣿⣷ ]],
-[[ ⡆⣿⣆⠱⣝⡵⣝⢅⠙⣿⢕⢕⢕⢕⢝⣥⢒⠅⣿⣿⣿⡿⣳⣌⠪⡪⣡⢑⢝⣇ ]],
-[[ ⡆⣿⣿⣦⠹⣳⣳⣕⢅⠈⢗⢕⢕⢕⢕⢕⢈⢆⠟⠋⠉⠁⠉⠉⠁⠈⠼⢐⢕⢽ ]],
-[[ ⡗⢰⣶⣶⣦⣝⢝⢕⢕⠅⡆⢕⢕⢕⢕⢕⣴⠏⣠⡶⠛⡉⡉⡛⢶⣦⡀⠐⣕⢕ ]],
-[[ ⡝⡄⢻⢟⣿⣿⣷⣕⣕⣅⣿⣔⣕⣵⣵⣿⣿⢠⣿⢠⣮⡈⣌⠨⠅⠹⣷⡀⢱⢕ ]],
-[[ ⡝⡵⠟⠈⢀⣀⣀⡀⠉⢿⣿⣿⣿⣿⣿⣿⣿⣼⣿⢈⡋⠴⢿⡟⣡⡇⣿⡇⡀⢕ ]],
-[[ ⡝⠁⣠⣾⠟⡉⡉⡉⠻⣦⣻⣿⣿⣿⣿⣿⣿⣿⣿⣧⠸⣿⣦⣥⣿⡇⡿⣰⢗⢄ ]],
-[[ ⠁⢰⣿⡏⣴⣌⠈⣌⠡⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣬⣉⣉⣁⣄⢖⢕⢕⢕ ]],
-[[ ⡀⢻⣿⡇⢙⠁⠴⢿⡟⣡⡆⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣵⣵⣿ ]],
-[[ ⡻⣄⣻⣿⣌⠘⢿⣷⣥⣿⠇⣿⣿⣿⣿⣿⣿⠛⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ ]],
-[[ ⣷⢄⠻⣿⣟⠿⠦⠍⠉⣡⣾⣿⣿⣿⣿⣿⣿⢸⣿⣦⠙⣿⣿⣿⣿⣿⣿⣿⣿⠟ ]],
-[[ ⡕⡑⣑⣈⣻⢗⢟⢞⢝⣻⣿⣿⣿⣿⣿⣿⣿⠸⣿⠿⠃⣿⣿⣿⣿⣿⣿⡿⠁⣠ ]],
-[[ ⡝⡵⡈⢟⢕⢕⢕⢕⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣿⣿⣿⣿⣿⠿⠋⣀⣈⠙ ]],
-[[ ⡝⡵⡕⡀⠑⠳⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⢉⡠⡲⡫⡪⡪⡣ ]],
-*/
-// #pragma GCC optimize(2)
-#include <bits/stdc++.h>
-using namespace std;
-#define endl '\n'
-#define all(a) a.begin(), a.end()
-#define rall(a) a.rbegin(), a.rend()
-#define ll long long
-#define Debug(x) cout << #x << ':' << x << endl
+snippet acm
+    /*
+    [[ ⣇⣿⠘⣿⣿⣿⡿⡿⣟⣟⢟⢟⢝⠵⡝⣿⡿⢂⣼⣿⣷⣌⠩⡫⡻⣝⠹⢿⣿⣷ ]],
+    [[ ⡆⣿⣆⠱⣝⡵⣝⢅⠙⣿⢕⢕⢕⢕⢝⣥⢒⠅⣿⣿⣿⡿⣳⣌⠪⡪⣡⢑⢝⣇ ]],
+    [[ ⡆⣿⣿⣦⠹⣳⣳⣕⢅⠈⢗⢕⢕⢕⢕⢕⢈⢆⠟⠋⠉⠁⠉⠉⠁⠈⠼⢐⢕⢽ ]],
+    [[ ⡗⢰⣶⣶⣦⣝⢝⢕⢕⠅⡆⢕⢕⢕⢕⢕⣴⠏⣠⡶⠛⡉⡉⡛⢶⣦⡀⠐⣕⢕ ]],
+    [[ ⡝⡄⢻⢟⣿⣿⣷⣕⣕⣅⣿⣔⣕⣵⣵⣿⣿⢠⣿⢠⣮⡈⣌⠨⠅⠹⣷⡀⢱⢕ ]],
+    [[ ⡝⡵⠟⠈⢀⣀⣀⡀⠉⢿⣿⣿⣿⣿⣿⣿⣿⣼⣿⢈⡋⠴⢿⡟⣡⡇⣿⡇⡀⢕ ]],
+    [[ ⡝⠁⣠⣾⠟⡉⡉⡉⠻⣦⣻⣿⣿⣿⣿⣿⣿⣿⣿⣧⠸⣿⣦⣥⣿⡇⡿⣰⢗⢄ ]],
+    [[ ⠁⢰⣿⡏⣴⣌⠈⣌⠡⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣬⣉⣉⣁⣄⢖⢕⢕⢕ ]],
+    [[ ⡀⢻⣿⡇⢙⠁⠴⢿⡟⣡⡆⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣵⣵⣿ ]],
+    [[ ⡻⣄⣻⣿⣌⠘⢿⣷⣥⣿⠇⣿⣿⣿⣿⣿⣿⠛⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ ]],
+    [[ ⣷⢄⠻⣿⣟⠿⠦⠍⠉⣡⣾⣿⣿⣿⣿⣿⣿⢸⣿⣦⠙⣿⣿⣿⣿⣿⣿⣿⣿⠟ ]],
+    [[ ⡕⡑⣑⣈⣻⢗⢟⢞⢝⣻⣿⣿⣿⣿⣿⣿⣿⠸⣿⠿⠃⣿⣿⣿⣿⣿⣿⡿⠁⣠ ]],
+    [[ ⡝⡵⡈⢟⢕⢕⢕⢕⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣿⣿⣿⣿⣿⠿⠋⣀⣈⠙ ]],
+    [[ ⡝⡵⡕⡀⠑⠳⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⢉⡠⡲⡫⡪⡪⡣ ]],
+    */
+    // #pragma GCC optimize(2)
+    #include <bits/stdc++.h>
+    using namespace std;
+    #define endl '\n'
+    #define all(a) a.begin(), a.end()
+    #define rall(a) a.rbegin(), a.rend()
+    #define ll long long
+    #define Debug(x) cout << #x << ':' << x << endl
 
-signed main()
-{
-    ios::sync_with_stdio(false);
-    cin.tie(0);
+    signed main()
+    {
+        ios::sync_with_stdio(false);
+        cin.tie(0);
 
-    // clock_t start, finish;
-    // start = clock();
+        // clock_t start, finish;
+        // start = clock();
 
-    ${0}
+        ${0}
 
-    // finish = clock();
-    // cout <<endl<<"the time cost is:" << double(finish - start) / CLOCKS_PER_SEC<<endl;
+        // finish = clock();
+        // cout <<endl<<"the time cost is:" << double(finish - start) / CLOCKS_PER_SEC<<endl;
 
-    return 0;
-}
-endsnippet
+        return 0;
+    }
 ```
 
 之后在写代码的过程中输入`acm` 就会出现基本模板的代码补全
@@ -160,8 +157,8 @@ endsnippet
 
 我这里使用的是chromium浏览器
 
-```Vim
-let g:mkdp_browser='chromium'
+```lua
+vim.g.mkdp_browser='chromium'
 ```
 
 #### 输入法切换
@@ -192,11 +189,11 @@ let g:mkdp_browser='chromium'
 |     `###` |     ,3 |
 |    `####` |     ,4 |
 
-输入`,f`可以跳出来，自己尝试一下就知道了
+输入`Ctrl + j`可以跳出来，自己尝试一下就知道了
 
 ------
 
 参考：
-1. https://github.com/theniceboy/nvim
-2. https://blog.liukairui.me/article/Vim%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0(%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE,%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90,%E7%BE%8E%E5%8C%96)(C++,Python,MarkDown,R...)/
-
+> https://github.com/theniceboy/nvim
+>
+> https://www.bilibili.com/video/BV14z4y1E7o5

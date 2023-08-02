@@ -1,4 +1,3 @@
-vim.g.mapleader = " "
 ------ fcitx5 ------
 local input_toggle = 1
 
@@ -78,9 +77,9 @@ vim.keymap.set('n', '<leader>mk', ':lua GetMakefile()<CR>', { noremap = true })
 ------ clear ------
 function Clear()
 	if (vim.fn.filereadable('Makefile') == 1) then
-		vim.cmd('! make clean')
+		vim.cmd('silent ! make clean')
 	else
-		vim.cmd('! rm -f "./%<" && rm -f "./%<"_*.txt')
+		vim.cmd('silent ! rm -f "./%<" && rm -f "./%<"_*.txt')
 	end
 end
 

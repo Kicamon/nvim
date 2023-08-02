@@ -17,6 +17,8 @@ return {
 					"java",
 					"javascript",
 					"lua",
+					"markdown",
+					"markdown_inline",
 					"prisma",
 					"python",
 					"query",

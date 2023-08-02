@@ -1,5 +1,6 @@
 vim.o.termguicolors = true
 vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
+vim.g.mapleader = ' '
 vim.o.cursorline = true
 vim.o.wrap = false
 vim.o.number = true
@@ -30,7 +31,7 @@ vim.o.virtualedit = 'block'
 vim.o.conceallevel = 0
 vim.o.showtabline = 2
 vim.o.laststatus = 2
-vim.o.formatoptions = vim.o.formatoptions:gsub('tc', '')
+--vim.o.formatoptions = vim.o.formatoptions:gsub('tc', '')
 vim.o.list = true
 vim.o.listchars = 'tab:┃ ,trail:▫'
 vim.o.scrolloff = 6

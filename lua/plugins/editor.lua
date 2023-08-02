@@ -59,6 +59,7 @@ return {
 				chunk = {
 					enable = true,
 					use_treesitter = true,
+					notify = false,
 					exclude_filetypes = {
 						aerial = true,
 						dashboard = true,

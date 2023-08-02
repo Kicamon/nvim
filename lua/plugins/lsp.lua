@@ -3,7 +3,7 @@ return {
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig",
+			"williamboman/mason-lspconfig.nvim",
 			"nvimdev/guard.nvim",
 			"folke/neoconf.nvim",
 			"folke/neodev.nvim",
@@ -31,7 +31,6 @@ return {
 					},
 				},
 				pyright = {},
-				--black = {},
 			}
 			local on_attach = function(_, bufnr)
 				-- Enable completion triggered by <c-x><c-o>
@@ -45,11 +44,11 @@ return {
 
 				--format
 				local ft = require('guard.filetype')
-				ft('c'):fmt('clangd-format')
-				ft('cpp'):fmt('clangd-format')
-				ft('lua'):fmt('stylua')
-						:append('lsp')
+				ft('c'):fmt('clang-format')
+				ft('cpp'):fmt('clang-format')
+				ft('lua'):fmt('lsp')
 				ft('python'):fmt('black')
+				ft('sh'):fmt('lsp')
 
 				nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 				nmap('gd', require "telescope.builtin".lsp_definitions, '[G]oto [D]efinition')
@@ -193,7 +192,7 @@ return {
 								fallback()
 							end
 						end, { "i", "s" }),
-						['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+						['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 					},
 
 					experimental = {
