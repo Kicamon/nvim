@@ -1,15 +1,18 @@
 return {
 	{
 		'nvim-telescope/telescope.nvim',
-		tag = '0.1.2',
 		dependencies = {
 			'nvim-lua/plenary.nvim',
+			'nvim-telescope/telescope-file-browser.nvim',
 		},
 		config = function()
-			vim.keymap.set("n", "<leader>ff", ":Telescope find_files<CR>", { noremap = true })
-			vim.keymap.set("n", "<leader>fk", ":Telescope keymaps<CR>", { noremap = true })
-			vim.keymap.set("n", "<leader>fb", ":Telescope buggers<CR>", { noremap = true })
-			vim.keymap.set("n", "<leader>fg", ":Telescope grep_string<CR>", { noremap = true })
+			local builtin = require('telescope.builtin')
+			vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+			vim.keymap.set('n', '<leader>fk', builtin.keymaps, {})
+			vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+			vim.keymap.set('n', '<leader>fg', builtin.git_status, {})
+			vim.keymap.set('n', '<leader>fo', builtin.oldfiles, {})
+			vim.keymap.set('n', '<leader>fz', builtin.spell_suggest, {})
 			local telescope = require("telescope")
 			local actions = require("telescope.actions")
 			telescope.setup {
@@ -19,12 +22,11 @@ return {
 							["<CR>"] = actions.file_tab
 						},
 						n = {
-							["<CR>"] = actions.file_tab
+							["l"] = actions.file_tab
 						},
 					}
 				},
 			}
 		end
 	},
-	{ 'nvim-telescope/telescope-file-browser.nvim' },
 }

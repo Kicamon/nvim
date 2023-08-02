@@ -27,9 +27,8 @@ return {
 		"img-paste-devs/img-paste.vim",
 		ft = { "markdown", "vimwiki", "tex" },
 		config = function()
-			vim.g.PasteImageFunction = 'g:MarkdownPasteImage'
-			vim.g.PasteImageFunction = 'g:LatexPasteImage'
 			vim.keymap.set("n", "<leader>p", ":call mdip#MarkdownClipboardImage()<CR>", { noremap = true })
+			vim.g.PasteImageFunction = 'g:MarkdownPasteImage'
 		end,
 	},
 	{

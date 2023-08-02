@@ -15,7 +15,6 @@ require("lazy").setup({
 	require("plugins.acm"),
 	require("plugins.colorscheme"),
 	require("plugins.editor"),
-	require("plugins.gitsigns"),
 	require("plugins.lsp"),
 	require("plugins.markdown"),
 	require("plugins.notify"),

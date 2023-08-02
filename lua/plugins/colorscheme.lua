@@ -1,12 +1,12 @@
 return {
-	"Kicamon/gruvbox",
+	'Kicamon/gruvbox.nvim',
 	lazy = false,
 	priority = 1000,
 	config = function()
 		vim.cmd([[colorscheme gruvbox]])
 		-- Customization for Pmenu
+		vim.api.nvim_set_hl(0, "Pmenu", { fg = "#C5CDD9", bg = "#282828" })
 		vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#282C34", fg = "NONE" })
-		vim.api.nvim_set_hl(0, "Pmenu", { fg = "#C5CDD9", bg = "#22252A" })
 
 		vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = "#7E8294", bg = "NONE", strikethrough = true })
 		vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "#82AAFF", bg = "NONE", bold = true })
