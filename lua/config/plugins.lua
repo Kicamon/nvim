@@ -13,6 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	require("plugins.acm"),
+	--require("plugins.cmp"),
 	require("plugins.colorscheme"),
 	require("plugins.editor"),
 	require("plugins.lsp"),
