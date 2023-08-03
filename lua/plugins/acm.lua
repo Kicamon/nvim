@@ -11,6 +11,6 @@ return {
 		vim.keymap.set("n", "re", ":CompetiTest edit_testcase<CR>", { noremap = true })
 		vim.keymap.set("n", "ri", ":CompetiTest receive testcases<CR>", { noremap = true })
 		vim.keymap.set("n", "rd", ":CompetiTest delete_testcase<CR>", { noremap = true })
-		--vim.keymap.set("n", "acm", ":CompetiTestReceive contest<CR>", { noremap = true, silent = true })
+		vim.keymap.set("n", "acm", ":CompetiTest receive contest<CR>", { noremap = true })
 	end
 }
