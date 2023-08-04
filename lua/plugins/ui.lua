@@ -74,6 +74,29 @@ return {
 				none     = '#282828',
 			}
 
+			local mode_color = {
+				n = colors.green,
+				i = colors.violet,
+				v = colors.yellow,
+				[''] = colors.yellow,
+				V = colors.yellow,
+				c = colors.magenta,
+				no = colors.red,
+				s = colors.orange,
+				S = colors.orange,
+				[''] = colors.orange,
+				ic = colors.yellow,
+				R = colors.violet,
+				Rv = colors.violet,
+				cv = colors.red,
+				ce = colors.red,
+				r = colors.cyan,
+				rm = colors.cyan,
+				['r?'] = colors.cyan,
+				['!'] = colors.red,
+				t = colors.red,
+			}
+
 			local conditions = {
 				buffer_not_empty = function()
 					return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
@@ -139,28 +162,6 @@ return {
 				end,
 				padding = { right = 0 },
 				color = function()
-					local mode_color = {
-						n = colors.green,
-						i = colors.violet,
-						v = colors.yellow,
-						[''] = colors.yellow,
-						V = colors.yellow,
-						c = colors.magenta,
-						no = colors.red,
-						s = colors.orange,
-						S = colors.orange,
-						[''] = colors.orange,
-						ic = colors.yellow,
-						R = colors.violet,
-						Rv = colors.violet,
-						cv = colors.red,
-						ce = colors.red,
-						r = colors.cyan,
-						rm = colors.cyan,
-						['r?'] = colors.cyan,
-						['!'] = colors.red,
-						t = colors.red,
-					}
 					return { fg = mode_color[vim.fn.mode()], gui = 'bold' }
 				end,
 			}
@@ -169,28 +170,6 @@ return {
 				'mode',
 				icon = '󰕷',
 				color = function()
-					local mode_color = {
-						n = colors.green,
-						i = colors.violet,
-						v = colors.yellow,
-						[''] = colors.yellow,
-						V = colors.yellow,
-						c = colors.magenta,
-						no = colors.red,
-						s = colors.orange,
-						S = colors.orange,
-						[''] = colors.orange,
-						ic = colors.yellow,
-						R = colors.violet,
-						Rv = colors.violet,
-						cv = colors.red,
-						ce = colors.red,
-						r = colors.cyan,
-						rm = colors.cyan,
-						['r?'] = colors.cyan,
-						['!'] = colors.red,
-						t = colors.red,
-					}
 					return { fg = colors.bg, bg = mode_color[vim.fn.mode()], gui = 'bold' }
 				end,
 			}
@@ -200,28 +179,6 @@ return {
 					return ''
 				end,
 				color = function()
-					local mode_color = {
-						n = colors.green,
-						i = colors.violet,
-						v = colors.yellow,
-						[''] = colors.yellow,
-						V = colors.yellow,
-						c = colors.magenta,
-						no = colors.red,
-						s = colors.orange,
-						S = colors.orange,
-						[''] = colors.orange,
-						ic = colors.yellow,
-						R = colors.violet,
-						Rv = colors.violet,
-						cv = colors.red,
-						ce = colors.red,
-						r = colors.cyan,
-						rm = colors.cyan,
-						['r?'] = colors.cyan,
-						['!'] = colors.red,
-						t = colors.red,
-					}
 					return { fg = mode_color[vim.fn.mode()], bg = colors.bgdark, gui = 'bold' }
 				end,
 				padding = { left = 0, right = 0 }
@@ -374,6 +331,7 @@ return {
 		'petertriho/nvim-scrollbar',
 		dependencies = {
 			'kevinhwang91/nvim-hlslens',
+			lazy = true,
 		},
 		config = function()
 			require("scrollbar").setup()
@@ -436,6 +394,7 @@ return {
 	},
 	{
 		"nvim-zh/colorful-winsep.nvim",
+		lazy = true,
 		config = true,
 		event = { "WinNew" },
 	},

@@ -8,9 +8,16 @@ return {
 	},
 	{
 		'kevinhwang91/rnvimr',
-		key = { 'R' },
 		config = function()
 			vim.keymap.set('n', 'R', ':RnvimrToggle<CR>', { noremap = true })
+		end
+	},
+	{
+		"Kicamon/im-switch.nvim",
+		lazy = true,
+		event = { "InsertEnter" },
+		config = function()
+			require("im-switch").setup()
 		end
 	}
 }

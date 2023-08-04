@@ -1,21 +1,20 @@
 return {
 	{
 		"windwp/nvim-autopairs",
+		lazy = true,
+		event = { "InsertEnter" },
 		config = function()
 			require("nvim-autopairs").setup({})
 		end
 	},
 	{
 		"gcmt/wildfire.vim",
-		lazy = false,
 	},
 	{
 		"tpope/vim-surround",
-		lazy = false,
 	},
 	{
 		"mg979/vim-visual-multi",
-		lazy = false,
 	},
 	{
 		"NvChad/nvim-colorizer.lua",
@@ -54,18 +53,18 @@ return {
 	{
 		"shellRaining/hlchunk.nvim",
 		config = function()
+			local exft = {
+				aerial = true,
+				Navbuddy = true,
+				markdown = true,
+				snippets = true,
+			}
 			require("hlchunk").setup({
 				chunk = {
 					enable = true,
 					use_treesitter = true,
 					notify = false,
-					exclude_filetypes = {
-						aerial = true,
-						dashboard = true,
-						Navbuddy = true,
-						markdown = true,
-						snippets = true,
-					},
+					exclude_filetypes = exft,
 					support_filetypes = {
 						"*.c",
 						"*.cpp",
@@ -81,13 +80,7 @@ return {
 				indent = {
 					enable = true,
 					use_treesitter = true,
-					exclude_filetypes = {
-						aerial = true,
-						dashboard = true,
-						Navbuddy = true,
-						markdown = true,
-						snippets = true,
-					},
+					exclude_filetypes = exft,
 					chars = {
 						"│",
 					},

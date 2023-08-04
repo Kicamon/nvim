@@ -2,6 +2,7 @@ return {
 	{
 		'iamcco/markdown-preview.nvim',
 		build = "cd app && yarn install",
+		lazy = true,
 		ft = { "markdown", "vimwiki" },
 		config = function()
 			vim.g.mkdp_browser = "chromium"
@@ -10,6 +11,7 @@ return {
 	},
 	{
 		"dhruvasagar/vim-table-mode",
+		lazy = true,
 		ft = { "markdown", "vimwiki" },
 		config = function()
 			vim.g.table_mode_corner = '|'
@@ -18,6 +20,7 @@ return {
 	},
 	{
 		"mzlogin/vim-markdown-toc",
+		lazy = true,
 		ft = { "markdown", "vimwiki" },
 		config = function()
 			vim.keymap.set("n", "toc", ":GenTocGitLab<CR>", { noremap = true, buffer = true })
@@ -25,6 +28,7 @@ return {
 	},
 	{
 		"img-paste-devs/img-paste.vim",
+		lazy = true,
 		ft = { "markdown", "vimwiki", "tex" },
 		config = function()
 			vim.keymap.set("n", "<leader>p", ":call mdip#MarkdownClipboardImage()<CR>", { noremap = true })
@@ -33,6 +37,7 @@ return {
 	},
 	{
 		"dkarter/bullets.vim",
+		lazy = true,
 		ft = { "markdown", "vimwiki" },
 		config = function()
 			vim.g.bullets_enabled_file_types = { 'markdown', 'text', 'gitcommit', 'scratch' }
