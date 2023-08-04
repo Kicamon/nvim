@@ -68,5 +68,11 @@ return {
 				},
 			}
 		end
+	},
+	{
+		"Kicamon/im-switch.nvim",
+		config = function()
+			require("im-switch").setup()
+		end
 	}
 }

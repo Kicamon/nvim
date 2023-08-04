@@ -81,6 +81,13 @@ return {
 				indent = {
 					enable = true,
 					use_treesitter = true,
+					exclude_filetypes = {
+						aerial = true,
+						dashboard = true,
+						Navbuddy = true,
+						markdown = true,
+						snippets = true,
+					},
 					chars = {
 						"│",
 					},

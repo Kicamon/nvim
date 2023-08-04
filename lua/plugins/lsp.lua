@@ -6,6 +6,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-cmdline",
+			"hrsh7th/cmp-nvim-lua",
 			"onsails/lspkind.nvim",
 			"saadparwaiz1/cmp_luasnip",
 			{
@@ -60,10 +61,11 @@ return {
 					end,
 				},
 				sources = cmp.config.sources {
-					{ name = 'nvim_lsp' },
-					{ name = 'path' },
-					{ name = 'luasnip' },
 					{ name = "buffer" },
+					{ name = 'luasnip' },
+					{ name = 'path' },
+					{ name = 'nvim_lsp' },
+					{ name = 'nvim_lua' },
 				},
 				mapping = cmp.mapping.preset.insert {
 					["<Tab>"] = cmp.mapping(function(fallback)
@@ -139,9 +141,20 @@ return {
 				jsonls = {},
 				lua_ls = {
 					Lua = {
-						workspace = { checkThirdParty = false },
-						telemetry = { enable = false },
-					},
+						diagnostics = {
+							globals = {
+								'vim',
+								'require'
+							},
+						},
+						workspace = {
+							checkThirdParty = false,
+						},
+						completion = {
+							callSnippet = "Replace"
+						}
+					}
+
 				},
 				pyright = {},
 			}
@@ -185,7 +198,7 @@ return {
 				nmap("\\f", "<cmd>GuardFmt<CR>", "[F]ormat code")
 			end
 			require("neoconf").setup()
-			require("neodev").setup()
+			--require("neodev").setup()
 			require("fidget").setup()
 			require("lspsaga").setup({
 				lightbulb = {
@@ -214,5 +227,4 @@ return {
 			})
 		end
 	},
-
 }

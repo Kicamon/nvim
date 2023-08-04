@@ -406,8 +406,10 @@ return {
 			require("smartcolumn").setup()
 			require("smartcolumn").setup {
 				custom_colorcolumn = {
+					dashboard = "0",
+					markdown = "0",
 					text = "0",
-					veil = "0",
+					vimwiki = "0",
 				}
 			}
 		end
@@ -431,5 +433,10 @@ return {
 			vim.keymap.set("n", "<leader>gb", ":Gitsigns blame_line<CR>", { noremap = true, silent = true })
 			vim.keymap.set("n", "<leader>gr", ":Gitsigns reset_hunk<CR>", { noremap = true, silent = true })
 		end
+	},
+	{
+		"nvim-zh/colorful-winsep.nvim",
+		config = true,
+		event = { "WinNew" },
 	},
 }

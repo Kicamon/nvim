@@ -36,7 +36,7 @@ vim.o.list = true
 vim.o.listchars = 'tab:┃ ,trail:▫'
 vim.o.scrolloff = 6
 vim.o.colorcolumn = '80'
-vim.opt.fillchars = { vert = '║' }
+vim.opt.fillchars = { vert = '┃' }
 vim.cmd([[
 silent !mkdir -p $HOME/.config/nvim/tmp/undo
 if has('persistent_undo')
