@@ -1,5 +1,7 @@
 vim.o.termguicolors = true
 vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
+vim.o.ttyfast = true
+vim.o.aurodir = true
 vim.g.mapleader = ' '
 vim.o.cursorline = true
 vim.o.wrap = false
@@ -8,6 +10,7 @@ vim.o.relativenumber = true
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
+vim.o.expandtab = true
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = { '*.c', '*.cpp', '*.txt' },
 	callback = function()
@@ -15,10 +18,6 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 		vim.o.shiftwidth = 4
 		vim.o.softtabstop = 4
 	end,
-})
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { '*.c', '*.cpp', '*.py', '*.txt' },
-	command = "setlocal expandtab"
 })
 vim.o.smarttab = true
 vim.o.autoindent = true
@@ -31,12 +30,13 @@ vim.o.virtualedit = 'block'
 vim.o.conceallevel = 0
 vim.o.showtabline = 2
 vim.o.laststatus = 2
---vim.o.formatoptions = vim.o.formatoptions:gsub('tc', '')
 vim.o.list = true
 vim.o.listchars = 'tab:┃ ,trail:▫'
 vim.o.scrolloff = 6
 vim.o.colorcolumn = '80'
-vim.opt.fillchars = { vert = '┃' }
+vim.opt.fillchars = {
+	vert = '┃',
+}
 vim.cmd([[
 silent !mkdir -p $HOME/.config/nvim/tmp/undo
 if has('persistent_undo')

@@ -123,6 +123,7 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
+		ft = { "bash", "c", "cpp", "json", "lua", "python" },
 		dependencies = {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
@@ -173,7 +174,7 @@ return {
 				local ft = require('guard.filetype')
 				ft('c'):fmt('clang-format')
 				ft('cpp'):fmt('clang-format')
-				ft('lua'):fmt('lsp')
+				ft('lua'):fmt('stylua'):append('lsp')
 				ft('python'):fmt('black')
 				ft('sh'):fmt('lsp')
 
@@ -199,7 +200,7 @@ return {
 				nmap("\\f", "<cmd>GuardFmt<CR>", "[F]ormat code")
 			end
 			require("neoconf").setup()
-			--require("neodev").setup()
+			require("neodev").setup()
 			require("fidget").setup()
 			require("lspsaga").setup({
 				lightbulb = {
