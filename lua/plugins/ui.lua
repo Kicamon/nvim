@@ -374,18 +374,44 @@ return {
     event = { "WinNew" },
   },
   {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {
-    },
+    'gelguy/wilder.nvim',
     dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    }
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      local wilder = require('wilder')
+      wilder.setup {
+        modes = { ':' },
+        next_key = '<Tab>',
+        previous_key = '<S-Tab>',
+      }
+      wilder.set_option('renderer', wilder.popupmenu_renderer(
+        wilder.popupmenu_palette_theme({
+          highlights = {
+            border = 'Normal', -- highlight to use for the border
+          },
+          left = { ' ', wilder.popupmenu_devicons() },
+          right = { ' ', wilder.popupmenu_scrollbar() },
+          border = 'rounded',
+          max_height = '75%',      -- max height of the palette
+          min_height = 0,          -- set to the same as 'max_height' for a fixed height window
+          prompt_position = 'top', -- 'top' or 'bottom' to set the location of the prompt
+          reverse = 0,             -- set to 1 to reverse the order of the list, use in combination with 'prompt_position'
+        })
+      ))
+      wilder.set_option('pipeline', {
+        wilder.branch(
+          wilder.cmdline_pipeline({
+            language = 'vim',
+            fuzzy = 1,
+          }), wilder.search_pipeline()
+        ),
+      })
+    end
   },
   {
     "shellRaining/hlchunk.nvim",
-    ft = { "c", "cpp", "python", "lua", "javascript", "json" },
+    ft = { "c", "cpp", "python", "lua", "javascript", "json", "sh" },
     config = function()
       require("hlchunk").setup({
         chunk = {
@@ -411,7 +437,7 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    ft = { "c", "cpp", "python", "lua", "javascript", "json" },
+    ft = { "c", "cpp", "python", "lua", "javascript", "json", "sh" },
     config = function()
       vim.api.nvim_set_hl(0, "IndentBlanklineIndent1", { fg = "#504945" })
       vim.api.nvim_set_hl(0, "IndentBlanklineIndent2", { fg = "#454c50" })

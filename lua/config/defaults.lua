@@ -34,7 +34,7 @@ vim.o.list = true
 vim.o.listchars = 'tab:┃ ,trail:▫'
 vim.o.scrolloff = 6
 vim.o.colorcolumn = '80'
-vim.o.cmdhigh = 0
+vim.o.cmdhigh = 1
 vim.opt.fillchars = {
   vert = '┃',
 }
