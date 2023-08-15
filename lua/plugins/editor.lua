@@ -9,6 +9,14 @@ return {
   },
   {
     "gcmt/wildfire.vim",
+    --{
+      --"sustech-data/wildfire.nvim",
+      --event = "VeryLazy",
+      --dependencies = { "nvim-treesitter/nvim-treesitter" },
+      --config = function()
+        --require("wildfire").setup()
+      --end,
+    --}
   },
   {
     "tpope/vim-surround",
@@ -116,28 +124,28 @@ return {
         desc = "Flash Treesitter"
       },
       --{
-        --"r",
-        --mode = "o",
-        --function()
-          --require("flash").remote()
-        --end,
-        --desc = "Remote Flash"
+      --"r",
+      --mode = "o",
+      --function()
+      --require("flash").remote()
+      --end,
+      --desc = "Remote Flash"
       --},
       --{
-        --"R",
-        --mode = { "o", "x" },
-        --function()
-          --require("flash").treesitter_search()
-        --end,
-        --desc = "Treesitter Search"
+      --"R",
+      --mode = { "o", "x" },
+      --function()
+      --require("flash").treesitter_search()
+      --end,
+      --desc = "Treesitter Search"
       --},
       --{
-        --"<c-s>",
-        --mode = { "c" },
-        --function()
-          --require("flash").toggle()
-        --end,
-        --desc = "Toggle Flash Search"
+      --"<c-s>",
+      --mode = { "c" },
+      --function()
+      --require("flash").toggle()
+      --end,
+      --desc = "Toggle Flash Search"
       --},
     },
   },

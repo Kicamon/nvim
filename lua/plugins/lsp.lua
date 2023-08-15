@@ -2,6 +2,7 @@ return {
   {
     "hrsh7th/nvim-cmp",
     event = { "InsertEnter", "CmdlineEnter" },
+    ft = { "bash", "c", "cpp", "json", "lua", "python" },
     dependencies = {
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-nvim-lsp",
@@ -127,7 +128,7 @@ return {
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "nvimdev/guard.nvim",
+      { "nvimdev/guard.nvim", ft = { "bash", "c", "cpp", "json", "lua", "python" } },
       "folke/neoconf.nvim",
       "folke/neodev.nvim",
       {
