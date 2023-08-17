@@ -391,6 +391,7 @@ return {
         },
         line_num = {
           enable = true,
+          use_treesitter = true,
           style = "#FFD700",
         },
         blank = {

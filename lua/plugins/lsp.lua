@@ -143,21 +143,22 @@ return {
         clangd = {},
         jsonls = {},
         lua_ls = {
-          Lua = {
-            diagnostics = {
-              globals = {
-                'vim',
-                'require'
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = {
+                  'vim',
+                  'require'
+                },
               },
-            },
-            workspace = {
-              checkThirdParty = false,
-            },
-            completion = {
-              callSnippet = "Replace"
+              workspace = {
+                checkThirdParty = false,
+              },
+              completion = {
+                callSnippet = "Replace"
+              }
             }
-          }
-
+          },
         },
         pyright = {},
       }
@@ -181,6 +182,7 @@ return {
 
         nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
         nmap('gd', require "telescope.builtin".lsp_definitions, '[G]oto [D]efinition')
+        nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
         nmap('K', "<cmd>Lspsaga hover_doc<CR>", 'Hover Documentation')
         nmap('gi', require "telescope.builtin".lsp_implementations, '[G]oto [I]mplementation')
         nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
@@ -193,7 +195,6 @@ return {
         nmap('<leader>rn', "<cmd>Lspsaga rename ++project<cr>", '[R]e[n]ame')
         nmap('<leader>ca', "<cmd>Lspsaga code_action<CR>", '[C]ode [A]ction')
         nmap('<leader>da', require "telescope.builtin".diagnostics, '[D]i[A]gnostics')
-        nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
         -- nmap('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
         --nmap("\\f", function()
         --vim.lsp.buf.format { async = true }
@@ -222,16 +223,19 @@ return {
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       require("mason-lspconfig").setup({
         ensure_installed = vim.tbl_keys(servers),
-        handlers = {
-          function(server_name) -- default handler (optional)
-            require("lspconfig")[server_name].setup {
-              settings = servers[server_name],
+      })
+
+      for server, config in pairs(servers) do
+        require("lspconfig")[server].setup(
+          vim.tbl_deep_extend("keep",
+            {
               on_attach = on_attach,
               capabilities = capabilities,
-            }
-          end,
-        }
-      })
+            },
+            config
+          )
+        )
+      end
     end
   },
 }

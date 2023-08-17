@@ -2,7 +2,7 @@
 local function split()
   vim.o.splitbelow = true
   vim.cmd('sp')
-  vim.cmd('res +5')
+  vim.cmd('res -5')
 end
 
 local function Run()

@@ -67,22 +67,22 @@ local nmappings = {
 }
 
 for _, mapping in ipairs(nmappings) do
-	vim.keymap.set(mapping.mode or "n", mapping.from, mapping.to, { noremap = true })
+  vim.keymap.set(mapping.mode or "n", mapping.from, mapping.to, { noremap = true })
 end
 
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-	pattern = "*",
-	callback = function()
-		local buffer_count = 0
-		for i = 1, vim.fn.bufnr('$') do
-			if vim.fn.buflisted(i) == 1 then
-				buffer_count = buffer_count + 1
-			end
-		end
-		if buffer_count == 1 then
-			vim.keymap.set("n", "Q", ":q<CR>", { noremap = true, buffer = true })
-		else
-			vim.keymap.set("n", "Q", ":bd<CR>", { noremap = true, buffer = true })
-		end
-	end
+  pattern = "*",
+  callback = function()
+    local buffer_count = 0
+    for i = 1, vim.fn.bufnr('$') do
+      if vim.fn.buflisted(i) == 1 then
+        buffer_count = buffer_count + 1
+      end
+    end
+    if buffer_count == 1 then
+      vim.keymap.set("n", "Q", ":q<CR>", { noremap = true, buffer = true })
+    else
+      vim.keymap.set("n", "Q", ":bd<CR>", { noremap = true, buffer = true })
+    end
+  end
 })
