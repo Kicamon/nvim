@@ -8,4 +8,4 @@ then
 	sudo pacman -S python-black clang js-beautify lua nodejs npm python pyright python-pynvim yarn
 fi
 
-cp ~/.config/nvim/lua/usr/format ~/
+cp ~/.config/nvim/lua/usr/format/* ~/
