@@ -1,15 +1,9 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    event = { "InsertEnter", "CmdlineEnter" },
     ft = { "bash", "c", "cpp", "json", "lua", "python" },
     dependencies = {
-      "hrsh7th/cmp-path",
       "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-nvim-lua",
-      "onsails/lspkind.nvim",
       "saadparwaiz1/cmp_luasnip",
       {
         "saadparwaiz1/cmp_luasnip",
@@ -20,6 +14,11 @@ return {
           },
         },
       },
+      "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+      "onsails/lspkind.nvim",
     },
     config = function()
       local has_words_before = function()
@@ -212,6 +211,7 @@ return {
         lightbulb = {
           enble = false,
           sign = false,
+          virtual_text = false,
         },
         rename = {
           keys = {

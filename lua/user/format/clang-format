@@ -47,3 +47,6 @@ BreakBeforeBinaryOperators: None
 
 # 大括号的换行规则
 BreakBeforeBraces: Custom
+
+# 代码列数限制
+ColumnLimit: 80

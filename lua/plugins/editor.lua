@@ -20,9 +20,11 @@ return {
   },
   {
     "tpope/vim-surround",
+    key = { 'S', 'cs' },
   },
   {
     "mg979/vim-visual-multi",
+    key = { '<C-n>' },
   },
   {
     "NvChad/nvim-colorizer.lua",
@@ -52,6 +54,7 @@ return {
   },
   {
     "preservim/nerdcommenter",
+    kay = { "<leader>cc" },
     config = function()
       vim.g.NERDCreateDefaultMappings = 0
       vim.keymap.set("n", "<leader>cc", "<Plug>NERDCommenterToggle", { noremap = true, silent = true })
@@ -60,6 +63,7 @@ return {
   },
   {
     "SmiteshP/nvim-navbuddy",
+    ft = { "bash", "c", "cpp", "json", "lua", "python" },
     dependencies = {
       "SmiteshP/nvim-navic",
       "MunifTanjim/nui.nvim"
@@ -81,25 +85,26 @@ return {
     ft = { "cpp" },
     config = function()
       require('competitest').setup()
-      vim.keymap.set("n", "rr", ":CompetiTest run<CR>", { noremap = true })
-      vim.keymap.set("n", "ra", ":CompetiTest add_testcase<CR>", { noremap = true })
-      vim.keymap.set("n", "re", ":CompetiTest edit_testcase<CR>", { noremap = true })
-      vim.keymap.set("n", "ri", ":CompetiTest receive testcases<CR>", { noremap = true })
-      vim.keymap.set("n", "rd", ":CompetiTest delete_testcase<CR>", { noremap = true })
-      vim.keymap.set("n", "<leader>acm", ":CompetiTest receive contest<CR>", { noremap = true })
+      vim.keymap.set("n", "rr", "<cmd>CompetiTest run<CR>", { noremap = true })
+      vim.keymap.set("n", "ra", "<cmd>CompetiTest add_testcase<CR>", { noremap = true })
+      vim.keymap.set("n", "re", "<cmd>CompetiTest edit_testcase<CR>", { noremap = true })
+      vim.keymap.set("n", "ri", "<cmd>CompetiTest receive testcases<CR>", { noremap = true })
+      vim.keymap.set("n", "rd", "<cmd>CompetiTest delete_testcase<CR>", { noremap = true })
+      vim.keymap.set("n", "<leader>acm", "<cmd>CompetiTest receive contest<CR>", { noremap = true })
     end
   },
   {
     'junegunn/goyo.vim',
     key = { '<leader>gy' },
     config = function()
-      vim.keymap.set('n', '<leader>gy', ':Goyo<CR>', { noremap = true })
+      vim.keymap.set('n', '<leader>gy', '<cmd>Goyo<CR>', { noremap = true })
     end
   },
   {
     'kevinhwang91/rnvimr',
+    key = { 'R' },
     config = function()
-      vim.keymap.set('n', 'R', ':RnvimrToggle<CR>', { noremap = true })
+      vim.keymap.set('n', 'R', '<cmd>RnvimrToggle<CR>', { noremap = true })
     end
   },
   {
@@ -149,4 +154,17 @@ return {
       --},
     },
   },
+  {
+    "xiyaowong/link-visitor.nvim",
+    key = { "gl" },
+    config = function()
+      require("link-visitor").setup({
+        open_cmd = nil,
+        silent = true,             -- disable all prints, `false` by defaults skip_confirmation
+        skip_confirmation = false, -- Skip the confirmation step, default: false
+        border = "rounded"         -- none, single, double, rounded, solid, shadow see `:h nvim_open_win()`
+      })
+      vim.keymap.set("n", "gl", ":VisitLinkUnderCursor<CR>", { silent = true })
+    end
+  }
 }

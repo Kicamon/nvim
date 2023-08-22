@@ -27,7 +27,7 @@ local function Run()
   elseif (vim.bo.filetype == 'lua') then
     split()
     vim.cmd('term lua "%"')
-  elseif (vim.bo.filetype == 'markdown' or vim.bo.filetype == 'vimwiki') then
+  elseif (vim.bo.filetype == 'markdown') then
     vim.cmd('MarkdownPreview')
   elseif (vim.bo.filetype == 'sh') then
     split()
