@@ -1,7 +1,7 @@
 vim.o.termguicolors = true
 vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 vim.o.ttyfast = true
-vim.o.aurodir = true
+vim.o.autodir = true
 vim.g.mapleader = ' '
 vim.o.cursorline = true
 vim.o.wrap = false

@@ -1,7 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    ft = { "bash", "c", "cpp", "json", "lua", "python" },
+    event = { "InsertEnter" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "saadparwaiz1/cmp_luasnip",
@@ -125,11 +125,11 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    ft = { "sh", "c", "cpp", "json", "lua", "python" },
+    ft = { "sh", "zsh", "c", "cpp", "json", "lua", "python" },
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      { "nvimdev/guard.nvim", ft = { "sh", "c", "cpp", "json", "lua", "python" } },
+      { "nvimdev/guard.nvim", ft = { "sh", "zsh", "c", "cpp", "json", "lua", "python" } },
       "folke/neoconf.nvim",
       "folke/neodev.nvim",
       {
