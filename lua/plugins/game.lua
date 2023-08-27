@@ -20,12 +20,18 @@ return {
         end,
         on_exit = function(_, _)
           if output then
-            local stdout = table.concat(output, '\n')
+            local stdout = ""
+            local len = #output
+            for i = len - 2, len do
+              stdout = stdout .. '\n' .. output[i]
+            end
+            --local stdout = table.concat(output, '\n')
             vim.notify(stdout)
           end
         end
       })
       local function Submit()
+        vim.notify("Submit")
         submit:start()
       end
       require('competitest').setup()
