@@ -14,9 +14,9 @@ vim.o.expandtab = true
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = { '*.c', '*.cpp', '*.txt' },
   callback = function()
-    vim.o.tabstop = 4
-    vim.o.shiftwidth = 4
-    vim.o.softtabstop = 4
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.softtabstop = 4
   end,
 })
 vim.o.smarttab = true
@@ -72,7 +72,7 @@ vim.g.terminal_color_12 = '#CAA9FA'
 vim.g.terminal_color_13 = '#FF92D0'
 vim.g.terminal_color_14 = '#9AEDFE'
 
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.md", command = "setlocal wrap", })
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.md, *.txt", command = "setlocal wrap", })
 
 require("user.tools")
 require("user.cursor")
