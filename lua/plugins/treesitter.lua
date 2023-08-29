@@ -4,6 +4,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     lazy = false,
     priority = 1000,
+    event = 'BufRead',
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
@@ -46,6 +47,7 @@ return {
   },
   {
     "HiPhish/rainbow-delimiters.nvim",
+    event = 'BufRead',
     config = function()
       local rainbow_delimiters = require 'rainbow-delimiters'
       vim.g.rainbow_delimiters = {

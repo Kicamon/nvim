@@ -1,11 +1,11 @@
 return {
   {
     "xeluxee/competitest.nvim",
+    ft = { "cpp" },
     dependencies = {
       "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",
     },
-    ft = { "cpp" },
 
     config = function()
       local Job = require("plenary.job")
@@ -46,6 +46,7 @@ return {
   },
   {
     "Eandrju/cellular-automaton.nvim",
+    event = 'BufEnter',
     keys = "<leader>ga",
     config = function()
       vim.keymap.set("n", "<leader>ga", "<cmd>CellularAutomaton make_it_rain<CR>")

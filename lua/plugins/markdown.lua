@@ -25,7 +25,7 @@ return {
   },
   {
     "img-paste-devs/img-paste.vim",
-    ft = { "markdown", "tex" },
+    ft = { "markdown" },
     config = function()
       vim.keymap.set("n", "<leader>p", ":call mdip#MarkdownClipboardImage()<CR>", { noremap = true })
       vim.g.PasteImageFunction = 'g:MarkdownPasteImage'
@@ -43,6 +43,7 @@ return {
   },
   {
     "serenevoid/kiwi.nvim",
+    evnet = "BufRead",
     dependencies = {
       'nvim-lua/plenary.nvim'
     },

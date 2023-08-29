@@ -9,6 +9,7 @@ return {
   },
   {
     "gcmt/wildfire.vim",
+    evnet = "BufEnter",
     --{
     --"sustech-data/wildfire.nvim",
     --event = "VeryLazy",
@@ -20,14 +21,17 @@ return {
   },
   {
     "tpope/vim-surround",
+    evnet = "BufEnter",
     key = { 'S', 'cs' },
   },
   {
     "mg979/vim-visual-multi",
+    evnet = "BufEnter",
     key = { '<C-n>' },
   },
   {
     "NvChad/nvim-colorizer.lua",
+    evnet = "BufEnter",
     opts = {
       filetypes = { "*" },
       user_default_options = {
@@ -54,6 +58,7 @@ return {
   },
   {
     "preservim/nerdcommenter",
+    evnet = "BufEnter",
     kay = { "<leader>cc" },
     config = function()
       vim.g.NERDCreateDefaultMappings = 0
@@ -73,19 +78,14 @@ return {
   },
   {
     "Kicamon/im-switch.nvim",
+    evnet = "BufEnter",
     config = function()
       require("im-switch").setup()
     end
   },
   {
-    'junegunn/goyo.vim',
-    key = { '<leader>gy' },
-    config = function()
-      vim.keymap.set('n', '<leader>gy', '<cmd>Goyo<CR>', { noremap = true })
-    end
-  },
-  {
     'kevinhwang91/rnvimr',
+    evnet = "BufEnter",
     key = { 'R' },
     config = function()
       vim.keymap.set('n', 'R', '<cmd>RnvimrToggle<CR>', { noremap = true })

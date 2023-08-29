@@ -1,6 +1,7 @@
 return {
   {
     'akinsho/bufferline.nvim',
+    event = 'BufEnter',
     dependencies = {
       'nvim-tree/nvim-web-devicons',
       'ryanoasis/vim-devicons',
@@ -35,7 +36,7 @@ return {
   },
   {
     "nvim-lualine/lualine.nvim",
-    --options = { theme = "horizon" },
+    event = 'BufEnter',
     config = function()
       -- Eviline config for lualine
       -- Author: shadmansaleh
@@ -332,24 +333,9 @@ return {
     end
   },
   {
-    'm4xshen/smartcolumn.nvim',
-    opts = {},
-    config = function()
-      require("smartcolumn").setup()
-      require("smartcolumn").setup {
-        custom_colorcolumn = {
-          dashboard = "0",
-          markdown = "0",
-          text = "0",
-          vimwiki = "0",
-        }
-      }
-    end
-  },
-  {
     "lewis6991/gitsigns.nvim",
+    event = { 'BufRead', 'BufNewFile' },
     config = function()
-      require('gitsigns').setup()
       require('gitsigns').setup {
         signs = {
           add          = { hl = 'GitSignsAdd', text = '▎', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
@@ -412,6 +398,56 @@ return {
           "IndentBlanklineIndent2",
         },
       }
+    end
+  },
+  {
+    'nvimdev/dashboard-nvim',
+    event = 'VimEnter',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      local db = require('dashboard')
+      db.setup({
+        theme = 'hyper',
+        config = {
+          week_header = {
+            enable = true,
+          },
+          project = {
+            enable = true,
+          },
+          disable_move = true,
+          shortcut = {
+            {
+              desc = 'Update',
+              icon = ' ',
+              group = 'Include',
+              action = 'Lazy update',
+              key = 'u',
+            },
+            {
+              icon = ' ',
+              desc = 'Files',
+              group = 'Function',
+              action = 'Telescope find_files find_command=rg,--ignore,--hidden,--files',
+              key = 'f',
+            },
+            {
+              icon = ' ',
+              desc = 'Apps',
+              group = 'String',
+              action = 'Telescope app',
+              key = 'a',
+            },
+            {
+              icon = ' ',
+              desc = 'dotfiles',
+              group = 'Constant',
+              action = 'Telescope dotfiles',
+              key = 'd',
+            },
+          },
+        },
+      })
     end
   }
 }
