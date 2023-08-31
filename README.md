@@ -1,5 +1,5 @@
 # My neovim profile
 
-<font size="6" color="blue"> Strong personalization, please use with caution!</font>
+**Strong personalization, please use with caution!**
 
 ![demo](demo.png)
