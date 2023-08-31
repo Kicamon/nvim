@@ -359,46 +359,20 @@ return {
     event = { "WinNew" },
   },
   {
-    "shellRaining/hlchunk.nvim",
-    ft = { "c", "cpp", "python", "lua", "javascript", "json", "sh" },
+    'nvimdev/indentmini.nvim',
+    event = 'BufEnter',
     config = function()
-      require("hlchunk").setup({
-        chunk = {
-          enable = true,
-          use_treesitter = true,
-          notify = false,
-          style = {
-            { fg = "#806d9c" },
-          },
-        },
-        indent = {
-          enable = false,
-        },
-        line_num = {
-          enable = true,
-          use_treesitter = true,
-          style = "#FFD700",
-        },
-        blank = {
-          enable = false,
+      require('indentmini').setup({
+        char = "│",
+        exclude = {
+          "dashboard",
+          "erlang",
+          "markdown",
+          "text",
         }
       })
-    end
-  },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    ft = { "c", "cpp", "python", "lua", "javascript", "json", "sh" },
-    config = function()
-      vim.api.nvim_set_hl(0, "IndentBlanklineIndent1", { fg = "#504945" })
-      vim.api.nvim_set_hl(0, "IndentBlanklineIndent2", { fg = "#454c50" })
-      require("indent_blankline").setup {
-        space_char_blankline = " ",
-        char_highlight_list = {
-          "IndentBlanklineIndent1",
-          "IndentBlanklineIndent2",
-        },
-      }
-    end
+      vim.api.nvim_set_hl(0, "IndentLine", { fg = "#504945" })
+    end,
   },
   {
     'nvimdev/dashboard-nvim',

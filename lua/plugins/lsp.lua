@@ -207,11 +207,6 @@ return {
       require("neodev").setup()
       require("fidget").setup()
       require("lspsaga").setup({
-        lightbulb = {
-          enble = false,
-          sign = false,
-          virtual_text = false,
-        },
         rename = {
           keys = {
             quit = "<esc>",
