@@ -43,7 +43,7 @@ return {
   },
   {
     "serenevoid/kiwi.nvim",
-    evnet = "BufRead",
+    evnet = "VeryLazy",
     dependencies = {
       'nvim-lua/plenary.nvim'
     },

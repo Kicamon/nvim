@@ -1,7 +1,7 @@
 return {
   {
     'akinsho/bufferline.nvim',
-    event = 'BufEnter',
+    event = 'VeryLazy',
     dependencies = {
       'nvim-tree/nvim-web-devicons',
       'ryanoasis/vim-devicons',
@@ -36,7 +36,7 @@ return {
   },
   {
     "nvim-lualine/lualine.nvim",
-    event = 'BufEnter',
+    event = 'VeryLazy',
     config = function()
       -- Eviline config for lualine
       -- Author: shadmansaleh
@@ -359,20 +359,55 @@ return {
     event = { "WinNew" },
   },
   {
-    'nvimdev/indentmini.nvim',
-    event = 'BufEnter',
+    "shellRaining/hlchunk.nvim",
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
-      require('indentmini').setup({
-        char = "│",
-        exclude = {
-          "dashboard",
-          "erlang",
-          "markdown",
-          "text",
+      require("hlchunk").setup({
+        chunk = {
+          enable = true,
+          use_treesitter = true,
+          notify = false,
+          style = {
+            { fg = "#806d9c" },
+          },
+        },
+        indent = {
+          enable = false,
+        },
+        line_num = {
+          enable = true,
+          use_treesitter = true,
+          style = "#FFD700",
+        },
+        blank = {
+          enable = false,
         }
       })
-      vim.api.nvim_set_hl(0, "IndentLine", { fg = "#504945" })
-    end,
+    end
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      vim.api.nvim_set_hl(0, "IndentBlanklineIndent1", { fg = "#504945" })
+      vim.api.nvim_set_hl(0, "IndentBlanklineIndent2", { fg = "#454c50" })
+      require("indent_blankline").setup {
+        space_char_blankline = " ",
+        char_highlight_list = {
+          "IndentBlanklineIndent1",
+          "IndentBlanklineIndent2",
+        },
+        filetype_exclude = {
+          "help",
+          "dashboard",
+          "lazy",
+          "mason",
+          "notify",
+          "toggleterm",
+          "lazyterm",
+        },
+      }
+    end
   },
   {
     'nvimdev/dashboard-nvim',

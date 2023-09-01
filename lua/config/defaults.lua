@@ -54,8 +54,6 @@ augroup NVIMRC
     autocmd!
     autocmd BufWritePost .vim.lua exec ":so %"
 augroup END
-tnoremap <C-N> <C-\><C-N>
-tnoremap <C-O> <C-\><C-N><C-O>
 ]])
 vim.g.terminal_color_0  = '#000000'
 vim.g.terminal_color_1  = '#FF5555'

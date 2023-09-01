@@ -2,14 +2,14 @@ return {
   {
     "windwp/nvim-autopairs",
     lazy = true,
-    event = { "InsertEnter" },
+    event = "VeryLazy",
     config = function()
       require("nvim-autopairs").setup({})
     end
   },
   {
     "gcmt/wildfire.vim",
-    evnet = "BufEnter",
+    event = "VeryLazy",
     --{
     --"sustech-data/wildfire.nvim",
     --event = "VeryLazy",
@@ -20,18 +20,23 @@ return {
     --}
   },
   {
-    "tpope/vim-surround",
-    evnet = "BufEnter",
+    "echasnovski/mini.surround",
+    event = "VeryLazy",
     key = { 'S', 'cs' },
+    opts = {
+      mappings = {
+        add = "S",
+        replace = "cs",
+      }
+    }
   },
   {
     "mg979/vim-visual-multi",
-    evnet = "BufEnter",
+    event = "VeryLazy",
     key = { '<C-n>' },
   },
   {
     "NvChad/nvim-colorizer.lua",
-    evnet = "BufEnter",
     opts = {
       filetypes = { "*" },
       user_default_options = {
@@ -57,14 +62,15 @@ return {
     }
   },
   {
-    "preservim/nerdcommenter",
-    evnet = "BufEnter",
+    "echasnovski/mini.comment",
+    evnet = "VeryLazy",
     kay = { "<leader>cc" },
-    config = function()
-      vim.g.NERDCreateDefaultMappings = 0
-      vim.keymap.set("n", "<leader>cc", "<Plug>NERDCommenterToggle", { noremap = true, silent = true })
-      vim.keymap.set("v", "<leader>cc", "<Plug>NERDCommenterToggle", { noremap = true, silent = true })
-    end
+    opts = {
+      mappings ={
+        comment = "<leader>cc",
+        comment_line = "<leader>cc",
+      }
+    },
   },
   {
     "SmiteshP/nvim-navbuddy",
@@ -78,14 +84,14 @@ return {
   },
   {
     "Kicamon/im-switch.nvim",
-    evnet = "BufEnter",
+    evnet = "VeryLazy",
     config = function()
       require("im-switch").setup()
     end
   },
   {
     'kevinhwang91/rnvimr',
-    evnet = "BufEnter",
+    evnet = "VeryLazy",
     key = { 'R' },
     config = function()
       vim.keymap.set('n', 'R', '<cmd>RnvimrToggle<CR>', { noremap = true })

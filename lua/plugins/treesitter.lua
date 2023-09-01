@@ -2,9 +2,9 @@ return {
   "nvim-treesitter/playground",
   {
     "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
     lazy = false,
     priority = 1000,
-    event = 'BufRead',
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({

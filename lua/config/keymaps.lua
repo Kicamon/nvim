@@ -2,6 +2,7 @@ local mode_nv = { "n", "v" }
 local mode_n = { "n" }
 local mode_v = { "v" }
 local mode_i = { "i" }
+local mode_t = { "t" }
 local nmappings = {
 	-- base
 	{ from = "W",                to = ":w<CR>",                                                        mode = mode_n },
@@ -13,6 +14,8 @@ local nmappings = {
 	{ from = "<leader>sc",       to = ":set spell!<CR>",                                               mode = mode_n },
 	{ from = "<leader>sw",       to = ":set wrap!<CR>",                                                mode = mode_n },
 	{ from = "<leader><cr>",     to = ":noh<CR>",                                                      mode = mode_n },
+	{ from = "<C-N>",            to = "<C-\\><C-N>",                                                   mode = mode_t },
+	{ from = "<C-O>",            to = "<C-\\><C-N><C-O>",                                              mode = mode_t },
 
 	-- move
 	{ from = "J",                to = "10j",                                                           mode = mode_nv },
