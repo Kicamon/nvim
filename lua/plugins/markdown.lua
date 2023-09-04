@@ -37,8 +37,8 @@ return {
     config = function()
       vim.g.bullets_set_mappings = 0
       vim.g.bullets_outline_levels = { 'num' }
-      vim.keymap.set("i", "<c-=>", "<Plug>(bullets-demote)")
-      vim.keymap.set("i", "<c-->", "<Plug>(bullets-promote)")
+      vim.keymap.set("i", "<M-.>", "<Plug>(bullets-demote)")
+      vim.keymap.set("i", "<M-,>", "<Plug>(bullets-promote)")
     end,
   },
   {
