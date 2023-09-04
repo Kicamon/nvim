@@ -6,8 +6,8 @@ local mode_t = { "t" }
 local nmappings = {
 	-- base
 	{ from = "W",                to = ":w<CR>",                                                        mode = mode_n },
-	--{ from = "Q",                to = ":q<CR>",                                                       mode = mode_n },
-	--{ from = "B",                to = ":bd<CR>",                                                      mode = mode_n },
+	{ from = "Q",                to = ":q<CR>",                                                       mode = mode_n },
+	{ from = "B",                to = ":bd<CR>",                                                      mode = mode_n },
 	{ from = "N",                to = ":normal ",                                                      mode = mode_v },
 	{ from = "Y",                to = "\"+y",                                                          mode = mode_v },
 	{ from = "ca",               to = ":! xclip -sel c %<CR><CR>:lua vim.notify(\" Copied!\")<CR>",   mode = mode_n },
@@ -53,10 +53,10 @@ local nmappings = {
 	{ from = "]b",               to = ":bn<CR>",                                                       mode = mode_n },
 	{ from = "tu",               to = ":tabe<CR>:edit<space>",                                         mode = mode_n },
 	{ from = "tU",               to = ":tab split<CR>",                                                mode = mode_n },
-	{ from = "tj",               to = ":+tabnext<CR>",                                                 mode = mode_n },
-	{ from = "tk",               to = ":-tabnext<CR>",                                                 mode = mode_n },
-	{ from = "tmj",              to = ":+tabmove<CR>",                                                 mode = mode_n },
-	{ from = "tmk",              to = ":-tabmove<CR>",                                                 mode = mode_n },
+	{ from = "tn",               to = ":+tabnext<CR>",                                                 mode = mode_n },
+	{ from = "tp",               to = ":-tabnext<CR>",                                                 mode = mode_n },
+	{ from = "tmn",              to = ":+tabmove<CR>",                                                 mode = mode_n },
+	{ from = "tmp",              to = ":-tabmove<CR>",                                                 mode = mode_n },
 	-- { from = "<A-1>",            to = "1gt<CR>",                                                       mode = mode_n },
 	-- { from = "<A-2>",            to = "2gt<CR>",                                                       mode = mode_n },
 	-- { from = "<A-3>",            to = "3gt<CR>",                                                       mode = mode_n },
@@ -73,19 +73,19 @@ for _, mapping in ipairs(nmappings) do
   vim.keymap.set(mapping.mode or "n", mapping.from, mapping.to, { noremap = true })
 end
 
-vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-  pattern = "*",
-  callback = function()
-    local buffer_count = 0
-    for i = 1, vim.fn.bufnr('$') do
-      if vim.fn.buflisted(i) == 1 then
-        buffer_count = buffer_count + 1
-      end
-    end
-    if buffer_count == 1 then
-      vim.keymap.set("n", "Q", ":q<CR>", { noremap = true, buffer = true })
-    else
-      vim.keymap.set("n", "Q", ":bd<CR>", { noremap = true, buffer = true })
-    end
-  end
-})
+-- vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+--   pattern = "*",
+--   callback = function()
+--     local buffer_count = 0
+--     for i = 1, vim.fn.bufnr('$') do
+--       if vim.fn.buflisted(i) == 1 then
+--         buffer_count = buffer_count + 1
+--       end
+--     end
+--     if buffer_count == 1 then
+--       vim.keymap.set("n", "Q", ":q<CR>", { noremap = true, buffer = true })
+--     else
+--       vim.keymap.set("n", "Q", ":bd<CR>", { noremap = true, buffer = true })
+--     end
+--   end
+-- })
