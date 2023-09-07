@@ -49,4 +49,4 @@ BreakBeforeBinaryOperators: None
 BreakBeforeBraces: Custom
 
 # 代码列数限制
-ColumnLimit: 80
+ColumnLimit: 100
