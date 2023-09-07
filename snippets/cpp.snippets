@@ -23,12 +23,12 @@ snippet acm
 	#define Debug(x) cout << #x << ':' << x << endl
 
 	signed main() {
-		ios::sync_with_stdio(false);
-		cin.tie(0);
+    ios::sync_with_stdio(false);
+    cin.tie(0);
 
-		${0}
+    ${0}
 
-		return 0;
+    return 0;
 	}
 
 snippet cf
@@ -56,21 +56,23 @@ snippet cf
 	#define Debug(x) cout << #x << ':' << x << endl
 
 	void solve() {
-		${0}
+    ${0}
 	}
 
 	signed main() {
-		ios::sync_with_stdio(false);
-		cin.tie(0);
+    ios::sync_with_stdio(false);
+    cin.tie(0);
 
-		int t;
-		cin >> t;
-		while (t--)
-			solve();
+    int t;
+    cin >> t;
+    while (t--)
+      solve();
 
-		return 0;
+    return 0;
 	}
 
 snippet cm
 	/*  ${0}  */
 
+snippet all
+  ${0}.begin(), ${1}.end()
