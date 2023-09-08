@@ -146,6 +146,7 @@ return {
   },
   {
     "xiyaowong/link-visitor.nvim",
+    event = "VeryLazy",
     key = { "gl" },
     config = function()
       require("link-visitor").setup({
