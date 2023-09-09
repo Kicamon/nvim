@@ -66,26 +66,26 @@ return {
       }
 
       local mode_color = {
-        n = colors.green,
-        i = colors.violet,
-        v = colors.yellow,
+        n      = colors.green,
+        i      = colors.violet,
+        v      = colors.yellow,
         [''] = colors.yellow,
-        V = colors.yellow,
-        c = colors.magenta,
-        no = colors.red,
-        s = colors.orange,
-        S = colors.orange,
+        V      = colors.yellow,
+        c      = colors.magenta,
+        no     = colors.red,
+        s      = colors.orange,
+        S      = colors.orange,
         [''] = colors.orange,
-        ic = colors.yellow,
-        R = colors.violet,
-        Rv = colors.violet,
-        cv = colors.red,
-        ce = colors.red,
-        r = colors.cyan,
-        rm = colors.cyan,
+        ic     = colors.yellow,
+        R      = colors.violet,
+        Rv     = colors.violet,
+        cv     = colors.red,
+        ce     = colors.red,
+        r      = colors.cyan,
+        rm     = colors.cyan,
         ['r?'] = colors.cyan,
-        ['!'] = colors.red,
-        t = colors.red,
+        ['!']  = colors.red,
+        t      = colors.red,
       }
 
       local conditions = {
@@ -258,14 +258,14 @@ return {
 
       ins_right {
         'diagnostics',
-        sources = { 'nvim_diagnostic', 'coc' },
+        sources  = { 'nvim_diagnostic', 'coc' },
         sections = { 'error', 'warn', 'info', 'hint' },
-        symbols = { error = '🤣', warn = '🧐', info = '🫠', hint = '🤔' },
+        symbols  = { error = '🤣', warn = '🧐', info = '🫠', hint = '🤔' },
         diagnostics_color = {
           error = { fg = colors.red },
-          warn = { fg = colors.yellow },
-          info = { fg = colors.cyan },
-          hint = { fg = colors.blue },
+          warn  = { fg = colors.yellow },
+          info  = { fg = colors.cyan },
+          hint  = { fg = colors.blue },
         },
         color = { bg = colors.bgdark },
       }
@@ -337,12 +337,12 @@ return {
     config = function()
       require('gitsigns').setup {
         signs = {
-          add          = { hl = 'GitSignsAdd', text = '▍', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
+          add          = { hl = 'GitSignsAdd',    text = '▍', numhl = 'GitSignsAddNr',    linehl = 'GitSignsAddLn'    },
           change       = { hl = 'GitSignsChange', text = '▍', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
           delete       = { hl = 'GitSignsDelete', text = '▶', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
           topdelete    = { hl = 'GitSignsDelete', text = '▶', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
           changedelete = { hl = 'GitSignsChange', text = '▍', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
-          untracked    = { hl = 'GitSignsAdd', text = '▍', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
+          untracked    = { hl = 'GitSignsAdd',    text = '▍', numhl = 'GitSignsAddNr',    linehl = 'GitSignsAddLn'    },
         },
       }
       vim.keymap.set("n", "<leader>g-", ":Gitsigns prev_hunk<CR>", { noremap = true, silent = true })

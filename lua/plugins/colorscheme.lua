@@ -3,7 +3,7 @@ return {
   lazy = false,
   priority = 1000,
   config = function()
-    vim.cmd([[colorscheme gruvbox]])
+    vim.cmd("colorscheme gruvbox")
     -- Customization for Pmenu
     vim.api.nvim_set_hl(0, "Pmenu", { fg = "#C5CDD9", bg = "#282828" })
     vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#282C34", fg = "NONE" })

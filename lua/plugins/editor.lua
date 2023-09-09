@@ -66,7 +66,7 @@ return {
     evnet = "VeryLazy",
     kay = { "<leader>cc" },
     opts = {
-      mappings ={
+      mappings = {
         comment = "<leader>cc",
         comment_line = "<leader>cc",
       }
@@ -157,5 +157,14 @@ return {
       })
       vim.keymap.set("n", "gl", ":VisitLinkUnderCursor<CR>", { silent = true })
     end
+  },
+  {
+    'echasnovski/mini.align',
+    opts = {
+      mappings = {
+        start = 'ga',
+        start_with_preview = 'gA',
+      },
+    }
   }
 }
