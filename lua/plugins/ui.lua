@@ -1,38 +1,16 @@
 return {
   {
-    'akinsho/bufferline.nvim',
+    'mg979/tabline.nvim',
     event = 'VeryLazy',
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-      'ryanoasis/vim-devicons',
-    },
-    opts = {
-      options = {
-        mode = "tabs",
-        indicator = {
-          icon = '▎', -- this should be omitted if indicator style is not 'icon'
-          -- style = 'icon' | 'underline' | 'none',
-          style = "icon",
-        },
-        diagnostics_indicator = function(count, level)
-          local icon = level:match("error") and " " or " "
-          return " " .. icon .. count
-        end,
-        numbers = function(opts)
-          local NumberIcon = {
-            "❶ ", "❷ ", "❸ ", "❹ ", "❺ ", "❻ ", "❼ ", "❽ ", "❾ ", "❿ ",
-          }
-          return NumberIcon[tonumber(opts.ordinal)]
-        end,
-        show_buffer_close_icons = false,
-        show_close_icon = false,
-        show_duplicate_prefix = false,
-        tab_size = 10,
-        enforce_regular_tabs = false,
-        padding = 0,
-        separator_style = "thick",
-      }
-    }
+    config = function()
+      require("tabline.setup").setup({
+        tabs_badge       = false,
+        modes            = { "tabs", "buffer" },
+        theme            = "slate",
+        default_mappings = false,
+        label_style      = "order",
+      })
+    end
   },
   {
     "nvim-lualine/lualine.nvim",
@@ -69,13 +47,13 @@ return {
         n      = colors.green,
         i      = colors.violet,
         v      = colors.yellow,
-        [''] = colors.yellow,
+        ['']  = colors.yellow,
         V      = colors.yellow,
         c      = colors.magenta,
         no     = colors.red,
         s      = colors.orange,
         S      = colors.orange,
-        [''] = colors.orange,
+        ['']  = colors.orange,
         ic     = colors.yellow,
         R      = colors.violet,
         Rv     = colors.violet,
@@ -227,6 +205,33 @@ return {
         padding = { left = 0 },
       }
 
+      ins_left {
+        function()
+          return '%='
+        end,
+      }
+
+      ins_left {
+        -- Lsp server name .
+        function()
+          local msg = 'No Active Lsp'
+          local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+          local clients = vim.lsp.get_active_clients()
+          if next(clients) == nil then
+            return msg
+          end
+          for _, client in ipairs(clients) do
+            local filetypes = client.config.filetypes
+            if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+              return client.name
+            end
+          end
+          return msg
+        end,
+        icon = ' LSP:',
+        color = { fg = colors.violet, gui = 'bold' },
+      }
+
       ins_right {
         'filetype',
         cond = conditions.buffer_not_empty,
@@ -258,16 +263,16 @@ return {
 
       ins_right {
         'diagnostics',
-        sources  = { 'nvim_diagnostic', 'coc' },
-        sections = { 'error', 'warn', 'info', 'hint' },
-        symbols  = { error = '🤣', warn = '🧐', info = '🫠', hint = '🤔' },
+        sources           = { 'nvim_diagnostic', 'coc' },
+        sections          = { 'error', 'warn', 'info', 'hint' },
+        symbols           = { error = '🤣', warn = '🧐', info = '🫠', hint = '🤔' },
         diagnostics_color = {
           error = { fg = colors.red },
           warn  = { fg = colors.yellow },
           info  = { fg = colors.cyan },
           hint  = { fg = colors.blue },
         },
-        color = { bg = colors.bgdark },
+        color             = { bg = colors.bgdark },
       }
 
       ins_right {
@@ -337,12 +342,12 @@ return {
     config = function()
       require('gitsigns').setup {
         signs = {
-          add          = { hl = 'GitSignsAdd',    text = '▍', numhl = 'GitSignsAddNr',    linehl = 'GitSignsAddLn'    },
+          add          = { hl = 'GitSignsAdd', text = '▍', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
           change       = { hl = 'GitSignsChange', text = '▍', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
           delete       = { hl = 'GitSignsDelete', text = '▶', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
           topdelete    = { hl = 'GitSignsDelete', text = '▶', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
           changedelete = { hl = 'GitSignsChange', text = '▍', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
-          untracked    = { hl = 'GitSignsAdd',    text = '▍', numhl = 'GitSignsAddNr',    linehl = 'GitSignsAddLn'    },
+          untracked    = { hl = 'GitSignsAdd', text = '▍', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
         },
       }
       vim.keymap.set("n", "<leader>g-", ":Gitsigns prev_hunk<CR>", { noremap = true, silent = true })
