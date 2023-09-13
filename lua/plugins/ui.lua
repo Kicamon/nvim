@@ -5,7 +5,7 @@ return {
     config = function()
       require("tabline.setup").setup({
         tabs_badge       = false,
-        modes            = { "tabs", "buffer" },
+        modes            = { "tabs", "buffers" },
         theme            = "slate",
         default_mappings = false,
         label_style      = "order",
