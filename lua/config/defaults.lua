@@ -47,7 +47,7 @@ if has('persistent_undo')
 endif
 ]])
 vim.cmd([[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]])
-vim.api.nvim_create_autocmd("BufEnter", { pattern = "*", command = "silent! lcd %:p:h", })
+-- vim.api.nvim_create_autocmd("BufEnter", { pattern = "*", command = "silent! lcd %:p:h", })
 vim.cmd([[autocmd TermOpen term://* startinsert]])
 vim.cmd([[
 augroup NVIMRC

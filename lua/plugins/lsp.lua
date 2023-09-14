@@ -1,7 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    event = "VeryLazy",
+    event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       {
@@ -124,11 +124,11 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    ft = { "sh", "zsh", "c", "cpp", "json", "lua", "python" },
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      { "nvimdev/guard.nvim", ft = { "sh", "zsh", "c", "cpp", "json", "lua", "python" } },
+      "nvimdev/guard.nvim",
       "folke/neoconf.nvim",
       "folke/neodev.nvim",
       {
@@ -162,6 +162,7 @@ return {
           },
         },
         pyright = {},
+        vimls = {},
       }
       local on_attach = function(_, bufnr)
         -- Enable completion triggered by <c-x><c-o>
@@ -214,6 +215,7 @@ return {
         },
       })
       require("guard").setup({
+        fmt_on_save = false,
         lsp_as_default_formatter = true,
         vim.keymap.set({ "n", "v" }, "\\f", "<cmd>GuardFmt<CR>", { noremap = true }),
       })
