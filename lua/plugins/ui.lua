@@ -308,35 +308,6 @@ return {
     end
   },
   {
-    'petertriho/nvim-scrollbar',
-    dependencies = {
-      'kevinhwang91/nvim-hlslens',
-      lazy = true,
-    },
-    config = function()
-      require("scrollbar.handlers.search").setup()
-      require("scrollbar").setup({
-        show = true,
-        handle = {
-          text = " ",
-          color = "#696969",
-          hide_if_all_visible = true,
-        },
-        marks = {
-          Search = { color = "yellow" },
-          Misc = { color = "purple" },
-        },
-        handlers = {
-          cursor = true,
-          diagnostic = true,
-          gitsigns = true,
-          handle = true,
-          search = true,
-        },
-      })
-    end
-  },
-  {
     "lewis6991/gitsigns.nvim",
     event = { 'BufRead', 'BufNewFile' },
     config = function()
@@ -355,12 +326,6 @@ return {
       --vim.keymap.set("n", "<leader>gb", ":Gitsigns blame_line<CR>", { noremap = true, silent = true })
       --vim.keymap.set("n", "<leader>gr", ":Gitsigns reset_hunk<CR>", { noremap = true, silent = true })
     end
-  },
-  {
-    "nvim-zh/colorful-winsep.nvim",
-    lazy = true,
-    config = true,
-    event = { "WinNew" },
   },
   {
     'nvimdev/indentmini.nvim',
