@@ -115,11 +115,6 @@ return {
           { name = "cmdline" },
         }),
       })
-
-      -- vim.fn.sign_define("DiagnosticSignError", { text  = "🤣", texthl = "DiagnosticSignError" })
-      -- vim.fn.sign_define("DiagnosticSignWarn",  { text  = "🧐", texthl = "DiagnosticSignWarn"  })
-      -- vim.fn.sign_define("DiagnosticSignInfo",  { text  = "🫠", texthl = "DiagnosticSignInfo"  })
-      -- vim.fn.sign_define("DiagnosticSignHint",  { text  = "🤔", texthl = "DiagnosticSignHint"  })
     end,
   },
   {
@@ -201,6 +196,8 @@ return {
         nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
         nmap("<leader>rn", "<cmd>Lspsaga rename ++project<cr>", "[R]e[n]ame")
         nmap("<leader>ca", "<cmd>Lspsaga code_action<CR>", "[C]ode [A]ction")
+        nmap("\\n", "<cmd>Lspsaga outline<CR>", "[O]ut[L]ine")
+        nmap("F", "<cmd>Lspsaga finder def+ref<CR>", "[F]inder")
         nmap("<leader>da", require("telescope.builtin").diagnostics, "[D]i[A]gnostics")
         -- nmap('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
         --nmap("\\f", function()
@@ -215,7 +212,19 @@ return {
       require("lspsaga").setup({
         rename = {
           keys = {
-            quit = "<esc>",
+            quit = "<ESC>",
+          },
+        },
+        outline = {
+          layout = "float",
+          keys = {
+            quit = "<ESC>",
+          }
+        },
+        finder = {
+          keys = {
+            toggle_or_open = '<cr>',
+            quit = "<ESC>",
           },
         },
       })

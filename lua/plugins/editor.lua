@@ -73,28 +73,10 @@ return {
     },
   },
   {
-    "SmiteshP/nvim-navbuddy",
-    ft = { "bash", "c", "cpp", "json", "lua", "python" },
-    dependencies = {
-      "SmiteshP/nvim-navic",
-      "MunifTanjim/nui.nvim"
-    },
-    opts = { lsp = { auto_attach = true } },
-    vim.keymap.set("n", "\\n", ":Navbuddy<CR>", { noremap = true, silent = true })
-  },
-  {
     "Kicamon/im-switch.nvim",
     evnet = "VeryLazy",
     config = function()
       require("im-switch").setup()
-    end
-  },
-  {
-    'kevinhwang91/rnvimr',
-    evnet = "VeryLazy",
-    key = { 'R' },
-    config = function()
-      vim.keymap.set('n', 'R', '<cmd>RnvimrToggle<CR>', { noremap = true })
     end
   },
   {
@@ -118,30 +100,6 @@ return {
         end,
         desc = "Flash Treesitter"
       },
-      --{
-      --"r",
-      --mode = "o",
-      --function()
-      --require("flash").remote()
-      --end,
-      --desc = "Remote Flash"
-      --},
-      --{
-      --"R",
-      --mode = { "o", "x" },
-      --function()
-      --require("flash").treesitter_search()
-      --end,
-      --desc = "Treesitter Search"
-      --},
-      --{
-      --"<c-s>",
-      --mode = { "c" },
-      --function()
-      --require("flash").toggle()
-      --end,
-      --desc = "Toggle Flash Search"
-      --},
     },
   },
   {
