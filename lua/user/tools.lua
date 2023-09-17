@@ -1,8 +1,8 @@
 ----- code running ----
 local function split()
-  vim.o.splitbelow = true
-  vim.cmd('sp')
-  vim.cmd('res -5')
+  vim.o.splitright = true
+  vim.cmd('vsplit')
+  vim.cmd('vertical resize-20')
 end
 
 local function Run()
@@ -34,10 +34,10 @@ local function Run()
     vim.cmd('term bash "%"')
   elseif (vim.bo.filetype == 'html') then
     vim.cmd([[
-			tabe
-			term live-server --browser=chromium
-			tabclose
-		]])
+      tabe
+      term live-server --browser=chromium
+      tabclose
+    ]])
   end
 end
 
