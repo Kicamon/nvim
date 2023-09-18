@@ -219,6 +219,7 @@ return {
           layout = "float",
           keys = {
             quit = "<ESC>",
+            toggle_or_jump = "<cr>",
           }
         },
         finder = {
