@@ -115,7 +115,7 @@ return {
     "voldikss/vim-translator",
     event = "VeryLazy",
     config = function()
-      vim.keymap.set("n","<leader>tr","<Plug>TranslateW",{})
+      vim.keymap.set("n", "<leader>tr", "<Plug>TranslateW", { noremap = true })
     end,
   }
 }

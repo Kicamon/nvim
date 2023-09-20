@@ -12,6 +12,7 @@ return {
       vim.keymap.set('n', '<leader>fk', builtin.keymaps, {})
       vim.keymap.set('n', '<leader>fw', builtin.current_buffer_fuzzy_find, {})
       vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+      vim.keymap.set('n', '<leader>tt', '<cmd>Telescope file_browser<CR>', {})
       vim.keymap.set('n', '<leader>fg', builtin.git_status, {})
       --vim.keymap.set('n', '<leader>fo', builtin.oldfiles, {})
       vim.keymap.set('n', '<leader>fz', builtin.spell_suggest, {})
