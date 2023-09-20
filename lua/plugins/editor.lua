@@ -103,20 +103,6 @@ return {
     },
   },
   {
-    "xiyaowong/link-visitor.nvim",
-    event = "VeryLazy",
-    key = { "gl" },
-    config = function()
-      require("link-visitor").setup({
-        open_cmd = nil,
-        silent = true,             -- disable all prints, `false` by defaults skip_confirmation
-        skip_confirmation = false, -- Skip the confirmation step, default: false
-        border = "rounded"         -- none, single, double, rounded, solid, shadow see `:h nvim_open_win()`
-      })
-      vim.keymap.set("n", "gl", ":VisitLinkUnderCursor<CR>", { silent = true })
-    end
-  },
-  {
     'echasnovski/mini.align',
     opts = {
       mappings = {
@@ -124,5 +110,12 @@ return {
         start_with_preview = 'gA',
       },
     }
+  },
+  {
+    "voldikss/vim-translator",
+    event = "VeryLazy",
+    config = function()
+      vim.keymap.set("n","<leader>tr","<Plug>TranslateW",{})
+    end,
   }
 }
