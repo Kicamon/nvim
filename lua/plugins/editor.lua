@@ -117,5 +117,18 @@ return {
     config = function()
       vim.keymap.set("n", "<leader>tr", "<Plug>TranslateW", { noremap = true })
     end,
+  },
+  {
+    "Kicamon/mini.files",
+    opts = {
+      mappings = {
+        close       = '<ESC>',
+        go_in       = 'L',
+        go_in_plus  = 'l',
+        go_out      = 'H',
+        go_out_plus = 'h',
+      }
+    },
+    vim.keymap.set("n", "<leader>tt", ":lua MiniFiles.open()<CR>", {}),
   }
 }
