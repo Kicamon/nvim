@@ -1,30 +1,81 @@
 return {
   {
-    'mg979/tabline.nvim',
-    event = 'VeryLazy',
+    'Kicamon/gruvbox.nvim',
+    lazy = false,
+    priority = 1000,
     config = function()
-      require("tabline.setup").setup({
-        tabs_badge       = false,
-        modes            = { "tabs", "buffers" },
-        theme            = "slate",
-        default_mappings = false,
-        label_style      = "order",
-      })
-    end
+      vim.cmd("colorscheme gruvbox")
+      vim.api.nvim_set_hl(0, "Pmenu", { fg = "#C5CDD9", bg = "#282828" })
+      vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#282C34", fg = "NONE" })
+      vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = "#7E8294", bg = "NONE", strikethrough = true })
+      vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "#82AAFF", bg = "NONE", bold = true })
+      vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "#82AAFF", bg = "NONE", bold = true })
+      vim.api.nvim_set_hl(0, "CmpItemMenu", { fg = "#C792EA", bg = "NONE", italic = true })
+      vim.api.nvim_set_hl(0, "CmpItemKindField", { fg = "#EED8DA", bg = "#B5585F" })
+      vim.api.nvim_set_hl(0, "CmpItemKindProperty", { fg = "#EED8DA", bg = "#B5585F" })
+      vim.api.nvim_set_hl(0, "CmpItemKindEvent", { fg = "#EED8DA", bg = "#B5585F" })
+      vim.api.nvim_set_hl(0, "CmpItemKindText", { fg = "#C3E88D", bg = "#9FBD73" })
+      vim.api.nvim_set_hl(0, "CmpItemKindEnum", { fg = "#C3E88D", bg = "#9FBD73" })
+      vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { fg = "#C3E88D", bg = "#9FBD73" })
+      vim.api.nvim_set_hl(0, "CmpItemKindConstant", { fg = "#FFE082", bg = "#D4BB6C" })
+      vim.api.nvim_set_hl(0, "CmpItemKindConstructor", { fg = "#FFE082", bg = "#D4BB6C" })
+      vim.api.nvim_set_hl(0, "CmpItemKindReference", { fg = "#FFE082", bg = "#D4BB6C" })
+      vim.api.nvim_set_hl(0, "CmpItemKindFunction", { fg = "#EADFF0", bg = "#A377BF" })
+      vim.api.nvim_set_hl(0, "CmpItemKindStruct", { fg = "#EADFF0", bg = "#A377BF" })
+      vim.api.nvim_set_hl(0, "CmpItemKindClass", { fg = "#EADFF0", bg = "#A377BF" })
+      vim.api.nvim_set_hl(0, "CmpItemKindModule", { fg = "#EADFF0", bg = "#A377BF" })
+      vim.api.nvim_set_hl(0, "CmpItemKindOperator", { fg = "#EADFF0", bg = "#A377BF" })
+      vim.api.nvim_set_hl(0, "CmpItemKindVariable", { fg = "#C5CDD9", bg = "#7E8294" })
+      vim.api.nvim_set_hl(0, "CmpItemKindFile", { fg = "#C5CDD9", bg = "#7E8294" })
+      vim.api.nvim_set_hl(0, "CmpItemKindUnit", { fg = "#F5EBD9", bg = "#D4A959" })
+      vim.api.nvim_set_hl(0, "CmpItemKindSnippet", { fg = "#F5EBD9", bg = "#D4A959" })
+      vim.api.nvim_set_hl(0, "CmpItemKindFolder", { fg = "#F5EBD9", bg = "#D4A959" })
+      vim.api.nvim_set_hl(0, "CmpItemKindMethod", { fg = "#DDE5F5", bg = "#6C8ED4" })
+      vim.api.nvim_set_hl(0, "CmpItemKindValue", { fg = "#DDE5F5", bg = "#6C8ED4" })
+      vim.api.nvim_set_hl(0, "CmpItemKindEnumMember", { fg = "#DDE5F5", bg = "#6C8ED4" })
+      vim.api.nvim_set_hl(0, "CmpItemKindInterface", { fg = "#D8EEEB", bg = "#58B5A8" })
+      vim.api.nvim_set_hl(0, "CmpItemKindColor", { fg = "#D8EEEB", bg = "#58B5A8" })
+      vim.api.nvim_set_hl(0, "CmpItemKindTypeParameter", { fg = "#D8EEEB", bg = "#58B5A8" })
+
+      vim.fn.sign_define("DiagnosticSignError", { text = "🤣", texthl = "DiagnosticSignError" })
+      vim.fn.sign_define("DiagnosticSignWarn", { text = "🧐", texthl = "DiagnosticSignWarn" })
+      vim.fn.sign_define("DiagnosticSignInfo", { text = "🫠", texthl = "DiagnosticSignInfo" })
+      vim.fn.sign_define("DiagnosticSignHint", { text = "🤔", texthl = "DiagnosticSignHint" })
+    end,
   },
   {
-    "nvim-lualine/lualine.nvim",
+    'akinsho/bufferline.nvim',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
+    opts = {
+      options = {
+        mode = "tabs",
+        indicator = {
+          icon = '▍', -- this should be omitted if indicator style is not 'icon'
+          -- style = 'icon' | 'underline' | 'none',
+          style = "icon",
+        },
+        show_buffer_close_icons = false,
+        show_close_icon = false,
+        show_duplicate_prefix = false,
+        tab_size = 10,
+        enforce_regular_tabs = false,
+        padding = 0,
+        separator_style = "thick",
+      }
+    }
+  },
+  {
+    "Kicamon/lualine.nvim",
     event = 'VeryLazy',
     config = function()
-      -- Eviline config for lualine
-      -- Author: shadmansaleh
-      -- Credit: glepnir
       local lualine = require('lualine')
 
       -- Color table for highlights
       -- stylua: ignore
       local colors = {
-        bg       = '#3c3836',
+        bg       = '#282828',
         bglight  = '#504945',
         bgdark   = '#3f3d3f',
         fg       = '#bbc2cf',
@@ -44,26 +95,26 @@ return {
       }
 
       local mode_color = {
-        n       = colors.green,
-        i       = colors.violet,
-        v       = colors.yellow,
+        n      = colors.green,
+        i      = colors.violet,
+        v      = colors.yellow,
         ['']  = colors.yellow,
-        V       = colors.yellow,
-        c       = colors.magenta,
-        no      = colors.red,
-        s       = colors.orange,
-        S       = colors.orange,
+        V      = colors.yellow,
+        c      = colors.magenta,
+        no     = colors.red,
+        s      = colors.orange,
+        S      = colors.orange,
         ['']  = colors.orange,
-        ic      = colors.yellow,
-        R       = colors.violet,
-        Rv      = colors.violet,
-        cv      = colors.red,
-        ce      = colors.red,
-        r       = colors.cyan,
-        rm      = colors.cyan,
-        ['r?']  = colors.cyan,
-        ['!']   = colors.red,
-        t       = colors.red,
+        ic     = colors.yellow,
+        R      = colors.violet,
+        Rv     = colors.violet,
+        cv     = colors.red,
+        ce     = colors.red,
+        r      = colors.cyan,
+        rm     = colors.cyan,
+        ['r?'] = colors.cyan,
+        ['!']  = colors.red,
+        t      = colors.red,
       }
 
       local conditions = {
@@ -128,46 +179,43 @@ return {
 
       ins_left {
         function()
-          return ''
+          return '█'
         end,
         padding = { right = 0 },
         color = function()
-          return { fg = mode_color[vim.fn.mode()], bg = colors.none, gui = 'bold' }
+          return { fg = mode_color[vim.fn.mode()], bg = colors.bg, gui = 'bold' }
         end,
       }
 
       ins_left {
         'mode',
-        icon = '󰕷',
         color = function()
           return { fg = colors.bg, bg = mode_color[vim.fn.mode()], gui = 'bold' }
-        end,
-      }
-
-      ins_left {
-        function()
-          return ''
-        end,
-        color = function()
-          return { fg = mode_color[vim.fn.mode()], bg = colors.bgdark, gui = 'bold' }
         end,
         padding = { left = 0, right = 0 }
       }
 
       ins_left {
         function()
-          local mode2 = ""
-          if (vim.wo.spell) then
-            mode2 = mode2 .. "󰓆 "
-          end
-          if (vim.wo.wrap) then
-            mode2 = mode2 .. "󰖶 "
-          end
-          return mode2
+          return ''
         end,
-        cond = conditions.buffer_not_empty,
-        color = { fg = colors.yellow, bg = colors.bgdark, gui = 'bold' },
-        padding = { left = 1, right = 0 },
+        color = function()
+          return { fg = mode_color[vim.fn.mode()], bg = colors.bg, gui = 'bold' }
+        end,
+        padding = { left = 0, right = 0 }
+      }
+
+      ins_left {
+        'filename',
+        color = { bg = colors.bg, fg = colors.blue, gui = 'bold' },
+      }
+
+      ins_left {
+        function()
+          return ''
+        end,
+        color = { fg = colors.bg, bg = colors.bgdark },
+        padding = { left = 0 },
       }
 
       ins_left {
@@ -176,13 +224,6 @@ return {
         color = { fg = colors.violet, bg = colors.bgdark, gui = 'bold' },
       }
 
-      ins_left {
-        function()
-          return ''
-        end,
-        color = { fg = colors.bgdark, bg = colors.bglight },
-        padding = { left = 0 },
-      }
 
       ins_left {
         'diff',
@@ -193,73 +234,19 @@ return {
           modified = { fg = colors.orange },
           removed = { fg = colors.red },
         },
+        color = { bg = colors.bgdark },
         cond = conditions.hide_in_width,
-        color = { bg = colors.bglight },
       }
 
       ins_left {
         function()
-          return ''
+          return ''
         end,
-        color = { fg = colors.bglight },
-        padding = { left = 0 },
-      }
-
-      ins_left {
-        function()
-          return '%='
-        end,
-      }
-
-      ins_left {
-        -- Lsp server name .
-        function()
-          local msg = 'No Active Lsp'
-          local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-          local clients = vim.lsp.get_active_clients()
-          if next(clients) == nil then
-            return msg
-          end
-          for _, client in ipairs(clients) do
-            local filetypes = client.config.filetypes
-            if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-              return client.name
-            end
-          end
-          return msg
-        end,
-        icon = ' LSP:',
-        color = { fg = colors.violet, gui = 'bold' },
-      }
-
-      ins_right {
-        'filetype',
-        cond = conditions.buffer_not_empty,
-        color = { fg = colors.magenta, gui = 'bold' },
+        color = { fg = colors.bgdark },
+        padding = { left = 0, right = 0 }
       }
 
       -- Add components to right sections
-      ins_right {
-        'o:encoding',       -- option component same as &encoding in viml
-        fmt = string.upper, -- I'm not sure why it's upper case either ;)
-        cond = conditions.hide_in_width,
-        color = { fg = colors.green, gui = 'bold' },
-      }
-
-      ins_right {
-        'fileformat',
-        fmt = string.upper,
-        icons_enabled = true, -- I think icons are cool but Eviline doesn't have them. sigh
-        color = { fg = colors.green, gui = 'bold' },
-      }
-
-      ins_right {
-        function()
-          return ''
-        end,
-        color = { fg = colors.bgdark, gui = 'bold' },
-        padding = { right = 0 },
-      }
 
       ins_right {
         'diagnostics',
@@ -272,12 +259,32 @@ return {
           info  = { fg = colors.cyan },
           hint  = { fg = colors.blue },
         },
-        color             = { bg = colors.bgdark },
       }
 
       ins_right {
         function()
-          return ''
+          return ''
+        end,
+        color = { fg = colors.bgdark, gui = 'bold' },
+        padding = { right = 0 },
+      }
+
+      ins_right {
+        'filetype',
+        cond = conditions.buffer_not_empty,
+        color = { fg = colors.magenta, bg = colors.bgdark, gui = 'bold' },
+      }
+
+      ins_right {
+        'fileformat',
+        fmt = string.upper,
+        icons_enabled = true, -- I think icons are cool but Eviline doesn't have them. sigh
+        color = { fg = colors.green,bg = colors.bgdark, gui = 'bold' },
+      }
+
+      ins_right {
+        function()
+          return ''
         end,
         padding = { left = 0, right = 0 },
         color = { bg = colors.bgdark, fg = colors.green, gui = 'bold' },
@@ -293,14 +300,6 @@ return {
         'location',
         padding = { left = 0, right = 0 },
         color = { fg = colors.bg, bg = colors.green, gui = 'bold' },
-      }
-
-      ins_right {
-        function()
-          return ''
-        end,
-        color = { bg = colors.none, fg = colors.green },
-        padding = { left = 0 },
       }
 
       -- Now don't forget to initialize lualine
@@ -396,5 +395,86 @@ return {
         },
       })
     end
-  }
+  },
+  { "nvim-treesitter/playground" },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
+    lazy = false,
+    priority = 1000,
+    build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+          "bash",
+          "c",
+          "cpp",
+          "dart",
+          "html",
+          "go",
+          "java",
+          "javascript",
+          "lua",
+          "markdown",
+          "markdown_inline",
+          "prisma",
+          "python",
+          "query",
+          "typescript",
+          "vim"
+        },
+        highlight = {
+          enable = true,
+          disable = {}, -- list of language that will be disabled
+        },
+        indent = {
+          enable = false
+        },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            --init_selection    = "<c-n>",
+            --node_incremental  = "<c-n>",
+            node_decremental  = "<c-h>",
+            scope_incremental = "<c-l>",
+          },
+        }
+      })
+      local function getnode()
+        local node_cursor = require("nvim-treesitter.ts_utils").get_node_at_cursor()
+        while node_cursor do
+          vim.notify(node_cursor:type())
+          node_cursor = node_cursor:parent()
+        end
+        return true
+      end
+      vim.keymap.set("n", "<leader>P", getnode, { noremap = true })
+    end
+  },
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    event = 'BufRead',
+    config = function()
+      local rainbow_delimiters = require 'rainbow-delimiters'
+      vim.g.rainbow_delimiters = {
+        strategy = {
+          [''] = rainbow_delimiters.strategy['global'],
+          vim = rainbow_delimiters.strategy['local'],
+        },
+        query = {
+          [''] = 'rainbow-delimiters',
+          lua = 'rainbow-blocks',
+        },
+        highlight = {
+          'RainbowDelimiterBlue',
+          'RainbowDelimiterYellow',
+          'RainbowDelimiterCyan',
+          'RainbowDelimiterViolet',
+          'RainbowDelimiterRed',
+          'RainbowDelimiterOrange',
+          'RainbowDelimiterGreen',
+        },
+      }
+    end
+  },
 }

@@ -10,14 +10,6 @@ return {
   {
     "gcmt/wildfire.vim",
     event = "VeryLazy",
-    --{
-    --"sustech-data/wildfire.nvim",
-    --event = "VeryLazy",
-    --dependencies = { "nvim-treesitter/nvim-treesitter" },
-    --config = function()
-    --require("wildfire").setup()
-    --end,
-    --}
   },
   {
     "echasnovski/mini.surround",
@@ -36,32 +28,6 @@ return {
     key = { '<C-n>' },
   },
   {
-    "NvChad/nvim-colorizer.lua",
-    opts = {
-      filetypes = { "*" },
-      user_default_options = {
-        RGB = true,           -- #RGB hex codes
-        RRGGBB = true,        -- #RRGGBB hex codes
-        names = false,        -- "Name" codes like Blue or blue
-        RRGGBBAA = true,      -- #RRGGBBAA hex codes
-        AARRGGBB = true,      -- 0xAARRGGBB hex codes
-        rgb_fn = false,       -- CSS rgb() and rgba() functions
-        hsl_fn = false,       -- CSS hsl() and hsla() functions
-        css = false,          -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-        css_fn = false,       -- Enable all CSS *functions*: rgb_fn, hsl_fn
-        -- Available modes for `mode`: foreground, background,  virtualtext
-        mode = "virtualtext", -- Set the display mode.
-        -- Available methods are false / true / "normal" / "lsp" / "both"
-        -- True is same as normal
-        tailwind = true,
-        sass = { enable = false },
-        virtualtext = "■",
-      },
-      -- all the sub-options of filetypes apply to buftypes
-      buftypes = {},
-    }
-  },
-  {
     "echasnovski/mini.comment",
     evnet = "VeryLazy",
     kay = { "<leader>cc" },
@@ -70,36 +36,6 @@ return {
         comment = "<leader>cc",
         comment_line = "<leader>cc",
       }
-    },
-  },
-  {
-    "Kicamon/im-switch.nvim",
-    evnet = "VeryLazy",
-    config = function()
-      require("im-switch").setup()
-    end
-  },
-  {
-    "folke/flash.nvim",
-    event = "VeryLazy",
-    opts = {},
-    keys = {
-      {
-        "<ESC>",
-        mode = { "n" },
-        function()
-          require("flash").jump()
-        end,
-        desc = "Flash"
-      },
-      {
-        "S",
-        mode = { "n", "o" },
-        function()
-          require("flash").treesitter()
-        end,
-        desc = "Flash Treesitter"
-      },
     },
   },
   {
@@ -112,23 +48,64 @@ return {
     }
   },
   {
-    "voldikss/vim-translator",
-    event = "VeryLazy",
+    'iamcco/markdown-preview.nvim',
+    build = "cd app && yarn install",
+    ft = { "markdown" },
     config = function()
-      vim.keymap.set("n", "<leader>tr", "<Plug>TranslateW", { noremap = true })
+      vim.g.mkdp_browser = "chromium"
     end,
   },
   {
-    "Kicamon/mini.files",
-    opts = {
-      mappings = {
-        close       = '<ESC>',
-        go_in       = 'L',
-        go_in_plus  = 'l',
-        go_out      = 'H',
-        go_out_plus = 'h',
-      }
+    "dhruvasagar/vim-table-mode",
+    ft = { "markdown" },
+    config = function()
+      vim.g.table_mode_corner = '|'
+      vim.keymap.set("n", "\\f", "<cmd>TableModeToggle<CR>", { noremap = true })
+    end,
+  },
+  {
+    "mzlogin/vim-markdown-toc",
+    ft = { "markdown" },
+    config = function()
+      vim.keymap.set("n", "toc", ":GenTocGitLab<CR>", { noremap = true, buffer = true })
+    end,
+  },
+  {
+    "img-paste-devs/img-paste.vim",
+    ft = { "markdown" },
+    config = function()
+      vim.keymap.set("n", "<leader>p", ":call mdip#MarkdownClipboardImage()<CR>", { noremap = true })
+      vim.g.PasteImageFunction = 'g:MarkdownPasteImage'
+    end,
+  },
+  {
+    "dkarter/bullets.vim",
+    ft = { "markdown" },
+    config = function()
+      vim.g.bullets_set_mappings = 0
+      vim.g.bullets_outline_levels = { 'num' }
+      vim.keymap.set("i", "<M-.>", "<Plug>(bullets-demote)")
+      vim.keymap.set("i", "<M-,>", "<Plug>(bullets-promote)")
+    end,
+  },
+  {
+    "serenevoid/kiwi.nvim",
+    evnet = "VeryLazy",
+    dependencies = {
+      'nvim-lua/plenary.nvim'
     },
-    vim.keymap.set("n", "<leader>tt", ":lua MiniFiles.open()<CR>", {}),
-  }
+    config = function()
+      require('kiwi').setup({
+        {
+          name = "personal",
+          path = "/home/KicamonIce/Documents/study/Note/wiki"
+        }
+      })
+      local kiwi = require('kiwi')
+      vim.keymap.set('n', '<leader>ww', kiwi.open_wiki_index, {})
+      vim.keymap.set('n', '<leader>wd', kiwi.open_diary_index, {})
+      vim.keymap.set('n', '<leader>wn', kiwi.open_diary_new, {})
+      vim.keymap.set('n', '<leader-x>', kiwi.todo.toggle, {})
+    end
+  },
 }
