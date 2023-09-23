@@ -66,6 +66,7 @@ return {
   },
   {
     "NvChad/nvim-colorizer.lua",
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       filetypes = { "*" },
       user_default_options = {
@@ -129,6 +130,7 @@ return {
   },
   {
     "Kicamon/mini.files",
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       mappings = {
         close       = '<ESC>',
@@ -142,6 +144,7 @@ return {
   },
   {
     "nvimdev/guard.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "nvimdev/guard-collection",
     },
