@@ -201,28 +201,28 @@ return {
           return ''
         end,
         color = function()
-          return { fg = mode_color[vim.fn.mode()], bg = colors.bg, gui = 'bold' }
+          return { fg = mode_color[vim.fn.mode()], bg = colors.bgdark, gui = 'bold' }
         end,
         padding = { left = 0, right = 0 }
       }
 
       ins_left {
         'filename',
-        color = { bg = colors.bg, fg = colors.blue, gui = 'bold' },
+        color = { bg = colors.bgdark, fg = colors.blue, gui = 'bold' },
       }
 
       ins_left {
         function()
           return ''
         end,
-        color = { fg = colors.bg, bg = colors.bgdark },
+        color = { fg = colors.bgdark, bg = colors.bg },
         padding = { left = 0 },
       }
 
       ins_left {
         'branch',
         icon = '',
-        color = { fg = colors.violet, bg = colors.bgdark, gui = 'bold' },
+        color = { fg = colors.violet, bg = colors.bg, gui = 'bold' },
       }
 
 
@@ -235,16 +235,8 @@ return {
           modified = { fg = colors.orange },
           removed = { fg = colors.red },
         },
-        color = { bg = colors.bgdark },
+        color = { bg = colors.bg },
         cond = conditions.hide_in_width,
-      }
-
-      ins_left {
-        function()
-          return ''
-        end,
-        color = { fg = colors.bgdark },
-        padding = { left = 0, right = 0 }
       }
 
       -- Add components to right sections
