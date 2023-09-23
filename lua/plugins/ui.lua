@@ -65,7 +65,7 @@ return {
         padding = 0,
         separator_style = "thick",
       }
-    }
+    },
   },
   {
     "Kicamon/lualine.nvim",
@@ -92,7 +92,6 @@ return {
         pink     = '#FF69B4',
         snow     = '#FFFAFA',
         black    = '#000000',
-        none     = '#282828',
       }
 
       local mode_color = {
@@ -184,36 +183,36 @@ return {
         end,
         padding = { right = 0 },
         color = function()
-          return { fg = mode_color[vim.fn.mode()], bg = colors.bg, gui = 'bold' }
+          return { fg = colors.bg, gui = 'bold' }
         end,
       }
 
       ins_left {
         'mode',
         color = function()
-          return { fg = colors.bg, bg = mode_color[vim.fn.mode()], gui = 'bold' }
+          return { fg = mode_color[vim.fn.mode()], bg = colors.bg, gui = 'bold' }
         end,
         padding = { left = 0, right = 0 }
       }
 
       ins_left {
         function()
-          return ''
+          return '╲'
         end,
         color = function()
-          return { fg = mode_color[vim.fn.mode()], bg = colors.bgdark, gui = 'bold' }
+          return { fg = colors.bglight, bg = colors.bg, gui = 'bold' }
         end,
         padding = { left = 0, right = 0 }
       }
 
       ins_left {
         'filename',
-        color = { bg = colors.bgdark, fg = colors.blue, gui = 'bold' },
+        color = { bg = colors.bg, fg = colors.blue, gui = 'bold' },
       }
 
       ins_left {
         function()
-          return ''
+          return '╲'
         end,
         color = { fg = colors.bgdark, bg = colors.bg },
         padding = { left = 0 },
@@ -256,7 +255,7 @@ return {
 
       ins_right {
         function()
-          return ''
+          return '╱'
         end,
         color = { fg = colors.bgdark, gui = 'bold' },
         padding = { right = 0 },
@@ -265,34 +264,42 @@ return {
       ins_right {
         'filetype',
         cond = conditions.buffer_not_empty,
-        color = { fg = colors.magenta, bg = colors.bgdark, gui = 'bold' },
+        color = { fg = colors.magenta, bg = colors.bg, gui = 'bold' },
+      }
+
+      ins_right {
+        function()
+          return '╱'
+        end,
+        padding = { left = 0, right = 0 },
+        color = { bg = colors.bg, fg = colors.bglight, gui = 'bold' },
       }
 
       ins_right {
         'fileformat',
         fmt = string.upper,
         icons_enabled = true, -- I think icons are cool but Eviline doesn't have them. sigh
-        color = { fg = colors.green,bg = colors.bgdark, gui = 'bold' },
+        color = { fg = colors.green, bg = colors.bg, gui = 'bold' },
       }
 
       ins_right {
         function()
-          return ''
+          return '╱'
         end,
         padding = { left = 0, right = 0 },
-        color = { bg = colors.bgdark, fg = colors.green, gui = 'bold' },
+        color = { bg = colors.bg, fg = colors.bglight, gui = 'bold' },
       }
 
       ins_right {
         'progress',
         icon = { '', align = 'right' },
-        color = { fg = colors.bg, bg = colors.green, gui = 'bold' },
+        color = { fg = colors.green, bg = colors.bg, gui = 'bold' },
       }
 
       ins_right {
         'location',
         padding = { left = 0, right = 0 },
-        color = { fg = colors.bg, bg = colors.green, gui = 'bold' },
+        color = { fg = colors.green, bg = colors.bg, gui = 'bold' },
       }
 
       -- Now don't forget to initialize lualine
