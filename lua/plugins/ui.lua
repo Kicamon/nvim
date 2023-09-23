@@ -45,6 +45,7 @@ return {
   },
   {
     'akinsho/bufferline.nvim',
+    event = 'BufEnter */*',
     dependencies = {
       'nvim-tree/nvim-web-devicons',
     },
@@ -68,7 +69,7 @@ return {
   },
   {
     "Kicamon/lualine.nvim",
-    event = 'VeryLazy',
+    event = 'BufEnter */*',
     config = function()
       local lualine = require('lualine')
 
