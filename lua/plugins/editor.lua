@@ -1,19 +1,19 @@
 return {
   {
     "windwp/nvim-autopairs",
+    event = { "BufReadPre", "BufNewFile" },
     lazy = true,
-    event = "VeryLazy",
     config = function()
       require("nvim-autopairs").setup({})
     end
   },
   {
     "gcmt/wildfire.vim",
-    event = "VeryLazy",
+    event = { "BufReadPre", "BufNewFile" },
   },
   {
     "echasnovski/mini.surround",
-    event = "VeryLazy",
+    event = { "BufReadPre", "BufNewFile" },
     key = { 'S', 'cs' },
     opts = {
       mappings = {
@@ -24,12 +24,12 @@ return {
   },
   {
     "mg979/vim-visual-multi",
-    event = "VeryLazy",
+    event = { "BufReadPre", "BufNewFile" },
     key = { '<C-n>' },
   },
   {
     "echasnovski/mini.comment",
-    evnet = "VeryLazy",
+    event = { "BufReadPre", "BufNewFile" },
     kay = { "<leader>cc" },
     opts = {
       mappings = {
@@ -40,6 +40,7 @@ return {
   },
   {
     'echasnovski/mini.align',
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       mappings = {
         start = 'ga',

@@ -93,14 +93,14 @@ return {
   },
   {
     "Kicamon/im-switch.nvim",
-    evnet = "VeryLazy",
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       require("im-switch").setup()
     end
   },
   {
     "folke/flash.nvim",
-    event = "VeryLazy",
+    event = { "BufReadPre", "BufNewFile" },
     opts = {},
     keys = {
       {
@@ -123,7 +123,7 @@ return {
   },
   {
     "voldikss/vim-translator",
-    event = "VeryLazy",
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       vim.keymap.set("n", "<leader>tr", "<Plug>TranslateW", { noremap = true })
     end,
