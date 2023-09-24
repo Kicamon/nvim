@@ -37,7 +37,7 @@ vim.opt.scrolloff = 6
 vim.opt.colorcolumn = '-1'
 vim.opt.cmdheight = 1
 vim.opt.fillchars = {
-  vert = '┃',
+  vert = '│',
 }
 vim.cmd([[
 silent !mkdir -p $HOME/.config/nvim/tmp/undo

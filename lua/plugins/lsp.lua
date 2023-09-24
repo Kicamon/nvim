@@ -183,7 +183,7 @@ return {
         nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
         nmap("<leader>rn", "<cmd>Lspsaga rename ++project<cr>", "[R]e[n]ame")
         nmap("<leader>ca", "<cmd>Lspsaga code_action<CR>", "[C]ode [A]ction")
-        nmap("\\n", "<cmd>Lspsaga outline<CR>", "[O]ut[L]ine")
+        nmap("<leader>ot", "<cmd>Lspsaga outline<CR>", "[O]ut[L]ine")
         nmap("F", "<cmd>Lspsaga finder def+ref<CR>", "[F]inder")
         nmap("<leader>da", require("telescope.builtin").diagnostics, "[D]i[A]gnostics")
         -- nmap('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
@@ -203,7 +203,6 @@ return {
           },
         },
         outline = {
-          layout = "float",
           keys = {
             quit = "<ESC>",
             toggle_or_jump = "<cr>",
