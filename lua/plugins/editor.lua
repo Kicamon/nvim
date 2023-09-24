@@ -57,11 +57,11 @@ return {
     end,
   },
   {
-    "dhruvasagar/vim-table-mode",
+    "Kicamon/vim-table-mode",
     ft = { "markdown" },
     config = function()
-      vim.g.table_mode_corner = '|'
-      vim.keymap.set("n", "\\f", "<cmd>TableModeToggle<CR>", { noremap = true })
+      vim.g.table_mode_keymap = 0
+      vim.keymap.set("n", "\\f", "<cmd>TableModeToggle<CR>", {})
     end,
   },
   {

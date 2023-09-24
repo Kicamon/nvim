@@ -1,3 +1,4 @@
+local fts = require("user.lsp_fts")
 return {
   {
     "xeluxee/competitest.nvim",
@@ -140,11 +141,11 @@ return {
         go_out_plus = 'h',
       }
     },
-    vim.keymap.set("n", "<leader>tt", ":lua MiniFiles.open()<CR>", {}),
+    vim.keymap.set("n", "tt", ":lua MiniFiles.open()<CR>", {}),
   },
   {
     "nvimdev/guard.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    ft = fts,
     dependencies = {
       "nvimdev/guard-collection",
     },

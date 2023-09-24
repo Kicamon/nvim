@@ -1,3 +1,4 @@
+local fts = require("user.lsp_fts")
 return {
   {
     "hrsh7th/nvim-cmp",
@@ -119,7 +120,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
+    ft = fts,
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
