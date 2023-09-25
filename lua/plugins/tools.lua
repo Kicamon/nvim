@@ -130,7 +130,7 @@ return {
     end,
   },
   {
-    "Kicamon/mini.files",
+    "echasnovski/mini.files",
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       mappings = {

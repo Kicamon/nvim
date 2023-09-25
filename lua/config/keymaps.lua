@@ -49,7 +49,7 @@ local nmappings = {
 	-- buffers & tabs
 	{ from = "[b",                  to = ":bp<CR>",                                                       mode = mode_n  },
 	{ from = "]b",                  to = ":bn<CR>",                                                       mode = mode_n  },
-	{ from = "tu",                  to = ":tabe<CR>:edit<space>",                                         mode = mode_n  },
+	{ from = "tu",                  to = ":tabe<CR>:lua MiniFiles.open()<CR>",                                         mode = mode_n  },
 	{ from = "tn",                  to = ":+tabnext<CR>",                                                 mode = mode_n  },
 	{ from = "tp",                  to = ":-tabnext<CR>",                                                 mode = mode_n  },
 	{ from = "tmn",                 to = ":+tabmove<CR>",                                                 mode = mode_n  },
