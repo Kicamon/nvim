@@ -127,6 +127,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       vim.keymap.set("n", "<leader>tr", "<Plug>TranslateW", { noremap = true })
+      vim.keymap.set("v", "<leader>tr", "<Plug>TranslateWV", { noremap = true })
     end,
   },
   {
