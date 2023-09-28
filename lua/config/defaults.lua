@@ -11,8 +11,8 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.expandtab = true
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = { '*.c', '*.cpp', '*.txt', 'c.snippets', 'cpp.snippets' },
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", "FileType" }, {
+  pattern = { 'c', 'cpp', 'txt', 'c.snippets', 'cpp.snippets' },
   callback = function()
     vim.opt_local.tabstop = 4
     vim.opt_local.shiftwidth = 4
