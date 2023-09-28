@@ -159,7 +159,7 @@ return {
       require("guard").setup({
         fmt_on_save = false,
         lsp_as_default_formatter = true,
-        vim.keymap.set({ "n", "v" }, "\\f", "<cmd>GuardFmt<CR>", { noremap = true }),
+        vim.keymap.set({ "n", "v" }, "<leader>fm", "<cmd>GuardFmt<CR>", { noremap = true }),
       })
     end
   },
