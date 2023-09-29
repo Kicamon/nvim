@@ -46,7 +46,7 @@ return {
   {
     "Kicamon/SimpleLine.nvim",
     event = 'BufEnter */*',
-    config = function ()
+    config = function()
       require("SimpleLine").setup()
     end
   },
@@ -179,26 +179,8 @@ return {
       }
 
       ins_left {
-        function()
-          return '╲'
-        end,
-        color = function()
-          return { fg = colors.bglight, bg = colors.bg, gui = 'bold' }
-        end,
-        padding = { left = 0, right = 0 }
-      }
-
-      ins_left {
         'filename',
         color = { bg = colors.bg, fg = colors.blue, gui = 'bold' },
-      }
-
-      ins_left {
-        function()
-          return '╲'
-        end,
-        color = { fg = colors.bgdark, bg = colors.bg },
-        padding = { left = 0 },
       }
 
       ins_left {
@@ -237,25 +219,9 @@ return {
       }
 
       ins_right {
-        function()
-          return '╱'
-        end,
-        color = { fg = colors.bgdark, gui = 'bold' },
-        padding = { right = 0 },
-      }
-
-      ins_right {
         'filetype',
         cond = conditions.buffer_not_empty,
         color = { fg = colors.magenta, bg = colors.bg, gui = 'bold' },
-      }
-
-      ins_right {
-        function()
-          return '╱'
-        end,
-        padding = { left = 0, right = 0 },
-        color = { bg = colors.bg, fg = colors.bglight, gui = 'bold' },
       }
 
       ins_right {
@@ -263,14 +229,6 @@ return {
         fmt = string.upper,
         icons_enabled = true, -- I think icons are cool but Eviline doesn't have them. sigh
         color = { fg = colors.green, bg = colors.bg, gui = 'bold' },
-      }
-
-      ins_right {
-        function()
-          return '╱'
-        end,
-        padding = { left = 0, right = 0 },
-        color = { bg = colors.bg, fg = colors.bglight, gui = 'bold' },
       }
 
       ins_right {
