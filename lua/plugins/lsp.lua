@@ -40,7 +40,7 @@ return {
             border = "rounded",
             scrollbar = "║",
           },
-          Documentation = {
+          documentation = {
             border = nil,
             scrollbar = "",
           },
