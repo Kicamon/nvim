@@ -47,6 +47,7 @@ local function Run()
       term live-server --browser=chromium
       tabclose
     ]])
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, true, true), 'n', true)
   end
 end
 
