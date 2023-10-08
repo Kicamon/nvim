@@ -16,7 +16,7 @@ local MdSnippets = {
 	-- { from = ",5", to = "#####<Space><Enter><++><Esc>kA" },
 	-- { from = ",l", to = "--- " },
 	--中文
-	{ from = "《 《》<++><", to = "sc>F》i"                                            },
+	{ from = "《",           to = "《》<++><esc>F》i"                                  },
 	{ from = "》",           to = "> "                                                 },
 	{ from = "（",           to = "（）<++><Esc>F）i"                                  },
 	{ from = "“",            to = "“”<++><Esc>F”i"                                     },
