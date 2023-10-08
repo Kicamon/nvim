@@ -45,7 +45,6 @@ return {
   },
   {
     "Kicamon/SimpleLine.nvim",
-    event = 'BufEnter */*',
     config = function()
       require("statusline").setup()
       require("tabline").setup()
