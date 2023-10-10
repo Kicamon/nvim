@@ -125,14 +125,12 @@ return {
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "folke/neoconf.nvim",
       "folke/neodev.nvim",
       {
         "j-hui/fidget.nvim",
         tag = "legacy",
       },
       "nvimdev/lspsaga.nvim",
-      "p00f/clangd_extensions.nvim",
     },
     config = function()
       local servers = {
@@ -193,8 +191,6 @@ return {
         --end, "[F]ormat code")
         --nmap("\\f", "<cmd>GuardFmt<CR>", "[F]ormat code")
       end
-      require("clangd_extensions").setup()
-      require("neoconf").setup()
       require("neodev").setup()
       require("fidget").setup()
       require("lspsaga").setup({
