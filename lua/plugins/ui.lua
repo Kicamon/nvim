@@ -43,13 +43,13 @@ return {
       vim.fn.sign_define("DiagnosticSignHint", { text = "🤔", texthl = "DiagnosticSignHint" })
     end,
   },
-  -- {
-  --   "Kicamon/SimpleLine.nvim",
-  --   config = function()
-  --     require("statusline").setup()
-  --     require("tabline").setup()
-  --   end
-  -- },
+  {
+    "Kicamon/SimpleLine.nvim",
+    config = function()
+      require("statusline").setup()
+      require("tabline").setup()
+    end
+  },
   {
     "lewis6991/gitsigns.nvim",
     event = { 'BufRead', 'BufNewFile' },
