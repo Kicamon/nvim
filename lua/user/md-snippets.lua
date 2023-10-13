@@ -21,8 +21,6 @@ local MdSnippets = {
 	{ from = "（",           to = "（）<++><Esc>F）i"                                  },
 	{ from = "“",            to = "“”<++><Esc>F”i"                                     },
 	{ from = "”",            to = "“”<++><Esc>F”i"                                     },
-	{ from = "<c-e>",        to = "<Esc>/<++><CR>:nohlsearch<CR>\"_c4l"                },
-	{ from = "·w",           to = "<Esc>/ <++><CR>:nohlsearch<CR>\"_c5l<CR>"           },
 	{ from = "·n",           to = "---<Enter><Enter>"                                  },
 	{ from = "·b",           to = "****<++><Esc>F*hi"                                  },
 	{ from = "·s",           to = "~~~~<++><Esc>F~hi"                                  },
