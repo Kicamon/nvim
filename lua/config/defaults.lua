@@ -10,7 +10,6 @@ vim.opt.relativenumber = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
-vim.opt.expandtab = true
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", "FileType" }, {
   pattern = { 'c', 'cpp', 'txt', 'c.snippets', 'cpp.snippets' },
   callback = function()
@@ -19,6 +18,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", "FileType" }, {
     vim.opt_local.softtabstop = 4
   end,
 })
+vim.opt.expandtab = true
 vim.opt.smarttab = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
@@ -33,29 +33,19 @@ vim.opt.laststatus = 3
 vim.opt.signcolumn = "yes"
 vim.opt.list = true
 vim.opt.listchars = 'tab:┃ ,trail:▫'
-vim.opt.scrolloff = 6
-vim.opt.colorcolumn = '-1'
-vim.opt.cmdheight = 1
 vim.opt.fillchars = {
   vert = '│',
 }
-vim.cmd([[
-silent !mkdir -p $HOME/.config/nvim/tmp/undo
-if has('persistent_undo')
-	set undofile
-	set undodir=$HOME/.config/nvim/tmp/undo,.
-endif
-]])
+vim.opt.cmdheight = 1
+vim.opt.scrolloff = 6
+vim.opt.colorcolumn = '-1'
+if vim.fn.filereadable("$HOME/.config/nvim/tmp/undo") == 0 then
+  vim.cmd("silent !mkdir -p $HOME/.config/nvim/tmp/undo")
+end
+vim.opt.undofile = true
+vim.opt.undodir = "$HOME/.config/nvim/tmp/undo,."
 vim.cmd([[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]])
--- vim.api.nvim_create_autocmd("BufEnter", { pattern = "*", command = "silent! lcd %:p:h", })
-vim.cmd([[autocmd TermOpen term://* startinsert]])
-vim.cmd([[
-augroup NVIMRC
-    autocmd!
-    autocmd BufWritePost .vim.lua exec ":so %"
-augroup END
-]])
-
+vim.api.nvim_create_autocmd("TermOpen", { pattern = "term://*", command = [[startinsert]] })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.md, *.txt", command = "setlocal wrap", })
 
 require("user.tools")
