@@ -29,7 +29,7 @@ return {
         background_colour = "#202020",
         fps = 60,
         level = 2,
-        minimum_width = 50,
+        minimum_width = 30,
         render = "compact",
         stages = "slide",
         timeout = 3000,
@@ -142,11 +142,9 @@ return {
     },
     config = function()
       local ft = require("guard.filetype")
-      ft("c"):fmt("clang-format")
-      ft("cpp"):fmt("clang-format")
-      ft("lua"):fmt("lsp")
+      ft("c", "cpp"):fmt("clang-format")
       ft("python"):fmt("black")
-      ft("sh"):fmt("lsp")
+      ft("lua"):fmt("lsp")
       require("guard").setup({
         fmt_on_save = false,
         lsp_as_default_formatter = true,

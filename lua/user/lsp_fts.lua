@@ -4,7 +4,9 @@ local fts = {
   'lua',
   'python',
   'javascript',
+  'typescript',
   'json',
+  'html',
 }
 
 return fts

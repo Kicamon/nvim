@@ -40,11 +40,12 @@ return {
             col_offset = -3,
             side_padding = 0,
             border = "rounded",
-            scrollbar = "║",
+            scrollbar = true,
           },
           documentation = {
-            border = nil,
-            scrollbar = "",
+            winhighlight = "Normal:PmenuSec,FloatBorder:PmenuSec,Search:None",
+            border = "rounded",
+            scrollbar = true,
           },
         },
         formatting = {
@@ -194,21 +195,16 @@ return {
       require("neodev").setup()
       require("fidget").setup()
       require("lspsaga").setup({
-        rename = {
-          keys = {
-            quit = "<ESC>",
-          },
-        },
         outline = {
           keys = {
-            quit = "<ESC>",
+            quit = "q",
             toggle_or_jump = "<cr>",
           }
         },
         finder = {
           keys = {
             toggle_or_open = '<cr>',
-            quit = "<ESC>",
+            quit = "q",
           },
         },
       })

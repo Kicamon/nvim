@@ -39,11 +39,7 @@ vim.opt.fillchars = {
 vim.opt.cmdheight = 1
 vim.opt.scrolloff = 6
 vim.opt.colorcolumn = '-1'
-if vim.fn.filereadable("$HOME/.config/nvim/tmp/undo") == 0 then
-  vim.cmd("silent !mkdir -p $HOME/.config/nvim/tmp/undo")
-end
 vim.opt.undofile = true
-vim.opt.undodir = "$HOME/.config/nvim/tmp/undo,."
 vim.cmd([[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]])
 vim.api.nvim_create_autocmd("TermOpen", { pattern = "term://*", command = [[startinsert]] })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.md, *.txt", command = "setlocal wrap", })

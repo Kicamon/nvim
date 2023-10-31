@@ -2,7 +2,6 @@ return {
   {
     "windwp/nvim-autopairs",
     event = { "BufReadPre", "BufNewFile" },
-    lazy = true,
     config = function()
       require("nvim-autopairs").setup({})
     end
@@ -19,6 +18,7 @@ return {
       mappings = {
         add = "S",
         replace = "cs",
+        highlight = "",
       }
     }
   },
@@ -57,14 +57,6 @@ return {
     end,
   },
   {
-    "Kicamon/vim-table-mode",
-    ft = { "markdown" },
-    config = function()
-      vim.g.table_mode_keymap = 0
-      vim.keymap.set("n", "\\f", "<cmd>TableModeToggle<CR>", {})
-    end,
-  },
-  {
     "mzlogin/vim-markdown-toc",
     ft = { "markdown" },
     config = function()
@@ -77,16 +69,6 @@ return {
     config = function()
       vim.keymap.set("n", "<leader>p", ":call mdip#MarkdownClipboardImage()<CR>", { noremap = true })
       vim.g.PasteImageFunction = 'g:MarkdownPasteImage'
-    end,
-  },
-  {
-    "dkarter/bullets.vim",
-    ft = { "markdown" },
-    config = function()
-      vim.g.bullets_set_mappings = 0
-      vim.g.bullets_outline_levels = { 'num' }
-      vim.keymap.set("i", "<M-.>", "<Plug>(bullets-demote)")
-      vim.keymap.set("i", "<M-,>", "<Plug>(bullets-promote)")
     end,
   },
   {

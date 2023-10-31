@@ -1,4 +1,3 @@
-local mode_nv = { "n", "v" }
 local mode_n = { "n" }
 local mode_v = { "v" }
 local mode_i = { "i" }
