@@ -43,7 +43,7 @@ return {
             scrollbar = true,
           },
           documentation = {
-            winhighlight = "Normal:PmenuSec,FloatBorder:PmenuSec,Search:None",
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
             border = "rounded",
             scrollbar = true,
           },
