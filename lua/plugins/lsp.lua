@@ -203,8 +203,9 @@ return {
         },
         finder = {
           keys = {
-            toggle_or_open = '<cr>',
             quit = "q",
+            shuttle = 'J',
+            toggle_or_open = '<cr>',
           },
         },
       })
