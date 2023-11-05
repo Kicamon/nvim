@@ -73,3 +73,19 @@ local function Clear()
 end
 
 vim.keymap.set('n', 'rm', Clear, { noremap = true })
+
+------ TabToSpace ------
+local function TabToSpace()
+  local sw = vim.fn.shiftwidth()
+  local space = ''
+  for _ = 1, sw, 1 do
+    space = space .. ' '
+  end
+  local bool = vim.fn.search('\\t', 'n')
+  if bool ~= 0 then
+    vim.cmd("execute ':%s/\\t/" .. space .. "/g'")
+    vim.api.nvim_input('<C-O>')
+  end
+end
+
+vim.keymap.set('n', '<leader>ts', TabToSpace, { noremap = true })
