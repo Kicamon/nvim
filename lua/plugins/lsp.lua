@@ -15,7 +15,6 @@ return {
           },
         },
       },
-      "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-path",
@@ -67,7 +66,6 @@ return {
         },
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
-          { name = "nvim_lua" },
           { name = "luasnip" },
           { name = "path" },
           { name = "buffer" },
