@@ -45,7 +45,7 @@ vim.api.nvim_create_autocmd("TermOpen", { pattern = "term://*", command = [[star
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.md, *.txt", command = "setlocal wrap", })
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
-    vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
+    vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
   end
 })
 
