@@ -53,7 +53,7 @@ return {
     build = "cd app && yarn install",
     ft = { "markdown" },
     config = function()
-      vim.g.mkdp_browser = "chromium"
+      vim.g.mkdp_browser = "wyeb"
     end,
   },
   {
