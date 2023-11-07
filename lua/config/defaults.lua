@@ -40,9 +40,17 @@ vim.opt.cmdheight = 1
 vim.opt.scrolloff = 6
 vim.opt.colorcolumn = '0'
 vim.opt.undofile = true
-vim.cmd([[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]])
 vim.api.nvim_create_autocmd("TermOpen", { pattern = "term://*", command = [[startinsert]] })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.md, *.txt", command = "setlocal wrap", })
+vim.api.nvim_create_autocmd("BufReadPost", {
+  pattern = "*",
+  callback = function()
+    local line = vim.fn.line
+    if line("'\"") > 1 and line("'\"") <= line("$") then
+      vim.cmd("normal! g'\"")
+    end
+  end
+})
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
