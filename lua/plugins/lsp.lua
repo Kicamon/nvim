@@ -50,39 +50,33 @@ return {
         end
 
         nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-        nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-        nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-        nmap("K", "<cmd>Lspsaga hover_doc<CR>", "Hover Documentation")
+        nmap("<leader>pd", "<cmd>Lspsaga peek_definition<CR>", "[P]eek [D]efinition")
+        nmap("<leader>pr", require("telescope.builtin").lsp_references, "[P]eek [R]eferences")
+        nmap("<c-k>", "<cmd>Lspsaga hover_doc<CR>", "Hover Documentation")
         nmap("gi", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-        nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
         nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
         nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
         nmap("<leader>wl", function()
-          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+          vim.notify(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, "[W]orkspace [L]ist Folders")
-        nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
         nmap("<leader>rn", "<cmd>Lspsaga rename ++project<cr>", "[R]e[n]ame")
         nmap("<leader>ca", "<cmd>Lspsaga code_action<CR>", "[C]ode [A]ction")
         nmap("<leader>ot", "<cmd>Lspsaga outline<CR>", "[O]ut[L]ine")
         nmap("F", "<cmd>Lspsaga finder def+ref<CR>", "[F]inder")
         nmap("<leader>da", require("telescope.builtin").diagnostics, "[D]i[A]gnostics")
-        -- nmap('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
-        --nmap("\\f", function()
-        --vim.lsp.buf.format { async = true }
-        --end, "[F]ormat code")
-        --nmap("\\f", "<cmd>GuardFmt<CR>", "[F]ormat code")
       end
-      -- require("neodev").setup({
-      --   lspconfig = true,
-      --   override = function(_, library)
-      --     library.enabled = true
-      --     library.plugins = true
-      --     library.types = true
-      --   end,
-      -- })
+      require("neodev").setup({
+        lspconfig = true,
+        override = function(_, library)
+          library.enabled = true
+          library.plugins = true
+          library.types = true
+        end,
+      })
       require("fidget").setup()
       require("lspsaga").setup({
         outline = {
+          layout = "float",
           keys = {
             quit = "q",
             toggle_or_jump = "<cr>",
@@ -103,9 +97,6 @@ return {
       })
 
       for server, config in pairs(servers) do
-        if server == "lua_ls" then
-          require("neodev").setup()
-        end
         require("lspconfig")[server].setup(vim.tbl_deep_extend("keep", {
           on_attach = on_attach,
           capabilities = capabilities,
@@ -115,7 +106,6 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
-    -- event = "InsertEnter",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",

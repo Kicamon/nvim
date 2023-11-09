@@ -7,10 +7,6 @@ return {
     end
   },
   {
-    "gcmt/wildfire.vim",
-    event = { "BufReadPre", "BufNewFile" },
-  },
-  {
     "echasnovski/mini.surround",
     event = { "BufReadPre", "BufNewFile" },
     key = { 'S', 'cs' },
@@ -21,11 +17,6 @@ return {
         highlight = "",
       }
     }
-  },
-  {
-    "mg979/vim-visual-multi",
-    event = { "BufReadPre", "BufNewFile" },
-    key = { '<C-n>' },
   },
   {
     "echasnovski/mini.comment",
