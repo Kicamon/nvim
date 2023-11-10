@@ -68,18 +68,14 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim'
     },
-    config = function()
-      require('kiwi').setup({
-        {
-          name = "personal",
-          path = "/home/KicamonIce/Documents/study/Note/wiki"
-        }
-      })
-      local kiwi = require('kiwi')
-      vim.keymap.set('n', '<leader>ww', kiwi.open_wiki_index, {})
-      vim.keymap.set('n', '<leader>wd', kiwi.open_diary_index, {})
-      vim.keymap.set('n', '<leader>wn', kiwi.open_diary_new, {})
-      vim.keymap.set('n', '<leader-x>', kiwi.todo.toggle, {})
-    end
+    opts = {
+      {
+        name = "personal",
+        path = "/home/KicamonIce/Documents/study/Note/wiki"
+      }
+    },
+    keys = {
+      { "<leader>ww", ":lua require(\"kiwi\").open_wiki_index()<cr>", desc = "Open Wiki index" },
+    }
   },
 }
