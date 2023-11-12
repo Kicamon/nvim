@@ -44,14 +44,14 @@ local function Run()
   elseif (vim.bo.filetype == 'html') then
     vim.cmd([[
       tabe
-      term live-server --browser=chromium
+      term live-server --browser=wyeb
       tabclose
     ]])
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, true, true), 'n', true)
   end
 end
 
-vim.keymap.set('n', '<F5>', Run, { noremap = true })
+vim.keymap.set('n', '<F5>', Run, {})
 
 ------ getmakefile -----
 local function GetMakefile()
@@ -60,7 +60,7 @@ local function GetMakefile()
   end
 end
 
-vim.keymap.set('n', '<leader>mk', GetMakefile, { noremap = true })
+vim.keymap.set('n', '<leader>mk', GetMakefile, {})
 
 ------ clear ------
 local function Clear()
@@ -72,7 +72,7 @@ local function Clear()
   vim.notify("󰆴 Clearn")
 end
 
-vim.keymap.set('n', 'rm', Clear, { noremap = true })
+vim.keymap.set('n', 'rm', Clear, {})
 
 ------ TabToSpace ------
 local function TabToSpace()
@@ -88,4 +88,15 @@ local function TabToSpace()
   end
 end
 
-vim.keymap.set('n', '<leader>ts', TabToSpace, { noremap = true })
+vim.keymap.set('n', '<leader>ts', TabToSpace, {})
+
+------ Wiki ------
+local function OpenWiki()
+  local path = "~/Documents/study/Note/wiki/"
+  if vim.fn.filereadable(vim.fn.expand(path .. 'index.md')) == 0 then
+    vim.cmd("! touch " .. path .. "index.md")
+  end
+  vim.cmd("e " .. path .. "index.md")
+end
+
+vim.keymap.set('n', '<leader>ww', OpenWiki, {})

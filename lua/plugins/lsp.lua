@@ -89,6 +89,11 @@ return {
             toggle_or_open = '<cr>',
           },
         },
+        definition = {
+          keys = {
+            edit = '<C-c>g',
+          }
+        }
       })
       require("mason").setup()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()

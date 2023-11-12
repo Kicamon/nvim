@@ -40,6 +40,9 @@ vim.opt.cmdheight = 1
 vim.opt.scrolloff = 6
 vim.opt.colorcolumn = '0'
 vim.opt.undofile = true
+vim.g.netrw_browse_split = 3
+vim.g.netrw_liststyle = 3
+vim.g.netrw_banner = 0
 vim.api.nvim_create_autocmd("TermOpen", { pattern = "term://*", command = [[startinsert]] })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.md, *.txt", command = "setlocal wrap", })
 vim.api.nvim_create_autocmd("BufReadPost", {

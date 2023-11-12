@@ -13,11 +13,11 @@ return {
           interface = "split",
         },
       })
-      vim.keymap.set("n", "rr", "<cmd>CompetiTest run<CR>", { noremap = true })
-      vim.keymap.set("n", "ra", "<cmd>CompetiTest add_testcase<CR>", { noremap = true })
-      vim.keymap.set("n", "re", "<cmd>CompetiTest edit_testcase<CR>", { noremap = true })
-      vim.keymap.set("n", "ri", "<cmd>CompetiTest receive testcases<CR>", { noremap = true })
-      vim.keymap.set("n", "rd", "<cmd>CompetiTest delete_testcase<CR>", { noremap = true })
+      vim.keymap.set("n", "rr", "<cmd>CompetiTest run<CR>", {})
+      vim.keymap.set("n", "ra", "<cmd>CompetiTest add_testcase<CR>", {})
+      vim.keymap.set("n", "re", "<cmd>CompetiTest edit_testcase<CR>", {})
+      vim.keymap.set("n", "ri", "<cmd>CompetiTest receive testcases<CR>", {})
+      vim.keymap.set("n", "rd", "<cmd>CompetiTest delete_testcase<CR>", {})
     end
   },
   {
@@ -114,22 +114,14 @@ return {
         end,
         desc = "Flash"
       },
-      {
-        "S",
-        mode = { "n", "o" },
-        function()
-          require("flash").treesitter()
-        end,
-        desc = "Flash Treesitter"
-      },
     },
   },
   {
     "voldikss/vim-translator",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      vim.keymap.set("n", "<leader>tr", "<Plug>TranslateW", { noremap = true })
-      vim.keymap.set("v", "<leader>tr", "<Plug>TranslateWV", { noremap = true })
+      vim.keymap.set("n", "<leader>tr", "<Plug>TranslateW", {})
+      vim.keymap.set("v", "<leader>tr", "<Plug>TranslateWV", {})
     end,
   },
   {
@@ -146,8 +138,24 @@ return {
       require("guard").setup({
         fmt_on_save = false,
         lsp_as_default_formatter = true,
-        vim.keymap.set({ "n", "v" }, "<leader>fm", "<cmd>GuardFmt<CR>", { noremap = true }),
+        vim.keymap.set({ "n", "v" }, "<leader>fm", "<cmd>GuardFmt<CR>", {}),
       })
     end
+  },
+  {
+    'iamcco/markdown-preview.nvim',
+    build = "cd app && yarn install",
+    ft = { "markdown" },
+    config = function()
+      vim.g.mkdp_browser = "wyeb"
+    end,
+  },
+  {
+    "img-paste-devs/img-paste.vim",
+    ft = { "markdown" },
+    config = function()
+      vim.keymap.set("n", "<leader>p", ":call mdip#MarkdownClipboardImage()<CR>", {})
+      vim.g.PasteImageFunction = 'g:MarkdownPasteImage'
+    end,
   },
 }

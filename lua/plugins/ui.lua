@@ -33,8 +33,8 @@ return {
           untracked    = { hl = 'GitSignsAdd', text = '┃', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
         },
       }
-      vim.keymap.set("n", "<leader>g-", ":Gitsigns prev_hunk<CR>", { noremap = true, silent = true })
-      vim.keymap.set("n", "<leader>g=", ":Gitsigns next_hunk<CR>", { noremap = true, silent = true })
+      vim.keymap.set("n", "<leader>g-", ":Gitsigns prev_hunk<CR>", { silent = true })
+      vim.keymap.set("n", "<leader>g=", ":Gitsigns next_hunk<CR>", { silent = true })
       vim.keymap.set("n", "H", ":Gitsigns preview_hunk_inline<CR>", { noremap = true, silent = true })
     end
   },
@@ -109,7 +109,7 @@ return {
         end
         return true
       end
-      vim.keymap.set("n", "<leader>P", getnode, { noremap = true })
+      vim.keymap.set("n", "<leader>P", getnode, {})
     end
   },
   {

@@ -24,8 +24,8 @@ return {
     kay = { "<leader>cc" },
     opts = {
       mappings = {
-        comment = "<leader>cc",
         comment_line = "<leader>cc",
+        comment_visual = '<leader>cc',
       }
     },
   },
@@ -40,42 +40,17 @@ return {
     }
   },
   {
-    'iamcco/markdown-preview.nvim',
-    build = "cd app && yarn install",
+    "dhruvasagar/vim-table-mode",
     ft = { "markdown" },
     config = function()
-      vim.g.mkdp_browser = "wyeb"
+      vim.g.table_mode_disable_mappings = 1
     end,
   },
   {
     "mzlogin/vim-markdown-toc",
     ft = { "markdown" },
     config = function()
-      vim.keymap.set("n", "toc", ":GenTocGitLab<CR>", { noremap = true, buffer = true })
+      vim.keymap.set("n", "toc", ":GenTocGitLab<CR>", { buffer = true })
     end,
-  },
-  {
-    "img-paste-devs/img-paste.vim",
-    ft = { "markdown" },
-    config = function()
-      vim.keymap.set("n", "<leader>p", ":call mdip#MarkdownClipboardImage()<CR>", { noremap = true })
-      vim.g.PasteImageFunction = 'g:MarkdownPasteImage'
-    end,
-  },
-  {
-    "serenevoid/kiwi.nvim",
-    evnet = "VeryLazy",
-    dependencies = {
-      'nvim-lua/plenary.nvim'
-    },
-    opts = {
-      {
-        name = "personal",
-        path = "/home/KicamonIce/Documents/study/Note/wiki"
-      }
-    },
-    keys = {
-      { "<leader>ww", ":lua require(\"kiwi\").open_wiki_index()<cr>", desc = "Open Wiki index" },
-    }
   },
 }
