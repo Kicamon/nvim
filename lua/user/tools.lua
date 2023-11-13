@@ -74,6 +74,17 @@ end
 
 vim.keymap.set('n', 'rm', Clear, {})
 
+------ GetNode------
+local function GetNode()
+  local node_cursor = require("nvim-treesitter.ts_utils").get_node_at_cursor()
+  while node_cursor do
+    vim.notify(node_cursor:type())
+    node_cursor = node_cursor:parent()
+  end
+  return true
+end
+vim.keymap.set("n", "<leader>P", GetNode, {})
+
 ------ TabToSpace ------
 local function TabToSpace()
   local sw = vim.fn.shiftwidth()
@@ -103,26 +114,22 @@ vim.keymap.set('n', '<leader>ww', OpenWiki, {})
 
 local function Create_Open()
   local ts_utils = require('nvim-treesitter.ts_utils')
-  local previous_node = ts_utils.get_node_at_cursor()
-  if previous_node then
-    if previous_node:type() == "link_text" then
+  local node = ts_utils.get_node_at_cursor()
+  if node then
+    if node:type() == "link_text" or node:type() == "link_destination" then
       local line = vim.api.nvim_get_current_line()
       local pattern = "[^.]+([^)]+)"
       local path = string.match(line, pattern)
-      vim.cmd(":tabe" .. path)
-    elseif previous_node:type() == "link_destination" then
-      vim.api.nvim_input('gf')
-    elseif previous_node:type() == "inline" then
+      vim.cmd(":tabe " .. path)
+    elseif node:type() == "inline" then
       local s_l, s_r = vim.fn.getpos('v')[2], vim.fn.getpos('v')[3]
       local e_l, e_r = vim.fn.getpos('.')[2], vim.fn.getpos('.')[3]
       local file_name = vim.fn.getline(s_l, e_l)
       file_name[1] = string.sub(file_name[1], s_r)
       file_name[#file_name] = string.sub(file_name[#file_name], 1, e_r)
-      vim.api.nvim_input('<esc>')
-      vim.api.nvim_win_set_cursor(0, { e_l, e_r })
-      vim.api.nvim_input('a]<esc>')
-      vim.api.nvim_win_set_cursor(0, { s_l, s_r - 1 })
-      vim.api.nvim_input('i[<esc>')
+      local file_text = table.concat(file_name, "")
+      local file_link = string.gsub(file_text, " ", "_") .. '.md'
+      vim.api.nvim_input('c' .. '[' .. file_text .. '](./' .. file_link .. ')<esc>:tabe ' .. file_link .. '<CR>')
     end
   else
     return
