@@ -56,7 +56,7 @@ local nmappings = {
   { from = "tmn",              to = ":+tabmove<CR>",                                               mode = mode_n },
   { from = "tmp",              to = ":-tabmove<CR>",                                               mode = mode_n },
   { from = "gf",               to = "<C-w>gf",                                                     mode = mode_n },
-  { from = "tt",               to = ":25 Lex!<CR>",                                                mode = mode_n },
+  { from = "tt",               to = ":25 Lex<CR>",                                                 mode = mode_n },
   { from = "<A-1>",            to = "1gt<CR>",                                                     mode = mode_n },
   { from = "<A-2>",            to = "2gt<CR>",                                                     mode = mode_n },
   { from = "<A-3>",            to = "3gt<CR>",                                                     mode = mode_n },
