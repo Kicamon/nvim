@@ -105,7 +105,8 @@ vim.keymap.set('n', '<leader>ts', TabToSpace, {})
 local function OpenWiki()
   local path = "~/Documents/study/Note/wiki/"
   if vim.fn.filereadable(vim.fn.expand(path .. 'index.md')) == 0 then
-    vim.cmd("! touch " .. path .. "index.md")
+    vim.cmd("silent !mkdir -p " .. path)
+    vim.cmd("silent !touch " .. path .. "index.md")
   end
   vim.cmd("e " .. path .. "index.md")
 end
