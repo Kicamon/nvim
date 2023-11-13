@@ -100,3 +100,38 @@ local function OpenWiki()
 end
 
 vim.keymap.set('n', '<leader>ww', OpenWiki, {})
+
+local function Create_Open()
+  local ts_utils = require('nvim-treesitter.ts_utils')
+  local previous_node = ts_utils.get_node_at_cursor()
+  if previous_node then
+    if previous_node:type() == "link_text" then
+      local line = vim.api.nvim_get_current_line()
+      local pattern = "[^.]+([^)]+)"
+      local path = string.match(line, pattern)
+      vim.cmd(":tabe" .. path)
+    elseif previous_node:type() == "link_destination" then
+      vim.api.nvim_input('gf')
+    elseif previous_node:type() == "inline" then
+      local s_l, s_r = vim.fn.getpos('v')[2], vim.fn.getpos('v')[3]
+      local e_l, e_r = vim.fn.getpos('.')[2], vim.fn.getpos('.')[3]
+      local file_name = vim.fn.getline(s_l, e_l)
+      file_name[1] = string.sub(file_name[1], s_r)
+      file_name[#file_name] = string.sub(file_name[#file_name], 1, e_r)
+      vim.api.nvim_input('<esc>')
+      vim.api.nvim_win_set_cursor(0, { e_l, e_r })
+      vim.api.nvim_input('a]<esc>')
+      vim.api.nvim_win_set_cursor(0, { s_l, s_r - 1 })
+      vim.api.nvim_input('i[<esc>')
+    end
+  else
+    return
+  end
+end
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.md",
+  callback = function()
+    vim.keymap.set({ 'n', 'v' }, '<CR>', Create_Open, { buffer = true })
+  end
+})
