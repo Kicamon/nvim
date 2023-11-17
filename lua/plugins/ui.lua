@@ -55,7 +55,6 @@ return {
           "markdown",
         }
       })
-      vim.api.nvim_set_hl(0, "IndentLine", { fg = "#504945" })
     end,
   },
   {
