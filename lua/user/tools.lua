@@ -108,7 +108,8 @@ local function OpenWiki()
     vim.cmd("silent !mkdir -p " .. path)
     vim.cmd("silent !touch " .. path .. "index.md")
   end
-  vim.cmd("e " .. path .. "index.md")
+  local open = vim.api.nvim_buf_get_name(0) == '' and 'e ' or 'tabe '
+  vim.cmd(open .. path .. "index.md")
 end
 
 vim.keymap.set('n', '<leader>ww', OpenWiki, {})
@@ -123,14 +124,15 @@ local function Create_Open()
       local path = string.match(line, pattern)
       vim.cmd(":tabe " .. path)
     elseif node:type() == "inline" then
-      local s_l, s_r = vim.fn.getpos('v')[2], vim.fn.getpos('v')[3]
-      local e_l, e_r = vim.fn.getpos('.')[2], vim.fn.getpos('.')[3]
-      local file_name = vim.fn.getline(s_l, e_l)
-      file_name[1] = string.sub(file_name[1], s_r)
-      file_name[#file_name] = string.sub(file_name[#file_name], 1, e_r)
-      local file_text = table.concat(file_name, "")
-      local file_link = string.gsub(file_text, " ", "_") .. '.md'
-      vim.api.nvim_input('c' .. '[' .. file_text .. '](./' .. file_link .. ')<esc>:tabe ' .. file_link .. '<CR>')
+      local ln, tl, tr = vim.fn.line('.'), vim.fn.getpos('v')[3], vim.fn.getpos('.')[3]
+      local line = vim.fn.getline(ln)
+      local file_name = string.sub(line, tl, tr)
+      local fine_link = './' .. string.gsub(file_name, " ", "_") .. '.md'
+      local line_front = tl == 1 and '' or string.sub(line, 1, tl - 1)
+      local line_end = tr == #line and '' or string.sub(line, tr + 1)
+      local line_mid = '[' .. file_name .. '](' .. fine_link .. ')'
+      vim.fn.setline(ln, line_front .. line_mid .. line_end)
+      vim.api.nvim_input('<ESC>')
     end
   else
     return
@@ -143,3 +145,67 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     vim.keymap.set({ 'n', 'v' }, '<CR>', Create_Open, { buffer = true })
   end
 })
+
+------ Surround ------
+local function Add_Surround(line, char)
+  if char == "'" or char == '"' then
+    line[1] = char .. line[1]
+    line[#line] = line[#line] .. char
+  elseif char == '(' or char == ')' then
+    line[1] = '(' .. line[1]
+    line[#line] = line[#line] .. ')'
+  elseif char == '[' or char == ']' then
+    line[1] = '[' .. line[1]
+    line[#line] = line[#line] .. ']'
+  elseif char == '{' or char == '}' then
+    line[1] = '{' .. line[1]
+    line[#line] = line[#line] .. '}'
+  elseif char == '<' or char == '>' then
+    line[1] = '<' .. line[1]
+    line[#line] = line[#line] .. '>'
+  else
+    line[1] = char .. line[1]
+    line[#line] = line[#line] .. char
+  end
+  return line
+end
+
+local function Surround()
+  local ok, char = pcall(vim.fn.getcharstr)
+  if not ok or char == '^[' then
+    return
+  end
+  local sl, sr = vim.fn.getpos('v')[2], vim.fn.getpos('v')[3]
+  local el, er = vim.fn.getpos('.')[2], vim.fn.getpos('.')[3]
+  if sl > el then
+    sl, el = el, sl
+    sr, er = er, sr
+  elseif sl == el and sr > er then
+    sr, er = er, sr
+  end
+  if vim.fn.mode() == 'V' then
+    sr, er = vim.fn.indent(sl) + 1, string.len(vim.fn.getline(el))
+  end
+  if sl == el then
+    local line = vim.fn.getline(sl)
+    local line_mid = string.sub(line, sr, er)
+    local L = Add_Surround({ line_mid }, char)
+    line_mid = L[1]
+    local line_front = sr == 1 and '' or string.sub(line, 1, sr - 1)
+    local line_end = er == #line and '' or string.sub(line, er + 1)
+    vim.fn.setline(sl, line_front .. line_mid .. line_end)
+  else
+    local lines, linee = vim.fn.getline(sl), vim.fn.getline(el)
+    local lines_mid, linee_mid = string.sub(lines, sr), string.sub(linee, 1, er)
+    local line = Add_Surround({ lines_mid, linee_mid }, char)
+    lines_mid, linee_mid = line[1], line[#line]
+    local line_front = sr == 1 and '' or string.sub(lines, 1, sr - 1)
+    local line_end = er == #linee and '' or string.sub(linee, er + 1)
+    vim.fn.setline(sl, line_front .. lines_mid)
+    vim.fn.setline(el, linee_mid .. line_end)
+  end
+  vim.api.nvim_input('<ESC>')
+end
+
+vim.keymap.set('v', 'S', Surround, { noremap = true })
+

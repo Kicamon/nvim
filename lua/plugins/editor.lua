@@ -7,18 +7,6 @@ return {
     end
   },
   {
-    "echasnovski/mini.surround",
-    event = { "BufReadPre", "BufNewFile" },
-    key = { 'S', 'cs' },
-    opts = {
-      mappings = {
-        add = "S",
-        replace = "cs",
-        highlight = "",
-      }
-    }
-  },
-  {
     "echasnovski/mini.comment",
     event = { "BufReadPre", "BufNewFile" },
     kay = { "<leader>cc" },
