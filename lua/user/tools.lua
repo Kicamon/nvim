@@ -86,17 +86,27 @@ end
 vim.keymap.set("n", "<leader>P", GetNode, {})
 
 ------ TabToSpace ------
+local TTS = coroutine.create(function(space)
+  while true do
+    local lnr = vim.fn.line('$')
+    for i = 1, lnr, 1 do
+      local line = vim.fn.getline(i)
+      line = string.gsub(line, '\t', space)
+      vim.fn.setline(i, line)
+    end
+    coroutine.yield()
+  end
+end)
+
 local function TabToSpace()
   local sw = vim.fn.shiftwidth()
   local space = ''
   for _ = 1, sw, 1 do
     space = space .. ' '
   end
-  local bool = vim.fn.search('\\t', 'n')
-  if bool ~= 0 then
-    vim.cmd("execute ':%s/\\t/" .. space .. "/g'")
-    vim.api.nvim_input('<C-O>')
-  end
+  vim.schedule(function()
+    coroutine.resume(TTS, space)
+  end)
 end
 
 vim.keymap.set('n', '<leader>ts', TabToSpace, {})
@@ -208,4 +218,3 @@ local function Surround()
 end
 
 vim.keymap.set('v', 'S', Surround, { noremap = true })
-
