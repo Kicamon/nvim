@@ -1,4 +1,3 @@
-local fts = require("user.lsp_fts")
 return {
   {
     "xeluxee/competitest.nvim",
@@ -126,7 +125,7 @@ return {
   },
   {
     "nvimdev/guard.nvim",
-    ft = fts,
+    ft = vim.g.fts,
     dependencies = {
       "nvimdev/guard-collection",
     },
@@ -147,7 +146,7 @@ return {
     build = "cd app && yarn install",
     ft = { "markdown" },
     config = function()
-      vim.g.mkdp_browser = "wyeb"
+      vim.g.mkdp_browser = vim.g.browser
     end,
   },
   {

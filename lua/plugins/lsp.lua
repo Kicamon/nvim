@@ -1,8 +1,7 @@
-local fts = require("user.lsp_fts")
 return {
   {
     "neovim/nvim-lspconfig",
-    ft = fts,
+    ft = vim.g.fts,
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",

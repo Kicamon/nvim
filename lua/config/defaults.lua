@@ -60,6 +60,19 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end
 })
 
+vim.g.browser = 'wyeb'
+vim.g.wiki_path = '~/Documents/study/Note/wiki/'
+vim.g.fts = {
+  'c',
+  'cpp',
+  'lua',
+  'python',
+  'javascript',
+  'typescript',
+  'json',
+  'html',
+}
+
 require("user.tools")
 require("user.cursor")
 require("user.md-snippets")

@@ -42,12 +42,10 @@ local function Run()
     split()
     vim.cmd('term bash "%"')
   elseif (vim.bo.filetype == 'html') then
-    vim.cmd([[
-      tabe
-      term live-server --browser=wyeb
-      tabclose
-    ]])
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, true, true), 'n', true)
+    vim.cmd("tabe")
+    vim.cmd("term live-server --browser=" .. vim.g.browser)
+    vim.cmd("tabclose")
+    vim.api.nvim_input('<ESC>')
   end
 end
 
@@ -111,7 +109,7 @@ vim.keymap.set('n', '<leader>ts', TabToSpace, {})
 
 ------ Wiki ------
 local function OpenWiki()
-  local path = "~/Documents/study/Note/wiki/"
+  local path = vim.g.wiki_path
   if vim.fn.filereadable(vim.fn.expand(path .. 'index.md')) == 0 then
     vim.cmd("silent !mkdir -p " .. path)
     vim.cmd("silent !touch " .. path .. "index.md")
