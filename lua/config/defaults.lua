@@ -71,6 +71,7 @@ vim.g.fts = {
   'typescript',
   'json',
   'html',
+  'vim',
 }
 
 require("user.tools")
