@@ -6,18 +6,6 @@ local function split()
     buflisted = true,
     pos = { pos = 'tr' }
   })
-  -- local winsel = vim.fn.win_getid()
-  -- local winhei = vim.fn.winheight(winsel)
-  -- local winwid = vim.fn.winwidth(winsel)
-  -- if winhei * 2.5 > winwid then
-  --   vim.o.splitbelow = true
-  --   vim.cmd('split')
-  --   vim.cmd('resize-5')
-  -- else
-  --   vim.o.splitright = true
-  --   vim.cmd('vsplit')
-  --   vim.cmd('vertical resize-20')
-  -- end
 end
 
 local function Run()
