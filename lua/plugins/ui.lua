@@ -35,7 +35,7 @@ return {
       }
       vim.keymap.set("n", "<leader>g-", ":Gitsigns prev_hunk<CR>", { silent = true })
       vim.keymap.set("n", "<leader>g=", ":Gitsigns next_hunk<CR>", { silent = true })
-      vim.keymap.set("n", "H", ":Gitsigns preview_hunk_inline<CR>", { noremap = true, silent = true })
+      vim.keymap.set("n", "<leader>H", ":Gitsigns preview_hunk_inline<CR>", { noremap = true, silent = true })
     end
   },
   {

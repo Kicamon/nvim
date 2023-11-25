@@ -38,8 +38,7 @@ local function Add_Surround()
     return
   end
   local char = Char[2]
-  local pos = getsurround.Visual()
-  local sl, sr, el, er = pos[1], pos[2], pos[3], pos[4]
+  local sl, sr, el, er = getsurround.Visual()
   if vim.fn.mode() == 'V' then
     sr, er = vim.fn.indent(sl) + 1, string.len(vim.fn.getline(el))
   end
@@ -61,7 +60,7 @@ local function Add_Surround()
   vim.api.nvim_input('<ESC>')
 end
 
-vim.keymap.set('v', 'S', Add_Surround, { noremap = true })
+vim.keymap.set('v', 'S', Add_Surround, {})
 
 local function Change_Surround()
   local Char = getchar()

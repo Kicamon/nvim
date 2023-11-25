@@ -21,3 +21,6 @@ require("user.tool.Surround")
 
 ------ Wildfire ------
 require("user.tool.Wildfire")
+
+------ Ranger ------
+require("user.tool.Ranger")

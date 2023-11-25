@@ -1,15 +1,3 @@
-local function OpenWiki()
-  local path = vim.g.wiki_path
-  if vim.fn.filereadable(vim.fn.expand(path .. 'index.md')) == 0 then
-    vim.cmd("silent !mkdir -p " .. path)
-    vim.cmd("silent !touch " .. path .. "index.md")
-  end
-  local open = vim.api.nvim_buf_get_name(0) == '' and 'e ' or 'tabe '
-  vim.cmd(open .. path .. "index.md")
-end
-
-vim.keymap.set('n', '<leader>ww', OpenWiki, {})
-
 local function Create_Open()
   local ts_utils = require('nvim-treesitter.ts_utils')
   local node = ts_utils.get_node_at_cursor()
@@ -35,9 +23,20 @@ local function Create_Open()
   end
 end
 
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = "*.md",
-  callback = function()
-    vim.keymap.set({ 'n', 'v' }, '<CR>', Create_Open, { buffer = true })
+local function OpenWiki()
+  vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = "*.md",
+    callback = function()
+      vim.keymap.set({ 'n', 'v' }, '<CR>', Create_Open, { buffer = true })
+    end
+  })
+  local path = vim.g.wiki_path
+  if vim.fn.filereadable(vim.fn.expand(path .. 'index.md')) == 0 then
+    vim.cmd("silent !mkdir -p " .. path)
+    vim.cmd("silent !touch " .. path .. "index.md")
   end
-})
+  local open = vim.api.nvim_buf_get_name(0) == '' and 'e ' or 'tabe '
+  vim.cmd(open .. path .. "index.md")
+end
+
+vim.keymap.set('n', '<leader>ww', OpenWiki, {})
