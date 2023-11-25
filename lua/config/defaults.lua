@@ -33,9 +33,6 @@ vim.opt.laststatus = 3
 vim.opt.signcolumn = "yes"
 vim.opt.list = true
 vim.opt.listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←'
-vim.opt.fillchars = {
-  vert = '│',
-}
 vim.opt.cmdheight = 1
 vim.opt.scrolloff = 6
 vim.opt.colorcolumn = '0'
@@ -73,7 +70,3 @@ vim.g.fts = {
   'html',
   'vim',
 }
-
-require("user.tools")
-require("user.cursor")
-require("user.md-snippets")

@@ -7,6 +7,7 @@ local nmappings = {
   -- base
   { from = "W",                to = ":w<CR>",                                                      mode = mode_n  },
   { from = "Q",                to = ":q<CR>",                                                      mode = mode_n  },
+  { from = "Q",                to = "<C-\\><C-N>:q<CR>",                                           mode = mode_t  },
   { from = "B",                to = ":bd<CR>",                                                     mode = mode_n  },
   { from = "N",                to = ":normal ",                                                    mode = mode_v  },
   { from = "Y",                to = "\"+y",                                                        mode = mode_v  },
@@ -60,16 +61,6 @@ local nmappings = {
   { from = "tmp",              to = ":-tabmove<CR>",                                               mode = mode_n  },
   { from = "gf",               to = "<C-w>gf",                                                     mode = mode_n  },
   { from = "tt",               to = ":25 Lex<CR>",                                                 mode = mode_n  },
-  { from = "<A-1>",            to = "1gt<CR>",                                                     mode = mode_n  },
-  { from = "<A-2>",            to = "2gt<CR>",                                                     mode = mode_n  },
-  { from = "<A-3>",            to = "3gt<CR>",                                                     mode = mode_n  },
-  { from = "<A-4>",            to = "4gt<CR>",                                                     mode = mode_n  },
-  { from = "<A-5>",            to = "5gt<CR>",                                                     mode = mode_n  },
-  { from = "<A-6>",            to = "6gt<CR>",                                                     mode = mode_n  },
-  { from = "<A-7>",            to = "7gt<CR>",                                                     mode = mode_n  },
-  { from = "<A-8>",            to = "8gt<CR>",                                                     mode = mode_n  },
-  { from = "<A-9>",            to = "9gt<CR>",                                                     mode = mode_n  },
-  { from = "<A-0>",            to = "10gt<CR>",                                                    mode = mode_n  },
 }
 
 for _, mapping in ipairs(nmappings) do

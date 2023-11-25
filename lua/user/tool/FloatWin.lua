@@ -23,6 +23,23 @@ local function getpos(width, height, pos, ui)
   return x, y
 end
 
+local function update(win, ui)
+  if win.width < 1 then
+    win.width = math.ceil(ui.width * win.width)
+  end
+  if win.height < 1 then
+    win.height = math.ceil(ui.height * win.height)
+  end
+  if win.lines then
+    for _, v in ipairs(win.lines) do
+      win.width = math.max(win.width, vim.fn.strchars(v))
+    end
+    win.height = math.max(win.height, #win.lines)
+  end
+  win.width, win.height = math.min(win.width, ui.width), math.min(win.height, ui.height)
+  return win
+end
+
 function FloatWin.Create(opt)
   local ui = vim.api.nvim_list_uis()[1]
   local win = vim.tbl_extend("force", {
@@ -31,14 +48,9 @@ function FloatWin.Create(opt)
     buflisted = false,
     title = '',
     lines = {},
-    pos = { pos = 'cc' }, --@type table = { pos(string), x(number), y(number)}
+    pos = { pos = 'cc' },
   }, opt or {})
-  if win.lines then
-    for _, v in ipairs(win.lines) do
-      win.width = math.max(win.width, vim.fn.strchars(v))
-    end
-    win.height = math.max(win.height, #win.lines)
-  end
+  win = update(win, ui)
   local buf = vim.api.nvim_create_buf(win.buflisted, true)
   local x, y = getpos(win.width, win.height, win.pos, ui)
   local opts = {

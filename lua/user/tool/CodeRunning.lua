@@ -2,9 +2,10 @@ local win = require("user.tool.FloatWin").Create
 
 local function split()
   win({
-    width = 40,
+    width = 0.3,
+    height = 0.9,
     buflisted = true,
-    pos = { pos = 'tr' }
+    pos = { pos = 'cr' }
   })
 end
 
