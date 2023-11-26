@@ -1,5 +1,3 @@
-local getpos = require('user.tool.GetSurround').Visual
-
 local function check(oldword, newword)
   if oldword == '' or newword == '' then
     vim.cmd("normal ! v")
@@ -8,10 +6,7 @@ local function check(oldword, newword)
   return false
 end
 
-local pchar = {
-  '/',
-  '#',
-}
+local pchar = { '/', '#', }
 
 local function Input(oldword)
   if not oldword then
@@ -34,6 +29,7 @@ local function Input(oldword)
 end
 
 local function QuickSubstitute()
+  local getpos = require('user.tool.GetSurround').Visual
   local oldword, newword, char
   if vim.fn.mode() == 'n' then
     oldword, newword, char = Input()

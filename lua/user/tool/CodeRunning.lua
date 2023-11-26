@@ -1,6 +1,5 @@
-local win = require("user.tool.FloatWin").Create
-
-local function split()
+local function fwin()
+  local win = require("user.tool.FloatWin").Create
   win({
     width = 0.3,
     height = 0.9,
@@ -16,7 +15,7 @@ local function Run()
   local runfile = filename:match("([^.]+)")
 
   if (vim.bo.filetype == 'c') then
-    split()
+    fwin()
     if (vim.fn.filereadable('Makefile') == 1) then
       vim.cmd('term make && ./Main')
     else
@@ -25,7 +24,7 @@ local function Run()
       vim.cmd(opt)
     end
   elseif (vim.bo.filetype == 'cpp') then
-    split()
+    fwin()
     if (vim.fn.filereadable('Makefile') == 1) then
       vim.cmd('term make && ./Main')
     else
@@ -34,15 +33,15 @@ local function Run()
       vim.cmd(opt)
     end
   elseif (vim.bo.filetype == 'python') then
-    split()
+    fwin()
     vim.cmd('term python3 ' .. filename)
   elseif (vim.bo.filetype == 'lua') then
-    split()
+    fwin()
     vim.cmd('term lua  ' .. filename)
   elseif (vim.bo.filetype == 'markdown') then
     vim.cmd('MarkdownPreview')
   elseif (vim.bo.filetype == 'sh') then
-    split()
+    fwin()
     vim.cmd('term bash  ' .. filename)
   elseif (vim.bo.filetype == 'html') then
     vim.cmd("tabe")

@@ -1,6 +1,5 @@
-local win = require('user.tool.FloatWin').Create
-
 local function Ranger()
+  local win = require('user.tool.FloatWin').Create
   win({
     width = 0.8,
     height = 0.8,

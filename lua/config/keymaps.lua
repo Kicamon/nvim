@@ -57,8 +57,6 @@ local nmappings = {
   { from = "tu",               to = ":tabe<CR>",                                                   mode = mode_n  },
   { from = "tn",               to = ":+tabnext<CR>",                                               mode = mode_n  },
   { from = "tp",               to = ":-tabnext<CR>",                                               mode = mode_n  },
-  { from = "tmn",              to = ":+tabmove<CR>",                                               mode = mode_n  },
-  { from = "tmp",              to = ":-tabmove<CR>",                                               mode = mode_n  },
   { from = "gf",               to = "<C-w>gf",                                                     mode = mode_n  },
   { from = "tt",               to = ":25 Lex<CR>",                                                 mode = mode_n  },
 }
