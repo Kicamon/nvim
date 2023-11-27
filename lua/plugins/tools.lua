@@ -94,13 +94,6 @@ return {
     }
   },
   {
-    "Kicamon/im-switch.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      require("im-switch").setup()
-    end
-  },
-  {
     "folke/flash.nvim",
     event = { "BufReadPre", "BufNewFile" },
     opts = {},

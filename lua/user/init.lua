@@ -1,7 +1,6 @@
--- require("lua.user.tool.cursor")
 local tools = {
-  "md-snippets",
-  "cursor",
+  "MdSnippets",
+  "Cursor",
   "CodeRunning",
   "GetMake",
   "Clear",
@@ -12,6 +11,7 @@ local tools = {
   "Wildfire",
   "Ranger",
   "QuickSubstitute",
+  "ImSwitch",
 }
 
 vim.api.nvim_create_autocmd('VimEnter', {

@@ -1,4 +1,4 @@
-local getsurround = require('user.tool.GetSurround')
+local getsurround = require('user.GetSurround')
 
 local function changemode()
   if vim.fn.mode() == 'v' then
@@ -13,7 +13,7 @@ local function checkpos(pos)
   end
   if pos[4] == 1 then
     pos[3] = pos[3] - 1
-    pos[4] = #vim.fn.getline(pos[3])
+    pos[4] = #vim.fn.getline(pos[3]) + 1
   end
   return pos
 end

@@ -1,9 +1,9 @@
+local win = require('user.FloatWin')
+
 local function Ranger()
-  local win = require('user.tool.FloatWin').Create
-  win({
+  win:Create({
     width = 0.8,
     height = 0.8,
-    buflisted = true,
     pos = { pos = 'cc' },
     title = ' Ranger ',
   })

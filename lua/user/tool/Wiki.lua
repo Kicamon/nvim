@@ -1,3 +1,7 @@
+local feedkeys = function(keys, mode)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), mode, true)
+end
+
 local function Create_Open()
   local ts_utils = require('nvim-treesitter.ts_utils')
   local node = ts_utils.get_node_at_cursor()
@@ -16,7 +20,7 @@ local function Create_Open()
       local line_end = tr == #line and '' or string.sub(line, tr + 1)
       local line_mid = '[' .. file_name .. '](' .. fine_link .. ')'
       vim.fn.setline(ln, line_front .. line_mid .. line_end)
-      vim.api.nvim_input('<ESC>')
+      feedkeys('<ESC>', 'n')
     end
   else
     return

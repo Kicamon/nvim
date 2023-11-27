@@ -1,6 +1,11 @@
-local function fwin()
-  local win = require("user.tool.FloatWin").Create
-  win({
+local win = require("user.FloatWin")
+
+local feedkeys = function(keys, mode)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), mode, true)
+end
+
+local function split()
+  win:Create({
     width = 0.3,
     height = 0.9,
     buflisted = true,
@@ -15,7 +20,7 @@ local function Run()
   local runfile = filename:match("([^.]+)")
 
   if (vim.bo.filetype == 'c') then
-    fwin()
+    split()
     if (vim.fn.filereadable('Makefile') == 1) then
       vim.cmd('term make && ./Main')
     else
@@ -24,7 +29,7 @@ local function Run()
       vim.cmd(opt)
     end
   elseif (vim.bo.filetype == 'cpp') then
-    fwin()
+    split()
     if (vim.fn.filereadable('Makefile') == 1) then
       vim.cmd('term make && ./Main')
     else
@@ -33,21 +38,21 @@ local function Run()
       vim.cmd(opt)
     end
   elseif (vim.bo.filetype == 'python') then
-    fwin()
+    split()
     vim.cmd('term python3 ' .. filename)
   elseif (vim.bo.filetype == 'lua') then
-    fwin()
+    split()
     vim.cmd('term lua  ' .. filename)
   elseif (vim.bo.filetype == 'markdown') then
     vim.cmd('MarkdownPreview')
   elseif (vim.bo.filetype == 'sh') then
-    fwin()
+    split()
     vim.cmd('term bash  ' .. filename)
   elseif (vim.bo.filetype == 'html') then
     vim.cmd("tabe")
     vim.cmd("term live-server --browser=" .. vim.g.browser)
     vim.cmd("tabclose")
-    vim.api.nvim_input('<ESC>')
+    feedkeys('<ESC>', 'n')
   end
 end
 

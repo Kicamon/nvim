@@ -24,10 +24,10 @@ local function getpos(width, height, pos, ui)
 end
 
 local function update(win, ui)
-  if win.width < 1 then
+  if 0 < win.width and win.width < 1 then
     win.width = math.ceil(ui.width * win.width)
   end
-  if win.height < 1 then
+  if 0 < win.height and win.height < 1 then
     win.height = math.ceil(ui.height * win.height)
   end
   if win.lines then
@@ -40,7 +40,7 @@ local function update(win, ui)
   return win
 end
 
-function FloatWin.Create(opt)
+function FloatWin:Create(opt)
   local ui = vim.api.nvim_list_uis()[1]
   local win = vim.tbl_extend("force", {
     width = math.ceil(ui.width / 2),
@@ -51,7 +51,7 @@ function FloatWin.Create(opt)
     pos = { pos = 'cc' },
   }, opt or {})
   win = update(win, ui)
-  local buf = vim.api.nvim_create_buf(win.buflisted, true)
+  FloatWin.buf = vim.api.nvim_create_buf(win.buflisted, true)
   local x, y = getpos(win.width, win.height, win.pos, ui)
   local opts = {
     relative = 'editor',
@@ -64,8 +64,20 @@ function FloatWin.Create(opt)
     title = win.title,
     title_pos = 'center'
   }
-  vim.api.nvim_open_win(buf, true, opts)
-  vim.api.nvim_buf_set_lines(buf, 0, -1, false, win.lines)
+  vim.api.nvim_open_win(FloatWin.buf, true, opts)
+end
+
+function FloatWin:Print(lines, pos)
+  if type(lines) == 'string' then
+    lines = { lines }
+  end
+  FloatWin:Create({
+    width = 0,
+    height = 0,
+    lines = lines,
+    pos = pos,
+  })
+  vim.api.nvim_buf_set_lines(FloatWin.buf, 0, -1, false, lines)
 end
 
 return FloatWin

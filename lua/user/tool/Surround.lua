@@ -1,4 +1,4 @@
-local getsurround = require('user.tool.GetSurround')
+local getsurround = require('user.GetSurround')
 
 local function SurroundChars(line, char)
   if char == "'" or char == '"' then
@@ -23,6 +23,10 @@ local function SurroundChars(line, char)
   return line
 end
 
+local feedkeys = function(keys, mode)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), mode, true)
+end
+
 local function getchar()
   local ok, char = pcall(vim.fn.getcharstr)
   if char == '\x1b' then
@@ -34,7 +38,7 @@ end
 local function Add_Surround()
   local Char = getchar()
   if not Char[1] then
-    vim.api.nvim_input('<ESC>')
+    feedkeys('<ESC>', 'n')
     return
   end
   local char = Char[2]
@@ -57,7 +61,7 @@ local function Add_Surround()
     vim.fn.setline(sl, (sr == 1 and '' or string.sub(lines, 1, sr - 1)) .. lines_mid)
     vim.fn.setline(el, linee_mid .. (er == #linee and '' or string.sub(linee, er + 1)))
   end
-  vim.api.nvim_input('<ESC>')
+  feedkeys('<ESC>', 'n')
 end
 
 vim.keymap.set('v', 'S', Add_Surround, {})

@@ -10,14 +10,6 @@ vim.opt.relativenumber = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", "FileType" }, {
-  pattern = { 'c', 'cpp', 'txt', 'c.snippets', 'cpp.snippets' },
-  callback = function()
-    vim.opt_local.tabstop = 4
-    vim.opt_local.shiftwidth = 4
-    vim.opt_local.softtabstop = 4
-  end,
-})
 vim.opt.expandtab = true
 vim.opt.smarttab = true
 vim.opt.autoindent = true
@@ -40,6 +32,14 @@ vim.opt.undofile = true
 vim.g.netrw_browse_split = 3
 vim.g.netrw_liststyle = 3
 vim.g.netrw_banner = 0
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", "FileType" }, {
+  pattern = { 'c', 'cpp', 'txt', 'c.snippets', 'cpp.snippets' },
+  callback = function()
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.softtabstop = 4
+  end,
+})
 vim.api.nvim_create_autocmd("TermOpen", { pattern = "term://*", command = [[startinsert]] })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.md, *.txt", command = "setlocal wrap", })
 vim.api.nvim_create_autocmd("BufReadPost", {
