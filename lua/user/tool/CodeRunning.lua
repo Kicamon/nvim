@@ -6,10 +6,12 @@ end
 
 local function split()
   win:Create({
-    width = 0.3,
-    height = 0.9,
+    width = 0.25,
+    height = 0.86,
+    title = ' Code Running '
+  }, {
     buflisted = true,
-    pos = { pos = 'cr' }
+    pos = 'tr',
   })
 end
 
@@ -24,18 +26,15 @@ local function Run()
     if (vim.fn.filereadable('Makefile') == 1) then
       vim.cmd('term make && ./Main')
     else
-      local opt = 'term gcc ' ..
-          filename .. ' -o ' .. runfile .. ' && ./' .. runfile .. ' && rm -f ' .. runfile
-      vim.cmd(opt)
+      vim.cmd('term gcc ' .. filename .. ' -o ' .. runfile .. ' && ./' .. runfile .. ' && rm -f ' .. runfile)
     end
   elseif (vim.bo.filetype == 'cpp') then
     split()
     if (vim.fn.filereadable('Makefile') == 1) then
       vim.cmd('term make && ./Main')
     else
-      local opt = 'term g++ ' ..
-          filename .. ' -std=c++17 -O2 -g -Wall -o ' .. runfile .. ' && ./' .. runfile .. ' && rm -rf ' .. runfile
-      vim.cmd(opt)
+      vim.cmd('term g++ ' ..
+        filename .. ' -std=c++17 -O2 -g -Wall -o ' .. runfile .. ' && ./' .. runfile .. ' && rm -rf ' .. runfile)
     end
   elseif (vim.bo.filetype == 'python') then
     split()

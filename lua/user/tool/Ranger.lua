@@ -4,7 +4,6 @@ local function Ranger()
   win:Create({
     width = 0.8,
     height = 0.8,
-    pos = { pos = 'cc' },
     title = ' Ranger ',
   })
   vim.cmd('term ranger')
