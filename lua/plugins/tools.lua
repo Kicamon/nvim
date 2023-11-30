@@ -11,6 +11,21 @@ return {
         runner_ui = {
           interface = "split",
         },
+        split_ui = {
+          total_width = 0.35,
+          vertical_layout = {
+            { 2, { { 2, { { 1, "se" }, { 1, "tc" } } }, { 2, "si" } } },
+            { 2, { { 2, "so" }, { 2, "eo" } } },
+          },
+        },
+        compile_command = {
+          cpp       = { exec = 'g++', args = { '$(FNAME)', '-std=c++17', '-O2', '-g', '-Wall', '-o', '$(FNOEXT)' } },
+          some_lang = { exec = 'some_compiler', args = { '$(FNAME)' } },
+        },
+        run_command = {
+          cpp       = { exec = './$(FNOEXT)' },
+          some_lang = { exec = 'some_interpreter', args = { '$(FNAME)' } },
+        },
       })
       vim.keymap.set("n", "rr", "<cmd>CompetiTest run<CR>", {})
       vim.keymap.set("n", "ra", "<cmd>CompetiTest add_testcase<CR>", {})

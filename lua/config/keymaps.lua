@@ -7,7 +7,6 @@ local nmappings = {
   -- base
   { from = "W",                to = ":w<CR>",                                                      mode = mode_n  },
   { from = "Q",                to = ":q<CR>",                                                      mode = mode_n  },
-  { from = "Q",                to = "<C-\\><C-N>:q<CR>",                                           mode = mode_t  },
   { from = "B",                to = ":bd<CR>",                                                     mode = mode_n  },
   { from = "N",                to = ":normal ",                                                    mode = mode_v  },
   { from = "Y",                to = "\"+y",                                                        mode = mode_v  },

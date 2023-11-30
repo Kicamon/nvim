@@ -70,6 +70,7 @@ function FloatWin:GetInfo()
     col = FloatWin.win.col,
     row = FloatWin.win.row,
     bufnr = FloatWin.bufnr,
+    winnr = FloatWin.winnr,
   }
 end
 
@@ -94,12 +95,10 @@ function FloatWin:Create(opt, val)
     lines = {},
     buflisted = false,
     pos = 'cc',
-    name = ''
   }, val or {})
   FloatWin.win = float_win_opt(opt, val)
   FloatWin.bufnr = vim.api.nvim_create_buf(val.buflisted, true)
-  vim.api.nvim_buf_set_name(FloatWin.bufnr, val.name)
-  vim.api.nvim_open_win(FloatWin.bufnr, true, FloatWin.win)
+  FloatWin.winnr = vim.api.nvim_open_win(FloatWin.bufnr, true, FloatWin.win)
 end
 
 function FloatWin:Print(lines, pos)
