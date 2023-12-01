@@ -33,6 +33,7 @@ end
 local function Ranger()
   OpenRanger()
   vim.api.nvim_create_autocmd('TermClose', {
+    buffer = bufnr,
     callback = function()
       if vim.api.nvim_win_is_valid(winnr) then
         vim.api.nvim_win_close(winnr, true)

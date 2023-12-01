@@ -29,6 +29,7 @@ vim.opt.cmdheight = 1
 vim.opt.scrolloff = 6
 vim.opt.colorcolumn = '0'
 vim.opt.undofile = true
+vim.opt.updatetime = 100
 vim.g.netrw_browse_split = 3
 vim.g.netrw_liststyle = 3
 vim.g.netrw_banner = 0
