@@ -39,7 +39,7 @@ return {
     "mzlogin/vim-markdown-toc",
     ft = { "markdown" },
     config = function()
-      vim.api.nvim_create_user_command('toc', 'GenTocGitLab', {})
+      vim.api.nvim_create_user_command('Toc', 'GenTocGitLab', {})
     end,
   },
 }
