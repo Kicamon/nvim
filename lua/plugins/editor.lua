@@ -9,7 +9,7 @@ return {
   {
     "echasnovski/mini.comment",
     event = { "BufReadPre", "BufNewFile" },
-    kay = { "<leader>cc" },
+    key = { "<leader>cc" },
     opts = {
       mappings = {
         comment_line = "<leader>cc",
@@ -31,6 +31,7 @@ return {
     "dhruvasagar/vim-table-mode",
     ft = { "markdown" },
     config = function()
+      vim.g.table_mode_corner = '|'
       vim.g.table_mode_disable_mappings = 1
     end,
   },
@@ -38,7 +39,7 @@ return {
     "mzlogin/vim-markdown-toc",
     ft = { "markdown" },
     config = function()
-      vim.keymap.set("n", "toc", ":GenTocGitLab<CR>", { buffer = true })
+      vim.api.nvim_create_user_command('toc', 'GenTocGitLab', {})
     end,
   },
 }

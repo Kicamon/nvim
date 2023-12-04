@@ -3,13 +3,7 @@ return {
     "neovim/nvim-lspconfig",
     ft = vim.g.fts,
     dependencies = {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-      { "folke/neodev.nvim", opts = {} },
-      {
-        "j-hui/fidget.nvim",
-        tag = "legacy",
-      },
+      "folke/neodev.nvim",
       "nvimdev/lspsaga.nvim",
     },
     config = function()
@@ -72,33 +66,28 @@ return {
           library.types = true
         end,
       })
-      require("fidget").setup()
       require("lspsaga").setup({
         outline = {
           layout = "float",
           keys = {
-            quit = "q",
+            quit = "Q",
             toggle_or_jump = "<cr>",
           }
         },
         finder = {
           keys = {
-            quit = "q",
+            quit = "Q",
             shuttle = 'J',
             toggle_or_open = '<cr>',
           },
         },
         definition = {
           keys = {
-            edit = '<C-c>g',
+            edit = '<C-c>j',
           }
         }
       })
-      require("mason").setup()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      require("mason-lspconfig").setup({
-        ensure_installed = vim.tbl_keys(servers),
-      })
 
       for server, config in pairs(servers) do
         require("lspconfig")[server].setup(vim.tbl_deep_extend("keep", {
@@ -107,7 +96,6 @@ return {
         }, config))
       end
       vim.api.nvim_create_autocmd("CursorHold", {
-        buffer = 0,
         callback = function()
           local opts = {
             focusable = false,

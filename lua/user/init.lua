@@ -12,6 +12,7 @@ local tools = {
   "Ranger",
   "QuickSubstitute",
   "ImSwitch",
+  "FloatWin",
 }
 
 vim.api.nvim_create_autocmd('VimEnter', {

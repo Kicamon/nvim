@@ -5,23 +5,23 @@ local function getpos(width, height, pos, ui)
   if type(pos) == 'string' then
     if pos:sub(1, 1) == 'c' then
       anchor = anchor .. 'N'
-      y = math.ceil((ui.height - height) / 2)
+      x = math.ceil((ui.height - height) / 2)
     elseif pos:sub(1, 1) == 't' then
       anchor = anchor .. 'N'
-      y = 1
+      x = 1
     elseif pos:sub(1, 1) == 'b' then
       anchor = anchor .. 'S'
-      y = ui.height - 1
+      x = ui.height - 1
     end
     if pos:sub(2, 2) == 'c' then
       anchor = anchor .. 'W'
-      x = math.ceil((ui.width - width) / 2)
+      y = math.ceil((ui.width - width) / 2)
     elseif pos:sub(2, 2) == 'l' then
       anchor = anchor .. 'W'
-      x = 0
+      y = 0
     elseif pos:sub(2, 2) == 'r' then
       anchor = anchor .. 'E'
-      x = ui.width
+      y = ui.width
     end
   else
     x, y = pos[1], pos[2]
@@ -42,7 +42,7 @@ local function update(win, val, ui)
     end
     win.height = math.max(win.height, #val.lines)
   end
-  win.width, win.height = math.min(win.width, ui.width), math.min(win.height, ui.height)
+  win.height, win.width = math.min(win.height, ui.height), math.min(win.width, ui.width)
   return win
 end
 
@@ -59,7 +59,7 @@ local function float_win_opt(opt, val)
     title_pos = 'center',
   }, opt or {})
   win = update(win, val, ui)
-  win.col, win.row, win.anchor = getpos(win.width, win.height, val.pos, ui)
+  win.row, win.col, win.anchor = getpos(win.width, win.height, val.pos, ui)
   return win
 end
 

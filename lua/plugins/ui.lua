@@ -13,7 +13,6 @@ return {
   },
   {
     "Kicamon/SimpleLine.nvim",
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require("statusline").setup()
       require("tabline").setup()
@@ -128,4 +127,5 @@ return {
       }
     end
   },
+  { 'nvim-tree/nvim-web-devicons' },
 }
