@@ -5,17 +5,33 @@ local tempname = ''
 
 local function OpenFile()
   if vim.fn.filereadable(vim.fn.expand(tempname)) == 1 then
-    local filename = vim.fn.readfile(tempname)[1]
-    filename = vim.fn.fnamemodify(filename, ':p:~:')
-    vim.cmd(':tabe ' .. filename)
-    local filetype = filename:match("%.([%a%d]+)$")
-    if filetype ~= nil then
-      vim.cmd(':set filetype=' .. filetype)
+    local filenames = vim.fn.readfile(tempname)
+    for _, filename in ipairs(filenames) do
+      vim.cmd.tabedit(filename)
     end
   end
 end
 
-local function OpenRanger()
+local function CleanUp()
+  vim.fn.delete(tempname)
+end
+
+local function TabName(name)
+  vim.api.nvim_create_autocmd('TermEnter', {
+    buffer = bufnr,
+    callback = function()
+      vim.api.nvim_command('file ' .. name)
+    end
+  })
+end
+
+local function CloseFloatWin()
+  vim.api.nvim_win_close(winnr, true)
+  vim.api.nvim_buf_delete(bufnr, { force = true })
+  vim.api.nvim_set_current_win(prev_win)
+end
+
+local function Ranger()
   prev_win = vim.api.nvim_get_current_win()
   local Win = require('user.FloatWin')
   Win:Create({
@@ -25,21 +41,14 @@ local function OpenRanger()
   })
   WinInfo = Win:GetInfo()
   winnr, bufnr = WinInfo.winnr, WinInfo.bufnr
+  TabName('Ranger')
   tempname = vim.fn.tempname()
-  vim.fn.termopen('ranger --choosefile="' .. tempname .. '"')
-  vim.api.nvim_command('file Ranger')
-end
-
-local function Ranger()
-  OpenRanger()
-  vim.api.nvim_create_autocmd('TermClose', {
-    buffer = bufnr,
-    callback = function()
+  vim.fn.termopen('ranger --choosefiles="' .. tempname .. '"', {
+    on_exit = function()
       if vim.api.nvim_win_is_valid(winnr) then
-        vim.api.nvim_win_close(winnr, true)
-        vim.api.nvim_buf_delete(bufnr, { force = true })
-        vim.api.nvim_set_current_win(prev_win)
+        CloseFloatWin()
         OpenFile()
+        CleanUp()
       end
     end
   })

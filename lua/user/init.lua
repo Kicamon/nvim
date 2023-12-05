@@ -1,5 +1,4 @@
 local tools = {
-  "MdSnippets",
   "Cursor",
   "CodeRunning",
   "GetMake",

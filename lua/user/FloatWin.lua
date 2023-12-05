@@ -111,8 +111,7 @@ function FloatWin:Print(lines, pos)
   }, {
     lines = lines,
     pos = pos,
-  }
-  )
+  })
   vim.api.nvim_buf_set_lines(FloatWin.buf, 0, -1, false, lines)
 end
 
