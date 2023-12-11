@@ -32,6 +32,7 @@ return {
         pyright = {},
         vimls = {},
       }
+
       local on_attach = function(_, bufnr)
         -- Enable completion triggered by <c-x><c-o>
         local nmap = function(keys, func, desc)
@@ -42,11 +43,9 @@ return {
           vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
         end
 
-        nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
         nmap("<leader>pd", "<cmd>Lspsaga peek_definition<CR>", "[P]eek [D]efinition")
         nmap("<leader>pr", require("telescope.builtin").lsp_references, "[P]eek [R]eferences")
         nmap("<c-k>", "<cmd>Lspsaga hover_doc<CR>", "Hover Documentation")
-        nmap("gi", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
         nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
         nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
         nmap("<leader>wl", function()
@@ -58,6 +57,9 @@ return {
         nmap("F", "<cmd>Lspsaga finder def+ref<CR>", "[F]inder")
         nmap("<leader>da", require("telescope.builtin").diagnostics, "[D]i[A]gnostics")
       end
+
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
       require("neodev").setup({
         lspconfig = true,
         override = function(_, library)
@@ -66,17 +68,18 @@ return {
           library.types = true
         end,
       })
+
       require("lspsaga").setup({
         outline = {
           layout = "float",
           keys = {
-            quit = "Q",
-            toggle_or_jump = "<cr>",
+            quit = 'Q',
+            toggle_or_jump = '<cr>',
           }
         },
         finder = {
           keys = {
-            quit = "Q",
+            quit = 'Q',
             shuttle = 'J',
             toggle_or_open = '<cr>',
           },
@@ -85,9 +88,13 @@ return {
           keys = {
             edit = '<C-c>j',
           }
+        },
+        code_action = {
+          keys = {
+            quit = 'Q',
+          }
         }
       })
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       for server, config in pairs(servers) do
         require("lspconfig")[server].setup(vim.tbl_deep_extend("keep", {
@@ -95,6 +102,13 @@ return {
           capabilities = capabilities,
         }, config))
       end
+
+      vim.diagnostic.config({
+        virtual_text = {
+          prefix = '❯',
+        }
+      })
+
       vim.api.nvim_create_autocmd("CursorHold", {
         callback = function()
           local opts = {
@@ -137,7 +151,6 @@ return {
         return col ~= 0
             and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
-      require("luasnip.loaders.from_vscode").lazy_load()
       require("luasnip.loaders.from_snipmate").lazy_load({ path = { "~/.config/nvim/snippets" } })
       local luasnip = require("luasnip")
       local cmp = require("cmp")
@@ -205,7 +218,7 @@ return {
               fallback()
             end
           end, { "i", "s" }),
-          ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ["<CR>"] = cmp.mapping.confirm({ select = false }),
         }),
 
         experimental = {

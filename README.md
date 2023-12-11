@@ -66,19 +66,19 @@ leader = `<space>`
 | `g` `f`  | Goto file new tab    | n    |
 | `t` `t`  | Open file browser    | n    |
 
-### Plugins Keybindings
-#### Edtor
 
-[mini.comment - code command](https://github.com/echasnovski/mini.comment)
-| Shortcut           | Action         | Mode |
-| `<leader>` `c` `c` | Toggle command | n, v |
+### Install
+```shell
+bash-language-server
+clang
+vscode-json-languageserver
+lua-language-server
+pyright
+vim-language-server
+python-black
+yarn
+```
 
-[mini.align - text align](https://github.com/echasnovski/mini.align)
-| Shortcut | Action           | Mode |
-| `g` `a`  | Input align text | n, v |
-
-[vim-markdown-toc - markdown toc](https://github.com/mzlogin/vim-markdown-toc)
-In markdown files, type :Toc then tab, you'll see your options.
 
 ---
 

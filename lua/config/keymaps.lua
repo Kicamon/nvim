@@ -59,7 +59,7 @@ local nmappings = {
   { from = "tn",               to = ":+tabnext<CR>",                                               mode = mode_n,  opt = opt_n  },
   { from = "tp",               to = ":-tabnext<CR>",                                               mode = mode_n,  opt = opt_n  },
   { from = "gf",               to = "<C-w>gf",                                                     mode = mode_n,  opt = opt_n  },
-  { from = "tt",               to = ":25 Lex<CR>",                                                 mode = mode_n,  opt = opt_n  },
+  { from = "tt",               to = ":20 Lex<CR>",                                                 mode = mode_n,  opt = opt_n  },
 }
 
 local MdSnippets = {

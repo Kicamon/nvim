@@ -27,11 +27,16 @@ return {
           some_lang = { exec = 'some_interpreter', args = { '$(FNAME)' } },
         },
       })
-      vim.keymap.set("n", "rr", "<cmd>CompetiTest run<CR>", {})
-      vim.keymap.set("n", "ra", "<cmd>CompetiTest add_testcase<CR>", {})
-      vim.keymap.set("n", "re", "<cmd>CompetiTest edit_testcase<CR>", {})
-      vim.keymap.set("n", "ri", "<cmd>CompetiTest receive testcases<CR>", {})
-      vim.keymap.set("n", "rd", "<cmd>CompetiTest delete_testcase<CR>", {})
+      vim.api.nvim_create_autocmd({ 'FileType' }, {
+        pattern = 'cpp',
+        callback = function()
+          vim.keymap.set("n", "rr", "<cmd>CompetiTest run<CR>", { buffer = true })
+          vim.keymap.set("n", "ra", "<cmd>CompetiTest add_testcase<CR>", { buffer = true })
+          vim.keymap.set("n", "re", "<cmd>CompetiTest edit_testcase<CR>", { buffer = true })
+          vim.keymap.set("n", "ri", "<cmd>CompetiTest receive testcases<CR>", { buffer = true })
+          vim.keymap.set("n", "rd", "<cmd>CompetiTest delete_testcase<CR>", { buffer = true })
+        end
+      })
     end
   },
   {
@@ -59,26 +64,8 @@ return {
     config = function()
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-      vim.keymap.set('n', '<leader>fk', builtin.keymaps, {})
       vim.keymap.set('n', '<leader>fw', builtin.current_buffer_fuzzy_find, {})
-      vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
       vim.keymap.set('n', '<leader>fg', builtin.git_status, {})
-      --vim.keymap.set('n', '<leader>fo', builtin.oldfiles, {})
-      vim.keymap.set('n', '<leader>fz', builtin.spell_suggest, {})
-      local telescope = require("telescope")
-      local actions = require("telescope.actions")
-      telescope.setup {
-        defaults = {
-          mappings = {
-            i = {
-              ["<CR>"] = actions.file_tab
-            },
-            n = {
-              ["l"] = actions.file_tab
-            },
-          }
-        },
-      }
     end
   },
   {

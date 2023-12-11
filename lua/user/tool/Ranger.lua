@@ -3,11 +3,40 @@ local winnr = -1
 local bufnr = -1
 local tempname = ''
 
-local function OpenFile()
+local function TabList()
+  local tab_opend = {}
+  for index = 1, vim.fn.tabpagenr('$') do
+    local _bufnr = vim.fn.tabpagebuflist(index)[vim.fn.tabpagewinnr(index)]
+    local fname = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(_bufnr), ':p')
+    table.insert(tab_opend, fname)
+  end
+  return tab_opend
+end
+
+local function TabOpend(filename, tab_opend)
+  for idx, fname in ipairs(tab_opend) do
+    if filename == fname then
+      vim.cmd(idx .. 'tabnext')
+      return false
+    end
+  end
+  return true
+end
+
+local function OpenFile(open)
+  local tab_opend = {}
+  if open == 'vsplit' then
+    vim.cmd(':set nosplitright')
+  else
+    tab_opend = TabList()
+  end
+
   if vim.fn.filereadable(vim.fn.expand(tempname)) == 1 then
     local filenames = vim.fn.readfile(tempname)
     for _, filename in ipairs(filenames) do
-      vim.cmd.tabedit(filename)
+      if TabOpend(filename, tab_opend) then
+        vim.cmd(open .. ' ' .. filename)
+      end
     end
   end
 end
@@ -31,7 +60,7 @@ local function CloseFloatWin()
   vim.api.nvim_set_current_win(prev_win)
 end
 
-local function Ranger()
+local function Ranger(open)
   prev_win = vim.api.nvim_get_current_win()
   local Win = require('user.FloatWin')
   Win:Create({
@@ -43,15 +72,16 @@ local function Ranger()
   winnr, bufnr = WinInfo.winnr, WinInfo.bufnr
   TabName('Ranger')
   tempname = vim.fn.tempname()
-  vim.fn.termopen('ranger --choosefiles="' .. tempname .. '"', {
+  vim.fn.termopen(string.format('ranger --choosefiles="%s"', tempname), {
     on_exit = function()
       if vim.api.nvim_win_is_valid(winnr) then
         CloseFloatWin()
-        OpenFile()
+        OpenFile(open)
         CleanUp()
       end
     end
   })
 end
 
-vim.keymap.set('n', 'R', Ranger, {})
+vim.keymap.set('n', '<leader>ra', function() Ranger('tabedit') end, {})
+vim.keymap.set('n', '<leader>rl', function() Ranger('vsplit') end, {})

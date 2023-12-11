@@ -1,11 +1,10 @@
-local win = require("user.FloatWin")
-
 local feedkeys = function(keys, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), mode, true)
 end
 
 local function split()
-  win:Create({
+  local Win = require("user.FloatWin")
+  Win:Create({
     width = 0.25,
     height = 0.86,
     title = ' Code Running '
@@ -26,27 +25,27 @@ local function Run()
     if (vim.fn.filereadable('Makefile') == 1) then
       vim.cmd('term make && ./Main')
     else
-      vim.cmd('term gcc ' .. filename .. ' -o ' .. runfile .. ' && ./' .. runfile .. ' && rm -f ' .. runfile)
+      vim.cmd(string.format('term gcc "%s" -o "%s" && ./"%s" && rm -f "%s"', filename, runfile, runfile, runfile))
     end
   elseif (vim.bo.filetype == 'cpp') then
     split()
     if (vim.fn.filereadable('Makefile') == 1) then
       vim.cmd('term make && ./Main')
     else
-      vim.cmd('term g++ ' ..
-        filename .. ' -std=c++17 -O2 -g -Wall -o ' .. runfile .. ' && ./' .. runfile .. ' && rm -rf ' .. runfile)
+      vim.cmd(string.format('term g++ "%s" -std=c++17 -O2 -g -Wall -o "%s" && ./"%s" && rm -rf "%s"',
+        filename, runfile, runfile, runfile))
     end
   elseif (vim.bo.filetype == 'python') then
     split()
-    vim.cmd('term python3 ' .. filename)
+    vim.cmd(string.format('term python3 "%s"', filename))
   elseif (vim.bo.filetype == 'lua') then
     split()
-    vim.cmd('term lua  ' .. filename)
+    vim.cmd(string.format('term lua "%s"', filename))
   elseif (vim.bo.filetype == 'markdown') then
     vim.cmd('MarkdownPreview')
   elseif (vim.bo.filetype == 'sh') then
     split()
-    vim.cmd('term bash  ' .. filename)
+    vim.cmd(string.format('term bash "%s"', filename))
   elseif (vim.bo.filetype == 'html') then
     vim.cmd("tabe")
     vim.cmd("term live-server --browser=" .. vim.g.browser)

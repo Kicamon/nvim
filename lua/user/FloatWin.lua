@@ -101,18 +101,4 @@ function FloatWin:Create(opt, val)
   FloatWin.winnr = vim.api.nvim_open_win(FloatWin.bufnr, true, FloatWin.win)
 end
 
-function FloatWin:Print(lines, pos)
-  if type(lines) == 'string' then
-    lines = { lines }
-  end
-  FloatWin:Create({
-    width = 0,
-    height = 0,
-  }, {
-    lines = lines,
-    pos = pos,
-  })
-  vim.api.nvim_buf_set_lines(FloatWin.buf, 0, -1, false, lines)
-end
-
 return FloatWin
