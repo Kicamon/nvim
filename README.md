@@ -73,7 +73,7 @@ bash-language-server
 clang
 vscode-json-languageserver
 lua-language-server
-pyright
+jedi-language-server
 vim-language-server
 python-black
 yarn

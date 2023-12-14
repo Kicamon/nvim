@@ -26,7 +26,7 @@ end
 local function OpenFile(open)
   local tab_opend = {}
   if open == 'vsplit' then
-    vim.cmd(':set nosplitright')
+    vim.cmd(':set splitright')
   else
     tab_opend = TabList()
   end

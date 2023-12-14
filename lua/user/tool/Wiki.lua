@@ -43,4 +43,4 @@ local function OpenWiki()
   vim.cmd(open .. path .. "index.md")
 end
 
-vim.keymap.set('n', '<leader>ww', OpenWiki, {})
+vim.keymap.set('n', '<leader>nt', OpenWiki, {})

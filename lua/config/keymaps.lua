@@ -41,7 +41,7 @@ local nmappings = {
   { from = "sl",               to = ":set splitright<CR>:vsplit<CR>",                              mode = mode_n,  opt = opt_n  },
   { from = "smv",              to = "<C-w>t<c-W>H",                                                mode = mode_n,  opt = opt_n  },
   { from = "smh",              to = "<C-w>t<c-W>K",                                                mode = mode_n,  opt = opt_n  },
-  { from = "<leader>w",        to = "<c-w>w",                                                      mode = mode_n,  opt = opt_n  },
+  { from = "<leader>ww",        to = "<c-w>w",                                                      mode = mode_n,  opt = opt_n  },
   { from = "<leader>h",        to = "<c-w>h",                                                      mode = mode_n,  opt = opt_n  },
   { from = "<leader>j",        to = "<c-w>j",                                                      mode = mode_n,  opt = opt_n  },
   { from = "<leader>k",        to = "<c-w>k",                                                      mode = mode_n,  opt = opt_n  },

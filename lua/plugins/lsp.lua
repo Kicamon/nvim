@@ -29,7 +29,7 @@ return {
             },
           },
         },
-        pyright = {},
+        jedi_language_server = {},
         vimls = {},
       }
 
