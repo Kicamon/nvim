@@ -2,39 +2,23 @@ local prev_win = -1
 local winnr = -1
 local bufnr = -1
 local tempname = ''
-
-local function TabList()
-  local tab_opend = {}
-  for index = 1, vim.fn.tabpagenr('$') do
-    local _bufnr = vim.fn.tabpagebuflist(index)[vim.fn.tabpagewinnr(index)]
-    local fname = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(_bufnr), ':p')
-    table.insert(tab_opend, fname)
-  end
-  return tab_opend
-end
-
-local function TabOpend(filename, tab_opend)
-  for idx, fname in ipairs(tab_opend) do
-    if filename == fname then
-      vim.cmd(idx .. 'tabnext')
-      return false
-    end
-  end
-  return true
-end
+local TL = require('user.TabList')
 
 local function OpenFile(open)
   local tab_opend = {}
   if open == 'vsplit' then
     vim.cmd(':set splitright')
   else
-    tab_opend = TabList()
+    tab_opend = TL:TabList()
   end
 
   if vim.fn.filereadable(vim.fn.expand(tempname)) == 1 then
     local filenames = vim.fn.readfile(tempname)
     for _, filename in ipairs(filenames) do
-      if TabOpend(filename, tab_opend) then
+      local index = TL:TabOpend(filename, tab_opend)
+      if index ~= 0 then
+        vim.cmd(index .. 'tabnext')
+      else
         vim.cmd(open .. ' ' .. filename)
       end
     end
@@ -77,8 +61,8 @@ local function Ranger(open)
       if vim.api.nvim_win_is_valid(winnr) then
         CloseFloatWin()
         OpenFile(open)
-        CleanUp()
       end
+      CleanUp()
     end
   })
 end

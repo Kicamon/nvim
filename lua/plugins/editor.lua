@@ -33,13 +33,12 @@ return {
     config = function()
       vim.g.table_mode_corner = '|'
       vim.g.table_mode_disable_mappings = 1
-    end,
-  },
-  {
-    "mzlogin/vim-markdown-toc",
-    ft = { "markdown" },
-    config = function()
-      vim.api.nvim_create_user_command('Toc', 'GenTocGitLab', {})
+      vim.api.nvim_create_autocmd({'BufRead','BufNewFile'},{
+        pattern = '*.md',
+        callback = function()
+           vim.cmd('TableModeEnable')
+        end
+      })
     end,
   },
 }

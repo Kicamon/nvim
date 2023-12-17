@@ -1,32 +1,26 @@
 local FloatWin = {}
 
 local function getpos(width, height, pos, ui)
-  local x, y, anchor = 0, 0, ''
+  local x, y = 0, 0
   if type(pos) == 'string' then
     if pos:sub(1, 1) == 'c' then
-      anchor = anchor .. 'N'
       x = math.ceil((ui.height - height) / 2)
     elseif pos:sub(1, 1) == 't' then
-      anchor = anchor .. 'N'
       x = 1
     elseif pos:sub(1, 1) == 'b' then
-      anchor = anchor .. 'S'
       x = ui.height - 1
     end
     if pos:sub(2, 2) == 'c' then
-      anchor = anchor .. 'W'
       y = math.ceil((ui.width - width) / 2)
     elseif pos:sub(2, 2) == 'l' then
-      anchor = anchor .. 'W'
       y = 0
     elseif pos:sub(2, 2) == 'r' then
-      anchor = anchor .. 'E'
       y = ui.width
     end
   else
     x, y = pos[1], pos[2]
   end
-  return x, y, anchor
+  return x, y
 end
 
 local function update(win, val, ui)
@@ -59,7 +53,7 @@ local function float_win_opt(opt, val)
     title_pos = 'center',
   }, opt or {})
   win = update(win, val, ui)
-  win.row, win.col, win.anchor = getpos(win.width, win.height, val.pos, ui)
+  win.row, win.col = getpos(win.width, win.height, val.pos, ui)
   return win
 end
 

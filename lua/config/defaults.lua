@@ -60,6 +60,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 vim.g.browser = 'wyeb'
 vim.g.wiki_path = '~/Documents/study/Note/wiki/'
+vim.g.mark_path = '/home/KicamonIce/.local/state/nvim/marks'
 vim.g.fts = {
   'c',
   'cpp',
