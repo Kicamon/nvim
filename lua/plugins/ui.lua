@@ -13,6 +13,8 @@ return {
   },
   {
     "Kicamon/SimpleLine.nvim",
+    lazy = true,
+    event = { 'BufRead', 'BufNewFile' },
     config = function()
       require("statusline").setup()
       require("tabline").setup()
@@ -20,6 +22,7 @@ return {
   },
   {
     "lewis6991/gitsigns.nvim",
+    lazy = true,
     event = { 'BufRead', 'BufNewFile' },
     config = function()
       require('gitsigns').setup {
@@ -39,6 +42,7 @@ return {
   },
   {
     'nvimdev/indentmini.nvim',
+    lazy = true,
     event = 'BufEnter',
     config = function()
       require("indentmini").setup({
@@ -58,8 +62,8 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    lazy = true,
     event = { "BufReadPost", "BufNewFile" },
-    lazy = false,
     priority = 1000,
     build = ":TSUpdate",
     config = function()
@@ -103,6 +107,7 @@ return {
   },
   {
     "HiPhish/rainbow-delimiters.nvim",
+    lazy = true,
     event = 'BufRead',
     config = function()
       local rainbow_delimiters = require 'rainbow-delimiters'

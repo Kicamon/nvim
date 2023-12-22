@@ -1,15 +1,16 @@
 return {
   {
     "windwp/nvim-autopairs",
-    event = { "BufReadPre", "BufNewFile" },
+    lazy = true,
+    event = { "InsertEnter" },
     config = function()
       require("nvim-autopairs").setup({})
     end
   },
   {
     "echasnovski/mini.comment",
+    lazy = true,
     event = { "BufReadPre", "BufNewFile" },
-    key = { "<leader>cc" },
     opts = {
       mappings = {
         comment_line = "<leader>cc",
@@ -19,6 +20,7 @@ return {
   },
   {
     'echasnovski/mini.align',
+    lazy = true,
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       mappings = {
@@ -29,6 +31,7 @@ return {
   },
   {
     "dhruvasagar/vim-table-mode",
+    lazy = true,
     ft = { "markdown" },
     config = function()
       vim.g.table_mode_corner = '|'

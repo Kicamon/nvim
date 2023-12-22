@@ -27,5 +27,8 @@
     "/home/KicamonIce/.local/share/nvim/lazy/cmp-nvim-lsp/after",
     "${3rd}/luassert/library",
     "${3rd}/luv/library"
-  ]
+  ],
+    "diagnostics.disable": [
+        "cast-local-type"
+    ]
 }

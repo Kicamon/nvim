@@ -1,8 +1,6 @@
 local tools = {
   "Cursor",
   "CodeRunning",
-  "GetMake",
-  "Clear",
   "GetNode",
   "TabToSpace",
   "Wiki",

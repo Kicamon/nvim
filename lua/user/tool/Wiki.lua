@@ -15,10 +15,10 @@ local function Create_Open()
       local ln, tl, tr = vim.fn.line('.'), vim.fn.getpos('v')[3], vim.fn.getpos('.')[3]
       local line = vim.fn.getline(ln)
       local file_name = string.sub(line, tl, tr)
-      local fine_link = './' .. string.gsub(file_name, " ", "_") .. '.md'
+      local file_link = './' .. string.gsub(file_name, " ", "_") .. '.md'
       local line_front = tl == 1 and '' or string.sub(line, 1, tl - 1)
       local line_end = tr == #line and '' or string.sub(line, tr + 1)
-      local line_mid = '[' .. file_name .. '](' .. fine_link .. ')'
+      local line_mid = string.format('[%s](%s)', file_name, file_link)
       vim.fn.setline(ln, line_front .. line_mid .. line_end)
       feedkeys('<ESC>', 'n')
     end
@@ -43,4 +43,4 @@ local function OpenWiki()
   vim.cmd(open .. path .. "index.md")
 end
 
-vim.keymap.set('n', '<leader>nt', OpenWiki, {})
+vim.keymap.set('n', '<leader>ww', OpenWiki, {})

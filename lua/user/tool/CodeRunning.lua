@@ -17,10 +17,8 @@ end
 
 local function Run()
   vim.cmd('w')
-  local filename = vim.api.nvim_buf_get_name(0)
-  filename = vim.fn.pathshorten(vim.fn.fnamemodify(filename, ':p:~:t'))
-  local runfile = filename:match("([^.]+)")
-
+  local filename = vim.fn.expand('%')
+  local runfile = vim.fn.expand('%<')
   if (vim.bo.filetype == 'c') then
     RunWin()
     if (vim.fn.filereadable('Makefile') == 1) then

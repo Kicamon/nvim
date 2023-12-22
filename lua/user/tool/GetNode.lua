@@ -7,4 +7,4 @@ local function GetNode()
   return true
 end
 
-vim.keymap.set("n", "<leader>P", GetNode, {})
+vim.keymap.set("n", "<leader>N", GetNode, {})

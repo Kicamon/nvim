@@ -39,7 +39,7 @@ local function QuickSubstitute()
     if check(oldword, newword) then
       return
     end
-    vim.cmd(':s' .. char .. oldword .. char .. newword .. char .. 'g')
+    vim.cmd(string.format(':s%s%s%s%s%sg', char, oldword, char, newword, char))
   elseif vim.fn.mode() == 'v' or vim.fn.mode() == 'V' then
     local sl, sr, el, er = getpos()
     if sl == el then
@@ -47,13 +47,13 @@ local function QuickSubstitute()
       if check(oldword, newword) then
         return
       end
-      vim.cmd(':s' .. char .. oldword .. char .. newword .. char .. 'g')
+      vim.cmd(string.format(':s%s%s%s%s%sg', char, oldword, char, newword, char))
     else
       oldword, newword, char = Input()
       if check(oldword, newword) then
         return
       end
-      vim.cmd(':' .. sl .. ',' .. el .. 's' .. char .. oldword .. char .. newword .. char .. 'g')
+      vim.cmd(string.format(':%d,%ds%s%s%s%s%sg', sl, el, char, oldword, char, newword, char))
     end
     vim.cmd("normal ! v")
   end

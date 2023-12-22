@@ -179,7 +179,7 @@ local function List()
     OpenFile(marks[lnum], 'vsplit')
     CloseWin({ winnr, info.winnr })
   end, { buffer = true })
-  vim.api.nvim_create_autocmd('CursorMoved', {
+  vim.api.nvim_create_autocmd('CursorHold', {
     buffer = info.bufnr,
     callback = function()
       local lnum = vim.fn.line('.')

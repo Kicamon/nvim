@@ -7,7 +7,7 @@ local TL = require('user.TabList')
 local function OpenFile(open)
   local tab_opend = {}
   if open == 'vsplit' then
-    vim.cmd(':set splitright')
+    vim.cmd('set splitright')
   else
     tab_opend = TL:TabList()
   end

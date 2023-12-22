@@ -69,6 +69,7 @@ leader = `<space>`
 
 ### Install
 ```shell
+python-pyvim
 bash-language-server
 clang
 vscode-json-languageserver

@@ -33,6 +33,7 @@ vim.opt.updatetime = 100
 vim.g.netrw_browse_split = 3
 vim.g.netrw_liststyle = 3
 vim.g.netrw_banner = 0
+
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", "FileType" }, {
   pattern = { 'c', 'cpp', 'txt', 'c.snippets', 'cpp.snippets' },
   callback = function()
@@ -42,13 +43,13 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", "FileType" }, {
   end,
 })
 vim.api.nvim_create_autocmd("TermOpen", { pattern = "term://*", command = [[startinsert]] })
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.md, *.txt", command = "setlocal wrap", })
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = { "*.md", "*.txt" }, command = "setlocal wrap", })
 vim.api.nvim_create_autocmd("BufReadPost", {
   pattern = "*",
   callback = function()
-    local line = vim.fn.line
-    if line("'\"") > 1 and line("'\"") <= line("$") then
-      vim.cmd("normal! g'\"")
+    local pos = vim.fn.getpos("'\"")
+    if pos[2] > 0 and pos[2] <= vim.fn.line("$") then
+      vim.api.nvim_win_set_cursor(0, { pos[2], pos[3] - 1 })
     end
   end
 })

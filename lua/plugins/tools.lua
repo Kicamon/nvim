@@ -1,6 +1,7 @@
 return {
   {
     "xeluxee/competitest.nvim",
+    lazy = true,
     ft = { "cpp" },
     dependencies = {
       "MunifTanjim/nui.nvim",
@@ -27,20 +28,32 @@ return {
           some_lang = { exec = 'some_interpreter', args = { '$(FNAME)' } },
         },
       })
-      vim.api.nvim_create_autocmd({ 'FileType' }, {
-        pattern = 'cpp',
-        callback = function()
+      vim.api.nvim_buf_create_user_command(0, 'CP', function(opt)
+        if opt.args == 'true' then
           vim.keymap.set("n", "rr", "<cmd>CompetiTest run<CR>", { buffer = true })
           vim.keymap.set("n", "ra", "<cmd>CompetiTest add_testcase<CR>", { buffer = true })
           vim.keymap.set("n", "re", "<cmd>CompetiTest edit_testcase<CR>", { buffer = true })
           vim.keymap.set("n", "ri", "<cmd>CompetiTest receive testcases<CR>", { buffer = true })
           vim.keymap.set("n", "rd", "<cmd>CompetiTest delete_testcase<CR>", { buffer = true })
+          vim.keymap.set("n", "rm", function()
+            vim.cmd('silent ! rm -f "./%<" && rm -f "./%<"_(in|out)put*.txt')
+            print(" 󰆴 Clearn")
+          end, { buffer = true })
+        elseif opt.args == 'false' then
+          vim.keymap.del('n', 'rr', { buffer = true })
+          vim.keymap.del('n', 'ra', { buffer = true })
+          vim.keymap.del('n', 're', { buffer = true })
+          vim.keymap.del('n', 'ri', { buffer = true })
+          vim.keymap.del('n', 'rd', { buffer = true })
+          vim.keymap.del('n', 'rm', { buffer = true })
         end
-      })
+      end, { nargs = 1 })
     end
   },
   {
     "rcarriga/nvim-notify",
+    lazy = true,
+    event = 'VeryLazy',
     config = function()
       local notify = require("notify")
       vim.notify = notify
@@ -58,6 +71,8 @@ return {
   },
   {
     'nvim-telescope/telescope.nvim',
+    lazy = true,
+    event = 'VeryLazy',
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
@@ -70,6 +85,7 @@ return {
   },
   {
     "NvChad/nvim-colorizer.lua",
+    lazy = true,
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       filetypes = { "*" },
@@ -81,8 +97,8 @@ return {
         AARRGGBB = true,      -- 0xAARRGGBB hex codes
         rgb_fn = false,       -- CSS rgb() and rgba() functions
         hsl_fn = false,       -- CSS hsl() and hsla() functions
-        css = false,          -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-        css_fn = false,       -- Enable all CSS *functions*: rgb_fn, hsl_fn
+        css = true,           -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+        css_fn = true,        -- Enable all CSS *functions*: rgb_fn, hsl_fn
         -- Available modes for `mode`: foreground, background,  virtualtext
         mode = "virtualtext", -- Set the display mode.
         -- Available methods are false / true / "normal" / "lsp" / "both"
@@ -97,7 +113,7 @@ return {
   },
   {
     "folke/flash.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    lazy = true,
     opts = {},
     keys = {
       {
@@ -112,7 +128,8 @@ return {
   },
   {
     "voldikss/vim-translator",
-    event = { "BufReadPre", "BufNewFile" },
+    lazy = true,
+    keys = "<leader>tr",
     config = function()
       vim.keymap.set("n", "<leader>tr", "<Plug>TranslateW", {})
       vim.keymap.set("v", "<leader>tr", "<Plug>TranslateWV", {})
@@ -120,7 +137,8 @@ return {
   },
   {
     "nvimdev/guard.nvim",
-    ft = vim.g.fts,
+    lazy = true,
+    keys = "<leader>fm",
     dependencies = {
       "nvimdev/guard-collection",
     },
@@ -138,6 +156,7 @@ return {
   },
   {
     'iamcco/markdown-preview.nvim',
+    lazy = true,
     build = "cd app && yarn install",
     ft = { "markdown" },
     config = function()
@@ -146,10 +165,46 @@ return {
   },
   {
     "img-paste-devs/img-paste.vim",
+    lazy = true,
     ft = { "markdown" },
     config = function()
-      vim.keymap.set("n", "<leader>p", ":call mdip#MarkdownClipboardImage()<CR>", {})
+      vim.keymap.set("n", "<leader>P", ":call mdip#MarkdownClipboardImage()<CR>", {})
       vim.g.PasteImageFunction = 'g:MarkdownPasteImage'
     end,
   },
+  {
+    'gelguy/wilder.nvim',
+    lazy = true,
+    keys = ':',
+    config = function()
+      local wilder = require('wilder')
+      wilder.setup {
+        modes = { ':' },
+        next_key = '<Tab>',
+        previous_key = '<S-Tab>',
+      }
+      wilder.set_option('renderer', wilder.popupmenu_renderer(
+        wilder.popupmenu_palette_theme({
+          highlights = {
+            border = 'Normal', -- highlight to use for the border
+          },
+          left = { ' ', wilder.popupmenu_devicons() },
+          right = { ' ', wilder.popupmenu_scrollbar() },
+          border = 'rounded',
+          max_height = '75%',      -- max height of the palette
+          min_height = 0,          -- set to the same as 'max_height' for a fixed height window
+          prompt_position = 'top', -- 'top' or 'bottom' to set the location of the prompt
+          reverse = 0,             -- set to 1 to reverse the order of the list, use in combination with 'prompt_position'
+        })
+      ))
+      wilder.set_option('pipeline', {
+        wilder.branch(
+          wilder.cmdline_pipeline({
+            language = 'vim',
+            fuzzy = 1,
+          }), wilder.search_pipeline()
+        ),
+      })
+    end
+  }
 }

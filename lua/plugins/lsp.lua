@@ -1,6 +1,7 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    lazy = true,
     ft = vim.g.fts,
     dependencies = {
       "folke/neodev.nvim",
@@ -43,19 +44,20 @@ return {
           vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
         end
 
-        nmap("<leader>pd", "<cmd>Lspsaga peek_definition<CR>", "[P]eek [D]efinition")
-        nmap("<leader>pr", require("telescope.builtin").lsp_references, "[P]eek [R]eferences")
+        nmap("<leader>pd", "<cmd>Lspsaga peek_definition<CR>", "Peek Definition")
+        nmap("<leader>pr", require("telescope.builtin").lsp_references, "Peek References")
         nmap("<c-k>", "<cmd>Lspsaga hover_doc<CR>", "Hover Documentation")
-        nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
-        nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
+        nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "Workspace Add Folder")
+        nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "Workspace Remove Folder")
         nmap("<leader>wl", function()
           vim.notify(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end, "[W]orkspace [L]ist Folders")
-        nmap("<leader>rn", "<cmd>Lspsaga rename ++project<cr>", "[R]e[n]ame")
-        nmap("<leader>ca", "<cmd>Lspsaga code_action<CR>", "[C]ode [A]ction")
-        nmap("<leader>ot", "<cmd>Lspsaga outline<CR>", "[O]ut[L]ine")
-        nmap("F", "<cmd>Lspsaga finder def+ref<CR>", "[F]inder")
-        nmap("<leader>da", require("telescope.builtin").diagnostics, "[D]i[A]gnostics")
+        end, "Workspace List Folders")
+        nmap("<leader>rn", "<cmd>Lspsaga rename ++project<cr>", "Rename")
+        nmap("<leader>ca", "<cmd>Lspsaga code_action<CR>", "Code Action")
+        nmap("<leader>ot", "<cmd>Lspsaga outline<CR>", "OutLine")
+        nmap("F", "<cmd>Lspsaga finder ref<CR>", "[F]inder")
+        nmap("<leader>dp", vim.diagnostic.goto_prev, "Diangostics Prev")
+        nmap("<leader>dn", vim.diagnostic.goto_next, "Diangostics Next")
       end
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -93,7 +95,7 @@ return {
           keys = {
             quit = 'Q',
           }
-        }
+        },
       })
 
       for server, config in pairs(servers) do
@@ -126,7 +128,8 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
-    event = { "BufReadPre", "BufNewFile" },
+    lazy = true,
+    ft = vim.g.fts,
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       {
@@ -140,7 +143,6 @@ return {
       },
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-path",
       "onsails/lspkind.nvim",
     },
@@ -224,21 +226,6 @@ return {
         experimental = {
           ghost_text = true,
         },
-      })
-
-      cmp.setup.cmdline("/", {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = "buffer" },
-        },
-      })
-
-      cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-          { name = "path" },
-          { name = "cmdline" },
-        }),
       })
     end,
   }
