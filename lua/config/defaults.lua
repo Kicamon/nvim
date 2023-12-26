@@ -18,18 +18,31 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.ttimeoutlen = 0
 vim.opt.timeout = false
+vim.opt.showmode = false
 vim.opt.virtualedit = 'block'
 vim.opt.conceallevel = 0
 vim.opt.showtabline = 3
 vim.opt.laststatus = 3
 vim.opt.signcolumn = "yes"
+vim.opt.spelloptions = 'camel'
 vim.opt.list = true
 vim.opt.listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←'
+vim.opt.pumblend = 10
+vim.opt.winblend = 0
+vim.opt.fillchars = {
+  foldopen = "",
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
+}
 vim.opt.cmdheight = 1
-vim.opt.scrolloff = 6
+vim.opt.scrolloff = 8
 vim.opt.colorcolumn = '0'
 vim.opt.undofile = true
 vim.opt.updatetime = 100
+vim.opt.redrawtime = 1500
 vim.g.netrw_browse_split = 3
 vim.g.netrw_liststyle = 3
 vim.g.netrw_banner = 0
@@ -72,4 +85,5 @@ vim.g.fts = {
   'json',
   'html',
   'vim',
+  'sh',
 }

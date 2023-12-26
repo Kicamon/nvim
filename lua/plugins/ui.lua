@@ -27,17 +27,17 @@ return {
     config = function()
       require('gitsigns').setup {
         signs = {
-          add          = { hl = 'GitSignsAdd', text = '┃', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
-          change       = { hl = 'GitSignsChange', text = '┃', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
-          delete       = { hl = 'GitSignsDelete', text = '_', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
-          topdelete    = { hl = 'GitSignsDelete', text = '▔', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
-          changedelete = { hl = 'GitSignsChange', text = '┃', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
-          untracked    = { hl = 'GitSignsAdd', text = '┃', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
+          add          = { text = '┃' },
+          change       = { text = '┃' },
+          delete       = { text = '_' },
+          topdelete    = { text = '▔' },
+          changedelete = { text = '┃' },
+          untracked    = { text = '┃' },
         },
       }
       vim.keymap.set("n", "<leader>g-", ":Gitsigns prev_hunk<CR>", { silent = true })
       vim.keymap.set("n", "<leader>g=", ":Gitsigns next_hunk<CR>", { silent = true })
-      vim.keymap.set("n", "<leader>H", ":Gitsigns preview_hunk_inline<CR>", { noremap = true, silent = true })
+      vim.keymap.set("n", "<leader>H", ":Gitsigns preview_hunk_inline<CR>", { silent = true })
     end
   },
   {
@@ -72,17 +72,12 @@ return {
           "bash",
           "c",
           "cpp",
-          "dart",
           "html",
-          "go",
-          "java",
           "javascript",
           "lua",
           "markdown",
           "markdown_inline",
-          "prisma",
           "python",
-          "query",
           "typescript",
           "vim"
         },

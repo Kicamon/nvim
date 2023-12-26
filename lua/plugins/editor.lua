@@ -2,7 +2,7 @@ return {
   {
     "windwp/nvim-autopairs",
     lazy = true,
-    event = { "InsertEnter" },
+    event = "InsertEnter",
     config = function()
       require("nvim-autopairs").setup({})
     end
@@ -25,21 +25,20 @@ return {
     opts = {
       mappings = {
         start = 'ga',
-        start_with_preview = 'gA',
       },
     }
   },
   {
     "dhruvasagar/vim-table-mode",
     lazy = true,
-    ft = { "markdown" },
+    ft = "markdown",
     config = function()
       vim.g.table_mode_corner = '|'
       vim.g.table_mode_disable_mappings = 1
-      vim.api.nvim_create_autocmd({'BufRead','BufNewFile'},{
+      vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
         pattern = '*.md',
         callback = function()
-           vim.cmd('TableModeEnable')
+          vim.cmd('TableModeEnable')
         end
       })
     end,

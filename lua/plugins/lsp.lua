@@ -45,7 +45,7 @@ return {
         end
 
         nmap("<leader>pd", "<cmd>Lspsaga peek_definition<CR>", "Peek Definition")
-        nmap("<leader>pr", require("telescope.builtin").lsp_references, "Peek References")
+        nmap("<leader>pr", "<cmd>Lspsaga finder ref<CR>", "[F]inder")
         nmap("<c-k>", "<cmd>Lspsaga hover_doc<CR>", "Hover Documentation")
         nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "Workspace Add Folder")
         nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "Workspace Remove Folder")
@@ -55,7 +55,6 @@ return {
         nmap("<leader>rn", "<cmd>Lspsaga rename ++project<cr>", "Rename")
         nmap("<leader>ca", "<cmd>Lspsaga code_action<CR>", "Code Action")
         nmap("<leader>ot", "<cmd>Lspsaga outline<CR>", "OutLine")
-        nmap("F", "<cmd>Lspsaga finder ref<CR>", "[F]inder")
         nmap("<leader>dp", vim.diagnostic.goto_prev, "Diangostics Prev")
         nmap("<leader>dn", vim.diagnostic.goto_next, "Diangostics Next")
       end
@@ -82,7 +81,7 @@ return {
         finder = {
           keys = {
             quit = 'Q',
-            shuttle = 'J',
+            edit = '<C-c>j',
             toggle_or_open = '<cr>',
           },
         },

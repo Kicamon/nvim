@@ -37,7 +37,7 @@ return {
           vim.keymap.set("n", "rd", "<cmd>CompetiTest delete_testcase<CR>", { buffer = true })
           vim.keymap.set("n", "rm", function()
             vim.cmd('silent ! rm -f "./%<" && rm -f "./%<"_(in|out)put*.txt')
-            print(" 󰆴 Clearn")
+            vim.notify(" 󰆴 Clearn")
           end, { buffer = true })
         elseif opt.args == 'false' then
           vim.keymap.del('n', 'rr', { buffer = true })
@@ -51,28 +51,9 @@ return {
     end
   },
   {
-    "rcarriga/nvim-notify",
-    lazy = true,
-    event = 'VeryLazy',
-    config = function()
-      local notify = require("notify")
-      vim.notify = notify
-      notify.setup({
-        background_colour = "#202020",
-        fps = 60,
-        level = 2,
-        minimum_width = 30,
-        render = "compact",
-        stages = "slide",
-        timeout = 3000,
-        top_down = true
-      })
-    end
-  },
-  {
     'nvim-telescope/telescope.nvim',
     lazy = true,
-    event = 'VeryLazy',
+    keys = '<leader>f',
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
@@ -127,18 +108,9 @@ return {
     },
   },
   {
-    "voldikss/vim-translator",
-    lazy = true,
-    keys = "<leader>tr",
-    config = function()
-      vim.keymap.set("n", "<leader>tr", "<Plug>TranslateW", {})
-      vim.keymap.set("v", "<leader>tr", "<Plug>TranslateWV", {})
-    end,
-  },
-  {
     "nvimdev/guard.nvim",
     lazy = true,
-    keys = "<leader>fm",
+    ft = vim.g.fts,
     dependencies = {
       "nvimdev/guard-collection",
     },
@@ -158,7 +130,7 @@ return {
     'iamcco/markdown-preview.nvim',
     lazy = true,
     build = "cd app && yarn install",
-    ft = { "markdown" },
+    ft = "markdown",
     config = function()
       vim.g.mkdp_browser = vim.g.browser
     end,
@@ -166,7 +138,7 @@ return {
   {
     "img-paste-devs/img-paste.vim",
     lazy = true,
-    ft = { "markdown" },
+    ft = "markdown",
     config = function()
       vim.keymap.set("n", "<leader>P", ":call mdip#MarkdownClipboardImage()<CR>", {})
       vim.g.PasteImageFunction = 'g:MarkdownPasteImage'
