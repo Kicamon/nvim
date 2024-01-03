@@ -2,7 +2,7 @@ return {
   {
     "xeluxee/competitest.nvim",
     lazy = true,
-    ft = { "cpp" },
+    cmd = 'CP',
     dependencies = {
       "MunifTanjim/nui.nvim",
     },
@@ -30,22 +30,22 @@ return {
       })
       vim.api.nvim_buf_create_user_command(0, 'CP', function(opt)
         if opt.args == 'true' then
-          vim.keymap.set("n", "rr", "<cmd>CompetiTest run<CR>", { buffer = true })
-          vim.keymap.set("n", "ra", "<cmd>CompetiTest add_testcase<CR>", { buffer = true })
-          vim.keymap.set("n", "re", "<cmd>CompetiTest edit_testcase<CR>", { buffer = true })
-          vim.keymap.set("n", "ri", "<cmd>CompetiTest receive testcases<CR>", { buffer = true })
-          vim.keymap.set("n", "rd", "<cmd>CompetiTest delete_testcase<CR>", { buffer = true })
+          vim.keymap.set("n", "rr", "<cmd>CompetiTest run<CR>", {})
+          vim.keymap.set("n", "ra", "<cmd>CompetiTest add_testcase<CR>", {})
+          vim.keymap.set("n", "re", "<cmd>CompetiTest edit_testcase<CR>", {})
+          vim.keymap.set("n", "ri", "<cmd>CompetiTest receive testcases<CR>", {})
+          vim.keymap.set("n", "rd", "<cmd>CompetiTest delete_testcase<CR>", {})
           vim.keymap.set("n", "rm", function()
             vim.cmd('silent ! rm -f "./%<" && rm -f "./%<"_(in|out)put*.txt')
             vim.notify(" 󰆴 Clearn")
           end, { buffer = true })
         elseif opt.args == 'false' then
-          vim.keymap.del('n', 'rr', { buffer = true })
-          vim.keymap.del('n', 'ra', { buffer = true })
-          vim.keymap.del('n', 're', { buffer = true })
-          vim.keymap.del('n', 'ri', { buffer = true })
-          vim.keymap.del('n', 'rd', { buffer = true })
-          vim.keymap.del('n', 'rm', { buffer = true })
+          vim.keymap.del('n', 'rr', {})
+          vim.keymap.del('n', 'ra', {})
+          vim.keymap.del('n', 're', {})
+          vim.keymap.del('n', 'ri', {})
+          vim.keymap.del('n', 'rd', {})
+          vim.keymap.del('n', 'rm', {})
         end
       end, { nargs = 1 })
     end
@@ -54,6 +54,7 @@ return {
     'nvim-telescope/telescope.nvim',
     lazy = true,
     keys = '<leader>f',
+    cmd = 'Telescope',
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
@@ -133,6 +134,7 @@ return {
     ft = "markdown",
     config = function()
       vim.g.mkdp_browser = vim.g.browser
+      vim.g.mkdp_auto_close = 1
     end,
   },
   {
@@ -177,6 +179,28 @@ return {
           }), wilder.search_pipeline()
         ),
       })
+    end
+  },
+  {
+    'Kicamon/tool.nvim',
+    events = 'VeryLazy',
+    config = function()
+      require('tool')
+    end
+  },
+  {
+    'nvimdev/flybuf.nvim',
+    lazy = true,
+    keys = '<leader>fb',
+    config = function()
+      require('flybuf').setup({
+        hotkey = 'asxfghwertyuiopzcvbnm', -- hotkye
+        border = 'single',                -- border
+        quit = 'q',                       -- quit flybuf window
+        mark = 'l',                       -- mark as delet or cancel delete
+        delete = 'd',                     -- delete marked buffers or buffers which cursor in
+      })
+      vim.keymap.set('n', '<leader>fb', '<cmd>FlyBuf<CR>', {})
     end
   }
 }

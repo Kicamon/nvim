@@ -1,10 +1,10 @@
 return {
   {
-    "windwp/nvim-autopairs",
+    "m4xshen/autoclose.nvim",
     lazy = true,
-    event = "InsertEnter",
+    event = 'InsertEnter',
     config = function()
-      require("nvim-autopairs").setup({})
+      require("autoclose").setup()
     end
   },
   {
@@ -38,7 +38,7 @@ return {
       vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
         pattern = '*.md',
         callback = function()
-          vim.cmd('TableModeEnable')
+          vim.cmd('silent TableModeEnable')
         end
       })
     end,

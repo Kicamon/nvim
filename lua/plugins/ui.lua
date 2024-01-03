@@ -16,8 +16,7 @@ return {
     lazy = true,
     event = { 'BufRead', 'BufNewFile' },
     config = function()
-      require("statusline").setup()
-      require("tabline").setup()
+      require("SimpleLine").setup()
     end
   },
   {
@@ -38,12 +37,13 @@ return {
       vim.keymap.set("n", "<leader>g-", ":Gitsigns prev_hunk<CR>", { silent = true })
       vim.keymap.set("n", "<leader>g=", ":Gitsigns next_hunk<CR>", { silent = true })
       vim.keymap.set("n", "<leader>H", ":Gitsigns preview_hunk_inline<CR>", { silent = true })
+      vim.keymap.set("n", "<leader>gd", '<cmd>lua require"gitsigns".diffthis("~")<CR>', { silent = true })
     end
   },
   {
     'nvimdev/indentmini.nvim',
     lazy = true,
-    event = 'BufEnter',
+    event = { 'BufRead', 'BufNewFile' },
     config = function()
       require("indentmini").setup({
         char = "│",
@@ -127,5 +127,8 @@ return {
       }
     end
   },
-  { 'nvim-tree/nvim-web-devicons' },
+  {
+    'nvim-tree/nvim-web-devicons',
+    lazy = true,
+  },
 }

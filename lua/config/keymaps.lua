@@ -48,7 +48,7 @@ local nmappings = {
   { from = "<down>",           to = ":res -5<CR>",                                                 mode = mode_n  },
   { from = "<left>",           to = ":vertical resize-5<CR>",                                      mode = mode_n  },
   { from = "<right>",          to = ":vertical resize+5<CR>",                                      mode = mode_n  },
-  { from = "<leader>vim",      to = ":tabe ~/.config/nvim/init.lua<CR>",                           mode = mode_n  },
+  { from = "<leader>vim",      to = ":edit ~/.config/nvim/init.lua<CR>",                           mode = mode_n  },
 
   -- buffers & tabs
   { from = "[b",               to = ":bp<CR>",                                                     mode = mode_n  },
@@ -56,19 +56,17 @@ local nmappings = {
   { from = "tu",               to = ":tabe<CR>",                                                   mode = mode_n  },
   { from = "tn",               to = ":+tabnext<CR>",                                               mode = mode_n  },
   { from = "tp",               to = ":-tabnext<CR>",                                               mode = mode_n  },
-  { from = "gf",               to = "<C-w>gf",                                                     mode = mode_n  },
   { from = "tt",               to = ":20 Lex<CR>",                                                 mode = mode_n  },
 }
 
 local MdSnippets = {
   { from = "<Tab><Tab>",       to = "<Esc>/<++><CR>:nohlsearch<CR>\"_c4l",                         mode = mode_i  },
   { from = "<Tab><leader>",    to = "<Tab>",                                                       mode = mode_i  },
-  { from = "《",               to = "《》<++><esc>F》i",                                           mode = mode_i  },
+  { from = "《",               to = "《》<Esc>i",                                                  mode = mode_i  },
   { from = "》",               to = "> ",                                                          mode = mode_i  },
-  { from = "（",               to = "（）<++><Esc>F）i",                                           mode = mode_i  },
-  { from = "“",                to = "“”<++><Esc>F”i",                                              mode = mode_i  },
-  { from = "”",                to = "“”<++><Esc>F”i",                                              mode = mode_i  },
-  { from = "·n",               to = "---<Enter><Enter>",                                           mode = mode_i  },
+  { from = "（",               to = "（）<Esc>i",                                                  mode = mode_i  },
+  { from = "“",                to = "“”<Esc>i",                                                    mode = mode_i  },
+  { from = "”",                to = "“”<Esc>i",                                                    mode = mode_i  },
   { from = "·b",               to = "****<++><Esc>F*hi",                                           mode = mode_i  },
   { from = "·s",               to = "~~~~<++><Esc>F~hi",                                           mode = mode_i  },
   { from = "·i",               to = "**<++><Esc>F*i",                                              mode = mode_i  },

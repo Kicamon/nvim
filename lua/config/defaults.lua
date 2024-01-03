@@ -1,7 +1,6 @@
 vim.opt.termguicolors = true
 vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 vim.opt.ttyfast = true
-vim.opt.autochdir = true
 vim.g.mapleader = ' '
 vim.opt.cursorline = true
 vim.opt.wrap = false
@@ -21,15 +20,17 @@ vim.opt.timeout = false
 vim.opt.showmode = false
 vim.opt.virtualedit = 'block'
 vim.opt.conceallevel = 0
-vim.opt.showtabline = 3
+vim.opt.showtabline = 0
 vim.opt.laststatus = 3
 vim.opt.signcolumn = "yes"
 vim.opt.spelloptions = 'camel'
 vim.opt.list = true
+vim.opt.foldmethod = 'marker'
 vim.opt.listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←'
-vim.opt.pumblend = 10
-vim.opt.winblend = 0
 vim.opt.fillchars = {
+  stl = ' ',
+  stlnc = '-',
+  msgsep = ' ',
   foldopen = "",
   foldclose = "",
   fold = " ",
@@ -43,7 +44,7 @@ vim.opt.colorcolumn = '0'
 vim.opt.undofile = true
 vim.opt.updatetime = 100
 vim.opt.redrawtime = 1500
-vim.g.netrw_browse_split = 3
+vim.g.netrw_browse_split = 0
 vim.g.netrw_liststyle = 3
 vim.g.netrw_banner = 0
 
@@ -72,18 +73,4 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end
 })
 
-vim.g.browser = 'wyeb'
-vim.g.wiki_path = '~/Documents/study/Note/wiki/'
-vim.g.mark_path = '/home/KicamonIce/.local/state/nvim/marks'
-vim.g.fts = {
-  'c',
-  'cpp',
-  'lua',
-  'python',
-  'javascript',
-  'typescript',
-  'json',
-  'html',
-  'vim',
-  'sh',
-}
+require('user.user')

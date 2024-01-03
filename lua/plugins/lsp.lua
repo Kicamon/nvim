@@ -35,7 +35,6 @@ return {
       }
 
       local on_attach = function(_, bufnr)
-        -- Enable completion triggered by <c-x><c-o>
         local nmap = function(keys, func, desc)
           if desc then
             desc = "LSP: " .. desc
@@ -155,7 +154,6 @@ return {
       require("luasnip.loaders.from_snipmate").lazy_load({ path = { "~/.config/nvim/snippets" } })
       local luasnip = require("luasnip")
       local cmp = require("cmp")
-      --local lspkind = require('lspkind')
       cmp.setup({
         window = {
           completion = {
@@ -199,8 +197,6 @@ return {
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
-              -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-              -- they way you will only jump inside the snippet region
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
             elseif has_words_before() then
