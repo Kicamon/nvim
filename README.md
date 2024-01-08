@@ -69,7 +69,7 @@ leader = `<space>`
 
 ### Install
 ```shell
-python-pyvim
+python-pynvim
 bash-language-server
 clang
 vscode-json-languageserver
@@ -78,6 +78,8 @@ jedi-language-server
 vim-language-server
 python-black
 yarn
+fd
+ripgrep
 ```
 
 

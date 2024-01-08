@@ -8,9 +8,28 @@ return {
     end
   },
   {
+    "nvimdev/guard.nvim",
+    lazy = true,
+    ft = vim.g.fts,
+    dependencies = {
+      "nvimdev/guard-collection",
+    },
+    config = function()
+      local ft = require("guard.filetype")
+      ft("c", "cpp"):fmt("clang-format")
+      ft("python"):fmt("black")
+      ft("lua"):fmt("lsp")
+      require("guard").setup({
+        fmt_on_save = false,
+        lsp_as_default_formatter = true,
+        vim.keymap.set({ "n", "v" }, "<leader>fm", "<cmd>GuardFmt<CR>", {}),
+      })
+    end
+  },
+  {
     "echasnovski/mini.comment",
     lazy = true,
-    event = { "BufReadPre", "BufNewFile" },
+    keys = { 'V', '<leader>cc' },
     opts = {
       mappings = {
         comment_line = "<leader>cc",
@@ -21,7 +40,7 @@ return {
   {
     'echasnovski/mini.align',
     lazy = true,
-    event = { "BufReadPre", "BufNewFile" },
+    keys = 'V',
     opts = {
       mappings = {
         start = 'ga',
@@ -37,9 +56,7 @@ return {
       vim.g.table_mode_disable_mappings = 1
       vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
         pattern = '*.md',
-        callback = function()
-          vim.cmd('silent TableModeEnable')
-        end
+        command = 'silent TableModeEnable',
       })
     end,
   },

@@ -12,6 +12,10 @@ return {
     end,
   },
   {
+    'nvim-tree/nvim-web-devicons',
+    lazy = true,
+  },
+  {
     "Kicamon/SimpleLine.nvim",
     lazy = true,
     event = { 'BufRead', 'BufNewFile' },
@@ -34,9 +38,9 @@ return {
           untracked    = { text = '┃' },
         },
       }
-      vim.keymap.set("n", "<leader>g-", ":Gitsigns prev_hunk<CR>", { silent = true })
-      vim.keymap.set("n", "<leader>g=", ":Gitsigns next_hunk<CR>", { silent = true })
-      vim.keymap.set("n", "<leader>H", ":Gitsigns preview_hunk_inline<CR>", { silent = true })
+      vim.keymap.set("n", "g[", '<cmd>silent lua require"gitsigns".prev_hunk()<CR>', { silent = true })
+      vim.keymap.set("n", "g]", '<cmd>silent lua require"gitsigns".next_hunk()<CR>', { silent = true })
+      vim.keymap.set("n", "<leader>H", '<cmd>lua require"gitsigns".preview_hunk_inline()<CR>', { silent = true })
       vim.keymap.set("n", "<leader>gd", '<cmd>lua require"gitsigns".diffthis("~")<CR>', { silent = true })
     end
   },
@@ -51,7 +55,6 @@ return {
           "help",
           "dashboard",
           "lazy",
-          "mason",
           "notify",
           "toggleterm",
           "lazyterm",
@@ -63,8 +66,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     lazy = true,
-    event = { "BufReadPost", "BufNewFile" },
-    priority = 1000,
+    event = { "BufRead", "BufNewFile" },
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
@@ -88,15 +90,6 @@ return {
         indent = {
           enable = false
         },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            --init_selection    = "<c-n>",
-            --node_incremental  = "<c-n>",
-            node_decremental  = "<c-h>",
-            scope_incremental = "<c-l>",
-          },
-        }
       })
     end
   },
@@ -126,9 +119,5 @@ return {
         },
       }
     end
-  },
-  {
-    'nvim-tree/nvim-web-devicons',
-    lazy = true,
   },
 }

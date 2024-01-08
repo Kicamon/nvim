@@ -57,12 +57,34 @@ return {
     cmd = 'Telescope',
     dependencies = {
       'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-fzy-native.nvim',
     },
     config = function()
+      require('telescope').setup({
+        defaults = {
+          prompt_prefix = ' ',
+          selection_caret = ' ',
+          layout_config = {
+            horizontal = { prompt_position = 'top', results_width = 0.6 },
+            vertical = { mirror = false },
+          },
+          sorting_strategy = 'ascending',
+          file_previewer = require('telescope.previewers').vim_buffer_cat.new,
+          grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
+          qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
+        },
+        extensions = {
+          fzy_native = {
+            override_generic_sorter = false,
+            override_file_sorter = true,
+          },
+        },
+      })
+      require('telescope').load_extension('fzy_native')
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-      vim.keymap.set('n', '<leader>fw', builtin.current_buffer_fuzzy_find, {})
-      vim.keymap.set('n', '<leader>fg', builtin.git_status, {})
+      vim.keymap.set('n', '<leader>fw', builtin.live_grep, {})
+      vim.keymap.set('n', '<leader>fy', builtin.registers, {})
     end
   },
   {
@@ -99,33 +121,14 @@ return {
     opts = {},
     keys = {
       {
-        "<ESC>",
-        mode = { "n" },
+        "<leader>fl",
+        mode = 'n',
         function()
           require("flash").jump()
         end,
         desc = "Flash"
       },
     },
-  },
-  {
-    "nvimdev/guard.nvim",
-    lazy = true,
-    ft = vim.g.fts,
-    dependencies = {
-      "nvimdev/guard-collection",
-    },
-    config = function()
-      local ft = require("guard.filetype")
-      ft("c", "cpp"):fmt("clang-format")
-      ft("python"):fmt("black")
-      ft("lua"):fmt("lsp")
-      require("guard").setup({
-        fmt_on_save = false,
-        lsp_as_default_formatter = true,
-        vim.keymap.set({ "n", "v" }, "<leader>fm", "<cmd>GuardFmt<CR>", {}),
-      })
-    end
   },
   {
     'iamcco/markdown-preview.nvim',
@@ -140,20 +143,42 @@ return {
   {
     "img-paste-devs/img-paste.vim",
     lazy = true,
-    ft = "markdown",
+    keys = '<leader>P',
     config = function()
-      vim.keymap.set("n", "<leader>P", ":call mdip#MarkdownClipboardImage()<CR>", {})
       vim.g.PasteImageFunction = 'g:MarkdownPasteImage'
+      vim.keymap.set("n", "<leader>P", ":call mdip#MarkdownClipboardImage()<CR>", {})
     end,
   },
   {
-    'gelguy/wilder.nvim',
+    'Kicamon/tool.nvim',
+    events = 'VeryLazy',
+    config = function()
+      require('tool')
+    end
+  },
+  {
+    'nvimdev/flybuf.nvim',
     lazy = true,
-    keys = ':',
+    keys = '<leader>fb',
+    config = function()
+      require('flybuf').setup({
+        hotkey = 'asxfghwertyuiopzcvbnm', -- hotkye
+        border = 'rounded',               -- border
+        quit = 'q',                       -- quit flybuf window
+        mark = 'l',                       -- mark as delet or cancel delete
+        delete = 'd',                     -- delete marked buffers or buffers which cursor in
+      })
+      vim.keymap.set('n', '<leader>fb', '<cmd>FlyBuf<CR>', {})
+    end
+  },
+  {
+    'gelguy/wilder.nvim',
+    build = ':silent! UpdateRemotePlugins',
+    event = 'CmdlineEnter',
     config = function()
       local wilder = require('wilder')
       wilder.setup {
-        modes = { ':' },
+        modes = { ':', '/', '?' },
         next_key = '<Tab>',
         previous_key = '<S-Tab>',
       }
@@ -181,26 +206,4 @@ return {
       })
     end
   },
-  {
-    'Kicamon/tool.nvim',
-    events = 'VeryLazy',
-    config = function()
-      require('tool')
-    end
-  },
-  {
-    'nvimdev/flybuf.nvim',
-    lazy = true,
-    keys = '<leader>fb',
-    config = function()
-      require('flybuf').setup({
-        hotkey = 'asxfghwertyuiopzcvbnm', -- hotkye
-        border = 'single',                -- border
-        quit = 'q',                       -- quit flybuf window
-        mark = 'l',                       -- mark as delet or cancel delete
-        delete = 'd',                     -- delete marked buffers or buffers which cursor in
-      })
-      vim.keymap.set('n', '<leader>fb', '<cmd>FlyBuf<CR>', {})
-    end
-  }
 }

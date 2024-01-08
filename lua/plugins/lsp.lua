@@ -54,8 +54,8 @@ return {
         nmap("<leader>rn", "<cmd>Lspsaga rename ++project<cr>", "Rename")
         nmap("<leader>ca", "<cmd>Lspsaga code_action<CR>", "Code Action")
         nmap("<leader>ot", "<cmd>Lspsaga outline<CR>", "OutLine")
-        nmap("<leader>dp", vim.diagnostic.goto_prev, "Diangostics Prev")
-        nmap("<leader>dn", vim.diagnostic.goto_next, "Diangostics Next")
+        nmap("d[", vim.diagnostic.goto_prev, "Diangostics Prev")
+        nmap("d]", vim.diagnostic.goto_next, "Diangostics Next")
       end
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -134,9 +134,6 @@ return {
         "saadparwaiz1/cmp_luasnip",
         dependencies = {
           "L3MON4D3/LuaSnip",
-          dependencies = {
-            "rafamadriz/friendly-snippets",
-          },
         },
       },
       "hrsh7th/cmp-nvim-lua",
@@ -151,7 +148,7 @@ return {
         return col ~= 0
             and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
-      require("luasnip.loaders.from_snipmate").lazy_load({ path = { "~/.config/nvim/snippets" } })
+      require("luasnip.loaders.from_snipmate").lazy_load()
       local luasnip = require("luasnip")
       local cmp = require("cmp")
       cmp.setup({

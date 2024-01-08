@@ -1,7 +1,6 @@
 vim.opt.termguicolors = true
 vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 vim.opt.ttyfast = true
-vim.g.mapleader = ' '
 vim.opt.cursorline = true
 vim.opt.wrap = false
 vim.opt.number = true
@@ -25,7 +24,8 @@ vim.opt.laststatus = 3
 vim.opt.signcolumn = "yes"
 vim.opt.spelloptions = 'camel'
 vim.opt.list = true
-vim.opt.foldmethod = 'marker'
+vim.opt.foldmethod = 'indent'
+vim.opt.foldlevel = 99
 vim.opt.listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←'
 vim.opt.fillchars = {
   stl = ' ',
@@ -38,15 +38,12 @@ vim.opt.fillchars = {
   diff = "╱",
   eob = " ",
 }
-vim.opt.cmdheight = 1
+vim.opt.cmdheight = 0
 vim.opt.scrolloff = 8
 vim.opt.colorcolumn = '0'
 vim.opt.undofile = true
 vim.opt.updatetime = 100
 vim.opt.redrawtime = 1500
-vim.g.netrw_browse_split = 0
-vim.g.netrw_liststyle = 3
-vim.g.netrw_banner = 0
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", "FileType" }, {
   pattern = { 'c', 'cpp', 'txt', 'c.snippets', 'cpp.snippets' },
