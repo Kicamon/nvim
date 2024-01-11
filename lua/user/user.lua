@@ -16,3 +16,16 @@ vim.g.fts = {
   'vim',
   'sh',
 }
+vim.g.ts_fts = {
+  'bash',
+  'c',
+  'cpp',
+  'html',
+  'javascript',
+  'lua',
+  'markdown',
+  'markdown_inline',
+  'python',
+  'typescript',
+  'vim',
+}

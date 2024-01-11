@@ -1,38 +1,36 @@
 return {
   {
-    "m4xshen/autoclose.nvim",
+    'windwp/nvim-autopairs',
     lazy = true,
     event = 'InsertEnter',
-    config = function()
-      require("autoclose").setup()
-    end
+    opts = {}
   },
   {
-    "nvimdev/guard.nvim",
+    'nvimdev/guard.nvim',
     lazy = true,
-    ft = vim.g.fts,
+    event = 'LspAttach',
     dependencies = {
-      "nvimdev/guard-collection",
+      'nvimdev/guard-collection',
     },
     config = function()
-      local ft = require("guard.filetype")
-      ft("c", "cpp"):fmt("clang-format")
-      ft("python"):fmt("black")
-      ft("lua"):fmt("lsp")
-      require("guard").setup({
+      local ft = require('guard.filetype')
+      ft('c', 'cpp'):fmt('clang-format')
+      ft('python'):fmt('black')
+      ft('lua'):fmt('lsp')
+      require('guard').setup({
         fmt_on_save = false,
         lsp_as_default_formatter = true,
-        vim.keymap.set({ "n", "v" }, "<leader>fm", "<cmd>GuardFmt<CR>", {}),
+        vim.keymap.set({ 'n', 'v' }, '<leader>fm', '<cmd>GuardFmt<CR>', {}),
       })
     end
   },
   {
-    "echasnovski/mini.comment",
+    'echasnovski/mini.comment',
     lazy = true,
     keys = { 'V', '<leader>cc' },
     opts = {
       mappings = {
-        comment_line = "<leader>cc",
+        comment_line = '<leader>cc',
         comment_visual = '<leader>cc',
       }
     },
@@ -48,9 +46,9 @@ return {
     }
   },
   {
-    "dhruvasagar/vim-table-mode",
+    'dhruvasagar/vim-table-mode',
     lazy = true,
-    ft = "markdown",
+    ft = 'markdown',
     config = function()
       vim.g.table_mode_corner = '|'
       vim.g.table_mode_disable_mappings = 1

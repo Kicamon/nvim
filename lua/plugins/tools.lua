@@ -1,22 +1,22 @@
 return {
   {
-    "xeluxee/competitest.nvim",
+    'xeluxee/competitest.nvim',
     lazy = true,
     cmd = 'CP',
     dependencies = {
-      "MunifTanjim/nui.nvim",
+      'MunifTanjim/nui.nvim',
     },
 
     config = function()
       require('competitest').setup({
         runner_ui = {
-          interface = "split",
+          interface = 'split',
         },
         split_ui = {
           total_width = 0.35,
           vertical_layout = {
-            { 2, { { 2, { { 1, "se" }, { 1, "tc" } } }, { 2, "si" } } },
-            { 2, { { 2, "so" }, { 2, "eo" } } },
+            { 2, { { 2, { { 1, 'se' }, { 1, 'tc' } } }, { 2, 'si' } } },
+            { 2, { { 2, 'so' }, { 2, 'eo' } } },
           },
         },
         compile_command = {
@@ -28,18 +28,21 @@ return {
           some_lang = { exec = 'some_interpreter', args = { '$(FNAME)' } },
         },
       })
-      vim.api.nvim_buf_create_user_command(0, 'CP', function(opt)
-        if opt.args == 'true' then
-          vim.keymap.set("n", "rr", "<cmd>CompetiTest run<CR>", {})
-          vim.keymap.set("n", "ra", "<cmd>CompetiTest add_testcase<CR>", {})
-          vim.keymap.set("n", "re", "<cmd>CompetiTest edit_testcase<CR>", {})
-          vim.keymap.set("n", "ri", "<cmd>CompetiTest receive testcases<CR>", {})
-          vim.keymap.set("n", "rd", "<cmd>CompetiTest delete_testcase<CR>", {})
-          vim.keymap.set("n", "rm", function()
+      local CP = false
+      vim.api.nvim_buf_create_user_command(0, 'CP', function()
+        CP = not CP
+        vim.notify('Competitest ' .. (CP and 'Enable' or 'Disable'))
+        if CP then
+          vim.keymap.set('n', 'rr', '<cmd>CompetiTest run<CR>', {})
+          vim.keymap.set('n', 'ra', '<cmd>CompetiTest add_testcase<CR>', {})
+          vim.keymap.set('n', 're', '<cmd>CompetiTest edit_testcase<CR>', {})
+          vim.keymap.set('n', 'ri', '<cmd>CompetiTest receive testcases<CR>', {})
+          vim.keymap.set('n', 'rd', '<cmd>CompetiTest delete_testcase<CR>', {})
+          vim.keymap.set('n', 'rm', function()
             vim.cmd('silent ! rm -f "./%<" && rm -f "./%<"_(in|out)put*.txt')
-            vim.notify(" 󰆴 Clearn")
-          end, { buffer = true })
-        elseif opt.args == 'false' then
+            vim.notify(' 󰆴 Clearn')
+          end, {})
+        else
           vim.keymap.del('n', 'rr', {})
           vim.keymap.del('n', 'ra', {})
           vim.keymap.del('n', 're', {})
@@ -47,7 +50,7 @@ return {
           vim.keymap.del('n', 'rd', {})
           vim.keymap.del('n', 'rm', {})
         end
-      end, { nargs = 1 })
+      end, { nargs = 0 })
     end
   },
   {
@@ -88,15 +91,15 @@ return {
     end
   },
   {
-    "NvChad/nvim-colorizer.lua",
+    'NvChad/nvim-colorizer.lua',
     lazy = true,
-    event = { "BufReadPre", "BufNewFile" },
+    event = { 'BufReadPre', 'BufNewFile' },
     opts = {
-      filetypes = { "*" },
+      filetypes = { '*' },
       user_default_options = {
         RGB = true,           -- #RGB hex codes
         RRGGBB = true,        -- #RRGGBB hex codes
-        names = false,        -- "Name" codes like Blue or blue
+        names = false,        -- 'Name' codes like Blue or blue
         RRGGBBAA = true,      -- #RRGGBBAA hex codes
         AARRGGBB = true,      -- 0xAARRGGBB hex codes
         rgb_fn = false,       -- CSS rgb() and rgba() functions
@@ -104,49 +107,40 @@ return {
         css = true,           -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
         css_fn = true,        -- Enable all CSS *functions*: rgb_fn, hsl_fn
         -- Available modes for `mode`: foreground, background,  virtualtext
-        mode = "virtualtext", -- Set the display mode.
+        mode = 'virtualtext', -- Set the display mode.
         -- Available methods are false / true / "normal" / "lsp" / "both"
         -- True is same as normal
         tailwind = true,
         sass = { enable = false },
-        virtualtext = "■",
+        virtualtext = '■',
       },
       -- all the sub-options of filetypes apply to buftypes
       buftypes = {},
     }
   },
   {
-    "folke/flash.nvim",
+    'folke/flash.nvim',
     lazy = true,
     opts = {},
     keys = {
       {
-        "<leader>fl",
+        '<c-j>',
         mode = 'n',
         function()
-          require("flash").jump()
+          require('flash').jump()
         end,
-        desc = "Flash"
+        desc = 'Flash'
       },
     },
   },
   {
     'iamcco/markdown-preview.nvim',
     lazy = true,
-    build = "cd app && yarn install",
-    ft = "markdown",
+    build = 'cd app && yarn install',
+    ft = 'markdown',
     config = function()
       vim.g.mkdp_browser = vim.g.browser
       vim.g.mkdp_auto_close = 1
-    end,
-  },
-  {
-    "img-paste-devs/img-paste.vim",
-    lazy = true,
-    keys = '<leader>P',
-    config = function()
-      vim.g.PasteImageFunction = 'g:MarkdownPasteImage'
-      vim.keymap.set("n", "<leader>P", ":call mdip#MarkdownClipboardImage()<CR>", {})
     end,
   },
   {
