@@ -12,13 +12,6 @@ return {
         runner_ui = {
           interface = 'split',
         },
-        split_ui = {
-          total_width = 0.35,
-          vertical_layout = {
-            { 2, { { 2, { { 1, 'se' }, { 1, 'tc' } } }, { 2, 'si' } } },
-            { 2, { { 2, 'so' }, { 2, 'eo' } } },
-          },
-        },
         compile_command = {
           cpp       = { exec = 'g++', args = { '$(FNAME)', '-std=c++17', '-O2', '-g', '-Wall', '-o', '$(FNOEXT)' } },
           some_lang = { exec = 'some_compiler', args = { '$(FNAME)' } },
@@ -33,22 +26,22 @@ return {
         CP = not CP
         vim.notify('Competitest ' .. (CP and 'Enable' or 'Disable'))
         if CP then
-          vim.keymap.set('n', 'rr', '<cmd>CompetiTest run<CR>', {})
-          vim.keymap.set('n', 'ra', '<cmd>CompetiTest add_testcase<CR>', {})
-          vim.keymap.set('n', 're', '<cmd>CompetiTest edit_testcase<CR>', {})
-          vim.keymap.set('n', 'ri', '<cmd>CompetiTest receive testcases<CR>', {})
-          vim.keymap.set('n', 'rd', '<cmd>CompetiTest delete_testcase<CR>', {})
-          vim.keymap.set('n', 'rm', function()
+          vim.keymap.set('n', ';rr', '<cmd>CompetiTest run<CR>', {})
+          vim.keymap.set('n', ';ra', '<cmd>CompetiTest add_testcase<CR>', {})
+          vim.keymap.set('n', ';re', '<cmd>CompetiTest edit_testcase<CR>', {})
+          vim.keymap.set('n', ';ri', '<cmd>CompetiTest receive testcases<CR>', {})
+          vim.keymap.set('n', ';rd', '<cmd>CompetiTest delete_testcase<CR>', {})
+          vim.keymap.set('n', ';rm', function()
             vim.cmd('silent ! rm -f "./%<" && rm -f "./%<"_(in|out)put*.txt')
             vim.notify(' 󰆴 Clearn')
           end, {})
         else
-          vim.keymap.del('n', 'rr', {})
-          vim.keymap.del('n', 'ra', {})
-          vim.keymap.del('n', 're', {})
-          vim.keymap.del('n', 'ri', {})
-          vim.keymap.del('n', 'rd', {})
-          vim.keymap.del('n', 'rm', {})
+          vim.keymap.del('n', ';rr', {})
+          vim.keymap.del('n', ';ra', {})
+          vim.keymap.del('n', ';re', {})
+          vim.keymap.del('n', ';ri', {})
+          vim.keymap.del('n', ';rd', {})
+          vim.keymap.del('n', ';rm', {})
         end
       end, { nargs = 0 })
     end
@@ -145,7 +138,6 @@ return {
   },
   {
     'Kicamon/tool.nvim',
-    events = 'VeryLazy',
     config = function()
       require('tool')
     end
@@ -153,7 +145,7 @@ return {
   {
     'nvimdev/flybuf.nvim',
     lazy = true,
-    keys = '<leader>fb',
+    keys = '<C-l>',
     config = function()
       require('flybuf').setup({
         hotkey = 'asxfghwertyuiopzcvbnm', -- hotkye
@@ -162,7 +154,7 @@ return {
         mark = 'l',                       -- mark as delet or cancel delete
         delete = 'd',                     -- delete marked buffers or buffers which cursor in
       })
-      vim.keymap.set('n', '<leader>fb', '<cmd>FlyBuf<CR>', {})
+      vim.keymap.set('n', '<C-l>', '<cmd>FlyBuf<CR>', {})
     end
   },
   {

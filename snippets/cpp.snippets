@@ -15,7 +15,7 @@ snippet acm
     [[ ⡝⡵⡈⢟⢕⢕⢕⢕⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣿⣿⣿⣿⣿⠿⠋⣀⣈⠙ ]],
     [[ ⡝⡵⡕⡀⠑⠳⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⢉⡠⡲⡫⡪⡪⡣ ]],
     */
-    // #pragma GCC optimize(2)
+    /* #pragma GCC optimize(2) */
     #include <bits/stdc++.h>
     using namespace std;
     #define endl '\n'
@@ -49,7 +49,7 @@ snippet cf
     [[ ⡝⡵⡈⢟⢕⢕⢕⢕⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣿⣿⣿⣿⣿⠿⠋⣀⣈⠙ ]],
     [[ ⡝⡵⡕⡀⠑⠳⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⢉⡠⡲⡫⡪⡪⡣ ]],
     */
-    // #pragma GCC optimize(2)
+    /* #pragma GCC optimize(2) */
     #include <bits/stdc++.h>
     using namespace std;
     #define endl '\n'
@@ -67,8 +67,9 @@ snippet cf
 
         int t;
         cin >> t;
-        while (t--)
+        while (t--){
             solve();
+        }
 
         return 0;
     }

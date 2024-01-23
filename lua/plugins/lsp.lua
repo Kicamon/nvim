@@ -44,7 +44,7 @@ return {
         end
 
         nmap('<leader>pd', '<cmd>Lspsaga peek_definition<CR>', 'Peek Definition')
-        nmap('<leader>pr', '<cmd>Lspsaga finder ref<CR>', '[F]inder')
+        nmap('<leader>pr', '<cmd>Telescope lsp_references<CR>', 'Peek References')
         nmap('<c-k>', '<cmd>Lspsaga hover_doc<CR>', 'Hover Documentation')
         nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, 'Workspace Add Folder')
         nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, 'Workspace Remove Folder')
@@ -183,9 +183,9 @@ return {
           end,
         },
         sources = cmp.config.sources({
+          { name = 'luasnip' },
           { name = 'nvim_lsp' },
           { name = 'nvim_lua' },
-          { name = 'luasnip' },
           { name = 'path' },
           { name = 'buffer' },
         }),

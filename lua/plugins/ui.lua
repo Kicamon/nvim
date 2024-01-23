@@ -117,7 +117,7 @@ return {
       local notify = require("notify")
       vim.notify = notify
       notify.setup({
-        background_colour = "#202020",
+        background_colour = "NONE",
         fps = 60,
         level = 2,
         minimum_width = 30,
@@ -126,12 +126,6 @@ return {
         timeout = 3000,
         top_down = true
       })
-      vim.api.nvim_set_hl(0, 'NotifyRed', { fg = '#ff461f', bg = 'NONE' })
-      vim.api.nvim_set_hl(0, 'NotifyRedBold', { fg = '#ff461f', bg = 'NONE', bold = true })
-      vim.api.nvim_set_hl(0, 'NotifyYellow', { fg = '#d8ff1f', bg = 'NONE' })
-      vim.api.nvim_set_hl(0, 'NotifyYellowBold', { fg = '#d8ff1f', bg = 'NONE', bold = true })
-      vim.api.nvim_set_hl(0, 'NotifyBlue', { fg = '#88abda', bg = 'NONE' })
-      vim.api.nvim_set_hl(0, 'NotifyBlueBold', { fg = '#88abda', bg = 'NONE', bold = true })
     end
   },
   {
@@ -169,5 +163,5 @@ return {
         end
       })
     end
-  }
+  },
 }
