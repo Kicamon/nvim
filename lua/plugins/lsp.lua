@@ -79,13 +79,14 @@ return {
         finder = {
           keys = {
             quit = 'Q',
-            edit = '<C-c>j',
+            edit = '<C-o>',
             toggle_or_open = '<cr>',
           },
         },
         definition = {
           keys = {
-            edit = '<C-c>j',
+            edit = '<C-o>',
+            vsplit = '<C-v>',
           }
         },
         code_action = {

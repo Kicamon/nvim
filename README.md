@@ -58,12 +58,8 @@ leader = `<space>`
 #### 4 buffers and tabs
 | Shortcut | Action               | Mode |
 |----------|----------------------|------|
-| `[` `b`  | Goto previous buffer | n    |
-| `]` `b`  | Goto next buffer     | n    |
-| `t` `u`  | New tab              | n    |
-| `t` `n`  | Goto next tab        | n    |
-| `t` `p`  | Goto previous tab    | n    |
-| `g` `f`  | Goto file new tab    | n    |
+| `t` `n`  | Goto next buffer     | n    |
+| `t` `p`  | Goto previous buffer | n    |
 | `t` `t`  | Open file browser    | n    |
 
 
