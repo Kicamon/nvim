@@ -29,3 +29,4 @@ vim.g.ts_fts = {
   'typescript',
   'vim',
 }
+vim.g.cp = false

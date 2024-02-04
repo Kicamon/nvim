@@ -6,7 +6,6 @@ return {
     dependencies = {
       'MunifTanjim/nui.nvim',
     },
-
     config = function()
       require('competitest').setup({
         runner_ui = {
@@ -21,11 +20,10 @@ return {
           some_lang = { exec = 'some_interpreter', args = { '$(FNAME)' } },
         },
       })
-      local CP = false
       vim.api.nvim_buf_create_user_command(0, 'CP', function()
-        CP = not CP
-        vim.notify('Competitest ' .. (CP and 'Enable' or 'Disable'))
-        if CP then
+        vim.g.cp = not vim.g.cp
+        vim.notify('Competitest ' .. (vim.g.cp and 'Enable' or 'Disable'))
+        if vim.g.cp then
           vim.keymap.set('n', ';rr', '<cmd>CompetiTest run<CR>', {})
           vim.keymap.set('n', ';ra', '<cmd>CompetiTest add_testcase<CR>', {})
           vim.keymap.set('n', ';re', '<cmd>CompetiTest edit_testcase<CR>', {})
