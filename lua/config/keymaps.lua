@@ -52,7 +52,7 @@ local nmappings = {
   -- buffers & tab
   { from = 'tn',               to = '<cmd>tabnext<CR>',                                   mode = mode_n  },
   { from = 'tp',               to = '<cmd>tabprevious<CR>',                               mode = mode_n  },
-  { from = 'tu',               to = '<cmd>tabe<CR>',                                      mode = mode_n  },
+  { from = 'tu',               to = '<cmd>tabnew<CR>',                                    mode = mode_n  },
   { from = 'tt',               to = '<cmd>silent 20 Lex<CR>',                             mode = mode_n  },
 }
 
