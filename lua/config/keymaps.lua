@@ -49,9 +49,10 @@ local nmappings = {
   { from = '<right>',          to = '<cmd>vertical resize+5<CR>',                         mode = mode_n  },
   { from = '<leader>vim',      to = '<cmd>edit ~/.config/nvim/init.lua<CR>',              mode = mode_n  },
 
-  -- buffers & win
-  { from = 'tn',               to = '<cmd>bn<CR>',                                        mode = mode_n  },
-  { from = 'tp',               to = '<cmd>bp<CR>',                                        mode = mode_n  },
+  -- buffers & tab
+  { from = 'tn',               to = '<cmd>tabnext<CR>',                                   mode = mode_n  },
+  { from = 'tp',               to = '<cmd>tabprevious<CR>',                               mode = mode_n  },
+  { from = 'tu',               to = '<cmd>tabe<CR>',                                      mode = mode_n  },
   { from = 'tt',               to = '<cmd>silent 20 Lex<CR>',                             mode = mode_n  },
 }
 
