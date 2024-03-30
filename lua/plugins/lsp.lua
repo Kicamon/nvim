@@ -30,7 +30,7 @@ return {
             },
           },
         },
-        jedi_language_server = {},
+        pyright = {},
         vimls = {},
       }
 

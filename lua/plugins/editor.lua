@@ -45,17 +45,4 @@ return {
       },
     }
   },
-  {
-    'dhruvasagar/vim-table-mode',
-    lazy = true,
-    ft = 'markdown',
-    config = function()
-      vim.g.table_mode_corner = '|'
-      vim.g.table_mode_disable_mappings = 1
-      vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
-        pattern = '*.md',
-        command = 'silent TableModeEnable',
-      })
-    end,
-  },
 }
