@@ -76,7 +76,7 @@ return {
       })
       require('telescope').load_extension('fzy_native')
       local builtin = require('telescope.builtin')
-      vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+      vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>', {})
       vim.keymap.set('n', '<leader>fw', builtin.live_grep, {})
       vim.keymap.set('n', '<leader>fy', builtin.registers, {})
     end
