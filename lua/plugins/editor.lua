@@ -25,6 +25,14 @@ return {
     end
   },
   {
+    'windwp/nvim-ts-autotag',
+    lazy = true,
+    ft = 'html',
+    config = function()
+      require('nvim-ts-autotag').setup()
+    end
+  },
+  {
     'echasnovski/mini.comment',
     lazy = true,
     keys = { 'V', '<leader>cc' },
@@ -34,15 +42,5 @@ return {
         comment_visual = '<leader>cc',
       }
     },
-  },
-  {
-    'echasnovski/mini.align',
-    lazy = true,
-    keys = 'V',
-    opts = {
-      mappings = {
-        start = 'ga',
-      },
-    }
-  },
+  }
 }

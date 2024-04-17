@@ -13,6 +13,7 @@ vim.g.fts = {
   'typescript',
   'json',
   'html',
+  'css',
   'vim',
   'sh',
 }

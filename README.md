@@ -69,6 +69,8 @@ python-pynvim
 bash-language-server
 clang
 vscode-json-languageserver
+vscode-css-languageserver
+vscode-html-languageserver
 lua-language-server
 jedi-language-server
 vim-language-server

@@ -6,12 +6,15 @@ return {
     dependencies = {
       'folke/neodev.nvim',
       'nvimdev/lspsaga.nvim',
+      'pmizio/typescript-tools.nvim',
     },
     config = function()
       local servers = {
         bashls = {},
         clangd = {},
         jsonls = {},
+        html = {},
+        cssls = {},
         lua_ls = {
           settings = {
             Lua = {
@@ -59,6 +62,8 @@ return {
       end
 
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+      require("typescript-tools").setup {}
 
       require('neodev').setup({
         lspconfig = true,
@@ -134,6 +139,9 @@ return {
         'saadparwaiz1/cmp_luasnip',
         dependencies = {
           'L3MON4D3/LuaSnip',
+          dependencies = {
+            'rafamadriz/friendly-snippets',
+          },
         },
       },
       'hrsh7th/cmp-nvim-lua',
@@ -149,6 +157,7 @@ return {
             and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
       end
       require('luasnip.loaders.from_snipmate').lazy_load()
+      require('luasnip.loaders.from_vscode').lazy_load()
       local luasnip = require('luasnip')
       local cmp = require('cmp')
       cmp.setup({
