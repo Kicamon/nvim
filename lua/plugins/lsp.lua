@@ -6,7 +6,6 @@ return {
     dependencies = {
       'folke/neodev.nvim',
       'nvimdev/lspsaga.nvim',
-      'pmizio/typescript-tools.nvim',
     },
     config = function()
       local servers = {
@@ -15,6 +14,7 @@ return {
         jsonls = {},
         html = {},
         cssls = {},
+        tsserver = {},
         lua_ls = {
           settings = {
             Lua = {
@@ -62,8 +62,6 @@ return {
       end
 
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-      require("typescript-tools").setup {}
 
       require('neodev').setup({
         lspconfig = true,

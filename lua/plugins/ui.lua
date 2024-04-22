@@ -185,7 +185,7 @@ return {
             },
           },
           project = {
-            enable = false,
+            enable = true,
           },
           disable_move = false,
         },
