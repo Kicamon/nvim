@@ -42,5 +42,15 @@ return {
         comment_visual = '<leader>cc',
       }
     },
-  }
+  },
+  {
+    'echasnovski/mini.align',
+    lazy = true,
+    keys = 'V',
+    opts = {
+      mappings = {
+        start = 'ga',
+      },
+    }
+  },
 }

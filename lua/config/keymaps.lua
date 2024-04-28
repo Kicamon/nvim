@@ -25,11 +25,6 @@ local nmappings = {
   { from = 'J',                to = '<c-d>',                                              mode = mode_n  },
   { from = 'K',                to = '<c-u>',                                              mode = mode_n  },
   { from = 'L',                to = '$',                                                  mode = mode_nv },
-  { from = '<A-l>',            to = '<Right>',                                            mode = mode_i  },
-  { from = '<A-j>',            to = '<cmd>m .+1<cr>==',                                   mode = mode_n  },
-  { from = '<A-k>',            to = '<cmd>m .-2<cr>==',                                   mode = mode_n  },
-  { from = '<A-j>',            to = ':m \'>+1<cr>gv=gv',                                  mode = mode_v  },
-  { from = '<A-k>',            to = ':m \'<-2<cr>gv=gv',                                  mode = mode_v  },
 
   -- windows splits
   { from = 'sh',               to = '<cmd>set nosplitright<CR>:vsplit<CR>',               mode = mode_n  },
@@ -39,10 +34,6 @@ local nmappings = {
   { from = 'smv',              to = '<C-w>t<c-W>H',                                       mode = mode_n  },
   { from = 'smh',              to = '<C-w>t<c-W>K',                                       mode = mode_n  },
   { from = '<leader>W',        to = '<c-w>w',                                             mode = mode_n  },
-  { from = '<leader>h',        to = '<c-w>h',                                             mode = mode_n  },
-  { from = '<leader>j',        to = '<c-w>j',                                             mode = mode_n  },
-  { from = '<leader>k',        to = '<c-w>k',                                             mode = mode_n  },
-  { from = '<leader>l',        to = '<c-w>l',                                             mode = mode_n  },
   { from = '<up>',             to = '<cmd>res +5<CR>',                                    mode = mode_n  },
   { from = '<down>',           to = '<cmd>res -5<CR>',                                    mode = mode_n  },
   { from = '<left>',           to = '<cmd>vertical resize-5<CR>',                         mode = mode_n  },

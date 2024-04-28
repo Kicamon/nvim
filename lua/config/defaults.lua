@@ -46,7 +46,7 @@ vim.opt.updatetime = 100
 vim.opt.redrawtime = 1500
 
 vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile', 'FileType' }, {
-  pattern = { 'c', 'cpp', 'txt', 'c.snippets', 'cpp.snippets' },
+  pattern = { 'c', 'cpp', 'text' },
   callback = function()
     vim.opt_local.tabstop = 4
     vim.opt_local.shiftwidth = 4

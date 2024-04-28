@@ -90,7 +90,7 @@ return {
       user_default_options = {
         RGB = true,           -- #RGB hex codes
         RRGGBB = true,        -- #RRGGBB hex codes
-        names = true,        -- 'Name' codes like Blue or blue
+        names = true,         -- 'Name' codes like Blue or blue
         RRGGBBAA = true,      -- #RRGGBBAA hex codes
         AARRGGBB = true,      -- 0xAARRGGBB hex codes
         rgb_fn = false,       -- CSS rgb() and rgba() functions
@@ -115,7 +115,7 @@ return {
     opts = {},
     keys = {
       {
-        '<c-j>',
+        '<A-j>',
         mode = 'n',
         function()
           require('flash').jump()
@@ -138,21 +138,6 @@ return {
     'Kicamon/tool.nvim',
     config = function()
       require('tool')
-    end
-  },
-  {
-    'nvimdev/flybuf.nvim',
-    lazy = true,
-    keys = '<C-l>',
-    config = function()
-      require('flybuf').setup({
-        hotkey = 'asxfghwertyuiopzcvbnm', -- hotkye
-        border = 'rounded',               -- border
-        quit = 'q',                       -- quit flybuf window
-        mark = 'l',                       -- mark as delet or cancel delete
-        delete = 'd',                     -- delete marked buffers or buffers which cursor in
-      })
-      vim.keymap.set('n', '<C-l>', '<cmd>FlyBuf<CR>', {})
     end
   },
   {
@@ -188,6 +173,12 @@ return {
           }), wilder.search_pipeline()
         ),
       })
+    end
+  },
+  {
+    'aserowy/tmux.nvim',
+    config = function()
+      require('tmux').setup()
     end
   },
 }
