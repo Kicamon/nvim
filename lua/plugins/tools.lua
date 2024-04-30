@@ -78,7 +78,6 @@ return {
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>', {})
       vim.keymap.set('n', '<leader>fw', builtin.live_grep, {})
-      vim.keymap.set('n', '<leader>fy', builtin.registers, {})
     end
   },
   {
@@ -88,34 +87,29 @@ return {
     opts = {
       filetypes = { '*' },
       user_default_options = {
-        RGB = true,           -- #RGB hex codes
-        RRGGBB = true,        -- #RRGGBB hex codes
-        names = true,         -- 'Name' codes like Blue or blue
-        RRGGBBAA = true,      -- #RRGGBBAA hex codes
-        AARRGGBB = true,      -- 0xAARRGGBB hex codes
-        rgb_fn = false,       -- CSS rgb() and rgba() functions
-        hsl_fn = false,       -- CSS hsl() and hsla() functions
-        css = true,           -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-        css_fn = true,        -- Enable all CSS *functions*: rgb_fn, hsl_fn
-        -- Available modes for `mode`: foreground, background,  virtualtext
-        mode = 'virtualtext', -- Set the display mode.
-        -- Available methods are false / true / "normal" / "lsp" / "both"
-        -- True is same as normal
+        RGB = true,
+        RRGGBB = true,
+        names = true,
+        RRGGBBAA = true,
+        AARRGGBB = true,
+        rgb_fn = false,
+        hsl_fn = false,
+        css = true,
+        css_fn = true,
+        mode = 'virtualtext',
         tailwind = true,
         sass = { enable = false },
         virtualtext = '■',
       },
-      -- all the sub-options of filetypes apply to buftypes
       buftypes = {},
     }
   },
   {
     'folke/flash.nvim',
     lazy = true,
-    opts = {},
     keys = {
       {
-        '<A-j>',
+        '<space>J',
         mode = 'n',
         function()
           require('flash').jump()
@@ -154,15 +148,15 @@ return {
       wilder.set_option('renderer', wilder.popupmenu_renderer(
         wilder.popupmenu_palette_theme({
           highlights = {
-            border = 'Normal', -- highlight to use for the border
+            border = 'Normal',
           },
           left = { ' ', wilder.popupmenu_devicons() },
           right = { ' ', wilder.popupmenu_scrollbar() },
           border = 'rounded',
-          max_height = '75%',      -- max height of the palette
-          min_height = 0,          -- set to the same as 'max_height' for a fixed height window
-          prompt_position = 'top', -- 'top' or 'bottom' to set the location of the prompt
-          reverse = 0,             -- set to 1 to reverse the order of the list, use in combination with 'prompt_position'
+          max_height = '75%',
+          min_height = 0,
+          prompt_position = 'top',
+          reverse = 0,
         })
       ))
       wilder.set_option('pipeline', {
@@ -176,7 +170,18 @@ return {
     end
   },
   {
+    "voldikss/vim-translator",
+    lazy = true,
+    keys = '<leader>tr',
+    config = function()
+      vim.keymap.set("n", "<leader>tr", "<Plug>TranslateW", {})
+      vim.keymap.set("v", "<leader>tr", "<Plug>TranslateWV", {})
+    end,
+  },
+  {
     'aserowy/tmux.nvim',
+    lazy = true,
+    keys = { '<C-h>', '<C-j>', '<C-k>', '<C-l>', '<A-h>', '<A-j>', '<A-k>', '<A-l>' },
     config = function()
       require('tmux').setup()
     end

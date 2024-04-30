@@ -48,7 +48,7 @@ return {
 
         nmap('<leader>pd', '<cmd>Lspsaga peek_definition<CR>', 'Peek Definition')
         nmap('<leader>pr', '<cmd>Telescope lsp_references<CR>', 'Peek References')
-        nmap('<c-k>', '<cmd>Lspsaga hover_doc<CR>', 'Hover Documentation')
+        nmap('<C-k>', '<cmd>Lspsaga hover_doc<CR>', 'Hover Documentation')
         nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, 'Workspace Add Folder')
         nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, 'Workspace Remove Folder')
         nmap('<leader>wl', function()

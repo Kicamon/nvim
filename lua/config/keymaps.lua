@@ -25,6 +25,7 @@ local nmappings = {
   { from = 'J',                to = '<c-d>',                                              mode = mode_n  },
   { from = 'K',                to = '<c-u>',                                              mode = mode_n  },
   { from = 'L',                to = '$',                                                  mode = mode_nv },
+  { from = '<C-l>',            to = '<Right>',                                            mode = mode_i  },
 
   -- windows splits
   { from = 'sh',               to = '<cmd>set nosplitright<CR>:vsplit<CR>',               mode = mode_n  },
@@ -34,10 +35,6 @@ local nmappings = {
   { from = 'smv',              to = '<C-w>t<c-W>H',                                       mode = mode_n  },
   { from = 'smh',              to = '<C-w>t<c-W>K',                                       mode = mode_n  },
   { from = '<leader>W',        to = '<c-w>w',                                             mode = mode_n  },
-  { from = '<up>',             to = '<cmd>res +5<CR>',                                    mode = mode_n  },
-  { from = '<down>',           to = '<cmd>res -5<CR>',                                    mode = mode_n  },
-  { from = '<left>',           to = '<cmd>vertical resize-5<CR>',                         mode = mode_n  },
-  { from = '<right>',          to = '<cmd>vertical resize+5<CR>',                         mode = mode_n  },
   { from = '<leader>vim',      to = '<cmd>edit ~/.config/nvim/init.lua<CR>',              mode = mode_n  },
 
   -- buffers & tab
