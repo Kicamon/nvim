@@ -10,7 +10,13 @@ return {
     config = function()
       local servers = {
         bashls = {},
-        clangd = {},
+        clangd = {
+          cmd = {
+            "clangd",
+            "--background-index",
+            "--header-insertion=never",
+          }
+        },
         jsonls = {},
         html = {},
         cssls = {},
