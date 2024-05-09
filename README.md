@@ -7,7 +7,7 @@
 
 ### Keyboard Shortcuts
 
-leader = `<space>`
+`<leader> = <space>`
 
 #### 1 Base
 | Shortcut           | Action                                 | Mode |
@@ -79,6 +79,7 @@ leader = `<space>`
 | `<S-Tab>`    | Select prev item     | i, s |
 | `<CR>`       | Accept selected item | i    |
 | `<F5>`       | Code runing          | n    |
+| `<leader>cc` | Comment code         | n    |
 
 ##### 6.1 Lsp
 | Shortcut     | Action                                     | Mode |
@@ -121,8 +122,19 @@ leader = `<space>`
 ##### 7.2 Telescope
 | Shortcut     | Action                                | Mode |
 |--------------|---------------------------------------|------|
-| `<leader>ff` | Fuzzy search files with filename      | n    |
-| `<leader>fw` | Fuzzy search files with  file content | n    |
+| `<leader>ff` | Fuzzy search files with file name     | n    |
+| `<leader>fw` | Fuzzy search files with file content  | n    |
+| `<leader>fb` | Fuzzy search buffers with buffer name | n    |
+
+#### 8 Other tools
+| Shortcut     | Action                                                             | Mode |
+|--------------|--------------------------------------------------------------------|------|
+| `<leader>tr` | Translator                                                         | n    |
+| `:Chdir`     | Jump to the directory where the current buffer                     | n    |
+| `<leader>N`  | Get treesitter node in current                                     | n    |
+| `<cr>`       | Quickly select the closest text object among a group of candidates | n    |
+| `<leader>ww` | Note manager                                                       | n    |
+| `<cr>`       | Create or enter note in wiki                                       | n    |
 
 
 ### Install
@@ -135,7 +147,7 @@ vscode-css-languageserver
 vscode-html-languageserver
 typescript-language-server
 lua-language-server
-jedi-language-server
+pyright
 vim-language-server
 python-black
 yarn
