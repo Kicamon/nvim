@@ -43,14 +43,4 @@ return {
       }
     },
   },
-  {
-    'echasnovski/mini.align',
-    lazy = true,
-    keys = 'V',
-    opts = {
-      mappings = {
-        start = 'ga',
-      },
-    }
-  },
 }
