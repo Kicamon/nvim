@@ -22,6 +22,7 @@ vim.opt.conceallevel = 0
 vim.opt.showtabline = 1
 vim.opt.laststatus = 3
 vim.opt.signcolumn = 'yes'
+vim.opt.breakindent = true
 vim.opt.spelloptions = 'camel'
 vim.opt.foldmethod = 'indent'
 vim.opt.foldlevel = 99
@@ -40,6 +41,7 @@ vim.opt.fillchars = {
 }
 vim.opt.cmdheight = 0
 vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
 vim.opt.colorcolumn = '0'
 vim.opt.undofile = true
 vim.opt.updatetime = 100
