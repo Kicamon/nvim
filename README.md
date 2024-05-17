@@ -79,7 +79,7 @@
 | `<S-Tab>`    | Select prev item     | i, s |
 | `<CR>`       | Accept selected item | i    |
 | `<F5>`       | Code runing          | n    |
-| `<leader>cc` | Comment code         | n    |
+| `<leader>cc` | Comment code         | n, v |
 
 ##### 6.1 Lsp
 | Shortcut     | Action                                     | Mode |
@@ -88,7 +88,7 @@
 | `<C-o>`      | Edit selected definition                   | n    |
 | `<C-v>`      | Vsplit and edit selected definition        | n    |
 | `<leader>pr` | Peek references with telescope             | n    |
-| `<C-k>`      | Show hover doc with lspsaga                | n    |
+| `<leader>K`  | Show hover doc with lspsaga                | n    |
 | `<leader>wa` | Add workspace folder                       | n    |
 | `<leader>wr` | Remove workspace folder                    | n    |
 | `<leader>wl` | List workspace folders                     | n    |
