@@ -55,6 +55,7 @@ return {
           'toggleterm',
           'lazyterm',
           'markdown',
+          'text',
         }
       })
     end,
