@@ -28,6 +28,7 @@ vim.opt.foldmethod = 'indent'
 vim.opt.foldlevel = 99
 vim.opt.list = true
 vim.opt.listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←'
+vim.opt.completeopt = "menu,menuone,noselect,popup"
 vim.opt.fillchars = {
   stl = ' ',
   stlnc = '-',

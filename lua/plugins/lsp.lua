@@ -4,10 +4,19 @@ return {
     lazy = true,
     ft = vim.g.fts,
     dependencies = {
-      'folke/neodev.nvim',
       'nvimdev/lspsaga.nvim',
     },
     config = function()
+      vim.diagnostic.config({
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = '🤣',
+            [vim.diagnostic.severity.WARN] = '🧐',
+            [vim.diagnostic.severity.INFO] = '🫠',
+            [vim.diagnostic.severity.HINT] = '🤔',
+          }
+        }
+      })
       local servers = {
         bashls = {},
         clangd = {
@@ -29,12 +38,22 @@ return {
           settings = {
             Lua = {
               diagnostics = {
-                globals = {
-                  'vim',
-                  'require',
+                unusedLocalExclude = { '_*' },
+                globals = { 'vim' },
+                disable = {
+                  'luadoc-miss-see-name',
+                  'undefined-field',
                 },
               },
+              runtime = {
+                version = 'LuaJIT',
+              },
               workspace = {
+                library = {
+                  vim.env.VIMRUNTIME .. '/lua',
+                  '${3rd}/busted/library',
+                  '${3rd}/luv/library',
+                },
                 checkThirdParty = false,
               },
               completion = {
@@ -72,15 +91,6 @@ return {
       end
 
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-      require('neodev').setup({
-        lspconfig = true,
-        override = function(_, library)
-          library.enabled = true
-          library.plugins = true
-          library.types = true
-        end,
-      })
 
       require('lspsaga').setup({
         outline = {
@@ -152,7 +162,6 @@ return {
           },
         },
       },
-      'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'onsails/lspkind.nvim',
@@ -231,7 +240,6 @@ return {
           end, { 'i', 's' }),
           ['<CR>'] = cmp.mapping.confirm({ select = false }),
         }),
-
         experimental = {
           ghost_text = true,
         },
