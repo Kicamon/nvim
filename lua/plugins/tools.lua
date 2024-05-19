@@ -78,7 +78,6 @@ return {
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>', {})
       vim.keymap.set('n', '<leader>fw', builtin.live_grep, {})
-      vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
     end
   },
   {
@@ -110,7 +109,7 @@ return {
     lazy = true,
     keys = {
       {
-        '<space>J',
+        '<space>j',
         mode = 'n',
         function()
           require('flash').jump()
@@ -218,6 +217,21 @@ return {
     ft = 'html',
     config = function()
       require('nvim-ts-autotag').setup()
+    end
+  },
+  {
+    'nvimdev/flybuf.nvim',
+    lazy = true,
+    keys = '<leader>b',
+    config = function()
+      require('flybuf').setup({
+        hotkey = 'asxfghwertyuiopzcvbnm',   -- hotkye
+        border = 'rounded',                 -- border
+        quit = 'q',                         -- quit flybuf window
+        mark = 'l',                         -- mark as delet or cancel delete
+        delete = 'd',                       -- delete marked buffers or buffers which cursor in
+      })
+      vim.keymap.set('n', '<leader>b', '<cmd>FlyBuf<CR>', {})
     end
   },
 }
