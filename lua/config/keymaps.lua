@@ -4,7 +4,7 @@ local nmappings  = {
   { mode = { 'n' },      lhs = 'B',                rhs = '<cmd>bd<CR>',                           opts = { noremap = true } },
   { mode = { 'v' },      lhs = 'N',                rhs = ':normal ',                              opts = { noremap = true } },
   { mode = { 'v' },      lhs = 'Y',                rhs = '"+y',                                   opts = { noremap = true } },
-  { mode = { 'n' },      lhs = 'ca',               rhs = '<cmd>silent %+y<CR>',                   opts = { noremap = true } },
+  { mode = { 'n' },      lhs = 'ca',               rhs = '<cmd>silent %y+<CR>',                   opts = { noremap = true } },
   { mode = { 'n' },      lhs = '<leader>sc',       rhs = '<cmd>set spell!<CR>',                   opts = { noremap = true } },
   { mode = { 'n' },      lhs = '<leader>sw',       rhs = '<cmd>set wrap!<CR>',                    opts = { noremap = true } },
   { mode = { 'n' },      lhs = '<leader><cr>',     rhs = '<cmd>noh<CR>',                          opts = { noremap = true } },
