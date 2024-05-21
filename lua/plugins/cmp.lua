@@ -8,14 +8,10 @@ return {
       'saadparwaiz1/cmp_luasnip',
       dependencies = {
         'L3MON4D3/LuaSnip',
-        dependencies = {
-          'rafamadriz/friendly-snippets',
-        },
       },
     },
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
-    'onsails/lspkind.nvim',
   },
   config = function()
     local has_words_before = function()
@@ -24,9 +20,36 @@ return {
       return col ~= 0
           and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
     end
-    require('luasnip.loaders.from_snipmate').lazy_load()
-    require('luasnip.loaders.from_vscode').lazy_load()
+    local cmp_kinds = {
+      Text = " 󰉿 ",
+      Method = " 󰆧 ",
+      Function = " 󰊕 ",
+      Constructor = "  ",
+      Field = " 󰜢 ",
+      Variable = " 󰀫 ",
+      Class = " 󰠱 ",
+      Interface = "  ",
+      Module = "  ",
+      Property = " 󰜢 ",
+      Unit = " 󰑭 ",
+      Value = " 󰎠 ",
+      Enum = "  ",
+      Keyword = " 󰌋 ",
+      Snippet = "  ",
+      Color = " 󰏘 ",
+      File = " 󰈙 ",
+      Reference = " 󰈇 ",
+      Folder = " 󰉋 ",
+      EnumMember = "  ",
+      Constant = " 󰏿 ",
+      Struct = " 󰙅 ",
+      Event = "  ",
+      Operator = " 󰆕 ",
+      TypeParameter = " 󰅲 ",
+    }
     local luasnip = require('luasnip')
+    require('luasnip.loaders.from_snipmate').lazy_load()
+    require('luasnip.loaders.from_vscode').lazy_load({ paths = '~/.config/nvim/snippets' })
     local cmp = require('cmp')
     cmp.setup({
       window = {
@@ -45,14 +68,10 @@ return {
       },
       formatting = {
         fields = { 'kind', 'abbr', 'menu' },
-        format = function(entry, vim_item)
-          local kind =
-              require('lspkind').cmp_format({ mode = 'symbol_text', maxwidth = 50 })(entry, vim_item)
-          local strings = vim.split(kind.kind, '%s', { trimempty = true })
-          kind.kind = ' ' .. (strings[1] or '') .. ' '
-          kind.menu = ' ' .. (strings[2] or '')
-
-          return kind
+        format = function(_, vim_item)
+          vim_item.menu = ' ' .. (vim_item.kind or '')
+          vim_item.kind = cmp_kinds[vim_item.kind] or ''
+          return vim_item
         end,
       },
       snippet = {
@@ -61,9 +80,8 @@ return {
         end,
       },
       sources = cmp.config.sources({
-        { name = 'luasnip' },
         { name = 'nvim_lsp' },
-        { name = 'nvim_lua' },
+        { name = 'luasnip' },
         { name = 'path' },
         { name = 'buffer' },
       }),

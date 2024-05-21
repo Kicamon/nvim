@@ -29,5 +29,6 @@ vim.g.ts_fts = {
   'python',
   'typescript',
   'vim',
+  'json',
 }
 vim.g.cp = false
