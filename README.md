@@ -55,11 +55,13 @@
 | `<A-l>`  | Resize pane right                                                           | n    |
 
 #### 4 Buffers and tabs
-| Shortcut | Action               | Mode |
-|----------|----------------------|------|
-| `tn`     | Goto next buffer     | n    |
-| `tp`     | Goto previous buffer | n    |
-| `tt`     | Open file browser    | n    |
+| Shortcut | Action            | Mode |
+|----------|-------------------|------|
+| `tn`     | Goto next tab     | n    |
+| `tp`     | Goto previous tab | n    |
+| `tmn`    | Move tab previous | n    |
+| `tmp`    | Move tab next     | n    |
+| `tt`     | Open file browser | n    |
 
 #### 5 Edite
 | Shortcut     | Action                     | Mode |
@@ -74,12 +76,11 @@
 | Shortcut     | Action               | Mode |
 |--------------|----------------------|------|
 | `;f`         | Formating code       | n    |
-| `<leader>cc` | Comment code visual  | n, v |
+| `<leader>cc` | Comment code         | n, v |
 | `<Tab>`      | Select next item     | i, s |
 | `<S-Tab>`    | Select prev item     | i, s |
 | `<CR>`       | Accept selected item | i    |
 | `<F5>`       | Code runing          | n    |
-| `<leader>cc` | Comment code         | n, v |
 
 ##### 6.1 Lsp
 | Shortcut     | Action                                     | Mode |
@@ -110,21 +111,16 @@
 | `;rm`    | Remove all testcase        | n    |
 
 #### 7 File Explorer
-##### 7.1 Ranger
-| Shortcut     | Action                     | Mode |
-|--------------|----------------------------|------|
-| `<leader>ra` | Edit file                  | n    |
-| `<leader>rh` | Split left and edit file   | n    |
-| `<leader>rj` | Split bottom and edit file | n    |
-| `<leader>rk` | Split top and edit file    | n    |
-| `<leader>rl` | Split right and edit file  | n    |
-
-##### 7.2 Telescope
-| Shortcut     | Action                                | Mode |
-|--------------|---------------------------------------|------|
-| `<leader>ff` | Fuzzy search files with file name     | n    |
-| `<leader>fw` | Fuzzy search files with file content  | n    |
-| `<leader>fb` | Fuzzy search buffers with buffer name | n    |
+| Shortcut     | Action                               | Mode |
+|--------------|--------------------------------------|------|
+| `<leader>ra` | Edit file                            | n    |
+| `<leader>rh` | Split left and edit file             | n    |
+| `<leader>rj` | Split bottom and edit file           | n    |
+| `<leader>rk` | Split top and edit file              | n    |
+| `<leader>rl` | Split right and edit file            | n    |
+| `<leader>ff` | Fuzzy search files with file name    | n    |
+| `<leader>fw` | Fuzzy search files with file content | n    |
+| `<leader>b`  | Flaybuf                              | n    |
 
 #### 8 Other tools
 | Shortcut     | Action                                                             | Mode |
@@ -139,20 +135,22 @@
 
 ### Install
 ```shell
-python-pynvim
 bash-language-server
 clang
-vscode-json-languageserver
-vscode-css-languageserver
-vscode-html-languageserver
-typescript-language-server
+fd
+lua
 lua-language-server
 pyright
-vim-language-server
+python
 python-black
-yarn
-fd
+python-pynvim
 ripgrep
+typescript-language-server
+vscode-css-languageserver
+vscode-html-languageserver
+vscode-json-languageserver
+vim-language-server
+yarn
 ```
 
 

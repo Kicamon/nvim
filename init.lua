@@ -1,4 +1,4 @@
 require("config.defaults")
 require("config.keymaps")
 require("config.plugins")
-require("functiontest")
+-- require("functiontest")
