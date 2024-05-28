@@ -109,7 +109,7 @@ return {
     lazy = true,
     keys = {
       {
-        '<space>j',
+        's',
         mode = 'n',
         function()
           require('flash').jump()

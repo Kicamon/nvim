@@ -6,25 +6,36 @@ return {
     'nvimdev/lspsaga.nvim',
   },
   config = function()
-    vim.diagnostic.config({
-      signs = {
-        text = {
-          [vim.diagnostic.severity.ERROR] = '🤣',
-          [vim.diagnostic.severity.WARN] = '🧐',
-          [vim.diagnostic.severity.INFO] = '🫠',
-          [vim.diagnostic.severity.HINT] = '🤔',
-        }
-      }
-    })
     local servers = {
       bashls = {},
       clangd = {
+        capabilities = {
+          textDocument = {
+            completion = {
+              completionItem = {
+                snippetSupport = false,
+              },
+            },
+          },
+        },
         cmd = {
           "clangd",
           "--background-index",
           "--header-insertion=never",
           "--header-insertion-decorators=false",
-        }
+        },
+        root_dir = function(fname)
+          return require("lspconfig").util.root_pattern(unpack({
+            --reorder
+            'Makefile',
+            'compile_commands.json',
+            '.clangd',
+            '.clang-tidy',
+            '.clang-format',
+            'compile_flags.txt',
+            'configure.ac', -- AutoTools
+          }))(fname) or require("lspconfig").util.find_git_ancestor(fname)
+        end,
       },
       jsonls = {},
       html = {},
@@ -90,8 +101,6 @@ return {
       nmap('d]', vim.diagnostic.goto_next, 'Diangostics Next')
     end
 
-    local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
     require('lspsaga').setup({
       outline = {
         keys = {
@@ -119,16 +128,41 @@ return {
       },
     })
 
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+    -- local capabilities = vim.tbl_deep_extend(
+    --   'force',
+    --   vim.lsp.protocol.make_client_capabilities(),
+    --   require('epo').register_cap()
+    -- )
+
     for server, config in pairs(servers) do
-      require('lspconfig')[server].setup(vim.tbl_deep_extend('keep', {
+      require('lspconfig')[server].setup(vim.tbl_deep_extend('force', {
         on_attach = on_attach,
         capabilities = capabilities,
       }, config))
     end
 
+    vim.lsp.handlers['workspace/diagnostic/refresh'] = function(_, _, ctx)
+      local ns = vim.lsp.diagnostic.get_namespace(ctx.client_id)
+      local bufnr = vim.api.nvim_get_current_buf()
+      vim.diagnostic.reset(ns, bufnr)
+      return true
+    end
+
     vim.diagnostic.config({
       virtual_text = {
         prefix = '❯',
+      }
+    })
+
+    vim.diagnostic.config({
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = '🤣',
+          [vim.diagnostic.severity.WARN] = '🧐',
+          [vim.diagnostic.severity.INFO] = '🫠',
+          [vim.diagnostic.severity.HINT] = '🤔',
+        }
       }
     })
 

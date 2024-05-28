@@ -20,7 +20,7 @@ return {
       return col ~= 0
           and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
     end
-    local cmp_kinds = {
+    local kind_icons = {
       Text = " 󰉿 ",
       Method = " 󰆧 ",
       Function = " 󰊕 ",
@@ -48,7 +48,6 @@ return {
       TypeParameter = " 󰅲 ",
     }
     local luasnip = require('luasnip')
-    require('luasnip.loaders.from_snipmate').lazy_load()
     require('luasnip.loaders.from_vscode').lazy_load({ paths = '~/.config/nvim/snippets' })
     local cmp = require('cmp')
     cmp.setup({
@@ -70,7 +69,7 @@ return {
         fields = { 'kind', 'abbr', 'menu' },
         format = function(_, vim_item)
           vim_item.menu = ' ' .. (vim_item.kind or '')
-          vim_item.kind = cmp_kinds[vim_item.kind] or ''
+          vim_item.kind = kind_icons[vim_item.kind] or ''
           return vim_item
         end,
       },

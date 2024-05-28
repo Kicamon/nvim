@@ -21,13 +21,6 @@
         "path": "./cpp/cpp.json"
       },
       {
-        "language": [
-          "gitcommit",
-          "NeogitCommitMessage"
-        ],
-        "path": "./gitcommit.json"
-      },
-      {
         "language": "lua",
         "path": "./lua/lua.json"
       },
@@ -155,45 +148,6 @@
       {
         "language": "pydoc",
         "path": "./python/pydoc.json"
-      },
-      {
-        "language": "django",
-        "path": "./frameworks/django/admin.json"
-      },
-      {
-        "language": "django",
-        "path": "./frameworks/django/forms.json"
-      },
-      {
-        "language": "django",
-        "path": "./frameworks/django/models.json"
-      },
-      {
-        "language": "django",
-        "path": "./frameworks/django/tags.json"
-      },
-      {
-        "language": "django",
-        "path": "./frameworks/django/urls.json"
-      },
-      {
-        "language": "django",
-        "path": "./frameworks/django/views.json"
-      },
-      {
-        "language": [
-          "djangohtml",
-          "htmldjango"
-        ],
-        "path": "./frameworks/djangohtml.json"
-      },
-      {
-        "language": "django-rest",
-        "path": "./frameworks/django/django_rest/serializers.json"
-      },
-      {
-        "language": "django-rest",
-        "path": "./frameworks/django/django_rest/views.json"
       }
     ]
   }

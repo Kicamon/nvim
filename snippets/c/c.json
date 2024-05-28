@@ -238,7 +238,8 @@
   "do...while": {
     "prefix": "do",
     "body": [
-      "do {$0",
+      "do {",
+      "\t$0",
       "} while (${1:false});"
     ],
     "description": "do...while loop snippet"
