@@ -56,6 +56,21 @@ local MdSnippets = {
   { lhs = '·3',               rhs = '###<Space><Enter><++><Esc>kA' },
   { lhs = '·4',               rhs = '####<Space><Enter><++><Esc>kA' },
   { lhs = '·5',               rhs = '#####<Space><Enter><++><Esc>kA' },
+  { lhs = ',b',               rhs = '****<++><Esc>F*hi' },
+  { lhs = ',s',               rhs = '~~~~<++><Esc>F~hi' },
+  { lhs = ',i',               rhs = '**<++><Esc>F*i' },
+  { lhs = ',d',               rhs = '``<++><Esc>F`i' },
+  { lhs = ',c',               rhs = '```<Enter><++><Enter>```<Enter><Enter><++><Esc>4kA' },
+  { lhs = ',m',               rhs = '- [ ] ' },
+  { lhs = ',p',               rhs = '![](<++>)<++><Esc>F[a' },
+  { lhs = ',a',               rhs = '[](<++>)<++><Esc>F[a' },
+  { lhs = ',l',               rhs = '--- ' },
+  { lhs = ',t',               rhs = '[toc]' },
+  { lhs = ',1',               rhs = '#<Space><Enter><++><Esc>kA' },
+  { lhs = ',2',               rhs = '##<Space><Enter><++><Esc>kA' },
+  { lhs = ',3',               rhs = '###<Space><Enter><++><Esc>kA' },
+  { lhs = ',4',               rhs = '####<Space><Enter><++><Esc>kA' },
+  { lhs = ',5',               rhs = '#####<Space><Enter><++><Esc>kA' },
 }
 
 
