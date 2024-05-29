@@ -75,6 +75,6 @@ api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank({ higroup = 'Visual', timeout = 200 })
   end
 })
-api.nvim_create_autocmd('FileType', { command = 'setlocal formatoptions-=ro' })
+api.nvim_create_autocmd('VimEnter', { command = 'set formatoptions-=ro' })
 
 require('user.user')
