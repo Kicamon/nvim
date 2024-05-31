@@ -56,6 +56,7 @@ return {
           'lazyterm',
           'markdown',
           'text',
+          'Yazi',
         }
       })
     end,
