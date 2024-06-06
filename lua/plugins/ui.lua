@@ -63,11 +63,9 @@ return {
   },
   {
     'nvim-treesitter/nvim-treesitter',
-    lazy = true,
-    ft = vim.tbl_deep_extend('keep', {
-      'sh',
-    }, vim.g.ts_fts),
     build = ':TSUpdate',
+    lazy = true,
+    event = 'BufRead',
     config = function()
       require('nvim-treesitter.configs').setup({
         ensure_installed = vim.g.ts_fts,

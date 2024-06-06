@@ -30,5 +30,6 @@ vim.g.ts_fts = {
   'typescript',
   'vim',
   'json',
+  'vimdoc',
 }
 vim.g.cp = false
