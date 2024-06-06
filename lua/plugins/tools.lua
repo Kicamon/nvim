@@ -215,11 +215,11 @@ return {
     keys = '<leader>b',
     config = function()
       require('flybuf').setup({
-        hotkey = 'asxfghwertyuiopzcvbnm',   -- hotkye
-        border = 'rounded',                 -- border
-        quit = 'q',                         -- quit flybuf window
-        mark = 'l',                         -- mark as delet or cancel delete
-        delete = 'd',                       -- delete marked buffers or buffers which cursor in
+        hotkey = 'asxfghwertyuiopzcvbnm', -- hotkye
+        border = 'rounded',               -- border
+        quit = 'q',                       -- quit flybuf window
+        mark = 'l',                       -- mark as delet or cancel delete
+        delete = 'd',                     -- delete marked buffers or buffers which cursor in
       })
       vim.keymap.set('n', '<leader>b', '<cmd>FlyBuf<CR>', {})
     end

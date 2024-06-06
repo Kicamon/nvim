@@ -1,5 +1,6 @@
 return {
   'hrsh7th/nvim-cmp',
+  pin = true,
   lazy = true,
   event = 'LspAttach',
   dependencies = {

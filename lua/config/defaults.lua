@@ -29,7 +29,6 @@ opt.foldmethod = 'indent'
 opt.foldlevel = 99
 opt.winwidth = 25
 opt.pumheight = 15
-opt.textwidth = 80
 opt.list = true
 opt.listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←'
 opt.completeopt = "menu,menuone,noselect,popup"
