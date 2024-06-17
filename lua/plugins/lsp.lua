@@ -129,11 +129,6 @@ return {
     })
 
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
-    -- local capabilities = vim.tbl_deep_extend(
-    --   'force',
-    --   vim.lsp.protocol.make_client_capabilities(),
-    --   require('epo').register_cap()
-    -- )
 
     for server, config in pairs(servers) do
       require('lspconfig')[server].setup(vim.tbl_deep_extend('force', {
