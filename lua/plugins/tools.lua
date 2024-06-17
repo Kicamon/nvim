@@ -2,7 +2,7 @@ return {
   {
     'xeluxee/competitest.nvim',
     lazy = true,
-    cmd = 'CP',
+    cmd = 'CompetiTest',
     dependencies = {
       'MunifTanjim/nui.nvim',
     },
@@ -20,34 +20,11 @@ return {
           some_lang = { exec = 'some_interpreter', args = { '$(FNAME)' } },
         },
       })
-      vim.api.nvim_buf_create_user_command(0, 'CP', function()
-        vim.g.cp = not vim.g.cp
-        vim.notify('Competitest ' .. (vim.g.cp and 'Enable' or 'Disable'))
-        if vim.g.cp then
-          vim.keymap.set('n', ';rr', '<cmd>CompetiTest run<CR>', {})
-          vim.keymap.set('n', ';ra', '<cmd>CompetiTest add_testcase<CR>', {})
-          vim.keymap.set('n', ';re', '<cmd>CompetiTest edit_testcase<CR>', {})
-          vim.keymap.set('n', ';ri', '<cmd>CompetiTest receive testcases<CR>', {})
-          vim.keymap.set('n', ';rd', '<cmd>CompetiTest delete_testcase<CR>', {})
-          vim.keymap.set('n', ';rm', function()
-            vim.cmd('silent ! rm -f "./%<" && rm -f "./%<"_(in|out)put*.txt')
-            vim.notify(' 󰆴 Clearn')
-          end, {})
-        else
-          vim.keymap.del('n', ';rr', {})
-          vim.keymap.del('n', ';ra', {})
-          vim.keymap.del('n', ';re', {})
-          vim.keymap.del('n', ';ri', {})
-          vim.keymap.del('n', ';rd', {})
-          vim.keymap.del('n', ';rm', {})
-        end
-      end, { nargs = 0 })
     end
   },
   {
     'nvim-telescope/telescope.nvim',
     lazy = true,
-    keys = '<leader>f',
     cmd = 'Telescope',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -75,9 +52,6 @@ return {
         },
       })
       require('telescope').load_extension('fzy_native')
-      local builtin = require('telescope.builtin')
-      vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>', {})
-      vim.keymap.set('n', '<leader>fw', builtin.live_grep, {})
     end
   },
   {
@@ -160,15 +134,6 @@ return {
     end
   },
   {
-    "voldikss/vim-translator",
-    lazy = true,
-    keys = '<leader>tr',
-    config = function()
-      vim.keymap.set("n", "<leader>tr", "<Plug>TranslateW", {})
-      vim.keymap.set("v", "<leader>tr", "<Plug>TranslateWV", {})
-    end,
-  },
-  {
     'aserowy/tmux.nvim',
     lazy = true,
     keys = { '<C-h>', '<C-j>', '<C-k>', '<C-l>', '<A-h>', '<A-j>', '<A-k>', '<A-l>' },
@@ -185,7 +150,7 @@ return {
   {
     'nvimdev/guard.nvim',
     lazy = true,
-    event = 'LspAttach',
+    cmd = "GuardFmt",
     dependencies = {
       'nvimdev/guard-collection',
     },
@@ -197,7 +162,6 @@ return {
       require('guard').setup({
         fmt_on_save = false,
         lsp_as_default_formatter = true,
-        vim.keymap.set({ 'n', 'v' }, ';f', '<cmd>GuardFmt<CR>', {}),
       })
     end
   },
@@ -212,7 +176,7 @@ return {
   {
     'nvimdev/flybuf.nvim',
     lazy = true,
-    keys = '<leader>b',
+    cmd = 'FlyBuf',
     config = function()
       require('flybuf').setup({
         hotkey = 'asxfghwertyuiopzcvbnm', -- hotkye
@@ -221,7 +185,6 @@ return {
         mark = 'l',                       -- mark as delet or cancel delete
         delete = 'd',                     -- delete marked buffers or buffers which cursor in
       })
-      vim.keymap.set('n', '<leader>b', '<cmd>FlyBuf<CR>', {})
     end
   },
 }
