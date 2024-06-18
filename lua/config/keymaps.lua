@@ -43,6 +43,7 @@ local nmappings  = {
   { mode = { 'n' },      lhs = ';rm',              rhs = 'silent ! rm -f "./%<" && rm -f "./%<"_(in|out)put*.txt',                  opts = { noremap = true } },
   { mode = { 'n', 'v' }, lhs = ';f',               rhs = '<cmd>GuardFmt<CR>',                                                       opts = { noremap = true } },
   { mode = { 'n' },      lhs = '<leader>b',        rhs = '<cmd>FlyBuf<CR>',                                                         opts = { noremap = true } },
+  { mode = { 'n', 'v' }, lhs = '<leader>tr',       rhs = '<cmd>TranslateW<CR>',                                                     opts = { noremap = true } },
 }
 
 local MdSnippets = {

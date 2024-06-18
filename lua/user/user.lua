@@ -32,4 +32,3 @@ vim.g.ts_fts = {
   'json',
   'vimdoc',
 }
-vim.g.cp = false

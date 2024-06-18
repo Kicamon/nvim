@@ -134,6 +134,11 @@ return {
     end
   },
   {
+    "voldikss/vim-translator",
+    lazy = true,
+    cmd = "TranslateW",
+  },
+  {
     'aserowy/tmux.nvim',
     lazy = true,
     keys = { '<C-h>', '<C-j>', '<C-k>', '<C-l>', '<A-h>', '<A-j>', '<A-k>', '<A-l>' },
