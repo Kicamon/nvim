@@ -161,7 +161,8 @@ return {
     },
     config = function()
       local ft = require('guard.filetype')
-      ft('c', 'cpp'):fmt('clang-format')
+      ft('c'):fmt('clang-format');
+      ft('cpp'):fmt('clang-format')
       ft('python'):fmt('black')
       ft('lua'):fmt('lsp')
       require('guard').setup({
