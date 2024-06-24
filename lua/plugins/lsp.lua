@@ -77,28 +77,17 @@ return {
       vimls = {},
     }
 
-    local on_attach = function(_, bufnr)
-      local nmap = function(keys, func, desc)
-        if desc then
-          desc = 'LSP: ' .. desc
+    local on_attach = function(client, _)
+      vim.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
+      client.server_capabilities.semanticTokensProvider = nil
+      local orignal = vim.notify
+      local mynotify = function(msg, level, opts)
+        if msg == 'No code actions available' or msg:find('overly') then
+          return
         end
-
-        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+        orignal(msg, level, opts)
       end
-
-      nmap('<leader>pd', '<cmd>Lspsaga peek_definition<CR>', 'Peek Definition')
-      nmap('<leader>pr', '<cmd>Telescope lsp_references<CR>', 'Peek References')
-      nmap('<leader>K', '<cmd>Lspsaga hover_doc<CR>', 'Hover Documentation')
-      nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, 'Workspace Add Folder')
-      nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, 'Workspace Remove Folder')
-      nmap('<leader>wl', function()
-        vim.notify(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-      end, 'Workspace List Folders')
-      nmap('<leader>rn', '<cmd>Lspsaga rename ++project<cr>', 'Rename')
-      nmap('<leader>ca', '<cmd>Lspsaga code_action<CR>', 'Code Action')
-      nmap('<leader>ot', '<cmd>Lspsaga outline<CR>', 'OutLine')
-      nmap('d[', vim.diagnostic.goto_prev, 'Diangostics Prev')
-      nmap('d]', vim.diagnostic.goto_next, 'Diangostics Next')
+      vim.notify = mynotify
     end
 
     require('lspsaga').setup({
