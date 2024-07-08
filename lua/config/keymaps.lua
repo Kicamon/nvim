@@ -54,6 +54,7 @@ local nmappings  = {
   { mode = { 'n' },      lhs = '<leader>rn',       rhs = '<cmd>Lspsaga rename ++project<cr>',                                          opts = { noremap = true } },
   { mode = { 'n' },      lhs = '<leader>ca',       rhs = '<cmd>Lspsaga code_action<CR>',                                               opts = { noremap = true } },
   { mode = { 'n' },      lhs = '<leader>ot',       rhs = '<cmd>Lspsaga outline<CR>',                                                   opts = { noremap = true } },
+  { mode = { 'n' },      lhs = '<leader>tt',       rhs = '<cmd>Lspsaga term_toggle<CR>',                                               opts = { noremap = true } },
   { mode = { 'n' },      lhs = 'd[',               rhs = vim.diagnostic.goto_prev,                                                     opts = { noremap = true } },
   { mode = { 'n' },      lhs = 'd]',               rhs = vim.diagnostic.goto_next,                                                     opts = { noremap = true } },
 }
