@@ -54,14 +54,14 @@ return {
     cmp.setup({
       window = {
         completion = {
-          winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
+          winhighlight = 'Normal:CmpWin,FloatBorder:CmpWin,Search:None',
           col_offset = -3,
           side_padding = 0,
           border = 'rounded',
           scrollbar = true,
         },
         documentation = {
-          winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
+          winhighlight = 'Normal:CmpWin,FloatBorder:CmpWin,Search:None',
           border = 'rounded',
           scrollbar = true,
         },

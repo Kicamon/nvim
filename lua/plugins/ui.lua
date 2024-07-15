@@ -177,7 +177,7 @@ return {
               icon = ' ',
               desc = 'ACM',
               group = 'Function',
-              action = 'silent! lcd ~/Documents/Algorithm | Ranger',
+              action = 'silent! lcd ~/Documents/Algorithm | Yazi',
               key = 'a',
             },
           },

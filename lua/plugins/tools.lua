@@ -99,37 +99,39 @@ return {
     end
   },
   {
-    'gelguy/wilder.nvim',
-    build = ':silent! UpdateRemotePlugins',
+    'folke/noice.nvim',
     event = 'CmdlineEnter',
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
     config = function()
-      local wilder = require('wilder')
-      wilder.setup {
-        modes = { ':', '/', '?' },
-        next_key = '<Tab>',
-        previous_key = '<S-Tab>',
-      }
-      wilder.set_option('renderer', wilder.popupmenu_renderer(
-        wilder.popupmenu_palette_theme({
-          highlights = {
-            border = 'Normal',
+      require("noice").setup({
+        lsp = {
+          progress = {
+            enabled = false,
           },
-          left = { ' ', wilder.popupmenu_devicons() },
-          right = { ' ', wilder.popupmenu_scrollbar() },
-          border = 'rounded',
-          max_height = '75%',
-          min_height = 0,
-          prompt_position = 'top',
-          reverse = 0,
-        })
-      ))
-      wilder.set_option('pipeline', {
-        wilder.branch(
-          wilder.cmdline_pipeline({
-            language = 'vim',
-            fuzzy = 1,
-          }), wilder.search_pipeline()
-        ),
+        },
+        cmdline = {
+          opts = {
+            position = {
+              row = '30%',
+              col = '50%',
+            },
+          },
+          format = {
+            cmdline = { pattern = "^:", icon = "", lang = "vim" },
+            search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
+            search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
+            filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
+            lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua" },
+            help = { pattern = "^:%s*he?l?p?%s+", icon = "" },
+            input = { view = "cmdline_input", icon = "󰥻 " },
+          },
+        },
+        messages = {
+          enabled = false
+        }
       })
     end
   },
