@@ -93,13 +93,14 @@ return {
     },
   },
   {
-    'Kicamon/tool.nvim',
-    config = function()
-      require('tool')
-    end
+    -- 'Kicamon/tool.nvim',
+    -- config = function()
+    --   require('tool')
+    -- end
   },
   {
     'folke/noice.nvim',
+    lazy = true,
     event = 'CmdlineEnter',
     dependencies = {
       "MunifTanjim/nui.nvim",
@@ -111,6 +112,18 @@ return {
           progress = {
             enabled = false,
           },
+          hover = {
+            enabled = false,
+          },
+          signature = {
+            enabled = false,
+          },
+          documentation = {
+            enabled = false,
+          },
+          message = {
+            enabled = false,
+          }
         },
         cmdline = {
           opts = {
@@ -125,20 +138,18 @@ return {
             search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
             filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
             lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua" },
-            help = { pattern = "^:%s*he?l?p?%s+", icon = "" },
+            help = { pattern = "^:%s*he?l?p?%s+", icon = "󰋖" },
             input = { view = "cmdline_input", icon = "󰥻 " },
           },
         },
         messages = {
           enabled = false
+        },
+        popupmenu = {
+          enabled = false
         }
       })
     end
-  },
-  {
-    "voldikss/vim-translator",
-    lazy = true,
-    cmd = "TranslateW",
   },
   {
     'aserowy/tmux.nvim',

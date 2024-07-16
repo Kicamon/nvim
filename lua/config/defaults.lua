@@ -77,3 +77,4 @@ api.nvim_create_autocmd('TextYankPost', {
 api.nvim_create_autocmd('VimEnter', { command = 'set formatoptions-=ro' })
 
 require('user.user')
+require('tool')

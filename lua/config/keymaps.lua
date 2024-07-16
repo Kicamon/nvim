@@ -43,8 +43,6 @@ local nmappings  = {
   { mode = { 'n' },      lhs = '<leader>fw',       rhs = '<cmd>Telescope live_grep<CR>',                                               opts = { noremap = true } },
   { mode = { 'n', 'v' }, lhs = ';f',               rhs = '<cmd>GuardFmt<CR>',                                                          opts = { noremap = true } },
   { mode = { 'n' },      lhs = '<leader>b',        rhs = '<cmd>FlyBuf<CR>',                                                            opts = { noremap = true } },
-  { mode = { 'n' },      lhs = '<leader>tr',       rhs = '<cmd>TranslateW<CR>',                                                        opts = { noremap = true } },
-  { mode = { 'v' },      lhs = '<leader>tr',       rhs = ':TranslateW<CR>',                                                            opts = { noremap = true } },
   { mode = { 'n' },      lhs = '<leader>pd',       rhs = '<cmd>Lspsaga peek_definition<CR>',                                           opts = { noremap = true } },
   { mode = { 'n' },      lhs = '<leader>pr',       rhs = '<cmd>Telescope lsp_references<CR>',                                          opts = { noremap = true } },
   { mode = { 'n' },      lhs = '<leader>K',        rhs = '<cmd>Lspsaga hover_doc<CR>',                                                 opts = { noremap = true } },
