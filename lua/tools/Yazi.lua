@@ -48,7 +48,7 @@ local function Yazi(open, opt)
   workpath = vim.fn.getcwd()
   local filename = vim.api.nvim_buf_get_name(0)
   vim.cmd('silent! lcd %:p:h')
-  local Win = require('tool.util.FloatWin')
+  local Win = require('tools.util.FloatWin')
   Win:Create({
     width = 0.8,
     height = 0.8,

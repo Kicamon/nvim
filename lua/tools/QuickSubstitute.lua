@@ -29,7 +29,7 @@ local function Input(oldword)
 end
 
 local function QuickSubstitute()
-  local getpos = require('tool.util.GetSurround').Visual
+  local getpos = require('tools.util.GetSurround').Visual
   local oldword, newword, char
   if vim.fn.mode() == 'n' then
     oldword, newword, char = Input()

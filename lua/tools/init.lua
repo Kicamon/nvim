@@ -1,6 +1,6 @@
 local api = vim.api
 
-require('tool.CursorWord')
+require('tools.CursorWord')
 
 local function ele_in_table(ele, tab)
   for _, v in ipairs(tab) do
@@ -16,10 +16,10 @@ api.nvim_create_autocmd({ 'FileType' }, {
   pattern = { 'c', 'cpp', 'python', 'lua', 'markdown', 'sh', 'html' },
   callback = function()
     vim.keymap.set('n', '<F5>', function()
-      require('tool.CodeRunning').running(false)
+      require('tools.CodeRunning').running(false)
     end, { silent = true })
     vim.keymap.set('n', '<F10>', function()
-      require('tool.CodeRunning').running(true)
+      require('tools.CodeRunning').running(true)
     end, { silent = true })
   end
 })
@@ -29,7 +29,7 @@ api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = "*.md",
   callback = function()
     vim.keymap.set('n', '<leader>P', function()
-      require('tool.Image').paste()
+      require('tools.Image').paste()
     end)
   end
 })
@@ -38,21 +38,21 @@ api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   callback = function()
     --- Chdir
     vim.api.nvim_create_user_command('Chdir', function()
-      require('tool.Chdir').Chdir()
+      require('tools.Chdir').Chdir()
     end, { nargs = 0 })
 
     --- ImSwitch
     api.nvim_create_autocmd('InsertLeave', {
       callback = function()
-        require('tool.ImSwitch').En()
+        require('tools.ImSwitch').En()
       end
     })
     api.nvim_create_autocmd('InsertEnter', {
       callback = function()
         local buf_info = vim.fn.expand('%:e')
         if ele_in_table(buf_info, { 'md', 'txt' }) then
-          if require('tool.ImSwitch').filetype_checke() then
-            require('tool.ImSwitch').Zh()
+          if require('tools.ImSwitch').filetype_checke() then
+            require('tools.ImSwitch').Zh()
           end
         end
       end
@@ -60,49 +60,49 @@ api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 
     --- GetNode
     vim.keymap.set('n', '<leader>N', function()
-      require('tool.GetNode').GetNode()
+      require('tools.GetNode').GetNode()
     end, { silent = true })
 
     ---  QuickSubstitute
     vim.keymap.set({ 'n', 'v' }, '<leader>ss', function()
-      require('tool.QuickSubstitute').QuickSubstitute()
+      require('tools.QuickSubstitute').QuickSubstitute()
     end, { silent = true })
 
     --- MdTableFormat
     api.nvim_create_autocmd('InsertLeave', {
       pattern = "*.md",
       callback = function()
-        require('tool.MdTableFormat').markdown_table_format()
+        require('tools.MdTableFormat').format_markdown_table()
       end
     })
     api.nvim_create_autocmd('TextChangedI', {
       pattern = "*.md",
       callback = function()
-        require('tool.MdTableFormat').markdown_table_format_lines()
+        require('tools.MdTableFormat').format_markdown_table_lines()
       end
     })
 
     --- Surround
     vim.keymap.set('v', 'S', function()
-      require('tool.Surround').Add_Surround()
+      require('tools.Surround').Add_Surround()
     end, { silent = true })
     vim.keymap.set('n', 'cs', function()
-      require('tool.Surround').Change_Surround()
+      require('tools.Surround').Change_Surround()
     end, { silent = true })
 
     --- TabToSpace
     vim.keymap.set('n', '<leader>ts', function()
-      require('tool.TabToSpace').TabToSpace()
+      require('tools.TabToSpace').TabToSpace()
     end, { silent = true })
 
     --- Wildfire
     vim.keymap.set({ 'n', 'v' }, '<cr>', function()
-      require('tool.Wildfire').Wildfire()
+      require('tools.Wildfire').Wildfire()
     end, { silent = true })
 
     --- Align
     vim.keymap.set('v', 'ga', function()
-      require('tool.Align').align()
+      require('tools.Align').align()
     end, { silent = true })
   end
 })
@@ -110,7 +110,7 @@ api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 api.nvim_create_autocmd({ 'VimEnter' }, {
   callback = function()
     --- Yazi
-    local Yazi = require('tool.Yazi').Yazi
+    local Yazi = require('tools.Yazi').Yazi
     vim.keymap.set('n', '<leader>ra', function() Yazi('edit') end, { silent = true })
     vim.keymap.set('n', '<leader>rh', function() Yazi('vsplit', 'left') end, { silent = true })
     vim.keymap.set('n', '<leader>rj', function() Yazi('split', 'down') end, { silent = true })
@@ -120,7 +120,7 @@ api.nvim_create_autocmd({ 'VimEnter' }, {
 
     --- Wiki
     vim.keymap.set('n', '<leader>ww', function()
-      require('tool.Wiki').OpenWiki()
+      require('tools.Wiki').OpenWiki()
     end, { silent = true })
   end
 })
