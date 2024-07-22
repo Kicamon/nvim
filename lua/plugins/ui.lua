@@ -34,10 +34,6 @@ return {
           untracked    = { text = '┃' },
         },
       }
-      vim.keymap.set('n', 'g[', '<cmd>silent lua require"gitsigns".prev_hunk()<CR>', { silent = true })
-      vim.keymap.set('n', 'g]', '<cmd>silent lua require"gitsigns".next_hunk()<CR>', { silent = true })
-      vim.keymap.set('n', '<leader>H', '<cmd>lua require"gitsigns".preview_hunk_inline()<CR>', { silent = true })
-      vim.keymap.set('n', '<leader>gd', '<cmd>lua require"gitsigns".diffthis("~")<CR>', { silent = true })
     end
   },
   {
