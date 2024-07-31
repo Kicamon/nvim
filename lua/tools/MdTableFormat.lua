@@ -145,7 +145,7 @@ local function format_markdown_table_lines()
   local current_line = vim.api.nvim_get_current_line()
   local cursor_pos = vim.api.nvim_win_get_cursor(0)
   local char = current_line:sub(cursor_pos[2], cursor_pos[2])
-  if char == '|' then
+  if char == '|' and cursor_pos[2] ~= 1 then
     format_markdown_table()
     local length = #vim.api.nvim_get_current_line()
     vim.api.nvim_win_set_cursor(0, { cursor_pos[1], length })

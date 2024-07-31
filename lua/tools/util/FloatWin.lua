@@ -68,22 +68,23 @@ function FloatWin:GetInfo()
   }
 end
 
--- @type
--- opt = {
---   anchor = 'NW',
---   relative = 'editor',
---   width = math.ceil(ui.width / 2),
---   height = math.ceil(ui.height / 2),
---   style = 'minimal',
---   border = 'rounded',
---   title = '',
---   title_pos = 'center',
--- }
--- val = {
---   lines = {},
---   buflisted = false,
---   pos = 'cc',
--- }
+--- opt = {
+---   anchor = 'NW',
+---   relative = 'editor',
+---   width = math.ceil(ui.width / 2),
+---   height = math.ceil(ui.height / 2),
+---   style = 'minimal',
+---   border = 'rounded',
+---   title = '',
+---   title_pos = 'center',
+--- }
+--- val = {
+---   lines = {},
+---   buflisted = false,
+---   pos = 'cc',
+--- }
+--- @param opt table
+--- @param val table
 function FloatWin:Create(opt, val)
   val = vim.tbl_extend('force', {
     lines = {},

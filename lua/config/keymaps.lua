@@ -62,6 +62,7 @@ local nmappings  = {
   { mode = { 'n' }, lhs = '<leader>ot', rhs = '<cmd>Lspsaga outline<CR>',                             opts = { noremap = true } },
   { mode = { 'n' }, lhs = '<leader>tt', rhs = '<cmd>Lspsaga term_toggle<CR>',                         opts = { noremap = true } },
   { mode = { 'n' }, lhs = 'd[',         rhs = vim.diagnostic.goto_prev,                               opts = { noremap = true } },
+  { mode = { 'n' }, lhs = 'd]',         rhs = vim.diagnostic.goto_next,                               opts = { noremap = true } },
   { mode = { 'n' }, lhs = 'g[',         rhs = '<cmd>silent lua require"gitsigns".prev_hunk()<CR>',    opts = { noremap = true } },
   { mode = { 'n' }, lhs = 'g]',         rhs = '<cmd>silent lua require"gitsigns".next_hunk()<CR>',    opts = { noremap = true } },
   { mode = { 'n' }, lhs = '<leader>H',  rhs = '<cmd>lua require"gitsigns".preview_hunk_inline()<CR>', opts = { noremap = true } },

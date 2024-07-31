@@ -154,10 +154,12 @@ return {
     end
   },
   {
-    'windwp/nvim-autopairs',
+    'm4xshen/autoclose.nvim',
     lazy = true,
     event = 'InsertEnter',
-    opts = {}
+    config = function()
+      require("autoclose").setup()
+    end
   },
   {
     'nvimdev/guard.nvim',
