@@ -93,67 +93,6 @@ return {
     },
   },
   {
-    'folke/noice.nvim',
-    lazy = true,
-    event = 'CmdlineEnter',
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    },
-    config = function()
-      require("noice").setup({
-        lsp = {
-          progress = {
-            enabled = false,
-          },
-          hover = {
-            enabled = false,
-          },
-          signature = {
-            enabled = false,
-          },
-          documentation = {
-            enabled = false,
-          },
-          message = {
-            enabled = false,
-          }
-        },
-        cmdline = {
-          opts = {
-            position = {
-              row = '30%',
-              col = '50%',
-            },
-          },
-          format = {
-            cmdline = { pattern = "^:", icon = "", lang = "vim" },
-            search_down = { kind = "search", pattern = "^/", icon = "", lang = "regex" },
-            search_up = { kind = "search", pattern = "^%?", icon = "", lang = "regex" },
-            filter = { pattern = "^:%s*!", icon = "", lang = "bash" },
-            lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua" },
-            help = { pattern = "^:%s*he?l?p?%s+", icon = "󰋖" },
-            input = { view = "cmdline_input", icon = "󰥻" },
-          },
-        },
-        messages = {
-          enabled = false
-        },
-        popupmenu = {
-          enabled = false
-        }
-      })
-    end
-  },
-  {
-    'aserowy/tmux.nvim',
-    lazy = true,
-    keys = { '<C-h>', '<C-j>', '<C-k>', '<C-l>', '<A-h>', '<A-j>', '<A-k>', '<A-l>' },
-    config = function()
-      require('tmux').setup()
-    end
-  },
-  {
     'm4xshen/autoclose.nvim',
     lazy = true,
     event = 'InsertEnter',
