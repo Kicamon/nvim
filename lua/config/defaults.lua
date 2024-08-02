@@ -51,16 +51,9 @@ opt.undofile = true
 opt.updatetime = 100
 opt.redrawtime = 1500
 
-api.nvim_create_autocmd({ 'BufRead', 'BufNewFile', 'FileType' }, {
-  pattern = { 'c', 'cpp', 'text' },
-  callback = function()
-    vim.opt_local.tabstop = 4
-    vim.opt_local.shiftwidth = 4
-    vim.opt_local.softtabstop = 4
-  end,
-})
+vim.cmd.colorscheme('gruvbox')
+
 api.nvim_create_autocmd('TermOpen', { pattern = 'term://*', command = [[startinsert]] })
-api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, { pattern = { '*.md', '*.txt' }, command = 'setlocal wrap', })
 api.nvim_create_autocmd('BufReadPost', {
   callback = function()
     local pos = vim.fn.getpos("'\"")

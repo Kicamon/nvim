@@ -70,12 +70,12 @@ local nmappings  = {
 }
 
 local MdSnippets = {
+  { lhs = '<leader><leader>', rhs = '<Esc>/<++><CR>:nohlsearch<CR>"_c4l' },
   { lhs = '《', rhs = '《》<Esc>i' },
   { lhs = '》', rhs = '> ' },
   { lhs = '（', rhs = '（）<Esc>i' },
-  { lhs = '“', rhs = '“”<Esc>i' },
-  { lhs = '”', rhs = '“”<Esc>i' },
-  { lhs = '<leader><leader>', rhs = '<Esc>/<++><CR>:nohlsearch<CR>"_c4l' },
+  { lhs = '“' , rhs = '“”<Esc>i' },
+  { lhs = '”' , rhs = '“”<Esc>i' },
   { lhs = '·b', rhs = '****<++><Esc>F*hi' },
   { lhs = '·s', rhs = '~~~~<++><Esc>F~hi' },
   { lhs = '·h', rhs = '====<++><Esc>F=hi' },

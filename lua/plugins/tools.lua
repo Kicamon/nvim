@@ -95,7 +95,7 @@ return {
   {
     'm4xshen/autoclose.nvim',
     lazy = true,
-    event = 'InsertEnter',
+    event = { 'InsertEnter', 'CmdlineEnter' },
     config = function()
       require("autoclose").setup()
     end

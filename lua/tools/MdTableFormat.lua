@@ -81,8 +81,8 @@ local function update_cell_contents(table_contents, width)
   for i, cells in ipairs(table_contents) do
     if i == 2 then
       for j, _ in ipairs(cells) do
-        local chars = get_chars(table_contents[i][j])
-        local id    = get_table_line_char_id(chars)
+        local chars          = get_chars(table_contents[i][j])
+        local id             = get_table_line_char_id(chars)
         table_contents[i][j] = string.rep('-', width[j])
         table_contents[i][j] = add_chars(table_contents[i][j], id ~= 0 and table_line_char[id] or { '-', '-' })
       end

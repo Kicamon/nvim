@@ -36,6 +36,7 @@ api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 
 api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   callback = function()
+    require('tools.lines').setup()
     --- Chdir
     vim.api.nvim_create_user_command('Chdir', function()
       require('tools.Chdir').Chdir()
