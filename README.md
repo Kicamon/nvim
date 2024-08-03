@@ -49,10 +49,6 @@
 | `<C-j>`       | Move cursor one window down                                                 | n    |
 | `<C-k>`       | Move cursor one window up                                                   | n    |
 | `<C-l>`       | Move cursor one window right                                                | n    |
-| `<A-h>`       | Resize pane left                                                            | n    |
-| `<A-j>`       | Resize pane top                                                             | n    |
-| `<A-k>`       | Resize pane bottom                                                          | n    |
-| `<A-l>`       | Resize pane right                                                           | n    |
 
 #### 4 Buffers and tabs
 | Shortcut | Action            | Mode |
@@ -163,6 +159,7 @@ vim-language-server
 ## Thanks
 - [glepnir](https://github.com/glepnir/nvim)
 - [theniceboy](https://github.com/theniceboy/nvim/tree/lua-migration)
+- [m4xshen](https://github.com/m4xshen/autoclose.nvim)
 
 ---
 
