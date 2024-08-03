@@ -158,9 +158,10 @@ vscode-css-languageserver
 vscode-html-languageserver
 vscode-json-languageserver
 vim-language-server
-yarn
 ```
 
+## Thanks
+- [glepnir](https://github.com/glepnir/nvim)
 
 ---
 
