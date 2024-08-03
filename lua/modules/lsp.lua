@@ -77,11 +77,6 @@ return {
       vimls = {},
     }
 
-    local on_attach = function(client, _)
-      vim.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
-      client.server_capabilities.semanticTokensProvider = nil
-    end
-
     require('lspsaga').setup({
       outline = {
         keys = {
@@ -109,7 +104,17 @@ return {
       },
     })
 
+    local on_attach = function(client, _)
+      vim.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
+      client.server_capabilities.semanticTokensProvider = nil
+    end
+
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
+    -- local capabilities = vim.tbl_deep_extend(
+    --   'force',
+    --   vim.lsp.protocol.make_client_capabilities(),
+    --   require('epo').register_cap()
+    -- )
 
     for server, config in pairs(servers) do
       require('lspconfig')[server].setup(vim.tbl_deep_extend('force', {

@@ -50,28 +50,3 @@ opt.colorcolumn = '0'
 opt.undofile = true
 opt.updatetime = 100
 opt.redrawtime = 1500
-
-vim.cmd.colorscheme('gruvbox')
-
--- api.nvim_create_autocmd('TermOpen', { pattern = 'term://*', command = [[startinsert]] })
--- api.nvim_create_autocmd('BufReadPost', {
---   callback = function()
---     local pos = vim.fn.getpos("'\"")
---     if pos[2] > 0 and pos[2] <= vim.fn.line('$') then
---       vim.api.nvim_win_set_cursor(0, { pos[2], pos[3] - 1 })
---     end
---   end
--- })
--- api.nvim_create_autocmd('TextYankPost', {
---   callback = function()
---     vim.highlight.on_yank({ higroup = 'Visual', timeout = 200 })
---   end
--- })
--- api.nvim_create_autocmd('VimEnter', { command = 'set formatoptions-=ro' })
--- api.nvim_create_autocmd('VimEnter',{
---   callback = function()
---     require('keymap')
---   end
--- })
-
--- require('internal')

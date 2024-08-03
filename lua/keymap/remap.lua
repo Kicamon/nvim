@@ -16,13 +16,19 @@ map.n({
   ['J']                = '<c-d>',
   ['K']                = '<c-u>',
   ['L']                = '$',
+  -- window
+  ['<C-h>']            = '<C-w>h',
+  ['<C-j>']            = '<C-w>j',
+  ['<C-k>']            = '<C-w>k',
+  ['<C-l>']            = '<C-w>l',
+  ['<leader>W']        = '<c-w>w',
   ['<leader>sh']       = cmd('set nosplitright | vsplit'),
   ['<leader>sj']       = cmd('set splitbelow | split'),
   ['<leader>sk']       = cmd('set nosplitbelow | split'),
   ['<leader>sl']       = cmd('set splitright | vsplit'),
   ['<leader>smv']      = '<c-w>t<c-W>H',
   ['<leader>smh']      = '<c-w>t<c-W>K',
-  ['<leader>W']        = '<c-w>w',
+  -- tabs
   ['tn']               = cmd('tabnext'),
   ['tp']               = cmd('tabprevious'),
   ['tu']               = cmd('tabnew'),
@@ -33,6 +39,7 @@ map.v({
   ['N'] = ':normal',
   ['Y'] = '"+y',
   ['H'] = '^',
+  ['L'] = '$h',
 })
 
 map.t({

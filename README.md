@@ -162,6 +162,7 @@ vim-language-server
 
 ## Thanks
 - [glepnir](https://github.com/glepnir/nvim)
+- [theniceboy](https://github.com/theniceboy/nvim/tree/lua-migration)
 
 ---
 

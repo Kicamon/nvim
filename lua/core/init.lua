@@ -32,5 +32,6 @@ vim.g.ts_fts = {
   'json',
   'vimdoc',
 }
+vim.cmd.colorscheme('gruvbox')
 require('core.options')
 require('core.plugins')

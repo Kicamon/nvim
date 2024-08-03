@@ -53,7 +53,7 @@ local function Yazi(open, opt)
     width = 0.8,
     height = 0.8,
     title = ' Yazi ',
-  })
+  }, {})
   WinInfo = Win:GetInfo()
   winnr, bufnr = WinInfo.winnr, WinInfo.bufnr
   TabName('Ranger')

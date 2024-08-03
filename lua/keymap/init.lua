@@ -3,13 +3,6 @@ local map = require('core.keymap')
 local cmd = map.cmd
 
 map.n({
-  -- comptitest
-  [';rr']        = cmd('CompetiTest run'),
-  [';ra']        = cmd('CompetiTest add_testcase'),
-  [';re']        = cmd('CompetiTest edit_testcase'),
-  [';ri']        = cmd('CompetiTest recive testcase'),
-  [';rd']        = cmd('CompetiTest delete_testcace'),
-  [';rm']        = cmd('silent ! rm -f "./%<" && rm -f "./%<"_(in|out)put*.txt'),
   -- telescope
   ['<leader>ff'] = cmd('Telescope find_files find_command=rg,--ignore,--hidden,--files'),
   ['<leader>fw'] = cmd('Telescope live_grep'),
@@ -27,6 +20,7 @@ map.n({
   ['<leader>wr'] = vim.lsp.buf.remove_workspace_folder,
   ['d[']         = vim.diagnostic.goto_prev,
   ['d]']         = vim.diagnostic.goto_next,
+  ['<leader>wl'] = function() vim.notify(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
   -- gitsigns
   ['g[']         = cmd('silent lua require"gitsigns".prev_hunk()'),
   ['g]']         = cmd('silent lua require"gitsigns".next_hunk()'),

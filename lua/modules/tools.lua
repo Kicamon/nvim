@@ -1,28 +1,5 @@
 return {
   {
-    'xeluxee/competitest.nvim',
-    lazy = true,
-    cmd = 'CompetiTest',
-    dependencies = {
-      'MunifTanjim/nui.nvim',
-    },
-    config = function()
-      require('competitest').setup({
-        runner_ui = {
-          interface = 'split',
-        },
-        compile_command = {
-          cpp       = { exec = 'g++', args = { '$(FNAME)', '-std=c++17', '-O2', '-g', '-Wall', '-o', '$(FNOEXT)' } },
-          some_lang = { exec = 'some_compiler', args = { '$(FNAME)' } },
-        },
-        run_command = {
-          cpp       = { exec = './$(FNOEXT)' },
-          some_lang = { exec = 'some_interpreter', args = { '$(FNAME)' } },
-        },
-      })
-    end
-  },
-  {
     'nvim-telescope/telescope.nvim',
     lazy = true,
     cmd = 'Telescope',
@@ -91,14 +68,6 @@ return {
     },
   },
   {
-    'm4xshen/autoclose.nvim',
-    lazy = true,
-    event = { 'InsertEnter', 'CmdlineEnter' },
-    config = function()
-      require("autoclose").setup()
-    end
-  },
-  {
     'nvimdev/guard.nvim',
     lazy = true,
     cmd = "GuardFmt",
@@ -115,14 +84,6 @@ return {
         fmt_on_save = false,
         lsp_as_default_formatter = true,
       })
-    end
-  },
-  {
-    'windwp/nvim-ts-autotag',
-    lazy = true,
-    ft = 'html',
-    config = function()
-      require('nvim-ts-autotag').setup()
     end
   },
   {
