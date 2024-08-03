@@ -3,7 +3,7 @@ local function feedkeys (keys, mode)
 end
 
 local function RunWin(opt, full)
-  local Win = require("tools.util.FloatWin")
+  local Win = require("internal.util.FloatWin")
   Win:Create({
     anchor = full and 'NW' or 'NE',
     width = full and 0.7 or 0.25,
@@ -35,7 +35,7 @@ local function Run(full)
   elseif filetype == 'sh' then
     RunWin('term bash ' .. filename, full)
   elseif filetype == 'markdown' then
-    require('tools.MdPreview').MarkdownPreview()
+    require('internal.MdPreview').MarkdownPreview()
   elseif filetype == 'html' then
     vim.cmd([[
       tabe

@@ -61,7 +61,7 @@ local function align()
     end
     i = i + 1
   end
-  local getsurround = require('tools.util.GetSurround')
+  local getsurround = require('internal.util.GetSurround')
   local sl, _, el, _ = getsurround.Visual()
   change_lines(sl, el, chars)
 end

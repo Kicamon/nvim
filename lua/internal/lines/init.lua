@@ -5,7 +5,7 @@ local function stl_format(name, val)
 end
 
 local function default()
-  local p = require('tools.lines.statusline')
+  local p = require('internal.lines.statusline')
   local comps = {
     p.sep(),
     p.mode(),
@@ -100,7 +100,7 @@ return {
         })
         -- tabline
         local events_tab = { 'BufEnter', 'BufWritePost', 'BufModifiedSet', 'TabNew', 'TabEnter', 'TabLeave', 'TermClose' }
-        local update = require('tools.lines.tabline').update
+        local update = require('internal.lines.tabline').update
         vim.api.nvim_create_autocmd(events_tab, {
           callback = function()
             update()

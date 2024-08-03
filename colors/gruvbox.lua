@@ -1,1 +1,1 @@
-require("tools.gruvbox").load()
+require("internal.gruvbox").load()

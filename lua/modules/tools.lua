@@ -28,7 +28,6 @@ return {
     cmd = 'Telescope',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-fzy-native.nvim',
     },
     config = function()
       require('telescope').setup({
@@ -51,7 +50,6 @@ return {
           },
         },
       })
-      require('telescope').load_extension('fzy_native')
     end
   },
   {

@@ -32,3 +32,5 @@ vim.g.ts_fts = {
   'json',
   'vimdoc',
 }
+require('core.options')
+require('core.plugins')
