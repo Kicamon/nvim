@@ -159,6 +159,8 @@ vim-language-server
 ## Thanks
 - [glepnir](https://github.com/glepnir/nvim)
 - [theniceboy](https://github.com/theniceboy/nvim/tree/lua-migration)
+- [nvimdev](https://github.com/nvimdev/modeline.nvim)
+- [ellisonleao](https://github.com/ellisonleao/gruvbox.nvim)
 - [m4xshen](https://github.com/m4xshen/autoclose.nvim)
 
 ---

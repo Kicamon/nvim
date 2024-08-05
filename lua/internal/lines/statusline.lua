@@ -62,28 +62,42 @@ end
 
 local function alias_mode()
   return {
-    ['n']   = '󰋜',
-    ['no']  = '󰋜',
-    ['niI'] = '󰋜',
-    ['niR'] = '󰋜',
-    ['no'] = '󰋜',
-    ['niV'] = '󰋜',
-    ['nov'] = '󰋜',
-    ['noV'] = '󰋜',
-    ['i']   = '',
-    ['ic']  = '',
-    ['ix']  = '',
-    ['s']   = '',
-    ['S']   = '',
-    ['v']   = '󰈈',
-    ['V']   = '󰉸',
-    ['']   = '󰉸',
-    ['r']   = ' ',
-    ['r?']  = '',
-    ['R']   = '',
-    ['c']   = '',
-    ['t']   = '',
-    ['!']   = '',
+    ['n'] = 'Normal',
+    ['no'] = 'O-Pending',
+    ['nov'] = 'O-Pending',
+    ['noV'] = 'O-Pending',
+    ['no\x16'] = 'O-Pending',
+    ['niI'] = 'Normal',
+    ['niR'] = 'Normal',
+    ['niV'] = 'Normal',
+    ['nt'] = 'Normal',
+    ['ntT'] = 'Normal',
+    ['v'] = 'Visual',
+    ['vs'] = 'Visual',
+    ['V'] = 'V-Line',
+    ['Vs'] = 'V-Line',
+    ['\x16'] = 'V-Block',
+    ['\x16s'] = 'V-Block',
+    ['s'] = 'Select',
+    ['S'] = 'S-Line',
+    ['\x13'] = 'S-Block',
+    ['i'] = 'Insert',
+    ['ic'] = 'Insert',
+    ['ix'] = 'Insert',
+    ['R'] = 'Replace',
+    ['Rc'] = 'Replace',
+    ['Rx'] = 'Replace',
+    ['Rv'] = 'V-Replace',
+    ['Rvc'] = 'V-Replace',
+    ['Rvx'] = 'V-Replace',
+    ['c'] = 'Command',
+    ['cv'] = 'Ex',
+    ['ce'] = 'Ex',
+    ['r'] = 'Replace',
+    ['rm'] = 'More',
+    ['r?'] = 'Confirm',
+    ['!'] = 'Shell',
+    ['t'] = 'Terminal',
   }
 end
 
@@ -95,12 +109,13 @@ function pd.mode()
       return alias[mode] or alias[string.sub(mode, 1, 1)] or 'UNK'
     end,
     name = 'mode',
-    default = '󰋜',
+    default = 'Normal',
     event = { 'ModeChanged', 'BufEnter', 'TermLeave' },
   }
 
   result.attr = stl_attr("StatusLineMode")
   result.attr.bold = true
+  result.attr.italic = true
 
   return result
 end
@@ -112,7 +127,7 @@ function pd.fileinfo()
     event = { 'BufEnter' },
   }
   result.attr = stl_attr('StatusLineFileInfo')
-  result.attr.bold = true
+  result.attr.italic = true
   return result
 end
 
@@ -123,7 +138,6 @@ function pd.modified()
     event = { 'BufModifiedSet' },
   }
   result.attr = stl_attr('StatusLineFileInfo')
-  result.attr.bold = true
   return result
 end
 
@@ -133,8 +147,7 @@ function pd.readonly()
     stl = '%{&readonly?"[-]":""}',
     event = { 'BufEnter' },
   }
-  result.attr = stl_attr('StatusLineFileInfo')
-  result.attr.bold = true
+  result.attr = stl_attr('StatusLineReadOnly')
   return result
 end
 
@@ -179,7 +192,7 @@ function pd.gitinfo(git_t)
     event = { 'User GitSignsUpdate', 'BufEnter' },
   }
   result.attr = stl_attr(git_t == 'head' and 'StatusLineBranch' or 'Diff' .. alias[git_t])
-  result.attr.bold = true
+  result.attr.italic = true
   return result
 end
 
@@ -233,6 +246,7 @@ function pd.lsp()
   }
   result.attr = stl_attr('StatusLineLsp')
   result.attr.bold = true
+  result.attr.italic = true
   return result
 end
 
@@ -306,7 +320,6 @@ local function diagnostic_info(severity)
   end
 end
 
---TODO(glepnir): can't remove diag_t here ?
 function pd.diagnostic(diag_t)
   return {
     stl = diagnostic_info(diag_t),
@@ -317,29 +330,29 @@ function pd.diagnostic(diag_t)
 end
 
 function pd.encoding()
-  local map = {
-    ['unix'] = ' ',
-    ['linux'] = ' ',
-    ['dos'] = ' ',
-
-  }
-  return {
-    stl = map[vim.o.ff] .. vim.o.fileencoding,
+  local result = {
+    stl = ('%s%s'):format(
+      vim.o.encoding,
+      vim.o.encoding ~= vim.bo.fileencoding and vim.bo.fileencoding or ''
+    ),
     name = 'filencode',
     event = { 'BufEnter' },
-    attr = stl_attr("StatusLineEncoding"),
   }
+
+  result.attr = stl_attr("StatusLineEncoding")
+  result.attr.italic = true
+  return result
 end
 
 function pd.lnumcol()
   local result = {
-    stl   = '%-2.(%l:%c%)  %P',
+    stl   = '%-2.(%l:%c%) (%P)',
     name  = 'linecol',
     event = { 'BufEnter' },
   }
 
   result.attr = stl_attr('StatlsLineLnum')
-  result.attr.bold = true
+  result.attr.italic = true
   return result
 end
 

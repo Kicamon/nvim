@@ -39,6 +39,10 @@ map.v({
   ['N'] = ':normal',
   ['Y'] = '"+y',
   ['H'] = '^',
+  ['L'] = '$',
+})
+
+map.o({
   ['L'] = '$h',
 })
 
@@ -47,8 +51,11 @@ map.t({
   ['<c-o>'] = '<C-\\><C-N><C-O>',
 })
 
-map.i({
+map.ic({
+  ['<c-h>'] = '<Left>',
   ['<c-l>'] = '<Right>',
+  ['<c-a>'] = '<Home>',
+  ['<c-e>'] = '<End>',
 })
 
 map.nv('<leader>cc', function()

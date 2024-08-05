@@ -36,7 +36,7 @@ end
 local function insert_pairs(key, val, mode)
   local pair = get_pair(mode)
   if key == '<cr>' and mode == 'insert' and is_pair(pair) then
-    return '<cr><esc>O'
+    return '<cr><c-o>O'
   elseif key == '<bs>' and is_pair(pair) then
     return '<bs><del>'
   elseif val.close then
