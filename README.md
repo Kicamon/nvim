@@ -3,7 +3,7 @@
 </h1>
 
 
-![demo](./demo.png)
+![demo](https://s21.ax1x.com/2024/08/05/pkvTa4g.png)
 
 ### Keyboard Shortcuts
 
@@ -69,16 +69,20 @@
 | `<leader>ss` | Quick substitute           | v    |
 
 #### 6 Codeing
-| Shortcut     | Action               | Mode |
-|--------------|----------------------|------|
-| `;f`         | Formating code       | n    |
-| `<leader>cc` | Comment code         | n, v |
-| `<Tab>`      | Select next item     | i, s |
-| `<S-Tab>`    | Select prev item     | i, s |
-| `<CR>`       | Accept selected item | i    |
-| `<F5>`       | Code runing          | n    |
+##### 6.1 Base
+| Shortcut     | Action                            | Mode |
+|--------------|-----------------------------------|------|
+| `;f`         | Formating code                    | n    |
+| `<leader>cc` | Comment code                      | n, v |
+| `<Tab>`      | Select next item                  | i, s |
+| `<S-Tab>`    | Select prev item                  | i, s |
+| `<CR>`       | Accept selected item              | i    |
+| `<F5>`       | Code runing                       | n    |
+| `<F10>`      | Code runing with center float win | n    |
 
-##### 6.1 Lsp
+[![pkvTyD0.md.png](https://s21.ax1x.com/2024/08/05/pkvTyD0.md.png)](https://imgse.com/i/pkvTyD0)
+
+##### 6.2 Lsp
 | Shortcut     | Action                                     | Mode |
 |--------------|--------------------------------------------|------|
 | `<leader>pd` | Peek definition with lspsaga               | n    |
@@ -95,17 +99,6 @@
 | `<leader>d[` | Goto diangostics prev                      | n    |
 | `<leader>d]` | Goto diangostics next                      | n    |
 
-##### 6.2 Competitest
-| Shortcut | Action                     | Mode |
-|----------|----------------------------|------|
-| `:CP`    | Open competitest mode      | c    |
-| `;rr`    | Running testcase           | n    |
-| `;ra`    | Add testcase               | n    |
-| `;re`    | Edit testcase              | n    |
-| `;ri`    | Open competitive companion | n    |
-| `;rd`    | Delete testcase            | n    |
-| `;rm`    | Remove all testcase        | n    |
-
 #### 7 File Explorer
 | Shortcut     | Action                               | Mode |
 |--------------|--------------------------------------|------|
@@ -117,6 +110,8 @@
 | `<leader>ff` | Fuzzy search files with file name    | n    |
 | `<leader>fw` | Fuzzy search files with file content | n    |
 | `<leader>b`  | Flaybuf                              | n    |
+
+![yazi](https://s21.ax1x.com/2024/08/05/pkvTBgs.png)
 
 #### 8 Git
 | Shortcut     | Action                  | Mode |
