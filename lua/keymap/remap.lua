@@ -58,6 +58,6 @@ map.ic({
   ['<c-e>'] = '<End>',
 })
 
-map.nv('<leader>cc', function()
+map.nx('<leader>cc', function()
   return require('vim._comment').operator() .. '_'
 end, { expr = true })

@@ -29,6 +29,13 @@ map.n({
   ['g]']         = cmd('silent lua require"gitsigns".next_hunk()'),
   ['<leader>H']  = cmd('lua require"gitsigns".preview_hunk_inline()'),
   ['<leader>gd'] = cmd('lua require"gitsigns".diffthis("~")'),
+  -- coderunning
+  ['<F5>']       = function()
+    require('internal.CodeRunning').running(false)
+  end,
+  ['<F10>']      = function()
+    require('internal.CodeRunning').running(true)
+  end,
   -- yazi
   ['<leader>ra'] = function()
     require('internal.Yazi').Yazi('edit')
@@ -72,7 +79,7 @@ map.v({
   end
 })
 
-map.nv({
+map.nx({
   -- guard
   [';f'] = cmd('GuardFmt'),
   --  QuickSubstitute

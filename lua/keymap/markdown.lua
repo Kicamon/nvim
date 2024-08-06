@@ -38,10 +38,10 @@ map.i({
   [',3'] = '###<Space><Enter><++><Esc>kA',
   [',4'] = '####<Space><Enter><++><Esc>kA',
   [',5'] = '#####<Space><Enter><++><Esc>kA',
-}, { buf = 0 })
+}, { buffer = true })
 
 map.n({
   ['<leader>P'] = function()
     require('internal.Image').paste()
   end
-}, { buf = 0 })
+}, { buffer = true })

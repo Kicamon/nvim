@@ -1,4 +1,4 @@
-local function feedkeys (keys, mode)
+local function feedkeys(keys, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), mode, true)
 end
 
@@ -43,6 +43,8 @@ local function Run(full)
       tabclose
     ]])
     feedkeys('<ESC>', 'n')
+  else
+    vim.notify('Undefined\n')
   end
 end
 

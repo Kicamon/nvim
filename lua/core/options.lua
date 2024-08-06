@@ -50,7 +50,6 @@ opt.undofile = true
 opt.updatetime = 100
 opt.redrawtime = 1500
 
-
 local function get_signs(name)
   return function()
     local bufnr = api.nvim_win_get_buf(vim.g.statusline_winid)
