@@ -42,20 +42,20 @@ end
 
 function pd.sepl()
   return {
-    stl = ' ╲ ',
+    stl = ' \\ ',
     name = 'sepl',
     attr = {
-      foreground = '#3c3836'
+      foreground = '#665c54'
     }
   }
 end
 
 function pd.sepr()
   return {
-    stl = ' ╱ ',
+    stl = ' / ',
     name = 'sepr',
     attr = {
-      foreground = '#3c3836'
+      foreground = '#665c54'
     }
   }
 end
@@ -127,6 +127,7 @@ function pd.fileinfo()
     event = { 'BufEnter' },
   }
   result.attr = stl_attr('StatusLineFileInfo')
+  result.attr.bold = true
   result.attr.italic = true
   return result
 end
@@ -153,10 +154,9 @@ end
 
 local function gitsigns_data(git_t)
   local signs = {
-    ['added'] = ' ',
-    ['changed'] = ' ',
-    ['removed'] = ' ',
-    ['head'] = ' ',
+    ['added'] = '+',
+    ['changed'] = '~',
+    ['removed'] = '-',
   }
   return function(args)
     local ok, dict = pcall(api.nvim_buf_get_var, args.buf, 'gitsigns_status_dict')
@@ -175,6 +175,9 @@ local function gitsigns_data(git_t)
       if #obj.stdout > 0 then
         dict[git_t] = vim.trim(obj.stdout)
       end
+    end
+    if git_t == 'head' then
+      return ('<%s>%s'):format(dict[git_t], ' ')
     end
     return ('%s%s%s'):format(signs[git_t], dict[git_t], ' ')
   end
@@ -346,7 +349,7 @@ end
 
 function pd.lnumcol()
   local result = {
-    stl   = '%-2.(%l:%c%) (%P)',
+    stl   = '%P(%-2.(%l:%c%))',
     name  = 'linecol',
     event = { 'BufEnter' },
   }

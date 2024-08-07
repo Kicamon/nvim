@@ -80,7 +80,7 @@
 | `<F5>`       | Code runing                       | n    |
 | `<F10>`      | Code runing with center float win | n    |
 
-[![pkvTyD0.md.png](https://s21.ax1x.com/2024/08/05/pkvTyD0.md.png)](https://imgse.com/i/pkvTyD0)
+![pkvTyD0.md.png](https://s21.ax1x.com/2024/08/05/pkvTyD0.md.png)
 
 ##### 6.2 Lsp
 | Shortcut     | Action                                     | Mode |
@@ -124,13 +124,14 @@
 #### 9 Other tools
 | Shortcut     | Action                                                             | Mode |
 |--------------|--------------------------------------------------------------------|------|
-| `<leader>tr` | Translator                                                         | n    |
 | `:Chdir`     | Jump to the directory where the current buffer                     | n    |
 | `<leader>N`  | Get treesitter node in current                                     | n    |
 | `<cr>`       | Quickly select the closest text object among a group of candidates | n    |
 | `<leader>ww` | Note manager                                                       | n    |
 | `<cr>`       | Create or enter note in wiki                                       | n    |
 
+### Plugins
+![pkxOWff.md.png](https://s21.ax1x.com/2024/08/07/pkxOWff.md.png)
 
 ### Install
 ```shell
@@ -139,6 +140,7 @@ clang
 fd
 lua
 lua-language-server
+luarocks
 pyright
 python
 python-black

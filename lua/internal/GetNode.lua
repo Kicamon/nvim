@@ -9,4 +9,3 @@ end
 return {
   GetNode = GetNode
 }
-

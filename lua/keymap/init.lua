@@ -53,7 +53,9 @@ map.n({
     require('internal.Yazi').Yazi('vsplit', 'right')
   end,
   -- wiki
-  ['<leader>ww'] = function() require('internal.Wiki').OpenWiki() end,
+  ['<leader>ww'] = function()
+    require('internal.Wiki').OpenWiki()
+  end,
   -- surround
   ['cs']         = function()
     require('internal.Surround').Change_Surround()

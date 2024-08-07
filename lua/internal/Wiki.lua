@@ -38,11 +38,11 @@ local function OpenWiki()
       vim.keymap.set({ 'n', 'v' }, '<CR>', Create_Open, { buffer = true })
     end
   })
-  if vim.fn.filereadable(vim.fn.expand(vim.g.wiki_path .. 'index.md')) == 0 then
-    vim.cmd('silent !mkdir -p ' .. vim.g.wiki_path)
-    vim.cmd('silent !touch ' .. vim.g.wiki_path .. 'index.md')
+  if vim.fn.filereadable(vim.fn.expand(_G.wiki_path .. 'index.md')) == 0 then
+    vim.cmd('silent !mkdir -p ' .. _G.wiki_path)
+    vim.cmd('silent !touch ' .. _G.wiki_path .. 'index.md')
   end
-  vim.cmd('edit ' .. vim.g.wiki_path .. 'index.md')
+  vim.cmd('edit ' .. _G.wiki_path .. 'index.md')
 end
 
 return {
