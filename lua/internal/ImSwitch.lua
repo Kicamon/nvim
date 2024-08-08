@@ -3,7 +3,7 @@ local input_toggle = 1
 local switch = {
   text = {
     '*.md',
-    '*.txt'
+    '*.txt',
   },
   en = 'fcitx5-remote -c',
   zh = 'fcitx5-remote -o',
@@ -11,16 +11,16 @@ local switch = {
 }
 
 local function En()
-  local input_status = tonumber(io.popen(switch.check):read("*all"))
-  if (input_status == 2) then
+  local input_status = tonumber(io.popen(switch.check):read('*all'))
+  if input_status == 2 then
     input_toggle = 1
     vim.fn.system(switch.en)
   end
 end
 
 local function Zh()
-  local input_status = tonumber(io.popen(switch.check):read("*all"))
-  if (input_status ~= 2 and input_toggle == 1) then
+  local input_status = tonumber(io.popen(switch.check):read('*all'))
+  if input_status ~= 2 and input_toggle == 1 then
     vim.fn.system(switch.zh)
     input_toggle = 0
   end
@@ -36,9 +36,9 @@ local md = {
 }
 
 local md_code = {
-  'chunk',            --lua
+  'chunk', --lua
   'translation_unit', --c/cpp
-  'module',           --python
+  'module', --python
 }
 
 local function is_not_in_code_block() --markdown

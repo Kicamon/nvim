@@ -2,7 +2,7 @@ local pchar = { '/', '#' }
 
 local function check(oldword, newword)
   if oldword == '' or newword == '' then
-    vim.cmd("normal ! v")
+    vim.cmd('normal ! v')
     return true
   end
   return false
@@ -10,9 +10,9 @@ end
 
 local function Input(oldword)
   if not oldword then
-    oldword = vim.fn.input("Enter word old: ")
+    oldword = vim.fn.input('Enter word old: ')
   end
-  local newword = vim.fn.input("Enter word new: ")
+  local newword = vim.fn.input('Enter word new: ')
   local char = '/'
   local vis = true
   for _, c in ipairs(pchar) do
@@ -23,7 +23,7 @@ local function Input(oldword)
     end
   end
   if vis then
-    char = vim.fn.input("Enter char: ")
+    char = vim.fn.input('Enter char: ')
   end
   return oldword, newword, char
 end
@@ -52,11 +52,11 @@ local function QuickSubstitute()
       end
       vim.cmd(string.format(':%d,%ds%s%s%s%s%sg', sl, el, char, oldword, char, newword, char))
     end
-    vim.cmd("normal ! v")
+    vim.cmd('normal ! v')
   end
-  vim.cmd("noh")
+  vim.cmd('noh')
 end
 
 return {
-  QuickSubstitute = QuickSubstitute
+  QuickSubstitute = QuickSubstitute,
 }

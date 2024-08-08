@@ -22,5 +22,5 @@ local function TabToSpace()
 end
 
 return {
-  TabToSpace = TabToSpace
+  TabToSpace = TabToSpace,
 }

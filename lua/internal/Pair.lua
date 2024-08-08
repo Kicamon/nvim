@@ -1,20 +1,20 @@
 local config = {
   keys = {
-    ["("] = { close = true, pair = "()" },
-    ["["] = { close = true, pair = "[]" },
-    ["{"] = { close = true, pair = "{}" },
+    ['('] = { close = true, pair = '()' },
+    ['['] = { close = true, pair = '[]' },
+    ['{'] = { close = true, pair = '{}' },
 
-    [")"] = { close = false, pair = "()" },
-    ["]"] = { close = false, pair = "[]" },
-    ["}"] = { close = false, pair = "{}" },
+    [')'] = { close = false, pair = '()' },
+    [']'] = { close = false, pair = '[]' },
+    ['}'] = { close = false, pair = '{}' },
 
     ['"'] = { close = true, pair = '""' },
     ["'"] = { close = true, pair = "''" },
-    ["`"] = { close = true, pair = '``' },
+    ['`'] = { close = true, pair = '``' },
 
     ['<cr>'] = {},
     ['<bs>'] = {},
-  }
+  },
 }
 
 local function get_pair(mode)
@@ -40,7 +40,7 @@ local function insert_pairs(key, val, mode)
   elseif key == '<bs>' and is_pair(pair) then
     return '<bs><del>'
   elseif val.close then
-    return val.pair .. "<Left>"
+    return val.pair .. '<Left>'
   else
     return key
   end

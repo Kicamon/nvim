@@ -39,25 +39,25 @@ local function default()
   }
   local e, pieces = {}, {}
   iter(ipairs(comps))
-      :map(function(key, item)
-        if type(item) == 'string' then
-          pieces[#pieces + 1] = stl_format('Padding', item)
-        elseif type(item.stl) == 'string' then
-          pieces[#pieces + 1] = stl_format(item.name, item.stl)
-        else
-          pieces[#pieces + 1] = item.default and stl_format(item.name, item.default) or ''
-          for _, event in ipairs({ unpack(item.event or {}) }) do
-            if not e[event] then
-              e[event] = {}
-            end
-            e[event][#e[event] + 1] = key
+    :map(function(key, item)
+      if type(item) == 'string' then
+        pieces[#pieces + 1] = stl_format('Padding', item)
+      elseif type(item.stl) == 'string' then
+        pieces[#pieces + 1] = stl_format(item.name, item.stl)
+      else
+        pieces[#pieces + 1] = item.default and stl_format(item.name, item.default) or ''
+        for _, event in ipairs({ unpack(item.event or {}) }) do
+          if not e[event] then
+            e[event] = {}
           end
+          e[event][#e[event] + 1] = key
         end
-        if item.attr and item.name then
-          api.nvim_set_hl(0, ('Simple%s'):format(item.name), item.attr)
-        end
-      end)
-      :totable()
+      end
+      if item.attr and item.name then
+        api.nvim_set_hl(0, ('Simple%s'):format(item.name), item.attr)
+      end
+    end)
+    :totable()
   return comps, e, pieces
 end
 
@@ -99,15 +99,31 @@ return {
           end,
         })
         -- tabline
-        local events_tab = { 'BufEnter', 'BufWritePost', 'BufModifiedSet', 'TabNew', 'TabEnter', 'TabLeave', 'TermClose' }
-        local update = require('internal.lines.tabline').update
-        vim.api.nvim_create_autocmd(events_tab, {
+        api.nvim_create_autocmd('TabEnter', {
           callback = function()
-            update()
-          end
+            local events_tab = {
+              'BufEnter',
+              'BufWritePost',
+              'BufModifiedSet',
+              'TabNew',
+              'TabEnter',
+              'TabLeave',
+              'TermClose',
+            }
+            local update = require('internal.lines.tabline').update
+            api.nvim_create_autocmd(events_tab, {
+              callback = function()
+                update()
+              end,
+            })
+            vim.keymap.set('n', 'tmp', function()
+              update('-')
+            end, {})
+            vim.keymap.set('n', 'tmn', function()
+              update('+')
+            end, {})
+          end,
         })
-        vim.keymap.set('n', 'tmp', function() update('-') end, {})
-        vim.keymap.set('n', 'tmn', function() update('+') end, {})
       end
     end, 0)
   end,

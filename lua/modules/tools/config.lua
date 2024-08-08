@@ -47,22 +47,21 @@ end
 
 function config.guard()
   local ft = require('guard.filetype')
-  ft('c,cpp'):fmt('clang-format');
+  ft('c,cpp'):fmt({
+    cmd = 'clang-format',
+    stdin = true,
+    ignore_patterns = { 'neovim', 'vim' },
+  })
   ft('python'):fmt('black')
-  ft('lua'):fmt('lsp')
+  ft('lua'):fmt({
+    cmd = 'stylua',
+    args = { '-' },
+    stdin = true,
+    ignore_patterns = '%w_spec%.lua',
+  })
   require('guard').setup({
     fmt_on_save = false,
     lsp_as_default_formatter = true,
-  })
-end
-
-function config.flybuf()
-  require('flybuf').setup({
-    hotkey = 'asxfghwertyuiopzcvbnm', -- hotkye
-    border = 'rounded',               -- border
-    quit = 'q',                       -- quit flybuf window
-    mark = 'l',                       -- mark as delet or cancel delete
-    delete = 'd',                     -- delete marked buffers or buffers which cursor in
   })
 end
 

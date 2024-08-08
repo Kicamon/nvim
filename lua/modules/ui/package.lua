@@ -1,22 +1,17 @@
 local conf = require('modules.ui.config')
 
 packadd({
-  'nvim-tree/nvim-web-devicons',
-  lazy = true,
-})
-
-packadd({
   'lewis6991/gitsigns.nvim',
   lazy = true,
   event = { 'BufRead', 'BufNewFile' },
-  config = conf.gitsigns
+  config = conf.gitsigns,
 })
 
 packadd({
   'nvimdev/indentmini.nvim',
   lazy = true,
   event = { 'BufRead', 'BufNewFile' },
-  config = conf.indentmini
+  config = conf.indentmini,
 })
 
 packadd({
@@ -24,12 +19,5 @@ packadd({
   build = ':TSUpdate',
   lazy = true,
   event = { 'BufRead', 'BufNewFile' },
-  config = conf.treesitter
-})
-
-packadd({
-  'HiPhish/rainbow-delimiters.nvim',
-  lazy = true,
-  event = { 'BufRead', 'BufNewFile' },
-  config = conf.rainbow
+  config = conf.treesitter,
 })

@@ -57,8 +57,12 @@ local function Add_Surround()
     local line_mid = string.sub(line, sr, er)
     local L = SurroundChars({ line_mid }, char)
     line_mid = L[1]
-    vim.fn.setline(sl,
-      (sr == 1 and '' or string.sub(line, 1, sr - 1)) .. line_mid .. (er == #line and '' or string.sub(line, er + 1)))
+    vim.fn.setline(
+      sl,
+      (sr == 1 and '' or string.sub(line, 1, sr - 1))
+        .. line_mid
+        .. (er == #line and '' or string.sub(line, er + 1))
+    )
   else
     local lines, linee = vim.fn.getline(sl), vim.fn.getline(el)
     local lines_mid, linee_mid = string.sub(lines, sr), string.sub(linee, 1, er)

@@ -42,7 +42,7 @@ end
 
 local function float_win_opt(opt, val)
   local ui = vim.api.nvim_list_uis()[1]
-  local win = vim.tbl_extend("force", {
+  local win = vim.tbl_extend('force', {
     anchor = 'NW',
     relative = 'editor',
     width = math.ceil(ui.width / 2),

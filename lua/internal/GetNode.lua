@@ -7,5 +7,5 @@ local function GetNode()
 end
 
 return {
-  GetNode = GetNode
+  GetNode = GetNode,
 }

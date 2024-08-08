@@ -31,6 +31,5 @@ local function Wildfire()
 end
 
 return {
-  Wildfire = Wildfire
+  Wildfire = Wildfire,
 }
-

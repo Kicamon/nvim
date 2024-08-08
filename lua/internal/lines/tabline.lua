@@ -1,13 +1,13 @@
 local function tbl_hl(name, attr)
-  vim.api.nvim_set_hl(0, "Simple_Tab" .. name, attr)
-  return "Simple_Tab" .. name
+  vim.api.nvim_set_hl(0, 'Simple_Tab' .. name, attr)
+  return 'Simple_Tab' .. name
 end
 
 local function getinfo(bufnr)
   return {
     file = vim.fn.bufname(bufnr),
     buftype = vim.fn.getbufvar(bufnr, '&buftype'),
-    filetype = vim.fn.getbufvar(bufnr, '&filetype')
+    filetype = vim.fn.getbufvar(bufnr, '&filetype'),
   }
 end
 
@@ -52,7 +52,7 @@ end
 
 local function modified(bufnr)
   local modicon = vim.fn.getbufvar(bufnr, '&modified') == 1 and '●' or ''
-  local hl = tbl_hl("modified", { fg = "#ff461f" })
+  local hl = tbl_hl('modified', { fg = '#ff461f' })
   modicon = '%#' .. hl .. '#' .. modicon
   return modicon
 end
@@ -64,10 +64,16 @@ local function cell(index)
   local bufnr = buflist[winnr]
   local hl = (isSelected and '%#TabLineSel#' or '%#TabLine#')
 
-  return hl .. '%' .. index .. 'T' .. ' ' ..
-      devicon(bufnr, isSelected) ..
-      title(bufnr, isSelected) .. ' ' ..
-      modified(bufnr) .. '%T'
+  return hl
+    .. '%'
+    .. index
+    .. 'T'
+    .. ' '
+    .. devicon(bufnr, isSelected)
+    .. title(bufnr, isSelected)
+    .. ' '
+    .. modified(bufnr)
+    .. '%T'
 end
 
 local tbl_rendera = coroutine.create(function()

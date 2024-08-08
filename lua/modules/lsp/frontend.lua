@@ -11,13 +11,13 @@ local servers = {
       },
     },
     cmd = {
-      "clangd",
-      "--background-index",
-      "--header-insertion=never",
-      "--header-insertion-decorators=false",
+      'clangd',
+      '--background-index',
+      '--header-insertion=never',
+      '--header-insertion-decorators=false',
     },
     root_dir = function(fname)
-      return require("lspconfig").util.root_pattern(unpack({
+      return require('lspconfig').util.root_pattern(unpack({
         --reorder
         'Makefile',
         'compile_commands.json',
@@ -26,7 +26,7 @@ local servers = {
         '.clang-format',
         'compile_flags.txt',
         'configure.ac', -- AutoTools
-      }))(fname) or require("lspconfig").util.find_git_ancestor(fname)
+      }))(fname) or require('lspconfig').util.find_git_ancestor(fname)
     end,
   },
   jsonls = {},
@@ -35,8 +35,8 @@ local servers = {
   tsserver = {},
   lua_ls = {
     cmd = {
-      "lua-language-server",
-      "--locale=zh-cn",
+      'lua-language-server',
+      '--locale=zh-cn',
     },
     settings = {
       Lua = {

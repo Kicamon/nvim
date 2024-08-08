@@ -5,35 +5,8 @@ function config.cmp()
     unpack = unpack or table.unpack
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0
-        and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+      and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
   end
-  local kind_icons = {
-    Text = " 󰉿 ",
-    Method = " 󰆧 ",
-    Function = " 󰊕 ",
-    Constructor = "  ",
-    Field = " 󰜢 ",
-    Variable = " 󰀫 ",
-    Class = " 󰠱 ",
-    Interface = "  ",
-    Module = "  ",
-    Property = " 󰜢 ",
-    Unit = " 󰑭 ",
-    Value = " 󰎠 ",
-    Enum = "  ",
-    Keyword = " 󰌋 ",
-    Snippet = "  ",
-    Color = " 󰏘 ",
-    File = " 󰈙 ",
-    Reference = " 󰈇 ",
-    Folder = " 󰉋 ",
-    EnumMember = "  ",
-    Constant = " 󰏿 ",
-    Struct = " 󰙅 ",
-    Event = "  ",
-    Operator = " 󰆕 ",
-    TypeParameter = " 󰅲 ",
-  }
   local luasnip = require('luasnip')
   require('luasnip.loaders.from_vscode').lazy_load({ paths = '~/.config/nvim/snippets' })
   local cmp = require('cmp')
@@ -47,7 +20,7 @@ function config.cmp()
         scrollbar = true,
       },
       documentation = {
-        winhighlight = 'Normal:CmpWin,FloatBorder:CmpWin,Search:None',
+        winhighlight = 'Normal:CmpSeWin,FloatBorder:CmpSeWin,Search:None',
         border = 'rounded',
         scrollbar = true,
       },
@@ -56,7 +29,7 @@ function config.cmp()
       fields = { 'kind', 'abbr', 'menu' },
       format = function(_, vim_item)
         vim_item.menu = ' ' .. (vim_item.kind or '')
-        vim_item.kind = kind_icons[vim_item.kind] or ''
+        vim_item.kind = _G.kind_icons[vim_item.kind] or ''
         return vim_item
       end,
     },
@@ -98,6 +71,42 @@ function config.cmp()
     experimental = {
       ghost_text = true,
     },
+  })
+end
+
+function config.epo()
+  vim.keymap.set('i', '<TAB>', function()
+    if vim.fn.pumvisible() == 1 then
+      return '<C-n>'
+    elseif vim.snippet.jumpable(1) then
+      return '<cmd>lua vim.snippet.jump(1)<cr>'
+    else
+      return '<TAB>'
+    end
+  end, { expr = true })
+
+  vim.keymap.set('i', '<S-TAB>', function()
+    if vim.fn.pumvisible() == 1 then
+      return '<C-p>'
+    elseif vim.snippet.jumpable(-1) then
+      return '<cmd>lua vim.snippet.jump(-1)<CR>'
+    else
+      return '<S-TAB>'
+    end
+  end, { expr = true })
+
+  -- For using enter as completion, may conflict with some autopair plugin
+  vim.keymap.set('i', '<cr>', function()
+    if vim.fn.pumvisible() == 1 then
+      return '<C-y>'
+    end
+    return '<cr>'
+  end, { expr = true, noremap = true })
+
+  require('epo').setup({
+    kind_format = function(k)
+      return _G.kind_icons[k] .. ' ' .. k
+    end,
   })
 end
 

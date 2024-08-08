@@ -12,5 +12,11 @@ packadd({
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
   },
-  config = conf.cmp
+  config = conf.cmp,
 })
+
+-- packadd({
+--   'nvimdev/epo.nvim',
+--   lazy = true,
+--   event = 'LspAttach',
+-- })

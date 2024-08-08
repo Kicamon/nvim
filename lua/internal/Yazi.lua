@@ -33,7 +33,7 @@ local function TabName(name)
     buffer = bufnr,
     callback = function()
       vim.cmd('set filetype=' .. name)
-    end
+    end,
   })
 end
 
@@ -65,11 +65,10 @@ local function Yazi(open, opt)
         OpenFile(open, opt)
       end
       EndOpt()
-    end
+    end,
   })
 end
 
-
 return {
-  Yazi = Yazi
+  Yazi = Yazi,
 }

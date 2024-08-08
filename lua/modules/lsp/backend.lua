@@ -8,6 +8,11 @@ function config.lsp()
   end
 
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
+  -- local capabilities = vim.tbl_deep_extend(
+  --   'force',
+  --   vim.lsp.protocol.make_client_capabilities(),
+  --   require('epo').register_cap()
+  -- )
 
   for server, conf in pairs(servers) do
     require('lspconfig')[server].setup(vim.tbl_deep_extend('force', {
@@ -26,7 +31,7 @@ function config.lsp()
   vim.diagnostic.config({
     virtual_text = {
       prefix = '❯',
-    }
+    },
   })
 
   vim.diagnostic.config({
@@ -36,18 +41,21 @@ function config.lsp()
         [vim.diagnostic.severity.WARN] = 'W',
         [vim.diagnostic.severity.INFO] = 'I',
         [vim.diagnostic.severity.HINT] = 'H',
-      }
-    }
+      },
+    },
   })
 end
 
 function config.lspsaga()
   require('lspsaga').setup({
+    ui = {
+      title = true,
+    },
     outline = {
       keys = {
         quit = 'Q',
         toggle_or_jump = '<cr>',
-      }
+      },
     },
     finder = {
       keys = {
@@ -60,12 +68,12 @@ function config.lspsaga()
       keys = {
         edit = '<C-o>',
         vsplit = '<C-v>',
-      }
+      },
     },
     code_action = {
       keys = {
         quit = 'Q',
-      }
+      },
     },
   })
 end

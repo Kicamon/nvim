@@ -11,7 +11,7 @@ au({ 'BufLeave', 'WinLeave', 'InsertEnter' }, {
   group = group,
   callback = function()
     require('internal.CursorWord').matchdelete(true)
-  end
+  end,
 })
 
 --- ImSwitch
@@ -19,7 +19,7 @@ au('InsertLeave', {
   group = group,
   callback = function()
     require('internal.ImSwitch').En()
-  end
+  end,
 })
 au('InsertEnter', {
   group = group,
@@ -28,23 +28,23 @@ au('InsertEnter', {
     if require('internal.ImSwitch').filetype_checke() then
       require('internal.ImSwitch').Zh()
     end
-  end
+  end,
 })
 
 --- MdTableFormat
 au('InsertLeave', {
   group = group,
-  pattern = "*.md",
+  pattern = '*.md',
   callback = function()
     require('internal.MdTableFormat').format_markdown_table()
-  end
+  end,
 })
 au('TextChangedI', {
   group = group,
-  pattern = "*.md",
+  pattern = '*.md',
   callback = function()
     require('internal.MdTableFormat').format_markdown_table_lines()
-  end
+  end,
 })
 
 --- Pairs
@@ -53,7 +53,7 @@ au({ 'InsertEnter', 'CmdlineEnter' }, {
   once = true,
   callback = function()
     require('internal.Pair')
-  end
+  end,
 })
 
 au('TermOpen', { group = group, pattern = 'term://*', command = [[startinsert]] })
@@ -62,18 +62,18 @@ au('TextYankPost', {
   group = group,
   callback = function()
     vim.highlight.on_yank({ higroup = 'Visual', timeout = 200 })
-  end
+  end,
 })
 
 au({ 'BufRead', 'BufNewFile' }, {
   callback = function()
     vim.cmd('setlocal formatoptions-=ro')
     --- last plase
-    local pos = vim.fn.getpos("'\"")
+    local pos = vim.fn.getpos('\'"')
     if pos[2] > 0 and pos[2] <= vim.fn.line('$') then
       vim.api.nvim_win_set_cursor(0, { pos[2], pos[3] - 1 })
     end
-  end
+  end,
 })
 
 au({ 'BufRead', 'BufEnter' }, {
@@ -81,7 +81,7 @@ au({ 'BufRead', 'BufEnter' }, {
   pattern = '*.md',
   callback = function()
     require('keymap.markdown')
-  end
+  end,
 })
 
 au('BufEnter', {
@@ -90,12 +90,14 @@ au('BufEnter', {
   callback = function()
     require('keymap')
     vim.cmd.colorscheme('gruvbox')
-    uc('Yazi', function() require('internal.Yazi').Yazi('edit') end, { nargs = 0 })
+    uc('Yazi', function()
+      require('internal.Yazi').Yazi('edit')
+    end, { nargs = 0 })
     --- lines
     require('internal.lines').setup()
     --- Chdir
     uc('Chdir', function()
       require('internal.Chdir').Chdir()
     end, { nargs = 0 })
-  end
+  end,
 })

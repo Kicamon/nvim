@@ -45,8 +45,8 @@ function pd.sepl()
     stl = ' \\ ',
     name = 'sepl',
     attr = {
-      foreground = '#665c54'
-    }
+      foreground = '#665c54',
+    },
   }
 end
 
@@ -55,8 +55,8 @@ function pd.sepr()
     stl = ' / ',
     name = 'sepr',
     attr = {
-      foreground = '#665c54'
-    }
+      foreground = '#665c54',
+    },
   }
 end
 
@@ -113,7 +113,7 @@ function pd.mode()
     event = { 'ModeChanged', 'BufEnter', 'TermLeave' },
   }
 
-  result.attr = stl_attr("StatusLineMode")
+  result.attr = stl_attr('StatusLineMode')
   result.attr.bold = true
   result.attr.italic = true
 
@@ -161,17 +161,17 @@ local function gitsigns_data(git_t)
   return function(args)
     local ok, dict = pcall(api.nvim_buf_get_var, args.buf, 'gitsigns_status_dict')
     if
-        not ok
-        or vim.tbl_isempty(dict)
-        or not dict[git_t]
-        or (type(dict[git_t]) == 'number' and dict[git_t] <= 0)
+      not ok
+      or vim.tbl_isempty(dict)
+      or not dict[git_t]
+      or (type(dict[git_t]) == 'number' and dict[git_t] <= 0)
     then
       return ''
     end
     if git_t == 'head' and dict[git_t] == '' then
       local obj = vim
-          .system({ 'git', 'config', '--get', 'init.defaultBranch' }, { text = true })
-          :wait()
+        .system({ 'git', 'config', '--get', 'init.defaultBranch' }, { text = true })
+        :wait()
       if #obj.stdout > 0 then
         dict[git_t] = vim.trim(obj.stdout)
       end
@@ -233,9 +233,9 @@ function pd.lsp()
           msg = client.name
         else
           msg = val.title
-              .. ' '
-              .. (val.message and val.message .. ' ' or '')
-              .. (val.percentage and val.percentage .. '%' or '')
+            .. ' '
+            .. (val.message and val.message .. ' ' or '')
+            .. (val.percentage and val.percentage .. '%' or '')
         end
       elseif args.event == 'BufEnter' then
         msg = client.name
@@ -262,9 +262,9 @@ function pd.recording()
     return stl
   end
   local result = {
-    stl   = stl_recording,
-    name  = 'recording',
-    attr  = {
+    stl = stl_recording,
+    name = 'recording',
+    attr = {
       fg = '#fabd2f',
     },
     event = { 'RecordingEnter', 'RecordingLeave' },
@@ -342,15 +342,15 @@ function pd.encoding()
     event = { 'BufEnter' },
   }
 
-  result.attr = stl_attr("StatusLineEncoding")
+  result.attr = stl_attr('StatusLineEncoding')
   result.attr.italic = true
   return result
 end
 
 function pd.lnumcol()
   local result = {
-    stl   = '%P(%-2.(%l:%c%))',
-    name  = 'linecol',
+    stl = '%P(%-2.(%l:%c%))',
+    name = 'linecol',
     event = { 'BufEnter' },
   }
 

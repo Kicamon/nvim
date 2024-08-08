@@ -3,7 +3,7 @@ local function check_markdown_table(line_number)
     line_number = vim.fn.line('.')
   end
   local line = vim.api.nvim_buf_get_lines(0, line_number - 1, line_number, true)[1]
-  return string.match(line, "^|.*|$")
+  return string.match(line, '^|.*|$')
 end
 
 local function find_markdown_table(range)
@@ -81,10 +81,11 @@ local function update_cell_contents(table_contents, width)
   for i, cells in ipairs(table_contents) do
     if i == 2 then
       for j, _ in ipairs(cells) do
-        local chars          = get_chars(table_contents[i][j])
-        local id             = get_table_line_char_id(chars)
+        local chars = get_chars(table_contents[i][j])
+        local id = get_table_line_char_id(chars)
         table_contents[i][j] = string.rep('-', width[j])
-        table_contents[i][j] = add_chars(table_contents[i][j], id ~= 0 and table_line_char[id] or { '-', '-' })
+        table_contents[i][j] =
+          add_chars(table_contents[i][j], id ~= 0 and table_line_char[id] or { '-', '-' })
       end
     else
       for j, cell in ipairs(cells) do
@@ -120,9 +121,9 @@ local fmt = coroutine.create(function()
 
     local function table_to_cells(line, lnum)
       local table_cells = {}
-      for cell in line:gmatch("([^|]+)%|") do
+      for cell in line:gmatch('([^|]+)%|') do
         if lnum ~= 1 then
-          cell = cell:match("^%s*(.-)%s*$")
+          cell = cell:match('^%s*(.-)%s*$')
         end
         table.insert(table_cells, cell)
       end

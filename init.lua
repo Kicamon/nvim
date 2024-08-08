@@ -1,4 +1,4 @@
 vim.loader.enable()
-require("core")
+require('core')
 require('internal.event')
 -- require('functiontest')

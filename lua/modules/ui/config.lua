@@ -1,22 +1,21 @@
 local config = {}
 
 function config.gitsigns()
-  require('gitsigns').setup {
+  require('gitsigns').setup({
     signs = {
-      add          = { text = '┃' },
-      change       = { text = '┃' },
-      delete       = { text = '_' },
-      topdelete    = { text = '‾' },
+      add = { text = '┃' },
+      change = { text = '┃' },
+      delete = { text = '_' },
+      topdelete = { text = '‾' },
       changedelete = { text = '~' },
-      untracked    = { text = '┃' },
-
+      untracked = { text = '┃' },
     },
-  }
+  })
 end
 
 function config.indentmini()
   require('indentmini').setup({
-    char = "│",
+    char = '│',
     exclude = {
       'help',
       'dashboard',
@@ -27,7 +26,7 @@ function config.indentmini()
       'markdown',
       'text',
       'Yazi',
-    }
+    },
   })
 end
 
@@ -53,32 +52,9 @@ function config.treesitter()
       disable = {},
     },
     indent = {
-      enable = true
+      enable = true,
     },
   })
-end
-
-function config.rainbow()
-  local rainbow_delimiters = require('rainbow-delimiters')
-  vim.g.rainbow_delimiters = {
-    strategy = {
-      [''] = rainbow_delimiters.strategy['global'],
-      vim = rainbow_delimiters.strategy['local'],
-    },
-    query = {
-      [''] = 'rainbow-delimiters',
-      lua = 'rainbow-blocks',
-    },
-    highlight = {
-      'RainbowDelimiterBlue',
-      'RainbowDelimiterYellow',
-      'RainbowDelimiterCyan',
-      'RainbowDelimiterViolet',
-      'RainbowDelimiterRed',
-      'RainbowDelimiterOrange',
-      'RainbowDelimiterGreen',
-    },
-  }
 end
 
 return config

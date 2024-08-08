@@ -3,13 +3,13 @@ local function feedkeys(keys, mode)
 end
 
 local RunWin = coroutine.create(function(opt, full)
-  local Win = require("internal.util.FloatWin")
+  local Win = require('internal.util.FloatWin')
   while true do
     Win:Create({
       anchor = full and 'NW' or 'NE',
       width = full and 0.7 or 0.25,
       height = full and 0.7 or 0.9,
-      title = '  Code Running '
+      title = '  Code Running ',
     }, {
       buflisted = true,
       pos = full and 'cc' or 'tr',
@@ -38,14 +38,31 @@ local function Run(full)
   vim.cmd('silent! lcd %:p:h')
   if filetype == 'c' then
     vim.schedule(function()
-      coroutine.resume(RunWin,
-        string.format('gcc "%s" -o "%s" && ./"%s" && rm -f "%s"', filename, runfile, runfile, runfile), full)
+      coroutine.resume(
+        RunWin,
+        string.format(
+          'gcc "%s" -o "%s" && ./"%s" && rm -f "%s"',
+          filename,
+          runfile,
+          runfile,
+          runfile
+        ),
+        full
+      )
     end)
   elseif filetype == 'cpp' then
     vim.schedule(function()
-      coroutine.resume(RunWin,
-        string.format('g++ "%s" -std=c++17 -o2 -g -Wall -o "%s" && ./"%s" && rm -rf "%s"', filename, runfile, runfile,
-          runfile), full)
+      coroutine.resume(
+        RunWin,
+        string.format(
+          'g++ "%s" -std=c++17 -o2 -g -Wall -o "%s" && ./"%s" && rm -rf "%s"',
+          filename,
+          runfile,
+          runfile,
+          runfile
+        ),
+        full
+      )
     end)
   elseif filetype == 'python' then
     vim.schedule(function()
@@ -71,5 +88,5 @@ local function Run(full)
 end
 
 return {
-  running = Run
+  running = Run,
 }

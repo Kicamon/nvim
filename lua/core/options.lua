@@ -30,7 +30,7 @@ opt.winwidth = 25
 opt.pumheight = 15
 opt.list = true
 opt.listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←'
-opt.completeopt = "menu,menuone,noselect,popup"
+opt.completeopt = 'menu,menuone,noselect,popup'
 opt.fillchars = {
   stl = ' ',
   stlnc = '-',
@@ -54,12 +54,12 @@ local function get_signs(name)
   return function()
     local bufnr = api.nvim_win_get_buf(vim.g.statusline_winid)
     local it = vim
-        .iter(api.nvim_buf_get_extmarks(bufnr, -1, 0, -1, { details = true, type = 'sign' }))
-        :find(function(item)
-          return item[2] == vim.v.lnum - 1
-              and item[4].sign_hl_group
-              and item[4].sign_hl_group:find(name)
-        end)
+      .iter(api.nvim_buf_get_extmarks(bufnr, -1, 0, -1, { details = true, type = 'sign' }))
+      :find(function(item)
+        return item[2] == vim.v.lnum - 1
+          and item[4].sign_hl_group
+          and item[4].sign_hl_group:find(name)
+      end)
     return not it and '  ' or ('%%#%s#%s%%*'):format(it[4].sign_hl_group, it[4].sign_text)
   end
 end

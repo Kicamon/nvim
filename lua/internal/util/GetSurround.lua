@@ -81,12 +81,23 @@ function pos.GetSurround(char)
   local charpos = {}
   if char then
     local index = pos.GetScharIndex(char)
-    charpos = updata(-1, charpos, find_char(sl, sr, index, 1, true), find_char(el, er, index, 2, false), false)[2]
+    charpos = updata(
+      -1,
+      charpos,
+      find_char(sl, sr, index, 1, true),
+      find_char(el, er, index, 2, false),
+      false
+    )[2]
   else
     local dis = -1
     for i = 1, #pos.Schar do
-      local val = updata(dis, charpos, find_char(sl, sr, i, 1, true), find_char(el, er, i, 2, false),
-        (pos.Schar[i][1] == '"' or pos.Schar[i][1] == "'"))
+      local val = updata(
+        dis,
+        charpos,
+        find_char(sl, sr, i, 1, true),
+        find_char(el, er, i, 2, false),
+        (pos.Schar[i][1] == '"' or pos.Schar[i][1] == "'")
+      )
       dis, charpos = val[1], val[2]
     end
   end

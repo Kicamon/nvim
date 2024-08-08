@@ -43,5 +43,5 @@ map.i({
 map.n({
   ['<leader>P'] = function()
     require('internal.Image').paste()
-  end
+  end,
 }, { buffer = true })

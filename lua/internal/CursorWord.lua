@@ -38,5 +38,5 @@ end
 
 return {
   matchadd = matchadd,
-  matchdelete = matchdelete
+  matchdelete = matchdelete,
 }
