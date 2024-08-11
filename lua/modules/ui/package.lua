@@ -13,11 +13,3 @@ packadd({
   event = { 'BufRead', 'BufNewFile' },
   config = conf.indentmini,
 })
-
-packadd({
-  'nvim-treesitter/nvim-treesitter',
-  build = ':TSUpdate',
-  lazy = true,
-  event = { 'BufRead', 'BufNewFile' },
-  config = conf.treesitter,
-})

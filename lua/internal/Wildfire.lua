@@ -16,9 +16,9 @@ local function checkpos(pos)
   return pos
 end
 
-local function Wildfire()
+local function wildfire()
   local getsurround = require('internal.util.GetSurround')
-  local pos = getsurround.GetSurround()
+  local pos = getsurround.get_surround()
   if not pos or #pos == 0 then
     changemode()
     return
@@ -31,5 +31,5 @@ local function Wildfire()
 end
 
 return {
-  Wildfire = Wildfire,
+  wildfire = wildfire,
 }

@@ -34,7 +34,7 @@ local function find_char(current_line, current_col, charn, num, pre)
   return nil
 end
 
-function pos.Visual()
+function pos.visual()
   local sl, sr, el, er
   sl, sr = vim.fn.getpos('v')[2], vim.fn.getpos('v')[3]
   el, er = vim.fn.getpos('.')[2], vim.fn.getpos('.')[3]
@@ -47,7 +47,7 @@ function pos.Visual()
   return sl, sr, el, er
 end
 
-function pos.GetScharIndex(char)
+function pos.get_surround_char_index(char)
   for i = 1, #pos.Schar do
     if pos.Schar[i][1] == char or pos.Schar[i][2] == char then
       return i
@@ -72,15 +72,15 @@ local function updata(dis, charpos, pp, np, bline)
   return { dis, charpos }
 end
 
-function pos.GetSurround(char)
-  local sl, sr, el, er = pos.Visual()
+function pos.get_surround(char)
+  local sl, sr, el, er = pos.visual()
   if vim.fn.mode() == 'v' then
     sr = sr - 2
     er = er + 2
   end
   local charpos = {}
   if char then
-    local index = pos.GetScharIndex(char)
+    local index = pos.get_surround_char_index(char)
     charpos = updata(
       -1,
       charpos,

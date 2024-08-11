@@ -70,11 +70,11 @@ function _G.show_stc()
 
   local function show_break()
     if vim.v.virtnum > 0 then
-      return (' '):rep(math.floor(math.ceil(math.log10(vim.v.lnum))) - 1) .. '↳'
+      return (' '):rep(math.floor(math.ceil(math.log10(vim.v.lnum))) - 1) .. '┆'
     end
     return vim.v.virtnum < 0 and '' or vim.v.lnum
   end
   return ('%s%%=%s%s'):format(stc_diagnostic(), show_break(), stc_gitsign())
 end
 
-vim.opt.stc = '%!v:lua.show_stc()'
+opt.stc = '%!v:lua.show_stc()'

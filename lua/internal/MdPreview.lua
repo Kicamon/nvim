@@ -4,5 +4,5 @@ local function preview()
 end
 
 return {
-  MarkdownPreview = preview,
+  markdown_preview = preview,
 }

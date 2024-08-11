@@ -2,7 +2,7 @@ local function feedkeys(keys, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), mode, true)
 end
 
-local function Create_Open()
+local function create_open()
   local ts_utils = require('nvim-treesitter.ts_utils')
   local node = ts_utils.get_node_at_cursor()
   if node then
@@ -31,20 +31,15 @@ local function Create_Open()
   end
 end
 
-local function OpenWiki()
-  vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
-    pattern = '*.md',
-    callback = function()
-      vim.keymap.set({ 'n', 'v' }, '<CR>', Create_Open, { buffer = true })
-    end,
-  })
-  if vim.fn.filereadable(vim.fn.expand(_G.wiki_path .. 'index.md')) == 0 then
-    vim.cmd('silent !mkdir -p ' .. _G.wiki_path)
-    vim.cmd('silent !touch ' .. _G.wiki_path .. 'index.md')
+local function open_wiki()
+  if vim.fn.filereadable(vim.fn.expand('~/Documents/study/Note/wiki/index.md')) == 0 then
+    vim.cmd('silent !mkdir -p ~/Documents/study/Note/wiki')
+    vim.cmd('silent !touch ~/Documents/study/Note/wiki/index.md')
   end
-  vim.cmd('edit ' .. _G.wiki_path .. 'index.md')
+  vim.cmd('edit ~/Documents/study/Note/wiki/index.md')
 end
 
 return {
-  OpenWiki = OpenWiki,
+  open_wiki = open_wiki,
+  create_open = create_open,
 }

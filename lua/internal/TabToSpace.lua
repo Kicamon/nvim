@@ -10,7 +10,7 @@ local TTS = coroutine.create(function(space)
   end
 end)
 
-local function TabToSpace()
+local function tab_to_space()
   local sw = vim.fn.shiftwidth()
   local space = ''
   for _ = 1, sw, 1 do
@@ -22,5 +22,5 @@ local function TabToSpace()
 end
 
 return {
-  TabToSpace = TabToSpace,
+  tab_to_space = tab_to_space,
 }

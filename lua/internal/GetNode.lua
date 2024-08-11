@@ -1,4 +1,4 @@
-local function GetNode()
+local function get_node()
   local ok, utils = pcall(require, 'nvim-treesitter.ts_utils')
   local node_cursor = utils.get_node_at_cursor()
   if ok and node_cursor ~= nil then
@@ -7,5 +7,5 @@ local function GetNode()
 end
 
 return {
-  GetNode = GetNode,
+  get_node = get_node,
 }

@@ -40,10 +40,10 @@ M.setcolor = function()
 
   local groups = {
     -- Base groups
-    Normal = { fg = colors.fg1, bg = colors.bg0 },
-    NormalFloat = { fg = colors.fg1, bg = colors.bg0 },
-    FloatWin = { fg = colors.fg0, bg = colors.bg0 },
-    FloatWinU = { fg = colors.fg0, bg = colors.bg1 },
+    Normal = { fg = colors.fg1 },
+    NormalFloat = { fg = colors.fg0 },
+    FloatWin = { fg = colors.fg0 },
+    FloatBorder = { fg = colors.fg1 },
     NormalNC = { link = 'Normal' },
     CursorLine = { bg = colors.bg1 },
     CursorColumn = { link = 'CursorLine' },
@@ -55,7 +55,7 @@ M.setcolor = function()
     MatchParen = { bg = colors.bg3, bold = config.bold },
     ColorColumn = { bg = colors.bg1 },
     Conceal = { fg = colors.dblue },
-    CursorLineNr = { fg = colors.yellow, bg = colors.bg0 },
+    CursorLineNr = { fg = colors.yellow },
     NonText = { fg = colors.bg2 },
     SpecialKey = { fg = colors.fg4 },
     --Visual = { bg = colors.bg3, reverse = config.invert_selection },
@@ -206,8 +206,6 @@ M.setcolor = function()
     LspSagaDiagnosticHeader = { fg = colors.green },
     LspSagaSignatureHelpBorder = { fg = colors.green },
     SagaShadow = { fg = colors.bg0 },
-    -- lazy
-    LazyNormal = { link = 'FloatWinU' },
     -- Indent
     IndentLine = { fg = colors.bg2 },
     IndentLineCurrent = { fg = '#E6E6FA' },
@@ -229,8 +227,8 @@ M.setcolor = function()
     PmenuExtra = { fg = colors.fg1, bg = colors.bg2 },
     PmenuExtraSel = { fg = colors.bg2, bg = colors.dblue, bold = config.bold },
     -- cmp
-    CmpWin = { fg = '#C5CDD9', bg = colors.bg0 },
-    CmpSeWin = { fg = '#C5CDD9', bg = colors.bg0 },
+    CmpWin = { fg = '#C5CDD9', bg = 'NONE' },
+    CmpSeWin = { fg = '#C5CDD9', bg = 'NONE' },
     CmpItemAbbrDeprecated = { fg = '#7E8294', bg = 'NONE', strikethrough = true },
     CmpItemAbbrMatch = { fg = '#82AAFF', bg = 'NONE', bold = true },
     CmpItemAbbrMatchFuzzy = { fg = '#82AAFF', bg = 'NONE', bold = true },

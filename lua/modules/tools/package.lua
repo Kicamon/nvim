@@ -1,43 +1,45 @@
 local conf = require('modules.tools.config')
 
 packadd({
+  'nvim-treesitter/nvim-treesitter',
+  build = ':TSUpdate',
+  lazy = true,
+  event = { 'BufRead', 'BufNewFile' },
+  config = conf.treesitter,
+})
+
+packadd({
   'nvim-telescope/telescope.nvim',
   lazy = true,
   cmd = 'Telescope',
-  dependencies = {
-    'nvim-lua/plenary.nvim',
-  },
   config = conf.telescope,
+  dependencies = { 'nvim-lua/plenary.nvim' },
 })
 
 packadd({
   'NvChad/nvim-colorizer.lua',
   lazy = true,
-  event = { 'BufReadPre', 'BufNewFile' },
+  ft = { 'css', 'html', 'typescriptreact', 'conf', 'vim', 'lua' },
   config = conf.colorizer,
-})
-
-packadd({
-  'folke/flash.nvim',
-  lazy = true,
-  keys = {
-    {
-      's',
-      mode = 'n',
-      function()
-        require('flash').jump()
-      end,
-      desc = 'Flash',
-    },
-  },
 })
 
 packadd({
   'nvimdev/guard.nvim',
   lazy = true,
   cmd = 'GuardFmt',
-  dependencies = {
-    'nvimdev/guard-collection',
-  },
   config = conf.guard,
+  dependencies = { 'nvimdev/guard-collection' },
+})
+
+packadd({
+  'nvimdev/flybuf.nvim',
+  lazy = true,
+  cmd = 'FlyBuf',
+  config = true,
+})
+
+packadd({
+  'nvimdev/hlsearch.nvim',
+  event = 'BufRead',
+  config = true,
 })

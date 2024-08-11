@@ -4,7 +4,7 @@ local bufnr = -1
 local tempname = ''
 local workpath = ''
 
-local function OpenFile(open, opt)
+local function open_file(open, opt)
   if opt == 'left' then
     vim.cmd('set nosplitright')
   elseif opt == 'down' then
@@ -23,12 +23,12 @@ local function OpenFile(open, opt)
   end
 end
 
-local function EndOpt()
+local function end_options()
   vim.fn.delete(tempname)
   vim.cmd('silent! lcd ' .. workpath)
 end
 
-local function TabName(name)
+local function set_buffer_name(name)
   vim.api.nvim_create_autocmd('TermEnter', {
     buffer = bufnr,
     callback = function()
@@ -37,38 +37,38 @@ local function TabName(name)
   })
 end
 
-local function CloseFloatWin()
+local function close_float_window()
   vim.api.nvim_win_close(winnr, true)
   vim.api.nvim_buf_delete(bufnr, { force = true })
   vim.api.nvim_set_current_win(prev_win)
 end
 
-local function Yazi(open, opt)
+local function yazi(open, opt)
   prev_win = vim.api.nvim_get_current_win()
   workpath = vim.fn.getcwd()
   local filename = vim.api.nvim_buf_get_name(0)
   vim.cmd('silent! lcd %:p:h')
   local Win = require('internal.util.FloatWin')
-  Win:Create({
+  Win.Create({
     width = 0.8,
     height = 0.8,
     title = ' Yazi ',
   }, {})
   WinInfo = Win:GetInfo()
   winnr, bufnr = WinInfo.winnr, WinInfo.bufnr
-  TabName('Ranger')
+  set_buffer_name('Ranger')
   tempname = vim.fn.tempname()
   vim.fn.termopen(string.format('yazi %s --chooser-file="%s"', filename, tempname), {
     on_exit = function()
       if vim.api.nvim_win_is_valid(winnr) then
-        CloseFloatWin()
-        OpenFile(open, opt)
+        close_float_window()
+        open_file(open, opt)
       end
-      EndOpt()
+      end_options()
     end,
   })
 end
 
 return {
-  Yazi = Yazi,
+  yazi = yazi,
 }

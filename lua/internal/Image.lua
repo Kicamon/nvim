@@ -1,3 +1,5 @@
+---check if the clipboard contains an imageq
+---@return boolean
 local function check()
   local has_image = vim.fn.system('xclip -selection clipboard -t TARGETS -o')
   if has_image == nil then
@@ -13,12 +15,16 @@ end
 local function paste()
   local path = vim.fn.expand('%:p:~:h')
   path = path .. '/img/'
+
+  -- if there is no img folder here, create it
   if vim.fn.isdirectory(path) == 0 then
-    vim.cmd('silent !mkdir -p' .. path)
+    vim.cmd('silent !mkdir -p ' .. path)
   end
+
   if check() then
     local imagename = vim.fn.input('Enter image name: ')
     vim.fn.system('xclip -selection clipboard -t image/png -o > ' .. path .. imagename .. '.png')
+
     local row, col = unpack(vim.api.nvim_win_get_cursor(0))
     local line = vim.api.nvim_get_current_line()
     local line_before = string.sub(line, 0, col)

@@ -1,5 +1,9 @@
 local pchar = { '/', '#' }
 
+---check if oldword or newword is nil
+---@param oldword string
+---@param newword string
+---@return boolean
 local function check(oldword, newword)
   if oldword == '' or newword == '' then
     vim.cmd('normal ! v')
@@ -8,7 +12,12 @@ local function check(oldword, newword)
   return false
 end
 
-local function Input(oldword)
+---get oldword and newword
+---@param oldword? string
+---@return string
+---@return string
+---@return string
+local function input_str(oldword)
   if not oldword then
     oldword = vim.fn.input('Enter word old: ')
   end
@@ -28,25 +37,26 @@ local function Input(oldword)
   return oldword, newword, char
 end
 
-local function QuickSubstitute()
-  local getpos = require('internal.util.GetSurround').Visual
+---quick substitute string
+local function quick_substitute()
+  local getpos = require('internal.util.GetSurround').visual
   local oldword, newword, char
-  if vim.fn.mode() == 'n' then
-    oldword, newword, char = Input()
+  if vim.fn.mode() == 'n' then -- change scope: full text
+    oldword, newword, char = input_str()
     if check(oldword, newword) then
       return
     end
     vim.cmd(string.format(':s%s%s%s%s%sg', char, oldword, char, newword, char))
   elseif vim.fn.mode() == 'v' or vim.fn.mode() == 'V' then
     local sl, sr, el, er = getpos()
-    if sl == el then
-      oldword, newword, char = Input(vim.fn.getline(sl):sub(sr, er))
+    if sl == el then -- change scope: one line
+      oldword, newword, char = input_str(vim.fn.getline(sl):sub(sr, er))
       if check(oldword, newword) then
         return
       end
       vim.cmd(string.format(':s%s%s%s%s%sg', char, oldword, char, newword, char))
-    else
-      oldword, newword, char = Input()
+    else -- change scope: visual scope
+      oldword, newword, char = input_str()
       if check(oldword, newword) then
         return
       end
@@ -58,5 +68,5 @@ local function QuickSubstitute()
 end
 
 return {
-  QuickSubstitute = QuickSubstitute,
+  quick_substitute = quick_substitute,
 }

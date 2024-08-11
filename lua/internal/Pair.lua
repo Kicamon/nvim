@@ -17,6 +17,9 @@ local config = {
   },
 }
 
+---get pair in cursor
+---@param mode string
+---@return string
 local function get_pair(mode)
   local line = mode == 'insert' and vim.api.nvim_get_current_line() or '_' .. vim.fn.getcmdline()
   local col = mode == 'insert' and vim.api.nvim_win_get_cursor(0)[2] or vim.fn.getcmdpos()
@@ -24,6 +27,9 @@ local function get_pair(mode)
   return line:sub(col, col + 1)
 end
 
+---check if is a pair
+---@param pair string
+---@return boolean
 local function is_pair(pair)
   for _, val in pairs(config.keys) do
     if pair == val.pair then
@@ -33,8 +39,14 @@ local function is_pair(pair)
   return false
 end
 
-local function insert_pairs(key, val, mode)
+---add or delete pairs in cursor
+---@param key string the key or pair char
+---@param val table {close: boolean, pair: string}
+---@param mode string vim mode
+---@return string
+local function update_pairs(key, val, mode)
   local pair = get_pair(mode)
+
   if key == '<cr>' and mode == 'insert' and is_pair(pair) then
     return '<cr><c-o>O'
   elseif key == '<bs>' and is_pair(pair) then
@@ -48,9 +60,9 @@ end
 
 for key, val in pairs(config.keys) do
   vim.keymap.set('i', key, function()
-    return insert_pairs(key, val, 'insert')
+    return update_pairs(key, val, 'insert')
   end, { noremap = true, expr = true })
   vim.keymap.set('c', key, function()
-    return insert_pairs(key, val, 'command')
+    return update_pairs(key, val, 'command')
   end, { noremap = true, expr = true })
 end

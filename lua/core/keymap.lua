@@ -1,8 +1,14 @@
 local set_keymap = vim.api.nvim_set_keymap
+local buf_set_keymap = vim.api.nvim_buf_set_keymap
 
-local function buf_map()
-  local function fn(mode, lhs, rhs, opts)
-    set_keymap(mode, lhs, rhs, opts)
+local buf_map_cache = {}
+local function buf_map(buf)
+  local fn = buf_map_cache[buf]
+  if not fn then
+    function fn(mode, lhs, rhs, opts)
+      buf_set_keymap(buf, mode, lhs, rhs, opts)
+    end
+    buf_map_cache[buf] = fn
   end
   return fn
 end
@@ -53,7 +59,7 @@ local function resolve_mode(key)
     vim.list_extend(keys, { 'n', 'v', 'o', 'x', 's' })
   elseif modes.v then
     vim.list_extend(keys, { 'x', 's' })
-    -- remove redundant modes for :lmap and :map!
+  -- remove redundant modes for :lmap and :map!
   elseif modes.l then
     vim.list_extend(keys, { '!', 'i', 'c' })
   elseif modes['!'] then
@@ -106,12 +112,10 @@ local function index(self, key)
       opts = opts_copy
     end
 
-    if opts.noremap == nil and opts.remap == nil then
+    if opts.remap then
+      opts.remap = true
+    elseif opts.noremap == nil then
       opts.noremap = true
-    elseif opts.remap == nil then
-      opts.remap = false
-    elseif opts.buffer == nil then
-      opts.buffer = false
     end
 
     local replace_keycodes = opts.replace_keycodes
@@ -120,7 +124,7 @@ local function index(self, key)
     if not opts.buffer then
       map = set_keymap
     else
-      map = buf_map()
+      map = buf_map(0)
       opts.buffer = nil
     end
 

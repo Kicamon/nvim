@@ -1,4 +1,4 @@
-local function Chdir()
+local function chdir()
   local dir = vim.fn.getcwd()
   vim.cmd('silent! lcd %:p:h')
   vim.notify(
@@ -9,5 +9,5 @@ local function Chdir()
 end
 
 return {
-  Chdir = Chdir,
+  chdir = chdir,
 }

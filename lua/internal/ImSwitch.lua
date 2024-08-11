@@ -10,7 +10,7 @@ local switch = {
   check = 'fcitx5-remote',
 }
 
-local function En()
+local function change_to_en()
   local input_status = tonumber(io.popen(switch.check):read('*all'))
   if input_status == 2 then
     input_toggle = 1
@@ -18,7 +18,7 @@ local function En()
   end
 end
 
-local function Zh()
+local function change_to_zh()
   local input_status = tonumber(io.popen(switch.check):read('*all'))
   if input_status ~= 2 and input_toggle == 1 then
     vim.fn.system(switch.zh)
@@ -69,7 +69,7 @@ local function filetype_checke()
 end
 
 return {
-  En = En,
-  Zh = Zh,
+  change_to_en = change_to_en,
+  change_to_zh = change_to_zh,
   filetype_checke = filetype_checke,
 }

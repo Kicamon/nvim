@@ -6,7 +6,6 @@ map.n({
   -- telescope
   ['<leader>ff'] = cmd('Telescope find_files find_command=rg,--ignore,--hidden,--files'),
   ['<leader>fw'] = cmd('Telescope live_grep'),
-  ['<leader>fb'] = cmd('Telescope buffers'),
   ['<leader>pr'] = cmd('Telescope lsp_references'),
   -- lspsaga
   ['<leader>pd'] = cmd('Lspsaga peek_definition'),
@@ -28,6 +27,8 @@ map.n({
   ['g]'] = cmd('silent lua require"gitsigns".next_hunk()'),
   ['<leader>H'] = cmd('lua require"gitsigns".preview_hunk_inline()'),
   ['<leader>gd'] = cmd('lua require"gitsigns".diffthis("~")'),
+  -- flybuf
+  ['<leader>b'] = cmd('FlyBuf'),
   -- coderunning
   ['<F5>'] = function()
     require('internal.CodeRunning').running(false)
@@ -37,42 +38,42 @@ map.n({
   end,
   -- yazi
   ['<leader>ra'] = function()
-    require('internal.Yazi').Yazi('edit')
+    require('internal.Yazi').yazi('edit')
   end,
   ['<leader>rh'] = function()
-    require('internal.Yazi').Yazi('vsplit', 'left')
+    require('internal.Yazi').yazi('vsplit', 'left')
   end,
   ['<leader>rj'] = function()
-    require('internal.Yazi').Yazi('split', 'down')
+    require('internal.Yazi').yazi('split', 'down')
   end,
   ['<leader>rk'] = function()
-    require('internal.Yazi').Yazi('split', 'up')
+    require('internal.Yazi').yazi('split', 'up')
   end,
   ['<leader>rl'] = function()
-    require('internal.Yazi').Yazi('vsplit', 'right')
+    require('internal.Yazi').yazi('vsplit', 'right')
   end,
   -- wiki
   ['<leader>ww'] = function()
-    require('internal.Wiki').OpenWiki()
+    require('internal.Wiki').open_wiki()
   end,
   -- surround
   ['cs'] = function()
-    require('internal.Surround').Change_Surround()
+    require('internal.Surround').change_surround()
   end,
   -- TabToSpace
   ['<leader>ts'] = function()
-    require('internal.TabToSpace').TabToSpace()
+    require('internal.TabToSpace').tab_to_space()
   end,
   -- GetNode
   ['<leader>N'] = function()
-    require('internal.GetNode').GetNode()
+    require('internal.GetNode').get_node()
   end,
 })
 
 map.v({
   -- Surround
   ['S'] = function()
-    require('internal.Surround').Add_Surround()
+    require('internal.Surround').add_surround()
   end,
 })
 
@@ -81,10 +82,10 @@ map.nx({
   [';f'] = cmd('GuardFmt'),
   --  QuickSubstitute
   ['<leader>ss'] = function()
-    require('internal.QuickSubstitute').QuickSubstitute()
+    require('internal.QuickSubstitute').quick_substitute()
   end,
   -- Wildfire
   ['<cr>'] = function()
-    require('internal.Wildfire').Wildfire()
+    require('internal.Wildfire').wildfire()
   end,
 })

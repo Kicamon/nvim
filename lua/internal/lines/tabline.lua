@@ -11,29 +11,6 @@ local function getinfo(bufnr)
   }
 end
 
-local function devicon(bufnr, isSelected)
-  local icon, devhl
-  local info = getinfo(bufnr)
-  local ok, devicons = pcall(require, 'nvim-web-devicons')
-  if not ok then
-    return ''
-  end
-  if info.buftype == 'terminal' then
-    icon, devhl = devicons.get_icon_color_by_filetype('zsh', { default = true })
-  else
-    icon, devhl = devicons.get_icon_color_by_filetype(info.filetype, { default = true })
-  end
-  if icon then
-    local attr = {
-      fg = devhl,
-    }
-    local hl = tbl_hl(info.filetype, attr)
-    local selectedHlStart = (isSelected and hl) and '%#' .. hl .. '#' or ''
-    return selectedHlStart .. icon .. ' '
-  end
-  return ''
-end
-
 local function title(bufnr, isSelected)
   local name
   local info = getinfo(bufnr)
@@ -69,7 +46,6 @@ local function cell(index)
     .. index
     .. 'T'
     .. ' '
-    .. devicon(bufnr, isSelected)
     .. title(bufnr, isSelected)
     .. ' '
     .. modified(bufnr)

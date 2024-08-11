@@ -3,7 +3,7 @@ local conf = require('modules.lsp.backend')
 packadd({
   'neovim/nvim-lspconfig',
   lazy = true,
-  ft = _G.fts,
+  ft = _G.lsp_fts,
   config = conf.lsp,
 })
 
@@ -11,8 +11,5 @@ packadd({
   'nvimdev/lspsaga.nvim',
   lazy = true,
   event = 'LspAttach',
-  dependencies = {
-    'nvim-tree/nvim-web-devicons',
-  },
   config = conf.lspsaga,
 })

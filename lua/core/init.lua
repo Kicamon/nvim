@@ -3,9 +3,22 @@ g.mapleader = ' '
 g.netrw_browse_split = 0
 g.netrw_liststyle = 3
 g.netrw_banner = 0
+g.loaded_gzip = 1
+g.loaded_tar = 1
+g.loaded_tarPlugin = 1
+g.loaded_zip = 1
+g.loaded_zipPlugin = 1
+g.loaded_getscript = 1
+g.loaded_getscriptPlugin = 1
+g.loaded_vimball = 1
+g.loaded_vimballPlugin = 1
+g.loaded_matchit = 1
+g.loaded_matchparen = 1
+g.loaded_2html_plugin = 1
+g.loaded_logiPat = 1
+g.loaded_rrhelper = 1
 _G.browser = 'chromium'
-_G.wiki_path = '~/Documents/study/Note/wiki/'
-_G.fts = {
+_G.lsp_fts = {
   'c',
   'cpp',
   'lua',
@@ -21,7 +34,7 @@ _G.fts = {
 _G.kind_icons = {
   Text = ' 󰉿 ',
   Method = ' 󰆧 ',
-  Function = ' 󰊕 ',
+  Function = ' 󰡱 ',
   Constructor = '  ',
   Field = ' 󰜢 ',
   Variable = ' 󰀫 ',

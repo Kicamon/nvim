@@ -11,7 +11,7 @@ function config.lsp()
   -- local capabilities = vim.tbl_deep_extend(
   --   'force',
   --   vim.lsp.protocol.make_client_capabilities(),
-  --   require('epo').register_cap()
+  --   require('autocomplete.capabilities')
   -- )
 
   for server, conf in pairs(servers) do
@@ -50,6 +50,7 @@ function config.lspsaga()
   require('lspsaga').setup({
     ui = {
       title = true,
+      devicon = false,
     },
     outline = {
       keys = {

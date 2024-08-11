@@ -18,7 +18,7 @@ au({ 'BufLeave', 'WinLeave', 'InsertEnter' }, {
 au('InsertLeave', {
   group = group,
   callback = function()
-    require('internal.ImSwitch').En()
+    require('internal.ImSwitch').change_to_en()
   end,
 })
 au('InsertEnter', {
@@ -26,7 +26,7 @@ au('InsertEnter', {
   pattern = { '*.md', '*.txt' },
   callback = function()
     if require('internal.ImSwitch').filetype_checke() then
-      require('internal.ImSwitch').Zh()
+      require('internal.ImSwitch').change_to_zh()
     end
   end,
 })
@@ -56,7 +56,7 @@ au({ 'InsertEnter', 'CmdlineEnter' }, {
   end,
 })
 
-au('TermOpen', { group = group, pattern = 'term://*', command = [[startinsert]] })
+au('TermOpen', { group = group, pattern = 'term://*', command = 'startinsert' })
 
 au('TextYankPost', {
   group = group,
@@ -76,9 +76,9 @@ au({ 'BufRead', 'BufNewFile' }, {
   end,
 })
 
-au({ 'BufRead', 'BufEnter' }, {
+au({ 'FileType' }, {
   group = group,
-  pattern = '*.md',
+  pattern = 'markdown',
   callback = function()
     require('keymap.markdown')
   end,
@@ -88,16 +88,16 @@ au('BufEnter', {
   group = group,
   once = true,
   callback = function()
-    require('keymap')
     vim.cmd.colorscheme('gruvbox')
+    require('keymap')
     uc('Yazi', function()
-      require('internal.Yazi').Yazi('edit')
+      require('internal.Yazi').yazi('edit')
     end, { nargs = 0 })
     --- lines
     require('internal.lines').setup()
     --- Chdir
     uc('Chdir', function()
-      require('internal.Chdir').Chdir()
+      require('internal.Chdir').chdir()
     end, { nargs = 0 })
   end,
 })

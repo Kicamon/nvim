@@ -57,7 +57,7 @@ local function float_win_opt(opt, val)
   return win
 end
 
-function FloatWin:GetInfo()
+function FloatWin.GetInfo()
   return {
     width = FloatWin.win.width,
     height = FloatWin.win.height,
@@ -85,7 +85,7 @@ end
 --- }
 --- @param opt table
 --- @param val table
-function FloatWin:Create(opt, val)
+function FloatWin.Create(opt, val)
   val = vim.tbl_extend('force', {
     lines = {},
     buflisted = false,
