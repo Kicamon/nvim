@@ -88,4 +88,8 @@ map.nx({
   ['<cr>'] = function()
     require('internal.Wildfire').wildfire()
   end,
+  -- flash
+  ['s'] = function()
+    require('flash').jump()
+  end,
 })

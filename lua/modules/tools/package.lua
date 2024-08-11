@@ -43,3 +43,9 @@ packadd({
   event = 'BufRead',
   config = true,
 })
+
+packadd({
+  'folke/flash.nvim',
+  lazy = true,
+  config = conf.flash,
+})

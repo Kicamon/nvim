@@ -90,4 +90,10 @@ function config.guard()
   })
 end
 
+function config.flash()
+  require('flash').setup({
+    modes = { char = { enabled = false } },
+  })
+end
+
 return config
