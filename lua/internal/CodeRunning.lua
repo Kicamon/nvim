@@ -1,7 +1,3 @@
-local function feedkeys(keys, mode)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), mode, true)
-end
-
 local function running_window(opt, full)
   local Win = require('internal.util.FloatWin')
   Win.Create({
