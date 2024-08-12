@@ -23,6 +23,7 @@ local function default()
     p.progress(),
     p.lsp(),
     p.pad(),
+    --
     p.diagnostic(vim.diagnostic.severity.E),
     p.diagnostic(vim.diagnostic.severity.W),
     p.diagnostic(vim.diagnostic.severity.I),
@@ -30,9 +31,10 @@ local function default()
     p.recording(),
     p.vnumber(),
     p.sepr(),
+    p.filesize(),
+    p.sepr(),
     p.encoding(),
     p.sepr(),
-    --
     p.lnumcol(),
     p.sep(),
     --
@@ -98,33 +100,33 @@ return {
             end)
           end,
         })
-        -- tabline
-        api.nvim_create_autocmd('TabEnter', {
-          callback = function()
-            local events_tab = {
-              'BufEnter',
-              'BufWritePost',
-              'BufModifiedSet',
-              'TabNew',
-              'TabEnter',
-              'TabLeave',
-              'TermClose',
-            }
-            local update = require('internal.lines.tabline').update
-            api.nvim_create_autocmd(events_tab, {
-              callback = function()
-                update()
-              end,
-            })
-            vim.keymap.set('n', 'tmp', function()
-              update('-')
-            end, {})
-            vim.keymap.set('n', 'tmn', function()
-              update('+')
-            end, {})
-          end,
-        })
       end
+      -- tabline
+      api.nvim_create_autocmd('TabEnter', {
+        callback = function()
+          local events_tab = {
+            'BufEnter',
+            'BufWritePost',
+            'BufModifiedSet',
+            'TabNew',
+            'TabEnter',
+            'TabLeave',
+            'TermClose',
+          }
+          local update = require('internal.lines.tabline').update
+          api.nvim_create_autocmd(events_tab, {
+            callback = function()
+              update()
+            end,
+          })
+          vim.keymap.set('n', 'tmp', function()
+            update('-')
+          end, {})
+          vim.keymap.set('n', 'tmn', function()
+            update('+')
+          end, {})
+        end,
+      })
     end, 0)
   end,
 }
