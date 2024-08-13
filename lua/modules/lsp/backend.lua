@@ -8,11 +8,6 @@ function config.lsp()
   end
 
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
-  -- local capabilities = vim.tbl_deep_extend(
-  --   'force',
-  --   vim.lsp.protocol.make_client_capabilities(),
-  --   require('autocomplete.capabilities')
-  -- )
 
   for server, conf in pairs(servers) do
     require('lspconfig')[server].setup(vim.tbl_deep_extend('force', {

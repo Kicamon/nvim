@@ -19,7 +19,7 @@ packadd({
 packadd({
   'NvChad/nvim-colorizer.lua',
   lazy = true,
-  ft = { 'css', 'html', 'typescriptreact', 'conf', 'vim', 'lua' },
+  ft = { 'css', 'html', 'typescriptreact', 'conf', 'vim' },
   config = conf.colorizer,
 })
 
@@ -35,12 +35,6 @@ packadd({
   'nvimdev/flybuf.nvim',
   lazy = true,
   cmd = 'FlyBuf',
-  config = true,
-})
-
-packadd({
-  'nvimdev/hlsearch.nvim',
-  event = 'BufRead',
   config = true,
 })
 

@@ -333,21 +333,16 @@ function pd.diagnostic(diag_t)
 end
 
 function pd.filesize()
-  local size_unit = {
-    'b',
-    'kb',
-    'mb',
-    'gb',
-  }
+  local size_unit = { 'b', 'k', 'm', 'g' }
   local function get_size()
     local size = vim.fn.getfsize(vim.fn.expand('%'))
     local idx = 1
-    while size >= 1024 do
+    while size >= 1024 and idx < #size_unit do
       size = size / 1024
       idx = idx + 1
     end
     vim.api.nvim_buf_get_name(0)
-    return string.format('%.1f', size) .. size_unit[idx > #size_unit and #size_unit or idx]
+    return string.format('%.1f', size) .. size_unit[idx]
   end
   local result = {
     stl = function()
@@ -365,7 +360,7 @@ end
 
 function pd.encoding()
   local result = {
-    stl = ('%s'):format(vim.uv.os_uname().sysname .. ' ' .. vim.o.encoding),
+    stl = ('%s'):format(vim.o.ff .. ' ' .. vim.o.encoding),
     name = 'filencode',
     event = { 'BufEnter' },
   }

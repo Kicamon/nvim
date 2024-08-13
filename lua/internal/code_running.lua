@@ -1,15 +1,35 @@
+local win = require('internal.util.window')
+local api = vim.api
+local infos = {}
+
 local function running_window(opt, full)
-  local Win = require('internal.util.FloatWin')
-  Win.Create({
+  local float_opt = {
     anchor = full and 'NW' or 'NE',
     width = full and 0.7 or 0.25,
     height = full and 0.7 or 0.9,
     title = '  Code Running ',
-  }, {
-    buflisted = true,
-    pos = full and 'cc' or 'tr',
+    pos = full and {
+      row = 'c',
+      col = 'c',
+    } or {
+      row = 't',
+      col = 'r',
+    },
+  }
+
+  infos.bufnr, infos.winid = win:new_float(float_opt, true, false):wininfo()
+
+  api.nvim_create_autocmd('WinClosed', {
+    buffer = infos.bufnr,
+    callback = function()
+      if infos.winid and api.nvim_win_is_valid(infos.winid) then
+        api.nvim_win_close(infos.winid, true)
+        api.nvim_buf_delete(infos.bufnr, {force = true})
+        infos.winid = nil
+      end
+    end,
   })
-  vim.cmd.set('filetype=toggleterm')
+
   vim.cmd.term(opt)
 end
 
@@ -45,7 +65,7 @@ local function running(full)
   elseif filetype == 'sh' then
     running_window('bash ' .. filename, full)
   elseif filetype == 'markdown' then
-    require('internal.MdPreview').markdown_preview()
+    require('internal.markdown_preview').markdown_preview()
   elseif filetype == 'html' then
     vim.fn.jobstart('live-server --browser=' .. _G.browser)
   else
@@ -53,6 +73,4 @@ local function running(full)
   end
 end
 
-return {
-  running = running,
-}
+return { running = running }

@@ -29,51 +29,55 @@ map.n({
   ['<leader>gd'] = cmd('lua require"gitsigns".diffthis("~")'),
   -- flybuf
   ['<leader>b'] = cmd('FlyBuf'),
+  -- flash
+  ['s'] = function()
+    require('flash').jump()
+  end,
   -- coderunning
   ['<F5>'] = function()
-    require('internal.CodeRunning').running(false)
+    require('internal.code_running').running(false)
   end,
   ['<F10>'] = function()
-    require('internal.CodeRunning').running(true)
+    require('internal.code_running').running(true)
   end,
   -- yazi
   ['<leader>ra'] = function()
-    require('internal.Yazi').yazi('edit')
+    require('internal.yazi').yazi('edit')
   end,
   ['<leader>rh'] = function()
-    require('internal.Yazi').yazi('vsplit', 'left')
+    require('internal.yazi').yazi('vsplit', 'left')
   end,
   ['<leader>rj'] = function()
-    require('internal.Yazi').yazi('split', 'down')
+    require('internal.yazi').yazi('split', 'down')
   end,
   ['<leader>rk'] = function()
-    require('internal.Yazi').yazi('split', 'up')
+    require('internal.yazi').yazi('split', 'up')
   end,
   ['<leader>rl'] = function()
-    require('internal.Yazi').yazi('vsplit', 'right')
+    require('internal.yazi').yazi('vsplit', 'right')
   end,
   -- wiki
   ['<leader>ww'] = function()
-    require('internal.Wiki').open_wiki()
+    require('internal.wiki').open_wiki()
   end,
   -- surround
   ['cs'] = function()
-    require('internal.Surround').change_surround()
+    require('internal.surround').change_surround()
   end,
   -- TabToSpace
   ['<leader>ts'] = function()
-    require('internal.TabToSpace').tab_to_space()
+    require('internal.tab_to_space').tab_to_space()
   end,
   -- GetNode
   ['<leader>N'] = function()
-    require('internal.GetNode').get_node()
+    require('internal.get_node').get_node()
   end,
 })
 
 map.v({
   -- Surround
   ['S'] = function()
-    require('internal.Surround').add_surround()
+    require('internal.surround').add_surround()
   end,
 })
 
@@ -82,14 +86,10 @@ map.nx({
   [';f'] = cmd('GuardFmt'),
   --  QuickSubstitute
   ['<leader>ss'] = function()
-    require('internal.QuickSubstitute').quick_substitute()
+    require('internal.quick_substitute').quick_substitute()
   end,
   -- Wildfire
   ['<cr>'] = function()
-    require('internal.Wildfire').wildfire()
-  end,
-  -- flash
-  ['s'] = function()
-    require('flash').jump()
+    require('internal.wildfire').wildfire()
   end,
 })

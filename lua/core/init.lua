@@ -1,8 +1,5 @@
 local g = vim.g
 g.mapleader = ' '
-g.netrw_browse_split = 0
-g.netrw_liststyle = 3
-g.netrw_banner = 0
 g.loaded_gzip = 1
 g.loaded_tar = 1
 g.loaded_tarPlugin = 1
@@ -17,6 +14,7 @@ g.loaded_matchparen = 1
 g.loaded_2html_plugin = 1
 g.loaded_logiPat = 1
 g.loaded_rrhelper = 1
+g.loaded_netrwPlugin = 1
 _G.browser = 'chromium'
 _G.lsp_fts = {
   'c',
@@ -60,3 +58,8 @@ _G.kind_icons = {
 }
 require('core.options')
 require('core.pack'):boot_strap()
+
+vim.cmd[[
+hi DashboardFiles guifg=#d3869b
+hi DashboardHeader guifg=#ff461f
+]]

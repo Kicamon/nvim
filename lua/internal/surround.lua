@@ -1,3 +1,4 @@
+local getsurround = require('internal.util.get_surround')
 local feedkeys = function(keys, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), mode, true)
 end
@@ -50,8 +51,6 @@ end
 
 ---add surround chars
 local function add_surround()
-  local getsurround = require('internal.util.GetSurround')
-
   local Char = getchar()
   -- if no char are inputed or char is <esc>, return
   if not Char[1] then
@@ -95,8 +94,6 @@ end
 
 ---change surround chars
 local function change_surround()
-  local getsurround = require('internal.util.GetSurround')
-
   -- enter the char to be replaced
   local Char = getchar()
   -- if no char are inputed or char is <esc>, return

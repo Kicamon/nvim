@@ -3,6 +3,4 @@ local function preview()
   vim.api.nvim_set_option_value('autoread', true, { buf = 0 })
 end
 
-return {
-  markdown_preview = preview,
-}
+return { markdown_preview = preview }

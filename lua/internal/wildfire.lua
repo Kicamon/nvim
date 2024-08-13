@@ -1,3 +1,4 @@
+local getsurround = require('internal.util.get_surround')
 local function changemode()
   if vim.fn.mode() == 'v' then
     vim.cmd('normal! v')
@@ -17,7 +18,6 @@ local function checkpos(pos)
 end
 
 local function wildfire()
-  local getsurround = require('internal.util.GetSurround')
   local pos = getsurround.get_surround()
   if not pos or #pos == 0 then
     changemode()
@@ -30,6 +30,4 @@ local function wildfire()
   vim.api.nvim_win_set_cursor(0, { pos[3], pos[4] - 2 })
 end
 
-return {
-  wildfire = wildfire,
-}
+return { wildfire = wildfire }

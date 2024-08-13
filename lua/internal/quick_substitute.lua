@@ -67,6 +67,4 @@ local function quick_substitute()
   vim.cmd('noh')
 end
 
-return {
-  quick_substitute = quick_substitute,
-}
+return { quick_substitute = quick_substitute }

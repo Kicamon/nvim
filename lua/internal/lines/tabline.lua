@@ -15,11 +15,7 @@ local function title(bufnr, isSelected)
   local name
   local info = getinfo(bufnr)
 
-  if info.buftype == 'help' then
-    name = 'help:' .. vim.fn.fnamemodify(info.file, ':t:r')
-  elseif info.filetype == 'TelescopePrompt' then
-    name = 'Telescope'
-  elseif info.file == '' then
+  if info.file == '' then
     name = '[No Name]'
   else
     name = vim.fn.pathshorten(vim.fn.fnamemodify(info.file, ':p:~:t'))

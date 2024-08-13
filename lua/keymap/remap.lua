@@ -32,7 +32,6 @@ map.n({
   ['tn'] = cmd('tabnext'),
   ['tp'] = cmd('tabprevious'),
   ['tu'] = cmd('tabnew'),
-  ['tt'] = cmd('20 Lex'),
 })
 
 map.v({

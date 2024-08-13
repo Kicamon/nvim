@@ -36,6 +36,4 @@ local function paste()
   end
 end
 
-return {
-  paste = paste,
-}
+return { paste = paste }

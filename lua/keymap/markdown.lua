@@ -1,5 +1,6 @@
 local map = require('core.keymap')
 local function markdown_keymap()
+  -- markdonw snippets
   map.i({
     ['<leader><leader>'] = '<Esc>/<++><CR>:nohlsearch<CR>"_c4l',
     ['《'] = '《》<Esc>i',
@@ -41,12 +42,14 @@ local function markdown_keymap()
     [',5'] = '#####<Space><Enter><++><Esc>kA',
   }, { buffer = true })
 
+  -- paste image
   map.n('<leader>P', function()
-    require('internal.Image').paste()
+    require('internal.image').paste()
   end, { buffer = true })
 
+  -- enter file
   map.nx('<cr>', function()
-    require('internal.Wiki').create_open()
+    require('internal.wiki').create_open()
   end, { buffer = true })
 end
 

@@ -1,5 +1,5 @@
 <h1 align="center">
-  Neovim Config“
+  Personal Neovim Config“
 </h1>
 
 
@@ -130,10 +130,30 @@
 | `<leader>ww` | Note manager                                                       | n    |
 | `<cr>`       | Create or enter note in wiki                                       | n    |
 
-### Plugins
-![pkxOWff.md.png](https://s21.ax1x.com/2024/08/07/pkxOWff.md.png)
+### Plugin list
+```shell
+lazy.nvim
+nvim-treesitter
+nvim-lspconfig
+lspsaga.nvim
+nvim-cmp
+LuaSnip
+cmp_luasnip
+cmp-buffer
+cmp-nvim-lsp
+guard-collection
+guard.nvim
+indentmini.nvim
+flash.nvim
+flybuf.nvim
+gitsigns.nvim
+nvim-colorizer.lua
+plenary.nvim
+telescope.nvim
+```
 
-### Install
+
+### Dependencies
 ```shell
 bash-language-server
 clang
@@ -151,6 +171,7 @@ vscode-css-languageserver
 vscode-html-languageserver
 vscode-json-languageserver
 vim-language-server
+yazi
 ```
 
 ## Thanks

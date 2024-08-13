@@ -2,57 +2,57 @@ local au = vim.api.nvim_create_autocmd
 local uc = vim.api.nvim_create_user_command
 local group = vim.api.nvim_create_augroup('KicamonGroup', {})
 
---- cursorword
+-- cursorword
 au({ 'CursorMoved' }, {
   group = group,
-  callback = require('internal.CursorWord').matchadd,
+  callback = require('internal.cursorword').matchadd,
 })
 au({ 'BufLeave', 'WinLeave', 'InsertEnter' }, {
   group = group,
   callback = function()
-    require('internal.CursorWord').matchdelete(true)
+    require('internal.cursorword').matchdelete(true)
   end,
 })
 
---- ImSwitch
+-- ImSwitch
 au('InsertLeave', {
   group = group,
   callback = function()
-    require('internal.ImSwitch').change_to_en()
+    require('internal.im_switch').change_to_en()
   end,
 })
 au('InsertEnter', {
   group = group,
   pattern = { '*.md', '*.txt' },
   callback = function()
-    if require('internal.ImSwitch').filetype_checke() then
-      require('internal.ImSwitch').change_to_zh()
+    if require('internal.im_switch').filetype_checke() then
+      require('internal.im_switch').change_to_zh()
     end
   end,
 })
 
---- MdTableFormat
+-- MdTableFormat
 au('InsertLeave', {
   group = group,
   pattern = '*.md',
   callback = function()
-    require('internal.MdTableFormat').format_markdown_table()
+    require('internal.markdown_table_format').format_markdown_table()
   end,
 })
 au('TextChangedI', {
   group = group,
   pattern = '*.md',
   callback = function()
-    require('internal.MdTableFormat').format_markdown_table_lines()
+    require('internal.markdown_table_format').format_markdown_table_lines()
   end,
 })
 
---- Pairs
+-- Pairs
 au({ 'InsertEnter', 'CmdlineEnter' }, {
   group = group,
   once = true,
   callback = function()
-    require('internal.Pair')
+    require('internal.pairs')
   end,
 })
 
@@ -68,7 +68,7 @@ au('TextYankPost', {
 au({ 'BufRead', 'BufNewFile' }, {
   callback = function()
     vim.cmd('setlocal formatoptions-=ro')
-    --- last plase
+    -- last plase
     local pos = vim.fn.getpos('\'"')
     if pos[2] > 0 and pos[2] <= vim.fn.line('$') then
       vim.api.nvim_win_set_cursor(0, { pos[2], pos[3] - 1 })
@@ -91,13 +91,13 @@ au('BufEnter', {
     vim.cmd.colorscheme('gruvbox')
     require('keymap')
     uc('Yazi', function()
-      require('internal.Yazi').yazi('edit')
+      require('internal.yazi').yazi('edit')
     end, { nargs = 0 })
-    --- lines
+    -- lines
     require('internal.lines').setup()
-    --- Chdir
+    -- Chdir
     uc('Chdir', function()
-      require('internal.Chdir').chdir()
+      require('internal.chdir').chdir()
     end, { nargs = 0 })
   end,
 })

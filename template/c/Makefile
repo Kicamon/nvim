@@ -1,15 +1,13 @@
-CXX = cc
+CC = cc
 TARGET = Main
-SRC = $(wildcard *.cpp)
-OBJ = $(patsubst %.cpp, %.o,$(SRC))
- 
-CXXLAGS = -c -Wall
+SRC = $(wildcard *.c)
+OBJ = $(patsubst %.c, %.o,$(SRC))
  
 $(TARGET): $(OBJ)
-	$(CXX) -o $@ $^
+	$(CC) -o $@ $^
  
-%.o: %.cpp
-	$(CXX) $(CXXLAGS) $< -o $@
+%.o: %.c
+	$(CC) $< -o $@
  
 .PHONY: clean
 clean:
