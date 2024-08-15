@@ -125,50 +125,41 @@ local function cells_to_table(table_contents)
   return table_contents
 end
 
-local fmt = coroutine.create(function()
-  while true do
-    if not check_markdown_table(vim.fn.line('.')) then -- check if the curso is in markdown table
-      return
-    end
-
-    -- find the staring line and ending line of markdown table
-    local table_start_line, table_end_line = find_markdown_table(-1), find_markdown_table(1)
-    local table_contents = {}
-
-    ---change table to cells
-    ---@param line string
-    ---@param lnum integer
-    local function table_to_cells(line, lnum)
-      local table_cells = {}
-      for cell in line:gmatch('([^|]+)%|') do
-        if lnum ~= 1 then
-          cell = cell:match('^%s*(.-)%s*$')
-        end
-        table.insert(table_cells, cell)
-      end
-      table.insert(table_contents, table_cells)
-    end
-
-    -- traversal markdown table lines
-    for lnum = table_start_line, table_end_line, 1 do
-      local line = vim.api.nvim_buf_get_lines(0, lnum - 1, lnum, true)[1]
-      table_to_cells(line, lnum - table_start_line)
-    end
-
-    local width = get_markdown_table_cells_width(table_contents)
-
-    table_contents = update_cell_contents(table_contents, width)
-    table_contents = cells_to_table(table_contents)
-
-    vim.api.nvim_buf_set_lines(0, table_start_line - 1, table_end_line, true, table_contents)
-    coroutine.yield()
-  end
-end)
-
 local function format_markdown_table()
-  vim.schedule(function()
-    coroutine.resume(fmt)
-  end)
+  if not check_markdown_table(vim.fn.line('.')) then -- check if the curso is in markdown table
+    return
+  end
+
+  -- find the staring line and ending line of markdown table
+  local table_start_line, table_end_line = find_markdown_table(-1), find_markdown_table(1)
+  local table_contents = {}
+
+  ---change table to cells
+  ---@param line string
+  ---@param lnum integer
+  local function table_to_cells(line, lnum)
+    local table_cells = {}
+    for cell in line:gmatch('([^|]+)%|') do
+      if lnum ~= 1 then
+        cell = cell:match('^%s*(.-)%s*$')
+      end
+      table.insert(table_cells, cell)
+    end
+    table.insert(table_contents, table_cells)
+  end
+
+  -- traversal markdown table lines
+  for lnum = table_start_line, table_end_line, 1 do
+    local line = vim.api.nvim_buf_get_lines(0, lnum - 1, lnum, true)[1]
+    table_to_cells(line, lnum - table_start_line)
+  end
+
+  local width = get_markdown_table_cells_width(table_contents)
+
+  table_contents = update_cell_contents(table_contents, width)
+  table_contents = cells_to_table(table_contents)
+
+  vim.api.nvim_buf_set_lines(0, table_start_line - 1, table_end_line, true, table_contents)
 end
 
 local function format_markdown_table_lines()

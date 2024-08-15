@@ -28,10 +28,8 @@ map.n({
   ['<leader>sl'] = cmd('set splitright | vsplit'),
   ['<leader>smv'] = '<c-w>t<c-W>H',
   ['<leader>smh'] = '<c-w>t<c-W>K',
-  -- tabs
-  ['tn'] = cmd('tabnext'),
-  ['tp'] = cmd('tabprevious'),
-  ['tu'] = cmd('tabnew'),
+  -- open vim config
+  ['<leader>vim'] = cmd('edit ' .. vim.fn.stdpath('config') .. '/init.lua | silent! lcd %:p:h'),
 })
 
 map.v({

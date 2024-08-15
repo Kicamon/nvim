@@ -17,13 +17,6 @@ packadd({
 })
 
 packadd({
-  'NvChad/nvim-colorizer.lua',
-  lazy = true,
-  ft = { 'css', 'html', 'typescriptreact', 'conf', 'vim' },
-  config = conf.colorizer,
-})
-
-packadd({
   'nvimdev/guard.nvim',
   lazy = true,
   cmd = 'GuardFmt',
@@ -42,4 +35,13 @@ packadd({
   'folke/flash.nvim',
   lazy = true,
   config = conf.flash,
+})
+
+packadd({
+  -- 'Kicamon/markdown-table-mode.nvim',
+  -- dev = true,
+  -- ft = 'markdown',
+  -- config = function()
+  --   require('markdown-table-mode').setup()
+  -- end,
 })

@@ -49,8 +49,8 @@ local function markdown_keymap()
 
   -- enter file
   map.nx('<cr>', function()
-    require('internal.wiki').create_open()
+    require('internal.wiki').open_create()
   end, { buffer = true })
 end
 
-return markdown_keymap()
+return { markdown_keymap = markdown_keymap }

@@ -2,19 +2,7 @@ local au = vim.api.nvim_create_autocmd
 local uc = vim.api.nvim_create_user_command
 local group = vim.api.nvim_create_augroup('KicamonGroup', {})
 
--- cursorword
-au({ 'CursorMoved' }, {
-  group = group,
-  callback = require('internal.cursorword').matchadd,
-})
-au({ 'BufLeave', 'WinLeave', 'InsertEnter' }, {
-  group = group,
-  callback = function()
-    require('internal.cursorword').matchdelete(true)
-  end,
-})
-
--- ImSwitch
+-- im_switch
 au('InsertLeave', {
   group = group,
   callback = function()
@@ -31,7 +19,7 @@ au('InsertEnter', {
   end,
 })
 
--- MdTableFormat
+-- markdown_table_format
 au('InsertLeave', {
   group = group,
   pattern = '*.md',
@@ -47,7 +35,7 @@ au('TextChangedI', {
   end,
 })
 
--- Pairs
+-- pairs
 au({ 'InsertEnter', 'CmdlineEnter' }, {
   group = group,
   once = true,
@@ -80,7 +68,7 @@ au({ 'FileType' }, {
   group = group,
   pattern = 'markdown',
   callback = function()
-    require('keymap.markdown')
+    require('keymap.markdown').markdown_keymap()
   end,
 })
 
@@ -90,12 +78,9 @@ au('BufEnter', {
   callback = function()
     vim.cmd.colorscheme('gruvbox')
     require('keymap')
-    uc('Yazi', function()
-      require('internal.yazi').yazi('edit')
-    end, { nargs = 0 })
     -- lines
-    require('internal.lines').setup()
-    -- Chdir
+    require('internal.stl').setup()
+    -- chdir
     uc('Chdir', function()
       require('internal.chdir').chdir()
     end, { nargs = 0 })

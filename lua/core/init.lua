@@ -56,10 +56,6 @@ _G.kind_icons = {
   Operator = ' 󰆕 ',
   TypeParameter = ' 󰅲 ',
 }
+
 require('core.options')
 require('core.pack'):boot_strap()
-
-vim.cmd[[
-hi DashboardFiles guifg=#d3869b
-hi DashboardHeader guifg=#ff461f
-]]

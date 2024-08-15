@@ -107,7 +107,7 @@ local function change_surround()
   if not Char[1] then
     return
   end
-  local char_new = getsurround.Schar[getsurround.get_surround_char_index(Char[2])]
+  local char_new = getsurround.surround_char[getsurround.get_surround_char_index(Char[2])]
   local pos = getsurround.get_surround(char_odd)
   vim.api.nvim_buf_set_text(0, pos[1] - 1, pos[2] - 1, pos[1] - 1, pos[2], { char_new[1] })
   vim.api.nvim_buf_set_text(0, pos[3] - 1, pos[4] - 1, pos[3] - 1, pos[4], { char_new[2] })

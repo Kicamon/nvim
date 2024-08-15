@@ -17,14 +17,14 @@ function config.cmp()
   cmp.setup({
     window = {
       completion = {
-        winhighlight = 'Normal:CmpWin,FloatBorder:CmpWin,Search:None',
+        winhighlight = 'Normal:CmpWin,FloatBorder:CmpWinBor,Search:None',
+        border = 'rounded',
         col_offset = -3,
         side_padding = 0,
-        border = 'rounded',
         scrollbar = true,
       },
       documentation = {
-        winhighlight = 'Normal:CmpWin,FloatBorder:CmpWin,Search:None',
+        winhighlight = 'Normal:CmpWinSec,FloatBorder:CmpWinBor,Search:None',
         border = 'rounded',
         scrollbar = true,
       },

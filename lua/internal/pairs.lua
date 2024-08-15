@@ -1,20 +1,18 @@
-local config = {
-  keys = {
-    ['('] = { close = true, pair = '()' },
-    ['['] = { close = true, pair = '[]' },
-    ['{'] = { close = true, pair = '{}' },
+local keys = {
+  ['('] = { close = true, pair = '()' },
+  ['['] = { close = true, pair = '[]' },
+  ['{'] = { close = true, pair = '{}' },
 
-    [')'] = { close = false, pair = '()' },
-    [']'] = { close = false, pair = '[]' },
-    ['}'] = { close = false, pair = '{}' },
+  [')'] = { close = false, pair = '()' },
+  [']'] = { close = false, pair = '[]' },
+  ['}'] = { close = false, pair = '{}' },
 
-    ['"'] = { close = true, pair = '""' },
-    ["'"] = { close = true, pair = "''" },
-    ['`'] = { close = true, pair = '``' },
+  ['"'] = { close = true, pair = '""' },
+  ["'"] = { close = true, pair = "''" },
+  ['`'] = { close = true, pair = '``' },
 
-    ['<cr>'] = {},
-    ['<bs>'] = {},
-  },
+  ['<cr>'] = {},
+  ['<bs>'] = {},
 }
 
 ---get pair in cursor
@@ -31,7 +29,7 @@ end
 ---@param pair string
 ---@return boolean
 local function is_pair(pair)
-  for _, val in pairs(config.keys) do
+  for _, val in pairs(keys) do
     if pair == val.pair then
       return true
     end
@@ -53,12 +51,12 @@ local function update_pairs(key, val, mode)
     return '<bs><del>'
   elseif val.close then
     return val.pair .. '<Left>'
-  else
-    return key
   end
+
+  return key
 end
 
-for key, val in pairs(config.keys) do
+for key, val in pairs(keys) do
   vim.keymap.set('i', key, function()
     return update_pairs(key, val, 'insert')
   end, { noremap = true, expr = true })

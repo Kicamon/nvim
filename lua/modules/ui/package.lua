@@ -13,3 +13,10 @@ packadd({
   event = { 'BufRead', 'BufNewFile' },
   config = conf.indentmini,
 })
+
+packadd({
+  'NvChad/nvim-colorizer.lua',
+  lazy = true,
+  ft = { 'css', 'html', 'typescriptreact', 'conf', 'vim' },
+  config = conf.colorizer,
+})

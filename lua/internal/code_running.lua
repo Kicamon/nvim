@@ -4,27 +4,21 @@ local infos = {}
 
 local function running_window(opt, full)
   local float_opt = {
-    anchor = full and 'NW' or 'NE',
-    width = full and 0.7 or 0.25,
+    width = full and 0.7 or -0.25,
     height = full and 0.7 or 0.9,
     title = '  Code Running ',
-    pos = full and {
-      row = 'c',
-      col = 'c',
-    } or {
-      row = 't',
-      col = 'r',
-    },
+    row = full and 'c' or 't',
+    col = full and 'c' or 'r',
   }
 
-  infos.bufnr, infos.winid = win:new_float(float_opt, true, false):wininfo()
+  infos.bufnr, infos.winid = win:new_float(float_opt, true, true):wininfo()
 
   api.nvim_create_autocmd('WinClosed', {
     buffer = infos.bufnr,
     callback = function()
       if infos.winid and api.nvim_win_is_valid(infos.winid) then
         api.nvim_win_close(infos.winid, true)
-        api.nvim_buf_delete(infos.bufnr, {force = true})
+        api.nvim_buf_delete(infos.bufnr, { force = true })
         infos.winid = nil
       end
     end,

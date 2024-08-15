@@ -1,6 +1,6 @@
 local pos = {}
 
-pos.Schar = {
+pos.surround_char = {
   { '(', ')' },
   { '[', ']' },
   { '{', '}' },
@@ -10,7 +10,7 @@ pos.Schar = {
 }
 
 local function find_char(current_line, current_col, charn, num, pre)
-  local char, _char = pos.Schar[charn][num], pos.Schar[charn][3 - num]
+  local char, _char = pos.surround_char[charn][num], pos.surround_char[charn][3 - num]
   local queue, lens = 0, 0
   local end_line, range = pre and 1 or vim.fn.line('$'), pre and -1 or 1
   for l = current_line, end_line, range do
@@ -48,8 +48,8 @@ function pos.visual()
 end
 
 function pos.get_surround_char_index(char)
-  for i = 1, #pos.Schar do
-    if pos.Schar[i][1] == char or pos.Schar[i][2] == char then
+  for i = 1, #pos.surround_char do
+    if pos.surround_char[i][1] == char or pos.surround_char[i][2] == char then
       return i
     end
   end
@@ -90,13 +90,13 @@ function pos.get_surround(char)
     )[2]
   else
     local dis = -1
-    for i = 1, #pos.Schar do
+    for i = 1, #pos.surround_char do
       local val = updata(
         dis,
         charpos,
         find_char(sl, sr, i, 1, true),
         find_char(el, er, i, 2, false),
-        (pos.Schar[i][1] == '"' or pos.Schar[i][1] == "'")
+        (pos.surround_char[i][1] == '"' or pos.surround_char[i][1] == "'")
       )
       dis, charpos = val[1], val[2]
     end

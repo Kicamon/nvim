@@ -1,10 +1,7 @@
+local ts_utils = require('nvim-treesitter.ts_utils')
 local input_toggle = 1
 
 local switch = {
-  text = {
-    '*.md',
-    '*.txt',
-  },
   en = 'fcitx5-remote -c',
   zh = 'fcitx5-remote -o',
   check = 'fcitx5-remote',
@@ -42,7 +39,6 @@ local md_code = {
 }
 
 local function is_not_in_code_block() --markdown
-  local ts_utils = require('nvim-treesitter.ts_utils')
   local node_cursor = ts_utils.get_node_at_cursor()
   for _, node_type in ipairs(md) do
     if node_cursor and node_cursor:type() == node_type then

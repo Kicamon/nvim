@@ -1,3 +1,4 @@
+local get_surround = require('internal.util.get_surround')
 local pchar = { '/', '#' }
 
 ---check if oldword or newword is nil
@@ -39,29 +40,25 @@ end
 
 ---quick substitute string
 local function quick_substitute()
-  local getpos = require('internal.util.GetSurround').visual
+  local getpos = get_surround.visual
   local oldword, newword, char
-  if vim.fn.mode() == 'n' then -- change scope: full text
-    oldword, newword, char = input_str()
+  if vim.fn.mode() == 'v' or vim.fn.mode() == 'V' then
+    local sl, sr, el, er = getpos()
+    local cmd_opt = ''
+
+    if sl == el then -- change scope: one line
+      oldword, newword, char = input_str(vim.fn.getline(sl):sub(sr, er))
+      cmd_opt = string.format(':s%s%s%s%s%sg', char, oldword, char, newword, char)
+    else -- change scope: visual scope
+      oldword, newword, char = input_str()
+      cmd_opt = string.format(':%d,%ds%s%s%s%s%sg', sl, el, char, oldword, char, newword, char)
+    end
+
     if check(oldword, newword) then
       return
     end
-    vim.cmd(string.format(':s%s%s%s%s%sg', char, oldword, char, newword, char))
-  elseif vim.fn.mode() == 'v' or vim.fn.mode() == 'V' then
-    local sl, sr, el, er = getpos()
-    if sl == el then -- change scope: one line
-      oldword, newword, char = input_str(vim.fn.getline(sl):sub(sr, er))
-      if check(oldword, newword) then
-        return
-      end
-      vim.cmd(string.format(':s%s%s%s%s%sg', char, oldword, char, newword, char))
-    else -- change scope: visual scope
-      oldword, newword, char = input_str()
-      if check(oldword, newword) then
-        return
-      end
-      vim.cmd(string.format(':%d,%ds%s%s%s%s%sg', sl, el, char, oldword, char, newword, char))
-    end
+
+    vim.cmd(cmd_opt)
     vim.cmd('normal ! v')
   end
   vim.cmd('noh')

@@ -5,8 +5,9 @@ local function stl_format(name, val)
 end
 
 local function default()
-  local p = require('internal.lines.statusline')
+  local p = require('internal.stl.provider')
   local comps = {
+    --left
     p.sep(),
     p.mode(),
     p.sepl(),
@@ -18,12 +19,12 @@ local function default()
     p.gitinfo('added'),
     p.gitinfo('changed'),
     p.gitinfo('removed'),
-    --
+    --center
     p.pad(),
     p.progress(),
     p.lsp(),
     p.pad(),
-    --
+    --right
     p.diagnostic(vim.diagnostic.severity.E),
     p.diagnostic(vim.diagnostic.severity.W),
     p.diagnostic(vim.diagnostic.severity.I),
@@ -37,7 +38,6 @@ local function default()
     p.sepr(),
     p.lnumcol(),
     p.sep(),
-    --
   }
   local e, pieces = {}, {}
   iter(ipairs(comps))
@@ -79,7 +79,6 @@ end
 return {
   setup = function()
     vim.defer_fn(function()
-      -- statusline
       local comps, events, pieces = default()
       local stl_render = render(comps, events, pieces)
       for _, e in ipairs(vim.tbl_keys(events)) do
@@ -101,32 +100,6 @@ return {
           end,
         })
       end
-      -- tabline
-      api.nvim_create_autocmd('TabEnter', {
-        callback = function()
-          local events_tab = {
-            'BufEnter',
-            'BufWritePost',
-            'BufModifiedSet',
-            'TabNew',
-            'TabEnter',
-            'TabLeave',
-            'TermClose',
-          }
-          local update = require('internal.lines.tabline').update
-          api.nvim_create_autocmd(events_tab, {
-            callback = function()
-              update()
-            end,
-          })
-          vim.keymap.set('n', 'tmp', function()
-            update('-')
-          end, {})
-          vim.keymap.set('n', 'tmn', function()
-            update('+')
-          end, {})
-        end,
-      })
     end, 0)
   end,
 }

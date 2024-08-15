@@ -30,4 +30,24 @@ function config.indentmini()
   })
 end
 
+function config.colorizer()
+  require('colorizer').setup({
+    user_default_options = {
+      RGB = true,
+      RRGGBB = true,
+      names = true,
+      RRGGBBAA = true,
+      AARRGGBB = true,
+      rgb_fn = false,
+      hsl_fn = false,
+      css = true,
+      css_fn = true,
+      mode = 'virtualtext',
+      tailwind = true,
+      sass = { enable = false },
+      virtualtext = '■',
+    },
+  })
+end
+
 return config

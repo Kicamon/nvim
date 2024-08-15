@@ -38,10 +38,8 @@ local function yazi(open, opt)
     height = 0.8,
     title = ' Yazi ',
     relative = 'editor',
-    pos = {
-      row = 'c',
-      col = 'c',
-    },
+    row = 'c',
+    col = 'c',
   }
 
   if infos.bufnr then
@@ -49,7 +47,7 @@ local function yazi(open, opt)
     api.nvim_set_option_value('modified', false, { scope = 'local', buf = infos.bufnr })
   end
 
-  infos.bufnr, infos.winid = win:new_float(float_opt, true, false):wininfo()
+  infos.bufnr, infos.winid = win:new_float(float_opt, true, true):wininfo()
 
   vim.fn.termopen(string.format('yazi %s --chooser-file="%s"', infos.filename, infos.tempname), {
     on_exit = function()

@@ -33,7 +33,7 @@ map.n({
   ['s'] = function()
     require('flash').jump()
   end,
-  -- coderunning
+  -- code_running
   ['<F5>'] = function()
     require('internal.code_running').running(false)
   end,
@@ -64,18 +64,18 @@ map.n({
   ['cs'] = function()
     require('internal.surround').change_surround()
   end,
-  -- TabToSpace
+  -- tab_to_space
   ['<leader>ts'] = function()
     require('internal.tab_to_space').tab_to_space()
   end,
-  -- GetNode
+  -- get_node
   ['<leader>N'] = function()
     require('internal.get_node').get_node()
   end,
 })
 
 map.v({
-  -- Surround
+  -- surround
   ['S'] = function()
     require('internal.surround').add_surround()
   end,
@@ -84,11 +84,11 @@ map.v({
 map.nx({
   -- guard
   [';f'] = cmd('GuardFmt'),
-  --  QuickSubstitute
+  --  quick_substitute
   ['<leader>ss'] = function()
     require('internal.quick_substitute').quick_substitute()
   end,
-  -- Wildfire
+  -- wildfire
   ['<cr>'] = function()
     require('internal.wildfire').wildfire()
   end,

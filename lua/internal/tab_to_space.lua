@@ -1,4 +1,4 @@
-local TTS = coroutine.create(function(space)
+local tts = coroutine.create(function(space)
   while true do
     local lnr = vim.fn.line('$')
     for i = 1, lnr, 1 do
@@ -17,7 +17,7 @@ local function tab_to_space()
     space = space .. ' '
   end
   vim.schedule(function()
-    coroutine.resume(TTS, space)
+    coroutine.resume(tts, space)
   end)
 end
 

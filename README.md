@@ -34,7 +34,7 @@
 | `K`      | Cursor up 10 terminal lines     | n    |
 | `L`      | Cursor to the end of the line   | n    |
 | `<C-l>`  | Move Cursor right               | i    |
-| `s`      | Flash jump                      | n    |
+| `s`      | Flash jump                      | n，v |
 
 #### 3 Panes and tmux
 | Shortcut      | Action                                                                      | Mode |
@@ -50,16 +50,7 @@
 | `<C-k>`       | Move cursor one window up                                                   | n    |
 | `<C-l>`       | Move cursor one window right                                                | n    |
 
-#### 4 Buffers and tabs
-| Shortcut | Action            | Mode |
-|----------|-------------------|------|
-| `tn`     | Goto next tab     | n    |
-| `tp`     | Goto previous tab | n    |
-| `tmn`    | Move tab previous | n    |
-| `tmp`    | Move tab next     | n    |
-| `tt`     | Open file browser | n    |
-
-#### 5 Edite
+#### 4 Edite
 | Shortcut     | Action                     | Mode |
 |--------------|----------------------------|------|
 | `ga`         | Align chars                | v    |
@@ -68,8 +59,8 @@
 | `<leader>ts` | Replace all tab with space | n    |
 | `<leader>ss` | Quick substitute           | v    |
 
-#### 6 Codeing
-##### 6.1 Base
+#### 5 Codeing
+##### 5.1 Base
 | Shortcut     | Action                            | Mode |
 |--------------|-----------------------------------|------|
 | `;f`         | Formating code                    | n    |
@@ -82,7 +73,7 @@
 
 ![pkvTyD0.md.png](https://s21.ax1x.com/2024/08/05/pkvTyD0.md.png)
 
-##### 6.2 Lsp
+##### 5.2 Lsp
 | Shortcut     | Action                                     | Mode |
 |--------------|--------------------------------------------|------|
 | `<leader>pd` | Peek definition with lspsaga               | n    |
@@ -99,7 +90,7 @@
 | `<leader>d[` | Goto diangostics prev                      | n    |
 | `<leader>d]` | Goto diangostics next                      | n    |
 
-#### 7 File Explorer
+#### 6 File Explorer
 | Shortcut     | Action                               | Mode |
 |--------------|--------------------------------------|------|
 | `<leader>ra` | Edit file                            | n    |
@@ -113,7 +104,7 @@
 
 ![yazi](https://s21.ax1x.com/2024/08/05/pkvTBgs.png)
 
-#### 8 Git
+#### 7 Git
 | Shortcut     | Action                  | Mode |
 |--------------|-------------------------|------|
 | `g[`         | Goto git prev hunk      | n    |
@@ -121,7 +112,7 @@
 | `<leader>H`  | Git preview hunk inline | n    |
 | `<leader>gd` | Git diffthis            | n    |
 
-#### 9 Other tools
+#### 8 Other tools
 | Shortcut     | Action                                                             | Mode |
 |--------------|--------------------------------------------------------------------|------|
 | `:Chdir`     | Jump to the directory where the current buffer                     | n    |
