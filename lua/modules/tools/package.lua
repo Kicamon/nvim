@@ -36,12 +36,3 @@ packadd({
   lazy = true,
   config = conf.flash,
 })
-
-packadd({
-  -- 'Kicamon/markdown-table-mode.nvim',
-  -- dev = true,
-  -- ft = 'markdown',
-  -- config = function()
-  --   require('markdown-table-mode').setup()
-  -- end,
-})

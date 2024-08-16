@@ -1,3 +1,15 @@
+local table_line_char = {
+  { ':', ':' },
+  { ':', '-' },
+  { '-', ':' },
+}
+
+local table_line_char_insert = {
+  { ':', ':' },
+  { ':', ' ' },
+  { ' ', ':' },
+}
+
 ---Check if the line_number is a markdown table
 ---@param line_number integer
 ---@return integer
@@ -41,18 +53,6 @@ local function get_markdown_table_cells_width(table_contents)
   end
   return width
 end
-
-local table_line_char = {
-  { ':', ':' },
-  { ':', '-' },
-  { '-', ':' },
-}
-
-local table_line_char_insert = {
-  { ':', ':' },
-  { ':', ' ' },
-  { ' ', ':' },
-}
 
 ---Update markdown table's cell contents
 ---@param table_contents table

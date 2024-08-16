@@ -94,11 +94,11 @@ M.setcolor = function()
     --              keywords TODO FIXME and XXX
     Todo = {
       fg = colors.bg0,
-      bg = colors.yellow,
+      bg = colors.blue,
       bold = config.bold,
       italic = config.italic.comments,
     },
-    SpecialComment = {
+    Note = {
       fg = colors.bg0,
       bg = colors.blue,
       bold = config.bold,
@@ -215,7 +215,7 @@ M.setcolor = function()
     -- Indent
     IndentLine = { fg = colors.bg2 },
     IndentLineCurrent = { fg = '#E6E6FA' },
-    -- SimpleLine
+    -- StatusLine
     StatusLineMode = { fg = colors.fg2 },
     StatusLineFileInfo = { fg = colors.fg2 },
     StatusLineReadOnly = { fg = colors.red },
@@ -442,7 +442,7 @@ M.setcolor = function()
     -- @text.todo             ; todo notes
     ['@text.todo'] = { link = 'Todo' },
     -- @text.note             ; info notes
-    ['@text.note'] = { link = 'SpecialComment' },
+    ['@text.note'] = { link = 'Note' },
     -- @text.note.comment     ; XXX in comments
     ['@text.note.comment'] = { fg = colors.red, bold = config.bold },
     -- @text.warning          ; warning notes

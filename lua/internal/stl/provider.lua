@@ -350,7 +350,7 @@ function pd.filesize()
     end,
     name = 'filesize',
     default = get_size(),
-    event = { 'BufEnter' },
+    event = { 'BufEnter', 'BufModifiedSet' },
   }
 
   result.attr = stl_attr('StatusLineEncoding')
