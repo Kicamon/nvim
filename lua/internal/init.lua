@@ -81,8 +81,10 @@ au('BufEnter', {
     -- lines
     require('internal.stl').setup()
     -- chdir
-    uc('Chdir', function()
-      require('internal.chdir').chdir()
-    end, { nargs = 0 })
+    uc('Chdir', function(args)
+      require('internal.chdir').chdir(args.args == 'silent')
+    end, { nargs = '?' })
+    -- yazi
+    require('internal.yazi').setup()
   end,
 })

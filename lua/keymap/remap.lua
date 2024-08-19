@@ -29,7 +29,7 @@ map.n({
   ['<leader>smv'] = '<c-w>t<c-W>H',
   ['<leader>smh'] = '<c-w>t<c-W>K',
   -- open vim config
-  ['<leader>vim'] = cmd('edit ' .. vim.fn.stdpath('config') .. '/init.lua | silent! lcd %:p:h'),
+  ['<leader>vim'] = cmd('edit ' .. vim.fn.stdpath('config') .. '/init.lua | Chdir silent'),
 })
 
 map.v({

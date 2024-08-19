@@ -1,5 +1,5 @@
 local ts_utils = require('nvim-treesitter.ts_utils')
-local input_toggle = 1
+local input_toggle = 0
 
 local switch = {
   en = 'fcitx5-remote -c',

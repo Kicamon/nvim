@@ -37,8 +37,8 @@ local function open_create()
 end
 
 local function open_wiki()
-  local index_path, note_path =
-    '~/Documents/study/Note/wiki/index.md', '~/Documents/study/Note/wiki'
+  local index_path = '~/Documents/study/Note/wiki/index.md'
+  local note_path = '~/Documents/study/Note/wiki'
   if vim.fn.filereadable(vim.fn.expand(index_path)) == 0 then
     vim.fn.jobstart('mkdir -p ' .. note_path .. '; touch' .. index_path)
   end

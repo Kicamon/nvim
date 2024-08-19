@@ -31,7 +31,6 @@ function pack:boot_strap()
   end
   vim.opt.runtimepath:prepend(lazy_path)
   self:load_modules_packages()
-  --TODO(glepnir): remove lazy it sourced the fil which in ftplugin twice !!!
   require('lazy').setup(self.repos, {
     ---@diagnostic disable-next-line: param-type-mismatch
     lockfile = vim.fs.joinpath(self.data_path, 'lazy-lock.json'),

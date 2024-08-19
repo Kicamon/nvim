@@ -157,11 +157,12 @@ python
 python-black
 python-pynvim
 ripgrep
+shfmt
 typescript-language-server
+vim-language-server
 vscode-css-languageserver
 vscode-html-languageserver
 vscode-json-languageserver
-vim-language-server
 yazi
 ```
 

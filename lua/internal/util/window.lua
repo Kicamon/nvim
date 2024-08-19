@@ -3,7 +3,7 @@ local win = {}
 
 ---set float window's anchor
 ---@param opts table
----@return string
+---@return string anchor
 local function make_floating_popup_anchor(opts)
   local anchor = ''
 
@@ -16,8 +16,8 @@ end
 ---set folating window's size
 ---@param opts table
 ---@param ui table {height: integer, width:integer}
----@return integer
----@return integer
+---@return integer width
+---@return integer height
 local function make_floating_popup_size(opts, ui)
   opts.width = opts.width >= 0 and opts.width or -opts.width
   opts.height = opts.height >= 0 and opts.height or -opts.height
@@ -33,8 +33,8 @@ end
 ---get windows position
 ---@param opts table {row: char|integer, col: char|integer}
 ---@param ui table {height: integer, width:integer}
----@return integer
----@return integer
+---@return integer row
+---@return integer col
 local function get_position(opts, ui)
   local row, col
 
@@ -99,8 +99,8 @@ local function default()
 end
 
 ---get window's information
----@return integer
----@return integer
+---@return integer bunnr
+---@return integer winid
 function win:wininfo()
   return self.bufnr, self.winid
 end
@@ -137,7 +137,7 @@ end
 --- |                                                |
 --- +-------------+  +-------------+  +--------------+
 --- |             |  |             |  |              |
---- |    bl       |  |     bc      |  |      br      |
+--- |     bl      |  |     bc      |  |      br      |
 --- |             |  |             |  |              |
 --- +-------------+--+-------------+--+--------------+
 

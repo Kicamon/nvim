@@ -21,7 +21,6 @@ packadd({
   lazy = true,
   cmd = 'GuardFmt',
   config = conf.guard,
-  dependencies = { 'nvimdev/guard-collection' },
 })
 
 packadd({

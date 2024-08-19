@@ -15,8 +15,8 @@ packadd({
 })
 
 packadd({
-  'NvChad/nvim-colorizer.lua',
+  'brenoprata10/nvim-highlight-colors',
   lazy = true,
-  ft = { 'css', 'html', 'typescriptreact', 'conf', 'vim' },
-  config = conf.colorizer,
+  cmd = 'HighlightColors',
+  config = conf.colors,
 })

@@ -41,21 +41,11 @@ map.n({
     require('internal.code_running').running(true)
   end,
   -- yazi
-  ['<leader>ra'] = function()
-    require('internal.yazi').yazi('edit')
-  end,
-  ['<leader>rh'] = function()
-    require('internal.yazi').yazi('vsplit', 'left')
-  end,
-  ['<leader>rj'] = function()
-    require('internal.yazi').yazi('split', 'down')
-  end,
-  ['<leader>rk'] = function()
-    require('internal.yazi').yazi('split', 'up')
-  end,
-  ['<leader>rl'] = function()
-    require('internal.yazi').yazi('vsplit', 'right')
-  end,
+  ['<leader>ra'] = cmd('Yazi'),
+  ['<leader>rh'] = cmd('Yazi left'),
+  ['<leader>rj'] = cmd('Yazi down'),
+  ['<leader>rk'] = cmd('Yazi up'),
+  ['<leader>rl'] = cmd('Yazi right'),
   -- wiki
   ['<leader>ww'] = function()
     require('internal.wiki').open_wiki()

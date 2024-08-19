@@ -57,12 +57,21 @@ function config.guard()
     stdin = true,
     ignore_patterns = { 'neovim', 'vim' },
   })
-  ft('python'):fmt('black')
+  ft('python'):fmt({
+    cmd = 'black',
+    args = { '--quiet', '-' },
+    stdin = true,
+  })
   ft('lua'):fmt({
     cmd = 'stylua',
     args = { '-' },
     stdin = true,
     ignore_patterns = '%w_spec%.lua',
+  })
+  ft('sh'):fmt({
+    cmd = 'shfmt',
+    args = { '-' },
+    stdin = true,
   })
   require('guard').setup({
     fmt_on_save = false,
