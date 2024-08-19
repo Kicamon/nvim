@@ -1,0 +1,132 @@
+{
+	"suggest.floatConfig": {
+		"border": true,
+		"rounded": true,
+	},
+	"diagnostic.floatConfig": {
+		"border": true,
+		"rounded": true,
+	},
+	"floatFactory.floatConfig": {
+		"border": true,
+		"rounded": true,
+	},
+	"snippets.ultisnips.pythonPrompt": false,
+	"coc.preferences.extensionUpdateCheck": "daily",
+	"suggest.noselect": true,
+	"suggest.enablePreselect": false,
+	"disabledFeatures": true,
+	"suggest.completionItemKindLabels": {
+		"class": " ",
+		"color": " ",
+		"constant": " ",
+		"default": " ",
+		"enum": " ",
+		"enumMember": " ",
+		"event": "󱑑 ",
+		"field": " ",
+		"file": " ",
+		"folder": " ",
+		"function": "󰊕 ",
+		"interface": " ",
+		"keyword": " ",
+		"method": " ",
+		"module": " ",
+		"operator": " ",
+		"property": " ",
+		"reference": " ",
+		"snippet": " ",
+		"struct": " ",
+		"text": " ",
+		"typeParameter": " ",
+		"unit": " ",
+		"value": " ",
+		"variable": " "
+	},
+	"diagnostic.signOffset": 1,
+	"diagnostic.errorSign": "🤣",
+	"diagnostic.warningSign": "🧐",
+	"diagnostic.infoSign": "🫠",
+	"diagnostic.hintSign": "🤔",
+	"diagnostic.displayByAle": false,
+	"diagnostic.refreshOnInsertMode": false,
+	"diagnostic.checkCurrentLine": true,
+	"diagnostic.virtualTextPrefix": " 󰶻 ",
+	"diagnostic.virtualText": false,
+	"inlayHint.enable": false,
+	"texlab.forwardSearch.executable": "sioyek",
+	"coc.preferences.formatOnSaveFiletypes": [
+		"bash",
+		"c",
+		"cpp",
+		"dart",
+		"json",
+		"lua",
+		"python",
+		"vim"
+	],
+	"texlab.forwardSearch.args": [
+		"%p",
+		"%l"
+	],
+	"texlab.build.onSave": true,
+	"snippets.ultisnips.directories": [
+		"$HOME/.config/nvim/plugged/vim-snippets/UltiSnips",
+		"$HOME/.config/nvim/usr/Ultisnips/"
+	],
+	"explorer.position": "right",
+	"explorer.width": 30,
+	"explorer.quitOnOpen": true,
+	"explorer.sources": [
+		{
+			"name": "buffer",
+			"expand": false
+		},
+		{
+			"name": "file",
+			"expand": true
+		}
+	],
+	"explorer.file.column.indent.indentLine": true,
+	"explorer.file.showHiddenFiles": true,
+	"explorer.icon.enableNerdfont": true,
+	"explorer.file.column.git.showIgnored": true,
+	"explorer.buffer.showHiddenBuffers": false,
+	"ds-pinyin-lsp.completion_on": false,
+	"languageserver": {
+		"lua": {
+			"command": "/usr/bin/lua-language-server",
+			"args": [
+				"-E",
+				"/home/alanjui/.local/share/lua-language-server/bin/Linux/main.lua"
+			],
+			"filetypes": [
+				"lua"
+			],
+			"settings": {
+				"Lua": {
+					"workspace.library": {
+						"/usr/share/nvim/runtime/lua": true,
+						"/usr/share/nvim/runtime/lua/vim": true,
+						"/usr/share/nvim/runtime/lua/vim/lsp": true
+					},
+					"diagnostics": {
+						"globals": [
+							"vim"
+						]
+					}
+				}
+			}
+		},
+		"bash": {
+			"command": "bash-language-server",
+			"args": [
+				"start"
+			],
+			"filetypes": [
+				"sh"
+			],
+			"ignoredRootPaths": []
+		}
+	}
+}

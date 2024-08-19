@@ -1,175 +1,233 @@
-<h1 align="center">
-  Personal Neovim Config“
-</h1>
+# 我现在使用lua来配置nvim
+这是我的[配置文件](https://github.com/Kicamon/nvim)
+
+# My neovim profile
+
+## 使用之前
+使用前先根据使用的操作系统进行安装
+
+插件环境要求（一定要先安装这些环境）：
+- nodejs >= 14.14.0
+- python >= 3.10.0
+- yarn
+- npm
+- clang（cpp格式化&代码提示）
+- pyright（python LSP）
+- autopep8（python格式化）
+- js-beautify(js，css，html格式化)
+- lua(lua插件)
 
 
-![demo](https://s21.ax1x.com/2024/08/05/pkvTa4g.png)
 
-### Keyboard Shortcuts
+使用的插件管理器：[vim-plug](https://github.com/junegunn/vim-plug)
 
-`<leader> = <space>`
+python支持`pip install neovim`
 
-#### 1 Base
-| Shortcut           | Action                                 | Mode |
-|--------------------|----------------------------------------|------|
-| `W`                | save file                              | n    |
-| `Q`                | quit file                              | n    |
-| `B`                | delete current buffer                  | n    |
-| `N`                | :nomal                                 | v    |
-| `Y`                | Copy selected text to system clipboard | v    |
-| `ca`               | Copy full text to system clipboard     | n    |
-| `<leader>sc`       | toggle spell check                     | n    |
-| `<leader>sw`       | toggle wrap                            | n    |
-| `<leader><cr>`     | nohlsearch                             | n    |
-| `<C-n>`            | Escape from terminal input mode        | t    |
-| `<leader><leader>` | Goto the next placeholder (<++>)       | n, i |
+coc.nvim插件使用注意：
+进入`./plugged/coc.nvim`文件，运行命令`yarn install`
 
-#### 2 Move
-| Shortcut | Action                          | Mode |
-|----------|---------------------------------|------|
-| `j`      | gj                              | n    |
-| `k`      | gk                              | n    |
-| `H`      | Cursor to the start of the line | n    |
-| `J`      | Cursor down 10 terminal lines   | n    |
-| `K`      | Cursor up 10 terminal lines     | n    |
-| `L`      | Cursor to the end of the line   | n    |
-| `<C-l>`  | Move Cursor right               | i    |
-| `s`      | Flash jump                      | n，v |
+## 通用功能
+#### 超出屏幕自动换行
+|    操作    |       作用       |
+|------------|------------------|
+| \<space>sw | 切换换行与不换行 |
 
-#### 3 Panes and tmux
-| Shortcut      | Action                                                                      | Mode |
-|---------------|-----------------------------------------------------------------------------|------|
-| `<leader>sh`  | Create a new vertical split screen and place it left to the current window  | n    |
-| `<leader>sj`  | Create a new split screen and place it below to the current window          | n    |
-| `<leader>sk`  | Create a new split screen and place it above to the current window          | n    |
-| `<leader>sl`  | Create a new vertical split screen and place it right to the current window | n    |
-| `<leader>smv` | Rotate splits and arrange splits vertically                                 | n    |
-| `<leader>smh` | Rotate splits and arrange splits horizontally                               | n    |
-| `<C-h>`       | Move cursor one window left                                                 | n    |
-| `<C-j>`       | Move cursor one window down                                                 | n    |
-| `<C-k>`       | Move cursor one window up                                                   | n    |
-| `<C-l>`       | Move cursor one window right                                                | n    |
 
-#### 4 Edite
-| Shortcut     | Action                     | Mode |
-|--------------|----------------------------|------|
-| `ga`         | Align chars                | v    |
-| `S`          | Add surround chars         | v    |
-| `cs`         | Change surround chars      | n    |
-| `<leader>ts` | Replace all tab with space | n    |
-| `<leader>ss` | Quick substitute           | v    |
+#### 切换Buffers
+|  操作  | 快捷键 |
+|--------|--------|
+| 上一个 |   [b   |
+| 下一个 |   ]b   |
 
-#### 5 Codeing
-##### 5.1 Base
-| Shortcut     | Action                            | Mode |
-|--------------|-----------------------------------|------|
-| `;f`         | Formating code                    | n    |
-| `<leader>cc` | Comment code                      | n, v |
-| `<Tab>`      | Select next item                  | i, s |
-| `<S-Tab>`    | Select prev item                  | i, s |
-| `<CR>`       | Accept selected item              | i    |
-| `<F5>`       | Code runing                       | n    |
-| `<F10>`      | Code runing with center float win | n    |
+#### 切换页面
+| 操作   | 快捷键 |
+|--------|--------|
+| 上一个 | tp     |
+| 下一个 | tn     |
+| 前移   | tmp    |
+| 后移   | tmn    |
 
-![pkvTyD0.md.png](https://s21.ax1x.com/2024/08/05/pkvTyD0.md.png)
+#### 打开和关闭文件树
+| 操作 | 快捷键 |
+|------|--------|
+| 打开 | \<F12> |
+| 关闭 | \<F12> |
 
-##### 5.2 Lsp
-| Shortcut     | Action                                     | Mode |
-|--------------|--------------------------------------------|------|
-| `<leader>pd` | Peek definition with lspsaga               | n    |
-| `<C-o>`      | Edit selected definition                   | n    |
-| `<C-v>`      | Vsplit and edit selected definition        | n    |
-| `<leader>pr` | Peek references with telescope             | n    |
-| `<leader>K`  | Show hover doc with lspsaga                | n    |
-| `<leader>wa` | Add workspace folder                       | n    |
-| `<leader>wr` | Remove workspace folder                    | n    |
-| `<leader>wl` | List workspace folders                     | n    |
-| `<leader>rn` | Rename selected variable name with lspsaga | n    |
-| `<leader>ca` | Show code action with lspsaga              | n    |
-| `<leader>ot` | Open outline with lspsaga                  | n    |
-| `<leader>d[` | Goto diangostics prev                      | n    |
-| `<leader>d]` | Goto diangostics next                      | n    |
+#### cursor
+> 这个功能是方便进行上下移动的，可以不用伸手去摸数字键就能实现多行上下移动的操作。这里我只配置了400行以内的上下移动，又需要的朋友可以参照写法自行拓展
 
-#### 6 File Explorer
-| Shortcut     | Action                               | Mode |
-|--------------|--------------------------------------|------|
-| `<leader>ra` | Edit file                            | n    |
-| `<leader>rh` | Split left and edit file             | n    |
-| `<leader>rj` | Split bottom and edit file           | n    |
-| `<leader>rk` | Split top and edit file              | n    |
-| `<leader>rl` | Split right and edit file            | n    |
-| `<leader>ff` | Fuzzy search files with file name    | n    |
-| `<leader>fw` | Fuzzy search files with file content | n    |
-| `<leader>b`  | Flaybuf                              | n    |
+这里简单的给几个例子就能理解
 
-![yazi](https://s21.ax1x.com/2024/08/05/pkvTBgs.png)
+| 操作 |     命令     |
+|------|--------------|
+|  8j  |  'k\<leader> |
+|  10j | 'a;\<leader> |
+|  45j | 'f;\<leader> |
+|  50k | [g;\<leader> |
 
-#### 7 Git
-| Shortcut     | Action                  | Mode |
-|--------------|-------------------------|------|
-| `g[`         | Goto git prev hunk      | n    |
-| `g]`         | Goto git next hunk      | n    |
-| `<leader>H`  | Git preview hunk inline | n    |
-| `<leader>gd` | Git diffthis            | n    |
+非常容易理解，将数字键映射到了中间的一行，这样在上下进行多行移动的时候就不用伸出手指去够上边的数字键了。具体的配置在`cursor.vim`文件中
 
-#### 8 Other tools
-| Shortcut     | Action                                                             | Mode |
-|--------------|--------------------------------------------------------------------|------|
-| `:Chdir`     | Jump to the directory where the current buffer                     | n    |
-| `<leader>N`  | Get treesitter node in current                                     | n    |
-| `<cr>`       | Quickly select the closest text object among a group of candidates | n    |
-| `<leader>ww` | Note manager                                                       | n    |
-| `<cr>`       | Create or enter note in wiki                                       | n    |
+## 编程
+> 大家可以参考配置文件自行围绕自己所使用的编程语言进行配置
 
-### Plugin list
-```shell
-lazy.nvim
-nvim-treesitter
-nvim-lspconfig
-lspsaga.nvim
-nvim-cmp
-LuaSnip
-cmp_luasnip
-cmp-buffer
-cmp-nvim-lsp
-guard-collection
-guard.nvim
-indentmini.nvim
-flash.nvim
-flybuf.nvim
-gitsigns.nvim
-nvim-colorizer.lua
-plenary.nvim
-telescope.nvim
+#### 一键编译等
+| 操作        | 快捷键       |
+| ----------- | -------------|
+| 编译运行    | \<F5>        |
+| 自动格式化  | \<leader>af  |
+
+#### 一键注释与解注释
+
+| 操作   | 快捷键 |
+|--------|--------|
+| 注释   | Ctrl+/ |
+| 解注释 | Ctrl+/ |
+
+##### 自动格式化
+```Vim
+call autoformat#config('cpp', 
+    \ ['clang-format -style microsoft -']) 
+call autoformat#config('c', 
+    \ ['clang-format -style microsoft -']) 
+call autoformat#config('python', 
+    \ ['autopep8 -'])
+call autoformat#config('html', 
+    \ ['html-beautify -s 2'])
+autocmd! BufWritePre * :Autoformat
+nnoremap <C-i> :call AutoFormat()<CR>:w<CR>
+inoremap <C-i> <ESC>:call AutoFormat()<CR>:w<CR>
+func! AutoFormat()
+    if &filetype == "markdown"
+        :TableModeEnable
+    else
+        :Autoformat
+    endif
+endfunction
 ```
 
+如果想要改变格式化的风格，只需要更改特定语言的中括号内的参数即可
 
-### Dependencies
+##### c/cpp
 ```shell
-bash-language-server
-clang
-fd
-lua
-lua-language-server
-luarocks
-pyright
-python
-python-black
-python-pynvim
-ripgrep
-shfmt
-typescript-language-server
-vim-language-server
-vscode-css-languageserver
-vscode-html-languageserver
-vscode-json-languageserver
-yazi
+sudo pacman -S clang
 ```
 
-## Thanks
-- [glepnir](https://github.com/glepnir/nvim)
-- [theniceboy](https://github.com/theniceboy/nvim/tree/lua-migration)
+##### python
+```shell
+pip3 install autopep8
+```
 
----
+#### 查看全局变量、函数及类等
+快捷键`\n`
 
-### License MIT
+
+#### 代码模板
+代码模板使用的是`coc-snippets` 这个插件，比如我想要存储一个cpp的基本模板，按照下面步骤操作：
+1. 打开一个cpp文件
+2. 运行命令：`:CocCommand snippets.editSnippets`
+3. 在文件的末尾加上：
+
+```snippets
+snippet acm "template" b
+/*
+[[ ⣇⣿⠘⣿⣿⣿⡿⡿⣟⣟⢟⢟⢝⠵⡝⣿⡿⢂⣼⣿⣷⣌⠩⡫⡻⣝⠹⢿⣿⣷ ]],
+[[ ⡆⣿⣆⠱⣝⡵⣝⢅⠙⣿⢕⢕⢕⢕⢝⣥⢒⠅⣿⣿⣿⡿⣳⣌⠪⡪⣡⢑⢝⣇ ]],
+[[ ⡆⣿⣿⣦⠹⣳⣳⣕⢅⠈⢗⢕⢕⢕⢕⢕⢈⢆⠟⠋⠉⠁⠉⠉⠁⠈⠼⢐⢕⢽ ]],
+[[ ⡗⢰⣶⣶⣦⣝⢝⢕⢕⠅⡆⢕⢕⢕⢕⢕⣴⠏⣠⡶⠛⡉⡉⡛⢶⣦⡀⠐⣕⢕ ]],
+[[ ⡝⡄⢻⢟⣿⣿⣷⣕⣕⣅⣿⣔⣕⣵⣵⣿⣿⢠⣿⢠⣮⡈⣌⠨⠅⠹⣷⡀⢱⢕ ]],
+[[ ⡝⡵⠟⠈⢀⣀⣀⡀⠉⢿⣿⣿⣿⣿⣿⣿⣿⣼⣿⢈⡋⠴⢿⡟⣡⡇⣿⡇⡀⢕ ]],
+[[ ⡝⠁⣠⣾⠟⡉⡉⡉⠻⣦⣻⣿⣿⣿⣿⣿⣿⣿⣿⣧⠸⣿⣦⣥⣿⡇⡿⣰⢗⢄ ]],
+[[ ⠁⢰⣿⡏⣴⣌⠈⣌⠡⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣬⣉⣉⣁⣄⢖⢕⢕⢕ ]],
+[[ ⡀⢻⣿⡇⢙⠁⠴⢿⡟⣡⡆⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣵⣵⣿ ]],
+[[ ⡻⣄⣻⣿⣌⠘⢿⣷⣥⣿⠇⣿⣿⣿⣿⣿⣿⠛⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ ]],
+[[ ⣷⢄⠻⣿⣟⠿⠦⠍⠉⣡⣾⣿⣿⣿⣿⣿⣿⢸⣿⣦⠙⣿⣿⣿⣿⣿⣿⣿⣿⠟ ]],
+[[ ⡕⡑⣑⣈⣻⢗⢟⢞⢝⣻⣿⣿⣿⣿⣿⣿⣿⠸⣿⠿⠃⣿⣿⣿⣿⣿⣿⡿⠁⣠ ]],
+[[ ⡝⡵⡈⢟⢕⢕⢕⢕⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣿⣿⣿⣿⣿⠿⠋⣀⣈⠙ ]],
+[[ ⡝⡵⡕⡀⠑⠳⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⢉⡠⡲⡫⡪⡪⡣ ]],
+*/
+// #pragma GCC optimize(2)
+#include <bits/stdc++.h>
+using namespace std;
+#define endl '\n'
+#define all(a) a.begin(), a.end()
+#define rall(a) a.rbegin(), a.rend()
+#define ll long long
+#define Debug(x) cout << #x << ':' << x << endl
+
+signed main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    // clock_t start, finish;
+    // start = clock();
+
+    ${0}
+
+    // finish = clock();
+    // cout <<endl<<"the time cost is:" << double(finish - start) / CLOCKS_PER_SEC<<endl;
+
+    return 0;
+}
+endsnippet
+```
+
+之后在写代码的过程中输入`acm` 就会出现基本模板的代码补全
+
+#### acm
+在打算法竞赛的时候，可以使用命令来配合浏览器插件`competitive companion`来进行操作
+
+| shortcut | action                                            |
+| -------- | ------------------------------------------------- |
+| ri       | 获取测试样例<br>（配合competitive companion使用） |
+| ra       | 手动添加样例                                      |
+| re       | 修改样例                                          |
+| rr       | 运行代码                                          |
+| rd       | 选择删除样例                                      |
+| rm       | 删除所有样例和可执行文件                          |
+
+## Markdown
+#### 指定浏览器
+使用下列命令在配置文件中指定浏览器，不写的话就是调用默认浏览器
+
+我这里使用的是chromium浏览器
+
+```Vim
+let g:mkdp_browser='chromium'
+```
+
+#### 输入法切换
+> 当前文件是.md或者.txt时，进入插入模式时会自动将输入法切换成中文（使用fcitx5）,详细配置查看tool.vim文件
+
+#### 预览等操作
+|    操作    | 快捷键 |
+|------------|--------|
+|    预览    |  \<F5> |
+| 表格格式化 |  Alt+e |
+|  插入目录  |   toc  |
+
+#### 语法快捷键
+具体内容查看本目录下`md-snippets`文件
+
+|      语法 | 快捷键 |
+|-----------|--------|
+|    `****` |     ,b |
+|    `~~~~` |     ,s |
+|      `**` |     ,i |
+|      ```` |     ,d |
+|       ``` |     ,c |
+|   `- [ ]` |     ,m |
+| `\!\[]()` |     ,p |
+|   `\[]()` |     ,a |
+|       `#` |     ,1 |
+|      `##` |     ,2 |
+|     `###` |     ,3 |
+|    `####` |     ,4 |
+
+输入`,f`可以跳出来，自己尝试一下就知道了
+
+------
+
+参考：
+1. https://github.com/theniceboy/nvim
+2. https://blog.liukairui.me/article/Vim%E9%85%8D%E7%BD%AE%E7%AC%94%E8%AE%B0(%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE,%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90,%E7%BE%8E%E5%8C%96)(C++,Python,MarkDown,R...)/
