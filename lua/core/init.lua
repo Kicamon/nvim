@@ -58,4 +58,3 @@ _G.kind_icons = {
 }
 
 require('core.options')
-require('core.pack'):boot_strap()
