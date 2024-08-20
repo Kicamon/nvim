@@ -1,4 +1,3 @@
-local ts_utils = require('nvim-treesitter.ts_utils')
 local input_toggle = 0
 
 local switch = {
@@ -39,6 +38,10 @@ local md_code = {
 }
 
 local function is_not_in_code_block() --markdown
+  local ok, ts_utils = pcall(require, 'nvim-treesitter.ts_utils')
+  if not ok then
+    return true
+  end
   local node_cursor = ts_utils.get_node_at_cursor()
   for _, node_type in ipairs(md) do
     if node_cursor and node_cursor:type() == node_type then
