@@ -53,7 +53,6 @@
 #### 4 Edite
 | Shortcut     | Action                     | Mode |
 |--------------|----------------------------|------|
-| `ga`         | Align chars                | v    |
 | `S`          | Add surround chars         | v    |
 | `cs`         | Change surround chars      | n    |
 | `<leader>ts` | Replace all tab with space | n    |
