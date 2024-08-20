@@ -16,45 +16,5 @@ g.loaded_logiPat = 1
 g.loaded_rrhelper = 1
 g.loaded_netrwPlugin = 1
 _G.browser = 'chromium'
-_G.lsp_fts = {
-  'c',
-  'cpp',
-  'lua',
-  'python',
-  'javascript',
-  'typescript',
-  'json',
-  'html',
-  'css',
-  'vim',
-  'sh',
-}
-_G.kind_icons = {
-  Text = ' 󰉿 ',
-  Method = ' 󰆧 ',
-  Function = ' 󰡱 ',
-  Constructor = '  ',
-  Field = ' 󰜢 ',
-  Variable = ' 󰀫 ',
-  Class = ' 󰠱 ',
-  Interface = '  ',
-  Module = '  ',
-  Property = ' 󰜢 ',
-  Unit = ' 󰑭 ',
-  Value = ' 󰎠 ',
-  Enum = '  ',
-  Keyword = ' 󰌋 ',
-  Snippet = '  ',
-  Color = ' 󰏘 ',
-  File = ' 󰈙 ',
-  Reference = ' 󰈇 ',
-  Folder = ' 󰉋 ',
-  EnumMember = '  ',
-  Constant = ' 󰏿 ',
-  Struct = ' 󰙅 ',
-  Event = '  ',
-  Operator = ' 󰆕 ',
-  TypeParameter = ' 󰅲 ',
-}
 
 require('core.options')

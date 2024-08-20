@@ -13,9 +13,7 @@ au('InsertEnter', {
   group = group,
   pattern = { '*.md', '*.txt' },
   callback = function()
-    if require('internal.im_switch').filetype_checke() then
-      require('internal.im_switch').change_to_zh()
-    end
+    require('internal.im_switch').change_to_zh()
   end,
 })
 
