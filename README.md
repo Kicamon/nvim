@@ -34,7 +34,6 @@
 | `K`      | Cursor up 10 terminal lines     | n    |
 | `L`      | Cursor to the end of the line   | n    |
 | `<C-l>`  | Move Cursor right               | i    |
-| `s`      | Flash jump                      | n，v |
 
 #### 3 Panes and tmux
 | Shortcut      | Action                                                                      | Mode |
@@ -53,42 +52,20 @@
 #### 4 Edite
 | Shortcut     | Action                     | Mode |
 |--------------|----------------------------|------|
-| `ga`         | Align chars                | v    |
 | `S`          | Add surround chars         | v    |
 | `cs`         | Change surround chars      | n    |
 | `<leader>ts` | Replace all tab with space | n    |
 | `<leader>ss` | Quick substitute           | v    |
 
 #### 5 Codeing
-##### 5.1 Base
 | Shortcut     | Action                            | Mode |
 |--------------|-----------------------------------|------|
-| `;f`         | Formating code                    | n    |
 | `<leader>cc` | Comment code                      | n, v |
 | `<Tab>`      | Select next item                  | i, s |
 | `<S-Tab>`    | Select prev item                  | i, s |
 | `<CR>`       | Accept selected item              | i    |
 | `<F5>`       | Code runing                       | n    |
 | `<F10>`      | Code runing with center float win | n    |
-
-![pkvTyD0.md.png](https://s21.ax1x.com/2024/08/05/pkvTyD0.md.png)
-
-##### 5.2 Lsp
-| Shortcut     | Action                                     | Mode |
-|--------------|--------------------------------------------|------|
-| `<leader>pd` | Peek definition with lspsaga               | n    |
-| `<C-o>`      | Edit selected definition                   | n    |
-| `<C-v>`      | Vsplit and edit selected definition        | n    |
-| `<leader>pr` | Peek references with telescope             | n    |
-| `<leader>K`  | Show hover doc with lspsaga                | n    |
-| `<leader>wa` | Add workspace folder                       | n    |
-| `<leader>wr` | Remove workspace folder                    | n    |
-| `<leader>wl` | List workspace folders                     | n    |
-| `<leader>rn` | Rename selected variable name with lspsaga | n    |
-| `<leader>ca` | Show code action with lspsaga              | n    |
-| `<leader>ot` | Open outline with lspsaga                  | n    |
-| `<leader>d[` | Goto diangostics prev                      | n    |
-| `<leader>d]` | Goto diangostics next                      | n    |
 
 #### 6 File Explorer
 | Shortcut     | Action                               | Mode |
@@ -98,51 +75,16 @@
 | `<leader>rj` | Split bottom and edit file           | n    |
 | `<leader>rk` | Split top and edit file              | n    |
 | `<leader>rl` | Split right and edit file            | n    |
-| `<leader>ff` | Fuzzy search files with file name    | n    |
-| `<leader>fw` | Fuzzy search files with file content | n    |
-| `<leader>b`  | Flaybuf                              | n    |
 
 ![yazi](https://s21.ax1x.com/2024/08/05/pkvTBgs.png)
 
-#### 7 Git
-| Shortcut     | Action                  | Mode |
-|--------------|-------------------------|------|
-| `g[`         | Goto git prev hunk      | n    |
-| `g]`         | Goto git next hunk      | n    |
-| `<leader>H`  | Git preview hunk inline | n    |
-| `<leader>gd` | Git diffthis            | n    |
-
-#### 8 Other tools
+#### 7 Other tools
 | Shortcut     | Action                                                             | Mode |
 |--------------|--------------------------------------------------------------------|------|
 | `:Chdir`     | Jump to the directory where the current buffer                     | n    |
-| `<leader>N`  | Get treesitter node in current                                     | n    |
 | `<cr>`       | Quickly select the closest text object among a group of candidates | n    |
 | `<leader>ww` | Note manager                                                       | n    |
 | `<cr>`       | Create or enter note in wiki                                       | n    |
-
-### Plugin list
-```shell
-lazy.nvim
-nvim-treesitter
-nvim-lspconfig
-lspsaga.nvim
-nvim-cmp
-LuaSnip
-cmp_luasnip
-cmp-buffer
-cmp-nvim-lsp
-guard-collection
-guard.nvim
-indentmini.nvim
-flash.nvim
-flybuf.nvim
-gitsigns.nvim
-nvim-colorizer.lua
-plenary.nvim
-telescope.nvim
-```
-
 
 ### Dependencies
 ```shell
