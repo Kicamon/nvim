@@ -27,7 +27,12 @@ local function create()
 end
 
 local function open_create()
-  local node = require('nvim-treesitter.ts_utils').get_node_at_cursor()
+  local ok,ts_utils = pcall(require,'nvim-treesitter.ts_utils')
+  if not ok then
+    return
+  end
+
+  local node = ts_utils.get_node_at_cursor()
 
   if node:type() == 'link_text' or node:type() == 'link_destination' then
     open()
