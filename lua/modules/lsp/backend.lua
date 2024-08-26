@@ -44,18 +44,16 @@ end
 function config.lspsaga()
   require('lspsaga').setup({
     ui = {
-      title = true,
       devicon = false,
+      border = 'single',
     },
     outline = {
       keys = {
-        quit = 'Q',
         toggle_or_jump = '<cr>',
       },
     },
     finder = {
       keys = {
-        quit = 'Q',
         edit = '<C-o>',
         toggle_or_open = '<cr>',
       },
@@ -64,11 +62,6 @@ function config.lspsaga()
       keys = {
         edit = '<C-o>',
         vsplit = '<C-v>',
-      },
-    },
-    code_action = {
-      keys = {
-        quit = 'Q',
       },
     },
   })

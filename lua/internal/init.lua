@@ -86,5 +86,21 @@ au('BufEnter', {
     end, { nargs = '?' })
     -- yazi
     require('internal.yazi').setup()
+    --toggle term
+    uc('Term', function(args)
+      if #args.args == 0 then
+        require('internal.toggle_term'):toggle()
+      elseif args.args == 'next' then
+        require('internal.toggle_term'):next()
+      elseif args.args == 'prev' then
+        require('internal.toggle_term'):prev()
+      elseif args.args == 'new' then
+        require('internal.toggle_term'):new()
+      elseif args.args == 'delete' then
+        require('internal.toggle_term'):delete()
+      elseif args.args == 'new' then
+        require('internal.toggle_term'):new()
+      end
+    end, { nargs = '?' })
   end,
 })

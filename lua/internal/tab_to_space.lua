@@ -12,10 +12,7 @@ end)
 
 local function tab_to_space()
   local sw = vim.fn.shiftwidth()
-  local space = ''
-  for _ = 1, sw, 1 do
-    space = space .. ' '
-  end
+  local space = string.rep(' ', sw)
   vim.schedule(function()
     coroutine.resume(tts, space)
   end)

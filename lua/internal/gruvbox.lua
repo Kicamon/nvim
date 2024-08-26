@@ -40,8 +40,8 @@ M.setcolor = function()
 
   local groups = {
     -- Base groups
-    Normal = { fg = colors.fg1 },
-    NormalFloat = { fg = colors.fg0 },
+    Normal = { fg = colors.fg1, bg = colors.bg0 },
+    NormalFloat = { fg = colors.fg0, bg = 'NONE' },
     FloatWin = { fg = colors.fg0 },
     FloatBorder = { fg = colors.fg1 },
     NormalNC = { link = 'Normal' },

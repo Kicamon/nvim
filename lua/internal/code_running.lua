@@ -7,7 +7,7 @@ local function running_window(opt, full)
     width = full and 0.8 or -0.25,
     height = full and 0.8 or 0.9,
     relative = 'editor',
-    title = '  Code Running ',
+    title = ' Code Running ',
     row = full and 'c' or 't',
     col = full and 'c' or 'r',
   }

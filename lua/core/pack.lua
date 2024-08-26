@@ -36,7 +36,6 @@ function pack:boot_strap()
     lockfile = vim.fs.joinpath(self.data_path, 'lazy-lock.json'),
     dev = { path = '~/Documents/project/nvim/KicamonIce' },
     ui = {
-      border = 'rounded',
       size = {
         width = 0.8,
         height = 0.8,

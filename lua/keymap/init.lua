@@ -6,14 +6,13 @@ map.n({
   -- telescope
   ['<leader>ff'] = cmd('Telescope find_files find_command=rg,--ignore,--hidden,--files'),
   ['<leader>fw'] = cmd('Telescope live_grep'),
-  ['<leader>pr'] = cmd('Telescope lsp_references'),
   -- lspsaga
   ['<leader>pd'] = cmd('Lspsaga peek_definition'),
+  ['<leader>pr'] = cmd('Lspsaga finder ref'),
   ['<leader>K'] = cmd('Lspsaga hover_doc'),
   ['<leader>rn'] = cmd('Lspsaga rename ++project'),
   ['<leader>ca'] = cmd('Lspsaga code_action'),
   ['<leader>ot'] = cmd('Lspsaga outline'),
-  ['<leader>tt'] = cmd('Lspsaga term_toggle'),
   ['d['] = cmd('Lspsaga diagnostic_jump_prev'),
   ['d]'] = cmd('Lspsaga diagnostic_jump_next'),
   -- lsp
@@ -29,10 +28,6 @@ map.n({
   ['<leader>gd'] = cmd('lua require"gitsigns".diffthis("~")'),
   -- flybuf
   ['<leader>b'] = cmd('FlyBuf'),
-  -- flash
-  ['s'] = function()
-    require('flash').jump()
-  end,
   -- code_running
   ['<F5>'] = function()
     require('internal.code_running').running(false)
@@ -62,6 +57,12 @@ map.n({
   ['<leader>N'] = function()
     require('internal.get_node').get_node()
   end,
+  -- toggle term
+  ['<leader>tt'] = cmd('Term'),
+  ['<leader>td'] = cmd('Term delete'),
+  ['<leader>tn'] = cmd('Term next'),
+  ['<leader>tp'] = cmd('Term prev'),
+  ['<leader>tc'] = cmd('Term new'),
 })
 
 map.v({
@@ -72,6 +73,10 @@ map.v({
 })
 
 map.nx({
+  -- flash
+  ['s'] = function()
+    require('flash').jump()
+  end,
   -- guard
   [';f'] = cmd('GuardFmt'),
   --  quick_substitute
