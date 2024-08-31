@@ -44,7 +44,7 @@ local function markdown_keymap()
 
   -- paste image
   map.n('<leader>P', function()
-    require('internal.image').paste()
+    require('internal.image')
   end, { buffer = true })
 
   -- enter file

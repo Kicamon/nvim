@@ -18,4 +18,4 @@ local function tab_to_space()
   end)
 end
 
-return { tab_to_space = tab_to_space }
+return tab_to_space()

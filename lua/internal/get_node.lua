@@ -6,4 +6,4 @@ local function get_node()
   end
 end
 
-return { get_node = get_node }
+return get_node()
