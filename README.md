@@ -99,7 +99,6 @@
 | `<leader>rl` | Split right and edit file            | n    |
 | `<leader>ff` | Fuzzy search files with file name    | n    |
 | `<leader>fw` | Fuzzy search files with file content | n    |
-| `<leader>b`  | Flaybuf                              | n    |
 
 ![yazi](https://s21.ax1x.com/2024/08/05/pkvTBgs.png)
 
@@ -119,27 +118,32 @@
 | `<cr>`       | Quickly select the closest text object among a group of candidates | n    |
 | `<leader>ww` | Note manager                                                       | n    |
 | `<cr>`       | Create or enter note in wiki                                       | n    |
+| `<c-f>`      | Toggle float terminal if have not term, create it                  | n, t |
+| `<c-p>`      | Goto prev float terminal                                           | n, t |
+| `<c-n>`      | Goto next float terminal                                           | n, t |
+| `<c-a>`      | Add a float terminal                                               | n, t |
+| `<c-d>`      | Delete a float terminal                                            | n, t |
+| `<c-r>`      | Move float terminal right                                          | n, t |
+| `<c-c>`      | Move float terminal center                                         | n, t |
 
 ### Plugin list
 ```shell
-lazy.nvim
-nvim-treesitter
-nvim-lspconfig
-lspsaga.nvim
-nvim-cmp
 LuaSnip
-cmp_luasnip
 cmp-buffer
 cmp-nvim-lsp
-guard-collection
-guard.nvim
-indentmini.nvim
+cmp_luasnip
 flash.nvim
 flybuf.nvim
+fzf-lua
 gitsigns.nvim
-nvim-colorizer.lua
-plenary.nvim
-telescope.nvim
+guard.nvim
+indentmini.nvim
+lazy.nvim
+lspsaga.nvim
+nvim-cmp
+nvim-highlight-colors
+nvim-lspconfig
+nvim-treesitter
 ```
 
 
@@ -156,6 +160,8 @@ python
 python-black
 python-pynvim
 ripgrep
+rust
+rust-analyzer
 shfmt
 typescript-language-server
 vim-language-server

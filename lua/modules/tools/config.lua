@@ -6,6 +6,7 @@ function config.treesitter()
       'bash',
       'c',
       'cpp',
+      'rust',
       'html',
       'javascript',
       'lua',
@@ -27,27 +28,8 @@ function config.treesitter()
   })
 end
 
-function config.telescope()
-  require('telescope').setup({
-    defaults = {
-      prompt_prefix = ' ',
-      selection_caret = ' ',
-      layout_config = {
-        horizontal = { prompt_position = 'top', results_width = 0.6 },
-        vertical = { mirror = false },
-      },
-      sorting_strategy = 'ascending',
-      file_previewer = require('telescope.previewers').vim_buffer_cat.new,
-      grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
-      qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
-    },
-    extensions = {
-      fzy_native = {
-        override_generic_sorter = false,
-        override_file_sorter = true,
-      },
-    },
-  })
+function config.fzflua()
+  require('fzf-lua').setup()
 end
 
 function config.guard()
@@ -56,6 +38,11 @@ function config.guard()
     cmd = 'clang-format',
     stdin = true,
     ignore_patterns = { 'neovim', 'vim' },
+  })
+  ft('rust'):fmt({
+    cmd = 'rustfmt',
+    args = { '--edition', '2021', '--emit', 'stdout' },
+    stdin = true,
   })
   ft('python'):fmt({
     cmd = 'black',

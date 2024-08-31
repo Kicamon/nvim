@@ -2,14 +2,80 @@ local win = require('internal.util.window')
 local api = vim.api
 local infos = {}
 
-local function running_window(opt, full)
+-- running commands
+local config = {
+  ['c'] = {
+    command = {
+      'gcc "$filename" -o "$runfile"',
+      './"$runfile"',
+      'rm -f "$runfile"',
+    },
+  },
+  ['cpp'] = {
+    command = {
+      'g++ "$filename" -std=c++17 -O2 -g -Wall -o "$runfile"',
+      './"$runfile"',
+      'rm -rf "$runfile"',
+    },
+  },
+  ['rust'] = {
+    command = {
+      'rustc "$filename"',
+      './"$runfile"',
+      'rm -rf "$runfile"',
+    },
+  },
+  ['python'] = {
+    command = 'python3 "$filename"',
+  },
+  ['lua'] = {
+    command = 'luajit "$filename"',
+  },
+  ['sh'] = {
+    command = 'bash "$filename"',
+  },
+  ['html'] = {
+    command = 'live-server --browser=' .. _G.browser,
+    modus = 'job',
+  },
+  ['markdown'] = {
+    command = 'typora "$filename"',
+    modus = 'job',
+  },
+}
+
+---get running command and running modus by filetype
+---@return table {command: string, modus: string}
+local function get_commands()
+  local filetype = vim.bo.filetype
+  local filename = vim.fn.expand('%')
+  local runfile = vim.fn.expand('%<')
+
+  local opt = config[filetype]
+  if type(opt.command) == 'table' then
+    local tmp = ''
+    for i, val in ipairs(opt.command) do
+      tmp = tmp .. (i ~= 1 and ' && ' or '') .. val
+    end
+    opt.command = tmp
+  end
+  opt.command = string.gsub(opt.command, '$filename', filename)
+  opt.command = string.gsub(opt.command, '$runfile', runfile)
+
+  return opt
+end
+
+---create float window to running the command
+---@param opt table
+---@param center boolean
+local function running_window(opt, center)
   local float_opt = {
-    width = full and 0.8 or -0.25,
-    height = full and 0.8 or 0.9,
+    width = center and 0.8 or -0.25,
+    height = center and 0.8 or 0.9,
     relative = 'editor',
     title = ' Code Running ',
-    row = full and 'c' or 't',
-    col = full and 'c' or 'r',
+    row = center and 'c' or 't',
+    col = center and 'c' or 'r',
   }
 
   infos.bufnr, infos.winid = win:new_float(float_opt, true, true):wininfo()
@@ -28,44 +94,29 @@ local function running_window(opt, full)
   vim.cmd.term(opt)
 end
 
-local function running(full)
+---quick running code
+---@param center boolean
+local function running(center)
   vim.cmd('w')
 
-  local filetype = vim.bo.filetype
-  local filename = vim.fn.expand('%')
-  local runfile = vim.fn.expand('%<')
+  local workpath = vim.fn.getcwd()
 
   vim.cmd('silent! lcd %:p:h')
 
-  if filetype == 'c' then
-    running_window(
-      string.format('gcc "%s" -o "%s" && ./"%s" && rm -f "%s"', filename, runfile, runfile, runfile),
-      full
-    )
-  elseif filetype == 'cpp' then
-    running_window(
-      string.format(
-        'g++ "%s" -std=c++17 -O2 -g -Wall -o "%s" && ./"%s" && rm -rf "%s"',
-        filename,
-        runfile,
-        runfile,
-        runfile
-      ),
-      full
-    )
-  elseif filetype == 'python' then
-    running_window('python3 ' .. filename, full)
-  elseif filetype == 'lua' then
-    running_window('luajit ' .. filename, full)
-  elseif filetype == 'sh' then
-    running_window('bash ' .. filename, full)
-  elseif filetype == 'markdown' then
-    require('internal.markdown_preview').markdown_preview()
-  elseif filetype == 'html' then
-    vim.fn.jobstart('live-server --browser=' .. _G.browser)
+  local opt = get_commands()
+  if opt then
+    if opt.modus == 'job' then
+      vim.fn.jobstart(opt.command)
+    elseif opt.modus == 'cmd' then
+      vim.cmd(opt.command)
+    else
+      running_window(opt.command, center)
+    end
   else
     vim.notify('Undefined\n')
   end
+
+  vim.cmd('silent! lcd ' .. workpath)
 end
 
 return { running = running }

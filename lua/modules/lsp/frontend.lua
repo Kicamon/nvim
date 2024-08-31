@@ -29,10 +29,6 @@ local servers = {
       }))(fname) or require('lspconfig').util.find_git_ancestor(fname)
     end,
   },
-  jsonls = {},
-  html = {},
-  cssls = {},
-  tsserver = {},
   lua_ls = {
     cmd = {
       'lua-language-server',
@@ -65,7 +61,50 @@ local servers = {
       },
     },
   },
-  pyright = {},
+  rust_analyzer = {
+    settings = {
+      ['rust-analyzer'] = {
+        imports = {
+          granularity = {
+            group = 'module',
+          },
+          prefix = 'self',
+        },
+        cargo = {
+          buildScripts = {
+            enable = true,
+          },
+        },
+        procMacro = {
+          enable = true,
+        },
+      },
+    },
+    single_file_support = true,
+    root_dir = function(fname)
+      return require('lspconfig').util.root_pattern(unpack({
+        'Cargo.toml',
+        'rust-project.json',
+        'main.rs',
+        '.git',
+      }))(fname) or require('lspconfig').util.find_git_ancestor(fname)
+    end,
+  },
+  jsonls = {},
+  html = {},
+  cssls = {},
+  tsserver = {},
+  pyright = {
+    root_dir = function(fname)
+      return require('lspconfig').util.root_pattern(unpack({
+        'pyproject.toml',
+        'setup.py',
+        'main.py',
+        '.git',
+      }))(fname) or require('lspconfig').util.find_git_ancestor(fname)
+    end,
+    single_file_support = true,
+  },
   vimls = {},
 }
 

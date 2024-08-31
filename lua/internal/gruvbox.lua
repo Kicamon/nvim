@@ -40,7 +40,7 @@ M.setcolor = function()
 
   local groups = {
     -- Base groups
-    Normal = { fg = colors.fg1, bg = colors.bg0 },
+    Normal = { fg = colors.fg1 },
     NormalFloat = { fg = colors.fg0, bg = 'NONE' },
     FloatWin = { fg = colors.fg0 },
     FloatBorder = { fg = colors.fg1 },
@@ -176,18 +176,9 @@ M.setcolor = function()
     GitSignsAddLn = { fg = colors.green, reverse = config.invert_signs },
     GitSignsChangeLn = { fg = colors.magenta, reverse = config.invert_signs },
     GitSignsDeleteLn = { fg = colors.red, reverse = config.invert_signs },
-    -- telescope.nvim
-    TelescopeNormal = { fg = colors.fg1 },
-    TelescopeSelection = { fg = colors.orange, bold = config.bold },
-    TelescopeSelectionCaret = { fg = colors.red },
-    TelescopeMultiSelection = { fg = colors.gray },
-    TelescopeBorder = { link = 'TelescopeNormal' },
-    TelescopePromptBorder = { link = 'TelescopeNormal' },
-    TelescopeResultsBorder = { link = 'TelescopeNormal' },
-    TelescopePreviewBorder = { link = 'TelescopeNormal' },
-    TelescopeMatching = { fg = colors.dblue },
-    TelescopePromptPrefix = { fg = colors.red },
-    TelescopePrompt = { link = 'TelescopeNormal' },
+    -- fzf-lua
+    FzfLuaNormal = { fg = colors.fg1 },
+    -- diff
     diffAdded = { fg = colors.green },
     diffRemoved = { fg = colors.red },
     diffChanged = { fg = colors.aqua },

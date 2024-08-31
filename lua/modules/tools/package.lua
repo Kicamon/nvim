@@ -9,11 +9,10 @@ packadd({
 })
 
 packadd({
-  'nvim-telescope/telescope.nvim',
+  'ibhagwan/fzf-lua',
   lazy = true,
-  cmd = 'Telescope',
-  config = conf.telescope,
-  dependencies = { 'nvim-lua/plenary.nvim' },
+  cmd = 'FzfLua',
+  config = conf.fzflua,
 })
 
 packadd({
@@ -24,14 +23,14 @@ packadd({
 })
 
 packadd({
-  'nvimdev/flybuf.nvim',
-  lazy = true,
-  cmd = 'FlyBuf',
-  config = true,
-})
-
-packadd({
   'folke/flash.nvim',
   lazy = true,
   config = conf.flash,
+})
+
+packadd({
+  'Kicamon/flybuf.nvim',
+  lazy = true,
+  cmd = 'FlyBuf',
+  config = true,
 })

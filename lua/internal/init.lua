@@ -35,7 +35,6 @@ au('TextChangedI', {
   end,
 })
 
--- pairs
 au({ 'InsertEnter', 'CmdlineEnter' }, {
   group = group,
   once = true,
@@ -44,7 +43,7 @@ au({ 'InsertEnter', 'CmdlineEnter' }, {
   end,
 })
 
-au('TermOpen', { group = group, pattern = 'term://*', command = 'startinsert' })
+au('TermOpen', { group = group, command = 'startinsert' })
 
 au('TextYankPost', {
   group = group,
@@ -53,9 +52,9 @@ au('TextYankPost', {
   end,
 })
 
-au({ 'BufRead', 'BufNewFile' }, {
+au('BufRead', {
   callback = function()
-    vim.cmd('setlocal formatoptions-=ro')
+    vim.cmd.setlocal('formatoptions-=ro')
     -- last plase
     local pos = vim.fn.getpos('\'"')
     if pos[2] > 0 and pos[2] <= vim.fn.line('$') then
@@ -64,7 +63,7 @@ au({ 'BufRead', 'BufNewFile' }, {
   end,
 })
 
-au({ 'FileType' }, {
+au('FileType', {
   group = group,
   pattern = 'markdown',
   callback = function()
@@ -83,24 +82,6 @@ au('BufEnter', {
     -- chdir
     uc('Chdir', function(args)
       require('internal.chdir').chdir(args.args == 'silent')
-    end, { nargs = '?' })
-    -- yazi
-    require('internal.yazi').setup()
-    --toggle term
-    uc('Term', function(args)
-      if #args.args == 0 then
-        require('internal.toggle_term'):toggle()
-      elseif args.args == 'next' then
-        require('internal.toggle_term'):next()
-      elseif args.args == 'prev' then
-        require('internal.toggle_term'):prev()
-      elseif args.args == 'new' then
-        require('internal.toggle_term'):new()
-      elseif args.args == 'delete' then
-        require('internal.toggle_term'):delete()
-      elseif args.args == 'new' then
-        require('internal.toggle_term'):new()
-      end
     end, { nargs = '?' })
   end,
 })

@@ -14,25 +14,15 @@
         "path": "lua.json"
       },
       {
-        "language": [
-          "html",
-          "jade",
-          "pug",
-          "eruby",
-          "javascriptreact",
-          "htmldjango",
-          "astro"
-        ],
+        "language": "rust",
+        "path": "rust.json"
+      },
+      {
+        "language": "html",
         "path": "./html.json"
       },
       {
-        "language": [
-          "css",
-          "scss",
-          "sass",
-          "less",
-          "stylus"
-        ],
+        "language": "css",
         "path": "./css.json"
       },
       {

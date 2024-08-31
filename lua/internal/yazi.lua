@@ -61,24 +61,4 @@ local function yazi(open, opt)
   })
 end
 
-local function setup()
-  api.nvim_create_user_command('Yazi', function(args)
-    if #args.args == 0 then
-      yazi('edit')
-    elseif args.args == 'left' then
-      yazi('vsplit', 'left')
-    elseif args.args == 'down' then
-      yazi('split', 'down')
-    elseif args.args == 'up' then
-      yazi('split', 'up')
-    elseif args.args == 'right' then
-      yazi('vsplit', 'right')
-    elseif args.args == 'tabe' then
-      yazi('tabe')
-    else
-      error('Wrong parameters')
-    end
-  end, { nargs = '?' })
-end
-
-return { setup = setup }
+return { yazi = yazi }

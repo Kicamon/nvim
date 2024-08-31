@@ -19,6 +19,7 @@ _G.browser = 'chromium'
 _G.lsp_fts = {
   'c',
   'cpp',
+  'rust',
   'lua',
   'python',
   'javascript',
