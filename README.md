@@ -119,12 +119,12 @@
 | `<leader>ww` | Note manager                                                       | n    |
 | `<cr>`       | Create or enter note in wiki                                       | n    |
 | `<c-f>`      | Toggle float terminal if have not term, create it                  | n, t |
-| `<c-p>`      | Goto prev float terminal                                           | n, t |
-| `<c-n>`      | Goto next float terminal                                           | n, t |
-| `<c-a>`      | Add a float terminal                                               | n, t |
-| `<c-d>`      | Delete a float terminal                                            | n, t |
-| `<c-r>`      | Move float terminal right                                          | n, t |
-| `<c-c>`      | Move float terminal center                                         | n, t |
+| `<c-p>`      | Goto prev float terminal                                           | t    |
+| `<c-n>`      | Goto next float terminal                                           | t    |
+| `<c-a>`      | Add a float terminal                                               | t    |
+| `<c-d>`      | Delete a float terminal                                            | t    |
+| `<c-r>`      | Move float terminal right                                          | t    |
+| `<c-c>`      | Move float terminal center                                         | t    |
 
 ### Plugin list
 ```shell

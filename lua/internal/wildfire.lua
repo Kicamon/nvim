@@ -25,4 +25,4 @@ local function wildfire()
   vim.api.nvim_win_set_cursor(0, { pos[1], pos[2] })
 end
 
-return wildfire()
+return { wildfire = wildfire }

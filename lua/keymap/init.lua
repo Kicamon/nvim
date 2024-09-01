@@ -6,9 +6,12 @@ map.n({
   -- fzflua
   ['<leader>ff'] = cmd('FzfLua files'),
   ['<leader>fw'] = cmd('FzfLua live_grep'),
+  ['<leader>fh'] = cmd('FzfLua helptags'),
   -- lspsaga
   ['<leader>pd'] = cmd('Lspsaga peek_definition'),
   ['<leader>pr'] = cmd('Lspsaga finder ref'),
+  ['<Leader>dw'] = cmd('Lspsaga show_workspace_diagnostics'),
+  ['<Leader>db'] = cmd('Lspsaga show_buf_diagnostics'),
   ['<leader>K'] = cmd('Lspsaga hover_doc'),
   ['<leader>rn'] = cmd('Lspsaga rename ++project'),
   ['<leader>ca'] = cmd('Lspsaga code_action'),
@@ -61,11 +64,11 @@ map.n({
   end,
   -- tab_to_space
   ['<leader>ts'] = function()
-    require('internal.tab_to_space')
+    require('internal.tab_to_space').tab_to_space()
   end,
   -- get_node
   ['<leader>N'] = function()
-    require('internal.get_node')
+    require('internal.get_node').get_node()
   end,
   -- toggle term
   ['<c-f>'] = function()
@@ -110,11 +113,11 @@ map.nx({
   [';f'] = cmd('GuardFmt'),
   --  quick_substitute
   ['<leader>ss'] = function()
-    require('internal.quick_substitute')
+    require('internal.quick_substitute').quick_substitute()
   end,
   -- wildfire
   ['<cr>'] = function()
-    require('internal.wildfire')
+    require('internal.wildfire').wildfire()
   end,
 })
 

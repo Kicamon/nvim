@@ -41,7 +41,7 @@ local function get_position(opts, ui)
   if type(opts.row) == 'number' then
     row = opts.row
   elseif opts.row == 'c' then
-    row = math.floor((ui.height - opts.height + 0.5) / 2)
+    row = math.floor((ui.height - opts.height) / 2 + 0.5)
   elseif opts.row == 't' then
     row = 0
   elseif opts.row == 'b' then
@@ -51,7 +51,7 @@ local function get_position(opts, ui)
   if type(opts.col) == 'number' then
     col = opts.col
   elseif opts.col == 'c' then
-    col = math.floor((ui.width - opts.width + 0.5) / 2)
+    col = math.floor((ui.width - opts.width) / 2 + 0.5)
   elseif opts.col == 'l' then
     col = 0
   elseif opts.col == 'r' then
