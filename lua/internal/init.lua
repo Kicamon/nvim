@@ -13,7 +13,9 @@ au('InsertEnter', {
   group = group,
   pattern = { '*.md', '*.txt' },
   callback = function()
-    require('internal.im_switch').change_to_zh()
+    if require('internal.im_switch').filetype_checke() then
+      require('internal.im_switch').change_to_zh()
+    end
   end,
 })
 
@@ -33,7 +35,6 @@ au('TextChangedI', {
   end,
 })
 
--- pairs
 au({ 'InsertEnter', 'CmdlineEnter' }, {
   group = group,
   once = true,
@@ -42,7 +43,7 @@ au({ 'InsertEnter', 'CmdlineEnter' }, {
   end,
 })
 
-au('TermOpen', { group = group, pattern = 'term://*', command = 'startinsert' })
+au('TermOpen', { group = group, command = 'startinsert' })
 
 au('TextYankPost', {
   group = group,
@@ -51,9 +52,9 @@ au('TextYankPost', {
   end,
 })
 
-au({ 'BufRead', 'BufNewFile' }, {
+au('BufRead', {
   callback = function()
-    vim.cmd('setlocal formatoptions-=ro')
+    vim.cmd.setlocal('formatoptions-=ro')
     -- last plase
     local pos = vim.fn.getpos('\'"')
     if pos[2] > 0 and pos[2] <= vim.fn.line('$') then
@@ -62,7 +63,7 @@ au({ 'BufRead', 'BufNewFile' }, {
   end,
 })
 
-au({ 'FileType' }, {
+au('FileType', {
   group = group,
   pattern = 'markdown',
   callback = function()
@@ -82,7 +83,17 @@ au('BufEnter', {
     uc('Chdir', function(args)
       require('internal.chdir').chdir(args.args == 'silent')
     end, { nargs = '?' })
-    -- yazi
-    require('internal.yazi').setup()
+    uc('GetNode', function(args)
+      if args.args == 'cap' then
+        require('internal.get_node').get_cap_node()
+      else
+        require('internal.get_node').get_node()
+      end
+    end, {
+      nargs = '?',
+      complete = function()
+        return { 'cap' }
+      end,
+    })
   end,
 })

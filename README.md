@@ -34,6 +34,7 @@
 | `K`      | Cursor up 10 terminal lines     | n    |
 | `L`      | Cursor to the end of the line   | n    |
 | `<C-l>`  | Move Cursor right               | i    |
+| `s`      | Flash jump                      | n，v |
 
 #### 3 Panes and tmux
 | Shortcut      | Action                                                                      | Mode |
@@ -58,14 +59,35 @@
 | `<leader>ss` | Quick substitute           | v    |
 
 #### 5 Codeing
+##### 5.1 Base
 | Shortcut     | Action                            | Mode |
 |--------------|-----------------------------------|------|
+| `;f`         | Formating code                    | n    |
 | `<leader>cc` | Comment code                      | n, v |
 | `<Tab>`      | Select next item                  | i, s |
 | `<S-Tab>`    | Select prev item                  | i, s |
 | `<CR>`       | Accept selected item              | i    |
 | `<F5>`       | Code runing                       | n    |
 | `<F10>`      | Code runing with center float win | n    |
+
+![pkvTyD0.md.png](https://s21.ax1x.com/2024/08/05/pkvTyD0.md.png)
+
+##### 5.2 Lsp
+| Shortcut     | Action                                     | Mode |
+|--------------|--------------------------------------------|------|
+| `<leader>pd` | Peek definition with lspsaga               | n    |
+| `<C-o>`      | Edit selected definition                   | n    |
+| `<C-v>`      | Vsplit and edit selected definition        | n    |
+| `<leader>pr` | Peek references with telescope             | n    |
+| `<leader>K`  | Show hover doc with lspsaga                | n    |
+| `<leader>wa` | Add workspace folder                       | n    |
+| `<leader>wr` | Remove workspace folder                    | n    |
+| `<leader>wl` | List workspace folders                     | n    |
+| `<leader>rn` | Rename selected variable name with lspsaga | n    |
+| `<leader>ca` | Show code action with lspsaga              | n    |
+| `<leader>ot` | Open outline with lspsaga                  | n    |
+| `<leader>d[` | Goto diangostics prev                      | n    |
+| `<leader>d]` | Goto diangostics next                      | n    |
 
 #### 6 File Explorer
 | Shortcut     | Action                               | Mode |
@@ -75,16 +97,54 @@
 | `<leader>rj` | Split bottom and edit file           | n    |
 | `<leader>rk` | Split top and edit file              | n    |
 | `<leader>rl` | Split right and edit file            | n    |
+| `<leader>ff` | Fuzzy search files with file name    | n    |
+| `<leader>fw` | Fuzzy search files with file content | n    |
 
 ![yazi](https://s21.ax1x.com/2024/08/05/pkvTBgs.png)
 
-#### 7 Other tools
+#### 7 Git
+| Shortcut     | Action                  | Mode |
+|--------------|-------------------------|------|
+| `g[`         | Goto git prev hunk      | n    |
+| `g]`         | Goto git next hunk      | n    |
+| `<leader>H`  | Git preview hunk inline | n    |
+| `<leader>gd` | Git diffthis            | n    |
+
+#### 8 Other tools
 | Shortcut     | Action                                                             | Mode |
 |--------------|--------------------------------------------------------------------|------|
 | `:Chdir`     | Jump to the directory where the current buffer                     | n    |
+| `<leader>N`  | Get treesitter node in current                                     | n    |
 | `<cr>`       | Quickly select the closest text object among a group of candidates | n    |
 | `<leader>ww` | Note manager                                                       | n    |
 | `<cr>`       | Create or enter note in wiki                                       | n    |
+| `<c-f>`      | Toggle float terminal if have not term, create it                  | n, t |
+| `<c-p>`      | Goto prev float terminal                                           | t    |
+| `<c-n>`      | Goto next float terminal                                           | t    |
+| `<c-a>`      | Add a float terminal                                               | t    |
+| `<c-d>`      | Delete a float terminal                                            | t    |
+| `<c-r>`      | Move float terminal right                                          | t    |
+| `<c-c>`      | Move float terminal center                                         | t    |
+
+### Plugin list
+```shell
+LuaSnip
+cmp-buffer
+cmp-nvim-lsp
+cmp_luasnip
+flash.nvim
+flybuf.nvim
+fzf-lua
+gitsigns.nvim
+guard.nvim
+indentmini.nvim
+lspsaga.nvim
+nvim-cmp
+nvim-highlight-colors
+nvim-lspconfig
+nvim-treesitter
+```
+
 
 ### Dependencies
 ```shell
@@ -99,6 +159,8 @@ python
 python-black
 python-pynvim
 ripgrep
+rust
+rust-analyzer
 shfmt
 typescript-language-server
 vim-language-server

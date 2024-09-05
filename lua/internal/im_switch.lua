@@ -22,6 +22,24 @@ local function change_to_zh()
   end
 end
 
+local function is_not_in_code_block() --markdown
+  local node_cursor = vim.treesitter.get_captures_at_cursor(0)
+  for _, v in pairs(node_cursor) do
+    if string.find(v, 'markup.link') or string.find(v, 'markup.raw.block') then
+      return false
+    end
+  end
+  return true
+end
+
+local function filetype_checke()
+  if vim.bo.filetype == 'markdown' then
+    return is_not_in_code_block()
+  else
+    return true
+  end
+end
+
 return {
   change_to_en = change_to_en,
   change_to_zh = change_to_zh,

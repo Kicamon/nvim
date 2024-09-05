@@ -372,7 +372,7 @@ end
 
 function pd.lnumcol()
   local result = {
-    stl = '%P(%-2.(%l:%c%))',
+    stl = '%P %-2.(%l:%c%)',
     name = 'linecol',
     event = { 'BufEnter' },
   }

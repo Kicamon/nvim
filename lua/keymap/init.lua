@@ -11,11 +11,21 @@ map.n({
     require('internal.code_running').running(true)
   end,
   -- yazi
-  ['<leader>ra'] = cmd('Yazi'),
-  ['<leader>rh'] = cmd('Yazi left'),
-  ['<leader>rj'] = cmd('Yazi down'),
-  ['<leader>rk'] = cmd('Yazi up'),
-  ['<leader>rl'] = cmd('Yazi right'),
+  ['<leader>ra'] = function()
+    require('internal.yazi').yazi('edit')
+  end,
+  ['<leader>rh'] = function()
+    require('internal.yazi').yazi('vsplit', 'left')
+  end,
+  ['<leader>rj'] = function()
+    require('internal.yazi').yazi('split', 'down')
+  end,
+  ['<leader>rk'] = function()
+    require('internal.yazi').yazi('split', 'up')
+  end,
+  ['<leader>rl'] = function()
+    require('internal.yazi').yazi('vsplit', 'right')
+  end,
   -- wiki
   ['<leader>ww'] = function()
     require('internal.wiki').open_wiki()
@@ -27,6 +37,35 @@ map.n({
   -- tab_to_space
   ['<leader>ts'] = function()
     require('internal.tab_to_space').tab_to_space()
+  end,
+  -- toggle term
+  ['<c-f>'] = function()
+    require('internal.toggle_term').toggle()
+  end,
+})
+
+map.t({
+  -- toggle term
+  ['<c-f>'] = function()
+    require('internal.toggle_term').toggle()
+  end,
+  ['<c-p>'] = function()
+    require('internal.toggle_term').prev()
+  end,
+  ['<c-n>'] = function()
+    require('internal.toggle_term').next()
+  end,
+  ['<c-a>'] = function()
+    require('internal.toggle_term').new()
+  end,
+  ['<c-d>'] = function()
+    require('internal.toggle_term').delete()
+  end,
+  ['<c-r>'] = function()
+    require('internal.toggle_term').right()
+  end,
+  ['<c-c>'] = function()
+    require('internal.toggle_term').center()
   end,
 })
 

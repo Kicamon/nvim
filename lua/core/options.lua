@@ -1,5 +1,4 @@
 local opt, api = vim.opt, vim.api
-vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 opt.termguicolors = true
 opt.ttyfast = true
 opt.cursorline = true

@@ -44,7 +44,7 @@ local function yazi(open, opt)
 
   if infos.bufnr then
     float_opt.bufnr = infos.bufnr
-    api.nvim_set_option_value('modified', false, { scope = 'local', buf = infos.bufnr })
+    api.nvim_set_option_value('modified', false, { buf = infos.bufnr })
   end
 
   infos.bufnr, infos.winid = win:new_float(float_opt, true, true):wininfo()
@@ -61,24 +61,4 @@ local function yazi(open, opt)
   })
 end
 
-local function setup()
-  api.nvim_create_user_command('Yazi', function(args)
-    if #args.args == 0 then
-      yazi('edit')
-    elseif args.args == 'left' then
-      yazi('vsplit', 'lefs')
-    elseif args.args == 'down' then
-      yazi('split', 'down')
-    elseif args.args == 'up' then
-      yazi('split', 'up')
-    elseif args.args == 'right' then
-      yazi('vsplit', 'right')
-    elseif args.args == 'tabe' then
-      yazi('tabe')
-    else
-      error('Wrong parameters')
-    end
-  end, { nargs = '?' })
-end
-
-return { setup = setup }
+return { yazi = yazi }

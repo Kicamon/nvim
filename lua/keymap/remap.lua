@@ -12,10 +12,8 @@ map.n({
   ['<leader><leader>'] = '/<++><CR>:noh<CR>"_c4l',
   ['j'] = 'gj',
   ['k'] = 'gk',
-  ['H'] = '^',
   ['J'] = '<c-d>',
   ['K'] = '<c-u>',
-  ['L'] = '$',
   -- window
   ['<C-h>'] = '<C-w>h',
   ['<C-j>'] = '<C-w>j',
@@ -32,15 +30,18 @@ map.n({
   ['<leader>vim'] = cmd('edit ' .. vim.fn.stdpath('config') .. '/init.lua | Chdir silent'),
 })
 
+map.nox({
+  ['L'] = '$',
+  ['H'] = '^',
+})
+
+map.nx('<leader>cc', function()
+  return require('vim._comment').operator() .. '_'
+end, { expr = true })
+
 map.v({
   ['N'] = ':normal',
   ['Y'] = '"+y',
-  ['H'] = '^',
-  ['L'] = '$',
-})
-
-map.o({
-  ['L'] = '$',
 })
 
 map.t({
@@ -54,7 +55,3 @@ map.ic({
   ['<c-a>'] = '<Home>',
   ['<c-e>'] = '<End>',
 })
-
-map.nx('<leader>cc', function()
-  return require('vim._comment').operator() .. '_'
-end, { expr = true })
