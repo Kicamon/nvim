@@ -1,5 +1,4 @@
--- INFO: only available under x11
-
+-- NOTE: only available under x11
 ---check if the clipboard contains an imageq
 ---@return boolean
 local function check_have_img()

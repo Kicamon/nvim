@@ -26,7 +26,7 @@ local float_opt_right = {
 }
 
 local function toggle_open(bufnr)
-  api.nvim_set_option_value('modified', false, { scope = 'local', buf = bufnr })
+  api.nvim_set_option_value('modified', false, { buf = bufnr })
   return win:new_float(win_positions[bufnr], true, true):wininfo()
 end
 

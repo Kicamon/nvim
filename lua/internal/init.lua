@@ -83,5 +83,17 @@ au('BufEnter', {
     uc('Chdir', function(args)
       require('internal.chdir').chdir(args.args == 'silent')
     end, { nargs = '?' })
+    uc('GetNode', function(args)
+      if args.args == 'cap' then
+        require('internal.get_node').get_cap_node()
+      else
+        require('internal.get_node').get_node()
+      end
+    end, {
+      nargs = '?',
+      complete = function()
+        return { 'cap' }
+      end,
+    })
   end,
 })

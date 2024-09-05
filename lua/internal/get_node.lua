@@ -6,4 +6,12 @@ local function get_node()
   end
 end
 
-return { get_node = get_node }
+local function get_cap_node()
+  local cap_node = vim.treesitter.get_captures_at_cursor(0)
+  vim.notify(vim.inspect(cap_node))
+end
+
+return {
+  get_node = get_node,
+  get_cap_node = get_cap_node,
+}

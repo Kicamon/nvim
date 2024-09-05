@@ -138,7 +138,6 @@ fzf-lua
 gitsigns.nvim
 guard.nvim
 indentmini.nvim
-lazy.nvim
 lspsaga.nvim
 nvim-cmp
 nvim-highlight-colors

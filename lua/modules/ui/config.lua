@@ -20,12 +20,8 @@ function config.indentmini()
       'help',
       'dashboard',
       'lazy',
-      'notify',
-      'toggleterm',
-      'lazyterm',
       'markdown',
       'text',
-      'Yazi',
     },
   })
 end
@@ -33,6 +29,8 @@ end
 function config.colors()
   require('nvim-highlight-colors').setup({
     render = 'virtual',
+    virtual_symbol = '■',
+    virtual_symbol_position = 'eol',
   })
 end
 

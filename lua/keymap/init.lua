@@ -66,10 +66,6 @@ map.n({
   ['<leader>ts'] = function()
     require('internal.tab_to_space').tab_to_space()
   end,
-  -- get_node
-  ['<leader>N'] = function()
-    require('internal.get_node').get_node()
-  end,
   -- toggle term
   ['<c-f>'] = function()
     require('internal.toggle_term').toggle()

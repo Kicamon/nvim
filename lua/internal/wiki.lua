@@ -27,11 +27,16 @@ local function create()
 end
 
 local function open_create()
-  local node = require('nvim-treesitter.ts_utils').get_node_at_cursor()
+  local node_cursor = vim.treesitter.get_captures_at_cursor(0)
 
-  if node:type() == 'link_text' or node:type() == 'link_destination' then
-    open()
-  elseif node:type() == 'inline' then
+  for _, v in pairs(node_cursor) do
+    if string.find(v, 'markup.link') then
+      open()
+      return
+    end
+  end
+
+  if vim.fn.mode() == 'v' then
     create()
   end
 end

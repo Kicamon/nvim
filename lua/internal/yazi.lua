@@ -44,7 +44,7 @@ local function yazi(open, opt)
 
   if infos.bufnr then
     float_opt.bufnr = infos.bufnr
-    api.nvim_set_option_value('modified', false, { scope = 'local', buf = infos.bufnr })
+    api.nvim_set_option_value('modified', false, { buf = infos.bufnr })
   end
 
   infos.bufnr, infos.winid = win:new_float(float_opt, true, true):wininfo()
