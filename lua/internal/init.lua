@@ -35,6 +35,7 @@ au('TextChangedI', {
   end,
 })
 
+-- auto pairs
 au({ 'InsertEnter', 'CmdlineEnter' }, {
   group = group,
   once = true,
@@ -63,6 +64,7 @@ au('BufRead', {
   end,
 })
 
+-- markdown keymap
 au('FileType', {
   group = group,
   pattern = 'markdown',
@@ -75,20 +77,24 @@ au('BufEnter', {
   group = group,
   once = true,
   callback = function()
+    -- theme
     vim.cmd.colorscheme('gruvbox')
+    -- keymap
     require('keymap')
     -- lines
     require('internal.stl').setup()
     -- chdir
     uc('Chdir', function(args)
       require('internal.chdir').chdir(args.args == 'silent')
-    end, { nargs = '?' })
+    end, {
+      nargs = '?',
+      complete = function()
+        return { 'silent' }
+      end,
+    })
+    -- get node
     uc('GetNode', function(args)
-      if args.args == 'cap' then
-        require('internal.get_node').get_cap_node()
-      else
-        require('internal.get_node').get_node()
-      end
+      require('internal.get_node').operate(args.args)
     end, {
       nargs = '?',
       complete = function()

@@ -23,8 +23,8 @@ local function default()
     p.pad(),
     p.progress(),
     p.lsp(),
-    --right
     p.pad(),
+    --right
     p.diagnostic(vim.diagnostic.severity.E),
     p.diagnostic(vim.diagnostic.severity.W),
     p.diagnostic(vim.diagnostic.severity.I),
