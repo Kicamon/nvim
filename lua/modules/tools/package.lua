@@ -12,7 +12,7 @@ packadd({
   'ibhagwan/fzf-lua',
   lazy = true,
   cmd = 'FzfLua',
-  config = conf.fzflua,
+  config = true,
 })
 
 packadd({

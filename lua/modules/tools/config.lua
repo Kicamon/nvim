@@ -28,10 +28,6 @@ function config.treesitter()
   })
 end
 
-function config.fzflua()
-  require('fzf-lua').setup()
-end
-
 function config.guard()
   local ft = require('guard.filetype')
   ft('c,cpp'):fmt({
