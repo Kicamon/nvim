@@ -93,7 +93,7 @@ local servers = {
   jsonls = {},
   html = {},
   cssls = {},
-  tsserver = {},
+  ts_ls = {},
   pyright = {
     root_dir = function(fname)
       return require('lspconfig').util.root_pattern(unpack({

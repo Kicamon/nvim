@@ -7,6 +7,7 @@ map.n({
   ['<leader>ff'] = cmd('FzfLua files'),
   ['<leader>fw'] = cmd('FzfLua live_grep'),
   ['<leader>fh'] = cmd('FzfLua helptags'),
+  ['<leader>fo'] = cmd('FzfLua oldfiles'),
   -- lspsaga
   ['<leader>pd'] = cmd('Lspsaga peek_definition'),
   ['<leader>pr'] = cmd('Lspsaga finder ref'),

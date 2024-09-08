@@ -107,7 +107,7 @@ local function setcolor()
     Special = { fg = colors.orange },
     Comment = { fg = colors.gray, italic = config.italic.comments },
     -- Todo         anything that needs extra attention; mostly the
-    --              keywords TODO FIXME and XXX
+    --              keywords TODO FIXME and NOTE
     Todo = {
       fg = colors.bg0,
       bg = colors.yellow,
@@ -192,8 +192,6 @@ local function setcolor()
     GitSignsAddLn = { fg = colors.green, reverse = config.invert_signs },
     GitSignsChangeLn = { fg = colors.magenta, reverse = config.invert_signs },
     GitSignsDeleteLn = { fg = colors.red, reverse = config.invert_signs },
-    -- fzf-lua
-    FzfLuaNormal = { fg = colors.fg1 },
     -- diff
     diffAdded = { fg = colors.green },
     diffRemoved = { fg = colors.red },
