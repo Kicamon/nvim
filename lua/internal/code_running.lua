@@ -86,9 +86,9 @@ local function running_window(opt, center)
     callback = function()
       if infos.winid and api.nvim_win_is_valid(infos.winid) then
         api.nvim_win_close(infos.winid, true)
-        api.nvim_buf_delete(infos.bufnr, { force = true })
-        infos.winid = nil
       end
+      api.nvim_buf_delete(infos.bufnr, { force = true })
+      infos.winid = nil
     end,
   })
 

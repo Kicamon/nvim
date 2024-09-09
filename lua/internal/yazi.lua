@@ -53,9 +53,9 @@ local function yazi(open, opt)
     on_exit = function()
       if api.nvim_win_is_valid(infos.winid) then
         api.nvim_win_close(infos.winid, true)
-        infos.winid = nil
         open_file(open, opt)
       end
+      infos.winid = nil
       end_options()
     end,
   })
