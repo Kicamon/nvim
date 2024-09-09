@@ -5,7 +5,7 @@ local function feedkeys(keys, mode)
   api.nvim_feedkeys(api.nvim_replace_termcodes(keys, true, true, true), mode, true)
 end
 
-local word_map = {
+local defualt_word_map = {
   ['true'] = 'false',
   ['True'] = 'False',
   ['TRUE'] = 'FALSE',
@@ -53,6 +53,24 @@ local word_map = {
   ['|='] = '&=',
 }
 
+local function get_word_map()
+  local word_map = defualt_word_map
+
+  local filetype = vim.bo.filetype
+  local special_map = {}
+
+  if filetype == 'lua' then
+    special_map = {
+      ['=='] = '~=',
+      ['~='] = '==',
+    }
+  end
+
+  vim.tbl_extend('force', word_map, special_map or {})
+
+  return word_map
+end
+
 ---get the cursor word's position
 ---@return integer start col
 ---@return integer end col
@@ -87,6 +105,8 @@ local function invert_word()
   local cursor = api.nvim_win_get_cursor(0)
   local sr, er = get_cursor_word_pos()
   local old_word = get_cursor_word(sr, er)
+  local word_map = get_word_map()
+
   if word_map[old_word] then
     change_line(sr, er, word_map[old_word])
   else
