@@ -11,7 +11,12 @@ local function get_cap_node()
   vim.notify(vim.inspect(cap_node))
 end
 
-return {
-  get_node = get_node,
-  get_cap_node = get_cap_node,
-}
+local function operate(opt)
+  if opt == 'cap' then
+    get_cap_node()
+  else
+    get_node()
+  end
+end
+
+return { operate = operate }

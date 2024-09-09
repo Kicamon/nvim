@@ -38,6 +38,10 @@ map.n({
   ['<leader>ts'] = function()
     require('internal.tab_to_space').tab_to_space()
   end,
+  -- invert_word
+  ['<leader>iw'] = function()
+    require('internal.invert_word').invert_word()
+  end,
   -- toggle term
   ['<c-f>'] = function()
     require('internal.toggle_term').toggle()

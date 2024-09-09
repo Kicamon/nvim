@@ -362,7 +362,7 @@ function pd.encoding()
   local result = {
     stl = ('%s'):format(vim.o.ff .. ' ' .. vim.o.encoding),
     name = 'filencode',
-    event = { 'BufEnter' },
+    event = { 'RecordingEnter', 'RecordingLeave' },
   }
 
   result.attr = stl_attr('StatusLineEncoding')

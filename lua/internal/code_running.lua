@@ -54,6 +54,7 @@ local function get_commands()
   local opt = config[filetype]
   if type(opt.command) == 'table' then
     local tmp = ''
+    ---@diagnostic disable-next-line: param-type-mismatch
     for i, val in ipairs(opt.command) do
       tmp = tmp .. (i ~= 1 and ' && ' or '') .. val
     end
