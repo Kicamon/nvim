@@ -1,5 +1,6 @@
 local getsurround = require('internal.util.get_surround')
-local feedkeys = function(keys, mode)
+
+local function feedkeys(keys, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), mode, true)
 end
 
