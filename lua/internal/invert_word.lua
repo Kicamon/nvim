@@ -55,8 +55,7 @@ local defualt_word_map = {
 }
 
 local function get_word_map()
-  local word_map = defualt_word_map
-
+  local word_map
   local filetype = vim.bo.filetype
   local special_map = {}
 
@@ -67,7 +66,7 @@ local function get_word_map()
     }
   end
 
-  vim.tbl_extend('force', word_map, special_map or {})
+  word_map = vim.tbl_extend('force', defualt_word_map, special_map or {})
 
   return word_map
 end
