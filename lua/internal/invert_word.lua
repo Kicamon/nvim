@@ -72,22 +72,17 @@ local function get_word_map()
 end
 
 ---get the cursor word's position
+---@return string old word
 ---@return integer start col
 ---@return integer end col
 local function get_cursor_word_pos()
   vim.cmd('normal! viw')
   local _, sr, _, er = get_visual_pos()
   feedkeys('<esc>', 'n')
-  return sr, er
-end
 
----get the word under cursor
----@param sr integer start col
----@param er integer end col
----@return string
-local function get_cursor_word(sr, er)
-  local line = string.sub(api.nvim_get_current_line(), sr, er)
-  return line
+  local word = string.sub(api.nvim_get_current_line(), sr, er)
+
+  return word, sr, er
 end
 
 ---modify the word
@@ -103,8 +98,7 @@ end
 
 local function invert_word()
   local cursor = api.nvim_win_get_cursor(0)
-  local sr, er = get_cursor_word_pos()
-  local old_word = get_cursor_word(sr, er)
+  local old_word, sr, er = get_cursor_word_pos()
   local word_map = get_word_map()
 
   if word_map[old_word] then
