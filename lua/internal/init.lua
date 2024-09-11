@@ -79,19 +79,36 @@ au('BufEnter', {
   callback = function()
     -- theme
     vim.cmd.colorscheme('gruvbox')
+
     -- keymap
     require('keymap')
+
     -- lines
     require('internal.stl').setup()
+
     -- chdir
     uc('Chdir', function(args)
-      require('internal.chdir').chdir(args.args == 'silent')
+      vim.cmd('silent! lcd %:p:h')
+      if args.args == 'silent' then
+        return
+      end
+      vim.notify('From: ' .. vim.fn.getcwd() .. '\n' .. 'To: ' .. vim.fn.expand('%:p:h'))
+    end, { nargs = '?' })
+
+    -- text
+    uc('Texts', function(args)
+      if args.args == 'tab_to_space' then
+        require('internal.texts').tab_to_space()
+      elseif args.args == 'delete_trailing_space' then
+        require('internal.texts').delete_trailing_space()
+      end
     end, {
       nargs = '?',
       complete = function()
-        return { 'silent' }
+        return { 'tab_to_space', 'delete_trailing_space' }
       end,
     })
+
     -- get node
     uc('GetNode', function(args)
       require('internal.get_node').operate(args.args)

@@ -27,10 +27,3 @@ packadd({
   lazy = true,
   config = conf.flash,
 })
-
-packadd({
-  'Kicamon/flybuf.nvim',
-  lazy = true,
-  cmd = 'FlyBuf',
-  config = true,
-})

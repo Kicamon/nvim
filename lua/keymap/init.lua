@@ -30,8 +30,6 @@ map.n({
   ['g]'] = cmd('silent lua require"gitsigns".next_hunk()'),
   ['<leader>H'] = cmd('lua require"gitsigns".preview_hunk_inline()'),
   ['<leader>gd'] = cmd('lua require"gitsigns".diffthis("~")'),
-  -- flybuf
-  ['<leader>b'] = cmd('FlyBuf'),
   -- code_running
   ['<F5>'] = function()
     require('internal.code_running').running(false)
@@ -62,10 +60,6 @@ map.n({
   -- surround
   ['cs'] = function()
     require('internal.surround').change_surround()
-  end,
-  -- tab_to_space
-  ['<leader>ts'] = function()
-    require('internal.tab_to_space').tab_to_space()
   end,
   -- invert_word
   ['<leader>iw'] = function()
