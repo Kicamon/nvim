@@ -1,4 +1,4 @@
-local getsurround = require('internal.util.get_surround')
+local getsurround = require('internal.util.surround_tools')
 
 local function feedkeys(keys, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), mode, true)
@@ -108,10 +108,10 @@ local function change_surround()
   if not Char[1] then
     return
   end
-  local char_new = getsurround.surround_char[getsurround.get_surround_char_index(Char[2])]
-  local pos = getsurround.get_surround(char_odd)
-  vim.api.nvim_buf_set_text(0, pos[1] - 1, pos[2] - 1, pos[1] - 1, pos[2], { char_new[1] })
-  vim.api.nvim_buf_set_text(0, pos[3] - 1, pos[4] - 1, pos[3] - 1, pos[4], { char_new[2] })
+  local char_new = keys[Char[2]]
+  local pos = getsurround.get_surround_pos(char_odd)
+  vim.api.nvim_buf_set_text(0, pos[1] - 1, pos[2] - 1, pos[1] - 1, pos[2], { char_new.st })
+  vim.api.nvim_buf_set_text(0, pos[3] - 1, pos[4] - 1, pos[3] - 1, pos[4], { char_new.ed })
 end
 
 return {

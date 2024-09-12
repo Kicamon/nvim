@@ -12,17 +12,25 @@ local function update_position(pos)
   return pos
 end
 
-local function wildfire()
-  local pos = require('internal.util.get_surround').get_surround()
-  if not pos or #pos == 0 then
+local wildfire = coroutine.create(function()
+  while true do
+    local pos = require('internal.util.surround_tools').get_surround_pos()
+    if not pos or #pos == 0 then
+      changemode()
+      coroutine.yield()
+      return
+    end
     changemode()
-    return
+    pos = update_position(pos)
+    vim.api.nvim_win_set_cursor(0, { pos[3], pos[4] - 2 })
+    vim.cmd('normal! v')
+    vim.api.nvim_win_set_cursor(0, { pos[1], pos[2] })
+    coroutine.yield()
   end
-  changemode()
-  pos = update_position(pos)
-  vim.api.nvim_win_set_cursor(0, { pos[3], pos[4] - 2 })
-  vim.cmd('normal! v')
-  vim.api.nvim_win_set_cursor(0, { pos[1], pos[2] })
-end
+end)
 
-return { wildfire = wildfire }
+return { wildfire = function ()
+  vim.schedule(function ()
+    coroutine.resume(wildfire)
+  end)
+end }
