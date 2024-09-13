@@ -98,10 +98,28 @@ local function default()
   }
 end
 
+local obj = {}
+obj.__index = obj
+
+---set bufopt
+---@param name string|table
+---@param value any
+---@return table
+function obj:bufopt(name, value)
+  if type(name) == 'table' then
+    for key, val in pairs(name) do
+      api.nvim_set_option_value(key, val, { buf = self.bufnr })
+    end
+  else
+    api.nvim_set_option_value(name, value, { buf = self.bufnr })
+  end
+  return self
+end
+
 ---get window's information
 ---@return integer bunnr
 ---@return integer winid
-function win:wininfo()
+function obj:wininfo()
   return self.bufnr, self.winid
 end
 
@@ -119,7 +137,7 @@ function win:new_float(float_opt, enter, force)
   float_opt = force and make_floating_popup_options(float_opt)
     or vim.tbl_extend('force', default(), float_opt)
   self.winid = api.nvim_open_win(self.bufnr, enter, float_opt)
-  return self
+  return setmetatable(win, obj)
 end
 
 --- quick set position

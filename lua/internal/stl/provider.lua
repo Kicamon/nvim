@@ -342,7 +342,7 @@ function pd.filesize()
       idx = idx + 1
     end
     vim.api.nvim_buf_get_name(0)
-    return string.format('%.1f', size) .. size_unit[idx]
+    return ('%.1f%s'):format(size, size_unit[idx])
   end
   local result = {
     stl = function()

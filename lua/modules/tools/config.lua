@@ -35,11 +35,6 @@ function config.guard()
     stdin = true,
     ignore_patterns = { 'neovim', 'vim' },
   })
-  ft('rust'):fmt({
-    cmd = 'rustfmt',
-    args = { '--edition', '2021', '--emit', 'stdout' },
-    stdin = true,
-  })
   ft('python'):fmt({
     cmd = 'black',
     args = { '--quiet', '-' },

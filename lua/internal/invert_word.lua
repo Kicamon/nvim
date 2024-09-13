@@ -54,17 +54,19 @@ local defualt_word_map = {
   ['|='] = '&=',
 }
 
+local filetype_word_map = {
+  ['lua'] = {
+    ['=='] = '~=',
+    ['~='] = '==',
+  },
+}
+
 local function get_word_map()
   local word_map
   local filetype = vim.bo.filetype
   local special_map = {}
 
-  if filetype == 'lua' then
-    special_map = {
-      ['=='] = '~=',
-      ['~='] = '==',
-    }
-  end
+  special_map = filetype_word_map[filetype]
 
   word_map = vim.tbl_extend('force', defualt_word_map, special_map or {})
 

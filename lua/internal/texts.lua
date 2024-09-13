@@ -6,16 +6,16 @@ end
 
 local change_text = coroutine.create(function(pattern, chars)
   while true do
-    local lnr = vim.fn.line('$')
+    local total_row = vim.fn.line('$')
     local lines = {}
 
-    for i = 1, lnr, 1 do
+    for i = 1, total_row, 1 do
       local line = vim.fn.getline(i)
       line = line:gsub(pattern, chars)
       table.insert(lines, line)
     end
 
-    vim.api.nvim_buf_set_lines(0, 0, lnr, false, lines)
+    vim.api.nvim_buf_set_lines(0, 0, total_row, false, lines)
 
     coroutine.yield()
   end

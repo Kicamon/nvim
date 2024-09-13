@@ -17,7 +17,7 @@ local keys = {
 
   ['"'] = { st = '"', ed = '"' },
   ["'"] = { st = "'", ed = "'" },
-  ['`'] = { st = '``', ed = '`' },
+  ['`'] = { st = '`', ed = '`' },
 }
 
 ---add chars to lines
@@ -60,34 +60,34 @@ local function add_surround()
   end
 
   local char = Char[2]
-  local sl, sr, el, er = getsurround.visual() -- get visual pos
+  local sr, sc, er, ec = getsurround.visual() -- get visual pos
 
   if vim.fn.mode() == 'V' then -- if mode is visual line, update start and end row's pos
-    sr, er = vim.fn.indent(sl) + 1, string.len(vim.fn.getline(el))
+    sc, ec = vim.fn.indent(sr) + 1, string.len(vim.fn.getline(er))
   end
 
-  if check_zh(el, er) then -- if is ends in zh
-    er = er + 2 -- move the endrow back by 2
+  if check_zh(er, ec) then -- if is ends in zh
+    ec = ec + 2 -- move the endrow back by 2
   end
 
   -- add pair to the selection
-  if sl == el then
-    local line = vim.fn.getline(sl)
-    local line_mid = string.sub(line, sr, er)
+  if sr == er then
+    local line = vim.fn.getline(sr)
+    local line_mid = string.sub(line, sc, ec)
     line_mid = add_surround_chars_to_lines({ line_mid }, char)[1]
     vim.fn.setline(
-      sl,
-      (sr == 1 and '' or string.sub(line, 1, sr - 1))
+      sr,
+      (sc == 1 and '' or string.sub(line, 1, sc - 1))
         .. line_mid
-        .. (er == #line and '' or string.sub(line, er + 1))
+        .. (ec == #line and '' or string.sub(line, ec + 1))
     )
   else
-    local lines, linee = vim.fn.getline(sl), vim.fn.getline(el)
-    local lines_mid, linee_mid = string.sub(lines, sr), string.sub(linee, 1, er)
+    local lines, linee = vim.fn.getline(sr), vim.fn.getline(er)
+    local lines_mid, linee_mid = string.sub(lines, sc), string.sub(linee, 1, ec)
     local line = add_surround_chars_to_lines({ lines_mid, linee_mid }, char)
     lines_mid, linee_mid = line[1], line[#line]
-    vim.fn.setline(sl, (sr == 1 and '' or string.sub(lines, 1, sr - 1)) .. lines_mid)
-    vim.fn.setline(el, linee_mid .. (er == #linee and '' or string.sub(linee, er + 1)))
+    vim.fn.setline(sr, (sc == 1 and '' or string.sub(lines, 1, sc - 1)) .. lines_mid)
+    vim.fn.setline(er, linee_mid .. (ec == #linee and '' or string.sub(linee, ec + 1)))
   end
 
   feedkeys('<ESC>', 'n')

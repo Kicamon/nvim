@@ -1,7 +1,7 @@
 local co, api, iter = coroutine, vim.api, vim.iter
 
 local function stl_format(name, val)
-  return '%#Simple' .. name .. '#' .. val .. '%*'
+  return '%#Status' .. name .. '#' .. val .. '%*'
 end
 
 local function default()
@@ -39,6 +39,7 @@ local function default()
     p.lnumcol(),
     p.sep(),
   }
+
   local e, pieces = {}, {}
   iter(ipairs(comps))
     :map(function(key, item)
@@ -56,10 +57,11 @@ local function default()
         end
       end
       if item.attr and item.name then
-        api.nvim_set_hl(0, ('Simple%s'):format(item.name), item.attr)
+        api.nvim_set_hl(0, ('Status%s'):format(item.name), item.attr)
       end
     end)
     :totable()
+
   return comps, e, pieces
 end
 
@@ -94,7 +96,7 @@ return {
             vim.schedule(function()
               local ok, res = co.resume(stl_render, args)
               if not ok then
-                vim.notify('[Simple] render failed ' .. res, vim.log.levels.ERROR)
+                vim.notify('[StatusLine] render failed ' .. res, vim.log.levels.ERROR)
               end
             end)
           end,

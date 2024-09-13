@@ -22,7 +22,7 @@
 | `<leader>sw`       | toggle wrap                            | n    |
 | `<leader><cr>`     | nohlsearch                             | n    |
 | `<C-n>`            | escape from terminal input mode        | t    |
-| `<leader><leader>` | goto the next placeholder (<++>)       | n, i |
+| `<leader><leader>` | goto the next placeholder `<++>`       | n, i |
 
 #### 2 Move
 | Shortcut | Action                          | Mode |
@@ -58,6 +58,7 @@
 | `:Text tab_to_space`          | replace leading tabs with spaces | n    |
 | `:Text delete_trailing_space` | delete trailing spaces           | n    |
 | `<leader>ss`                  | quick substitute                 | v    |
+| `<leader>P`                   | paste image under `x11`          | v    |
 
 #### 5 Codeing
 ##### 5.1 Base
@@ -158,8 +159,6 @@ pyright
 python
 python-black
 python-pynvim
-rust
-rust-analyzer
 shfmt
 typescript-language-server
 vim-language-server

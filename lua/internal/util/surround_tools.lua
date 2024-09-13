@@ -17,16 +17,16 @@ local function get_surround_char_idx(char)
   end
 end
 
-local function find_char_pos(start_line, col, idx, num)
+local function find_char_pos(row, col, idx, num)
   local pre = num == 1
   local char, _char = surround_chars[idx][num], surround_chars[idx][3 - num]
 
   local lens, stack = 0, 0
   local end_line, range = pre and 1 or vim.fn.line('$'), pre and -1 or 1
 
-  for l = start_line, end_line, range do
+  for l = row, end_line, range do
     local line = vim.fn.getline(l)
-    local start_col = (l == start_line) and col or (pre and #line or 1)
+    local start_col = (l == row) and col or (pre and #line or 1)
     local end_col = pre and 1 or #line
 
     for c = start_col, end_col, range do

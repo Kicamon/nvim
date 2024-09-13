@@ -18,12 +18,8 @@ local config = {
       'rm -rf "$runfile"',
     },
   },
-  ['rust'] = {
-    command = {
-      'rustc "$filename"',
-      './"$runfile"',
-      'rm -rf "$runfile"',
-    },
+  ['go'] = {
+    command = 'go run "$filename"',
   },
   ['python'] = {
     command = 'python3 "$filename"',
@@ -60,8 +56,9 @@ local function get_commands()
     end
     opt.command = tmp
   end
-  opt.command = string.gsub(opt.command, '$filename', filename)
-  opt.command = string.gsub(opt.command, '$runfile', runfile)
+
+  ---@diagnostic disable-next-line: param-type-mismatch
+  opt.command = opt.command:gsub('$filename', filename):gsub('$runfile', runfile)
 
   return opt
 end

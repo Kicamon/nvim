@@ -83,7 +83,7 @@ au('BufEnter', {
     -- keymap
     require('keymap')
 
-    -- lines
+    -- statusline
     require('internal.stl').setup()
 
     -- chdir

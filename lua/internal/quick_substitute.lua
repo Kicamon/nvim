@@ -46,15 +46,15 @@ local function quick_substitute()
   local getpos = get_surround.visual
   local oldword, newword, char
 
-  local sl, sr, el, er = getpos()
+  local sr, sc, er, ec = getpos()
   local cmd_opt = ''
 
-  if sl == el then -- change scope: one line
-    oldword, newword, char = input_str(vim.fn.getline(sl):sub(sr, er))
+  if sr == er then -- change scope: one line
+    oldword, newword, char = input_str(vim.fn.getline(sr):sub(sc, ec))
     cmd_opt = string.format(':s%s%s%s%s%sg', char, oldword, char, newword, char)
   else -- change scope: visual scope
     oldword, newword, char = input_str()
-    cmd_opt = string.format(':%d,%ds%s%s%s%s%sg', sl, el, char, oldword, char, newword, char)
+    cmd_opt = string.format(':%d,%ds%s%s%s%s%sg', sr, er, char, oldword, char, newword, char)
   end
 
   if check(oldword, newword) then

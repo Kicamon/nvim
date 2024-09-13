@@ -2,15 +2,16 @@ local api = vim.api
 local win = require('internal.util.window')
 local infos = {}
 
+local set_split = {
+  ['left'] = 'nosplitright',
+  ['down'] = 'splitbelow',
+  ['up'] = 'nosplitbelow',
+  ['right'] = 'splitright',
+}
+
 local function open_file(open, opt)
-  if opt == 'left' then
-    vim.cmd('set nosplitright')
-  elseif opt == 'down' then
-    vim.cmd('set splitbelow')
-  elseif opt == 'up' then
-    vim.cmd('set nosplitbelow')
-  elseif opt == 'right' then
-    vim.cmd('set splitright')
+  if opt then
+    vim.cmd.set(set_split[opt])
   end
 
   if vim.fn.filereadable(vim.fn.expand(infos.tempname)) == 1 then
