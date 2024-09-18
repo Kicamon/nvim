@@ -113,7 +113,8 @@ local function index(self, key)
     end
 
     if opts.remap then
-      opts.remap = true
+      opts.remap = nil
+      opts.noremap = true
     elseif opts.noremap == nil then
       opts.noremap = true
     end
@@ -121,11 +122,11 @@ local function index(self, key)
     local replace_keycodes = opts.replace_keycodes
 
     local map
-    if not opts.buffer then
+    if not opts.buf then
       map = set_keymap
     else
-      map = buf_map(0)
-      opts.buffer = nil
+      map = buf_map(opts.buf)
+      opts.buf = nil
     end
 
     if not maps then

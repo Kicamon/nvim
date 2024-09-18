@@ -67,7 +67,6 @@ local function get_word_map()
   local special_map = {}
 
   special_map = filetype_word_map[filetype]
-
   word_map = vim.tbl_extend('force', defualt_word_map, special_map or {})
 
   return word_map

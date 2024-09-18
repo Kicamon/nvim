@@ -353,7 +353,7 @@ function pd.filesize()
     event = { 'BufEnter', 'BufModifiedSet' },
   }
 
-  result.attr = stl_attr('StatusLineEncoding')
+  result.attr = stl_attr('StatusLineFilesize')
   result.attr.italic = true
   return result
 end

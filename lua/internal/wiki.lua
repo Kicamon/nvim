@@ -1,4 +1,6 @@
 local api = vim.api
+local note_path = '~/Documents/study/Note/wiki/'
+local index_path = note_path .. 'index.md'
 
 local function feedkeys(keys, mode)
   api.nvim_feedkeys(api.nvim_replace_termcodes(keys, true, true, true), mode, true)
@@ -36,18 +38,17 @@ local function open_create()
     end
   end
 
-  if vim.fn.mode() == 'v' then
-    create()
+  if vim.fn.mode() ~= 'v' then
+    vim.cmd('normal! viw')
   end
+  create()
 end
 
 local function open_wiki()
-  local index_path = '~/Documents/study/Note/wiki/index.md'
-  local note_path = '~/Documents/study/Note/wiki'
   if vim.fn.filereadable(vim.fn.expand(index_path)) == 0 then
     vim.fn.jobstart(string.format('mkdir -p %s; touch %s', note_path, index_path))
   end
-  vim.cmd('edit ' .. index_path)
+  vim.cmd.edit(index_path)
 end
 
 return {

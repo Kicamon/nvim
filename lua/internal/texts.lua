@@ -4,8 +4,8 @@ local function space_len(chars)
   end
 end
 
-local change_text = coroutine.create(function(pattern, chars)
-  while true do
+local function change_text()
+  return coroutine.create(function(pattern, chars)
     local total_row = vim.fn.line('$')
     local lines = {}
 
@@ -16,20 +16,20 @@ local change_text = coroutine.create(function(pattern, chars)
     end
 
     vim.api.nvim_buf_set_lines(0, 0, total_row, false, lines)
-
-    coroutine.yield()
-  end
-end)
+  end)
+end
 
 local function tab_to_space()
+  local text_change = change_text()
   vim.schedule(function()
-    coroutine.resume(change_text, '^\t+', space_len(string.rep(' ', vim.fn.shiftwidth())))
+    coroutine.resume(text_change, '^\t+', space_len(string.rep(' ', vim.fn.shiftwidth())))
   end)
 end
 
 local function delete_trailing_space()
+  local text_change = change_text()
   vim.schedule(function()
-    coroutine.resume(change_text, '%s+$', '')
+    coroutine.resume(text_change, '%s+$', '')
   end)
 end
 

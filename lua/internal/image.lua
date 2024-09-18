@@ -14,8 +14,7 @@ local function check_have_img()
 end
 
 local function paste()
-  local path = vim.fn.expand('%:p:~:h')
-  path = path .. '/img/'
+  local path = vim.fn.expand('%:p:~:h') .. '/img/'
 
   -- if there is no img folder here, create it
   if vim.fn.isdirectory(path) == 0 then

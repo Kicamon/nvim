@@ -61,6 +61,9 @@ map.n({
   ['cs'] = function()
     require('internal.surround').change_surround()
   end,
+  ['rs'] = function()
+    require('internal.surround').remove_surround()
+  end,
   -- invert_word
   ['<leader>iw'] = function()
     require('internal.invert_word').invert_word()

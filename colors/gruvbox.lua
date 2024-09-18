@@ -49,8 +49,6 @@ local config = {
   invert_intend_guides = false,
   inverse = true, -- invert background for search, diffs, statuslines and errors
   contrast = '', -- can be "hard", "soft" or empty string
-  palette_overrides = {},
-  overrides = {},
   dim_inactive = false,
   transparent_mode = false,
 }
@@ -226,6 +224,7 @@ local function setcolor()
     StatusLineReadOnly = { fg = colors.red },
     StatusLineBranch = { fg = colors.violet },
     StatusLineLsp = { fg = colors.fg4 },
+    StatusLineFilesize = { fg = colors.fg4 },
     StatusLineEncoding = { fg = colors.fg4 },
     StatlsLineLnum = { fg = colors.fg2 },
     -- pmenu
@@ -326,7 +325,7 @@ local function setcolor()
     ['@attribute'] = { link = 'PreProc' },
     ['@field'] = { link = 'Identifier' },
     ['@property'] = { link = 'Identifier' },
-    ['@variable'] = { fg = colors.fg1 },
+    ['@variable'] = { link = 'Normal' },
     ['@variable.builtin'] = { link = 'Special' },
     ['@variable.member'] = { fg = colors.dblue },
     ['@constant'] = { link = 'Constant' },
@@ -376,20 +375,8 @@ local function setcolor()
     ['@lsp.type.variable'] = { link = '@variable' },
   }
 
-  for group, hl in pairs(config.overrides) do
-    if groups[group] then
-      groups[group].link = nil
-    end
-
-    groups[group] = vim.tbl_extend('force', groups[group] or {}, hl)
-  end
-
   return groups
 end
-
--- reset colors
-vim.cmd.hi('clear')
-vim.g.colors_name = 'gruvbox'
 
 local groups = setcolor()
 

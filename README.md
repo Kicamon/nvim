@@ -2,8 +2,7 @@
   Personal Neovim Config“
 </h1>
 
-
-![demo](https://s21.ax1x.com/2024/08/05/pkvTa4g.png)
+![demo](https://ice.frostsky.com/2024/09/19/08ca320f952cc6422dd6c0506fbd9afe.png)
 
 ### Keyboard Shortcuts
 

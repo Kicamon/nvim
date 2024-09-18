@@ -36,8 +36,13 @@ function toggle_term.new()
   end
 
   infos.idx = infos.idx + 1
-  infos.bufnr, infos.winid = win:new_float(float_opt_center, true, true):wininfo()
-  vim.cmd('term')
+  infos.bufnr, infos.winid =
+    win:new_float(float_opt_center, true, true):bufopt('bufhidden', 'hide'):wininfo()
+  vim.fn.termopen('zsh', {
+    on_exit = function()
+      toggle_term.quit()
+    end,
+  })
   table.insert(buffers, infos.bufnr)
   win_positions[infos.bufnr] = float_opt_center
 end

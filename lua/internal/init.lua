@@ -44,6 +44,20 @@ au({ 'InsertEnter', 'CmdlineEnter' }, {
   end,
 })
 
+-- hlsearch
+au('CursorMoved', {
+  group = group,
+  callback = function()
+    require('internal.hlsearch').start_hl()
+  end,
+})
+au('InsertEnter', {
+  group = group,
+  callback = function()
+    require('internal.hlsearch').stop_hl()
+  end,
+})
+
 au('TermOpen', { group = group, command = 'startinsert' })
 
 au('TextYankPost', {
@@ -68,8 +82,8 @@ au('BufRead', {
 au('FileType', {
   group = group,
   pattern = 'markdown',
-  callback = function()
-    require('keymap.markdown').markdown_keymap()
+  callback = function(opt)
+    require('keymap.markdown').markdown_keymap(opt.buf)
   end,
 })
 
