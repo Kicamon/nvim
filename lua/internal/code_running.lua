@@ -1,53 +1,20 @@
 local win = require('internal.util.window')
+local command = require('internal.code_running_commands').get_commands()
 local api = vim.api
 local infos = {}
 
--- running commands
-local config = {
-  ['c'] = {
-    command = {
-      'gcc "$filename" -o "$runfile"',
-      './"$runfile"',
-      'rm -f "$runfile"',
-    },
-  },
-  ['cpp'] = {
-    command = {
-      'g++ "$filename" -std=c++17 -O2 -g -Wall -o "$runfile"',
-      './"$runfile"',
-      'rm -rf "$runfile"',
-    },
-  },
-  ['go'] = {
-    command = 'go run "$filename"',
-  },
-  ['python'] = {
-    command = 'python3 "$filename"',
-  },
-  ['lua'] = {
-    command = 'luajit "$filename"',
-  },
-  ['sh'] = {
-    command = 'bash "$filename"',
-  },
-  ['html'] = {
-    command = 'live-server --browser=' .. _G.browser,
-    modus = 'job',
-  },
-  ['markdown'] = {
-    command = 'typora "$filename"',
-    modus = 'job',
-  },
-}
-
 ---get running command and running modus by filetype
 ---@return table {command: string, modus: string}
-local function get_commands()
-  local filetype = vim.bo.filetype
+local function get_commands(args)
   local filename = vim.fn.expand('%')
   local runfile = vim.fn.expand('%<')
 
-  local opt = config[filetype]
+  local opt = command[args]
+
+  if not opt then
+    return opt
+  end
+
   if type(opt.command) == 'table' then
     local tmp = ''
     ---@diagnostic disable-next-line: param-type-mismatch
@@ -63,11 +30,11 @@ local function get_commands()
   return opt
 end
 
----create float window to running the command
----@param opt table
+---get the float terminal infos
 ---@param center boolean
-local function running_window(opt, center)
-  local float_opt = {
+---@return table
+local function get_float_opt(center)
+  return {
     width = center and 0.8 or -0.25,
     height = center and 0.8 or 0.9,
     relative = 'editor',
@@ -75,8 +42,16 @@ local function running_window(opt, center)
     row = center and 'c' or 't',
     col = center and 'c' or 'r',
   }
+end
 
-  infos.bufnr, infos.winid = win:new_float(float_opt, true, true):wininfo()
+---create float window to running the command
+---@param opt table
+---@param center boolean
+local function running_window(opt, center)
+  local float_opt = get_float_opt(center)
+
+  infos.bufnr, infos.winid =
+    win:new_float(float_opt, true, true):bufopt('bufhidden', 'hide'):wininfo()
 
   api.nvim_create_autocmd('WinClosed', {
     buffer = infos.bufnr,
@@ -92,16 +67,39 @@ local function running_window(opt, center)
   vim.cmd.term(opt)
 end
 
+---split a string by last space
+---@param str string
+---@return string
+---@return boolean
+local function split_by_last_space(str)
+  local last_space = str:match('.*()%s')
+
+  if not last_space then
+    if str == 'center' then
+      return '', true
+    else
+      return str, false
+    end
+  end
+
+  local first_part = str:sub(1, last_space - 1)
+  local second_part = str:sub(last_space + 1) == 'center'
+
+  return first_part, second_part
+end
+
 ---quick running code
----@param center boolean
-local function running(center)
+---@param args string
+local function running(args)
   vim.cmd('w')
 
   local workpath = vim.fn.getcwd()
-
+  local center = false
+  args, center = split_by_last_space(args)
+  args = #args == 0 and vim.bo.filetype or args
   vim.cmd('silent! lcd %:p:h')
 
-  local opt = get_commands()
+  local opt = get_commands(args)
   if opt then
     if opt.modus == 'job' then
       vim.fn.jobstart(opt.command)
@@ -111,7 +109,7 @@ local function running(center)
       running_window(opt.command, center)
     end
   else
-    vim.notify('Undefined\n')
+    vim.notify(string.format('%s running command is undefined\n', args), vim.log.levels.WARN)
   end
 
   vim.cmd('silent! lcd ' .. workpath)

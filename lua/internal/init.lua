@@ -100,6 +100,24 @@ au('BufEnter', {
     -- statusline
     require('internal.stl').setup()
 
+    -- code_running
+    uc('Run', function(args)
+      require('internal.code_running').running(args.args)
+    end, {
+      range = true,
+      nargs = '?',
+      complete = function(arg)
+        local list = vim.tbl_extend(
+          'force',
+          require('internal.code_running_commands').commands_list(),
+          { 'center' }
+        )
+        return vim.tbl_filter(function(s)
+          return string.match(s, '^' .. arg)
+        end, list)
+      end,
+    })
+
     -- chdir
     uc('Chdir', function(args)
       vim.cmd('silent! lcd %:p:h')
@@ -118,8 +136,11 @@ au('BufEnter', {
       end
     end, {
       nargs = '?',
-      complete = function()
-        return { 'tab_to_space', 'delete_trailing_space' }
+      complete = function(arg)
+        local list = { 'tab_to_space', 'delete_trailing_space' }
+        return vim.tbl_filter(function(s)
+          return string.match(s, '^' .. arg)
+        end, list)
       end,
     })
 

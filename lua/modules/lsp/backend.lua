@@ -37,6 +37,7 @@ function config.lspsaga()
     ui = {
       devicon = false,
       border = 'single',
+      lines = { '└', '├', '│', '─', '┌' },
     },
     outline = {
       keys = {

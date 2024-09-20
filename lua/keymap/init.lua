@@ -31,12 +31,8 @@ map.n({
   ['<leader>H'] = cmd('lua require"gitsigns".preview_hunk_inline()'),
   ['<leader>gd'] = cmd('lua require"gitsigns".diffthis("~")'),
   -- code_running
-  ['<F5>'] = function()
-    require('internal.code_running').running(false)
-  end,
-  ['<F10>'] = function()
-    require('internal.code_running').running(true)
-  end,
+  ['<F5>'] = cmd('Run'),
+  ['<F10>'] = cmd('Run center'),
   -- yazi
   ['<leader>ra'] = function()
     require('internal.yazi').yazi('edit')
@@ -90,12 +86,6 @@ map.t({
   end,
   ['<c-d>'] = function()
     require('internal.toggle_term').delete()
-  end,
-  ['<c-r>'] = function()
-    require('internal.toggle_term').right()
-  end,
-  ['<c-c>'] = function()
-    require('internal.toggle_term').center()
   end,
 })
 

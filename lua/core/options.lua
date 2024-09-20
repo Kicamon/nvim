@@ -25,7 +25,7 @@ opt.breakindent = true
 opt.spelloptions = 'camel'
 opt.foldmethod = 'indent'
 opt.foldlevel = 99
-opt.winwidth = 25
+opt.winwidth = 30
 opt.pumheight = 15
 opt.list = true
 opt.listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←'
@@ -48,5 +48,4 @@ opt.colorcolumn = '0'
 opt.undofile = true
 opt.updatetime = 100
 opt.redrawtime = 1500
-
 opt.stc = '%!v:lua.require("internal.stc").stc()'
