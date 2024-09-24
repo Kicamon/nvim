@@ -40,7 +40,7 @@ function toggle_term.new()
 end
 
 function toggle_term.toggle()
-  if #buffers == 0 then
+  if not next(buffers) then
     toggle_term.new()
     return
   end

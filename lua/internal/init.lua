@@ -68,6 +68,7 @@ au('TextYankPost', {
 })
 
 au('BufRead', {
+  group = group,
   callback = function()
     vim.cmd.setlocal('formatoptions-=ro')
     -- last plase
@@ -98,13 +99,15 @@ au('BufEnter', {
     require('keymap')
 
     -- statusline
-    require('internal.stl').setup()
+    require('internal.stl')
+
+    -- cursor word
+    require('internal.cursor_word')
 
     -- code_running
     uc('Run', function(args)
       require('internal.code_running').running(args.args)
     end, {
-      range = true,
       nargs = '?',
       complete = function(arg)
         local list = vim.tbl_extend(

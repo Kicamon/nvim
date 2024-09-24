@@ -2,6 +2,15 @@ local api = vim.api
 local win = require('internal.util.window')
 local infos = {}
 
+local float_opt = {
+  width = 0.8,
+  height = 0.8,
+  title = ' Yazi ',
+  relative = 'editor',
+  row = 'c',
+  col = 'c',
+}
+
 local set_split = {
   ['left'] = 'nosplitright',
   ['down'] = 'splitbelow',
@@ -34,21 +43,13 @@ local function yazi(open, opt)
 
   vim.cmd('silent! lcd %:p:h')
 
-  local float_opt = {
-    width = 0.8,
-    height = 0.8,
-    title = ' Yazi ',
-    relative = 'editor',
-    row = 'c',
-    col = 'c',
-  }
-
   if infos.bufnr then
     float_opt.bufnr = infos.bufnr
     api.nvim_set_option_value('modified', false, { buf = infos.bufnr })
   end
 
-  infos.bufnr, infos.winid = win:new_float(float_opt, true, true):wininfo()
+  infos.bufnr, infos.winid =
+    win:new_float(float_opt, true, true):bufopt('bufhidden', 'hide'):wininfo()
 
   vim.fn.termopen(string.format('yazi %s --chooser-file="%s"', infos.filename, infos.tempname), {
     on_exit = function()

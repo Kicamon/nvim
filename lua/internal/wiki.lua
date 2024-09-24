@@ -21,8 +21,8 @@ local function create()
   end
   local file_name = string.sub(line, sc, ec)
   local file_link = './' .. string.gsub(file_name, ' ', '_') .. '.md'
-  local line_front = sc == 1 and '' or string.sub(line, 1, sc - 1)
-  local line_end = ec == #line and '' or string.sub(line, ec + 1)
+  local line_front = string.sub(line, 1, sc - 1)
+  local line_end = string.sub(line, ec + 1)
   local line_mid = string.format('[%s](%s)', file_name, file_link)
   api.nvim_set_current_line(line_front .. line_mid .. line_end)
   feedkeys('<ESC>', 'n')

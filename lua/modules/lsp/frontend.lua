@@ -12,6 +12,7 @@ local servers = {
     },
     cmd = {
       'clangd',
+      '--std=c++23',
       '--background-index',
       '--header-insertion=never',
       '--header-insertion-decorators=false',

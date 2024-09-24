@@ -78,30 +78,26 @@ local function render(comps, events, pieces)
   end)
 end
 
-return {
-  setup = function()
-    vim.defer_fn(function()
-      local comps, events, pieces = default()
-      local stl_render = render(comps, events, pieces)
-      for _, e in ipairs(vim.tbl_keys(events)) do
-        local tmp = e
-        local pattern
-        if e:find('User') then
-          pattern = vim.split(e, '%s')[2]
-          tmp = 'User'
-        end
-        api.nvim_create_autocmd(tmp, {
-          pattern = pattern,
-          callback = function(args)
-            vim.schedule(function()
-              local ok, res = co.resume(stl_render, args)
-              if not ok then
-                vim.notify('[StatusLine] render failed ' .. res, vim.log.levels.ERROR)
-              end
-            end)
-          end,
-        })
-      end
-    end, 0)
-  end,
-}
+vim.defer_fn(function()
+  local comps, events, pieces = default()
+  local stl_render = render(comps, events, pieces)
+  for _, e in ipairs(vim.tbl_keys(events)) do
+    local tmp = e
+    local pattern
+    if e:find('User') then
+      pattern = vim.split(e, '%s')[2]
+      tmp = 'User'
+    end
+    api.nvim_create_autocmd(tmp, {
+      pattern = pattern,
+      callback = function(args)
+        vim.schedule(function()
+          local ok, res = co.resume(stl_render, args)
+          if not ok then
+            vim.notify('[StatusLine] render failed ' .. res, vim.log.levels.ERROR)
+          end
+        end)
+      end,
+    })
+  end
+end, 0)

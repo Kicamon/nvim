@@ -15,14 +15,14 @@ end
 local wildfire = coroutine.create(function()
   while true do
     local pos = require('internal.util.surround_tools').get_surround_pos()
-    if #pos == 0 then
-      changemode()
-    else
+    if next(pos) then
       changemode()
       pos = update_position(pos)
       vim.api.nvim_win_set_cursor(0, { pos[3], pos[4] - 2 })
       vim.cmd('normal! v')
       vim.api.nvim_win_set_cursor(0, { pos[1], pos[2] })
+    else
+      changemode()
     end
     coroutine.yield()
   end
