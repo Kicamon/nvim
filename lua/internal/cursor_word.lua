@@ -33,7 +33,8 @@ local function find_pos(str, pattern)
         (char_before_str == '' or char_before_str:match('[^%w_]'))
         and (char_after_str == '' or char_after_str:match('[^%w_]'))
       then
-        return positions[found_pos] - 1
+        local utf_pos = vim.str_utfindex(str, start_pos - 1)
+        return positions[utf_pos] - 1
       end
     end
   end
