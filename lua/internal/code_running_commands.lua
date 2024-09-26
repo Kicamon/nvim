@@ -10,7 +10,7 @@ local commands = {
   },
   ['cpp'] = {
     command = {
-      'g++ "$filename" -std=c++23 -O2 -g -Wall -o "$runfile"',
+      'g++ "$filename" -std=c++20 -O2 -g -Wall -o "$runfile"',
       './"$runfile"',
       'rm -rf "$runfile"',
     },

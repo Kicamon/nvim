@@ -12,14 +12,13 @@ local servers = {
     },
     cmd = {
       'clangd',
-      '--std=c++23',
       '--background-index',
       '--header-insertion=never',
       '--header-insertion-decorators=false',
     },
+    -- init_options = { fallbackFlags = { '-std=c++23' } },
     root_dir = function(fname)
       return require('lspconfig').util.root_pattern(unpack({
-        --reorder
         'Makefile',
         'compile_commands.json',
         '.clangd',

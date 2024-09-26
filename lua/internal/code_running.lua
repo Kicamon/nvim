@@ -1,13 +1,13 @@
 local win = require('internal.util.window')
 local command = require('internal.code_running_commands').get_commands()
-local api = vim.api
+local api, expand = vim.api, vim.fn.expand
 local infos = {}
 
 ---get running command and running modus by filetype
 ---@return table {command: string, modus: string}
 local function get_commands(args)
-  local filename = vim.fn.expand('%')
-  local runfile = vim.fn.expand('%<')
+  local filename = expand('%')
+  local runfile = expand('%<')
 
   local opt = command[args]
 
@@ -16,12 +16,9 @@ local function get_commands(args)
   end
 
   if type(opt.command) == 'table' then
-    local tmp = ''
-    ---@diagnostic disable-next-line: param-type-mismatch
-    for i, val in ipairs(opt.command) do
-      tmp = tmp .. (i ~= 1 and ' && ' or '') .. val
-    end
-    opt.command = tmp
+    opt.command = vim.iter(opt.command):fold('', function(acc, item)
+      return acc == '' and item or acc .. ' && ' .. item
+    end)
   end
 
   ---@diagnostic disable-next-line: param-type-mismatch
@@ -109,7 +106,7 @@ local function running(args)
       running_window(opt.command, center)
     end
   else
-    vim.notify(string.format('%s running command is undefined\n', args), vim.log.levels.WARN)
+    vim.notify(string.format("%s's running command is undefined\n", args), vim.log.levels.WARN)
   end
 
   vim.cmd('silent! lcd ' .. workpath)
