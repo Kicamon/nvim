@@ -51,6 +51,7 @@ function config.guard()
     args = { '-' },
     stdin = true,
   })
+  ft('html', 'css', 'javascript', 'json'):fmt('lsp')
   require('guard').setup({
     fmt_on_save = false,
     lsp_as_default_formatter = true,

@@ -1,3 +1,5 @@
+local api = vim.api
+
 local table_line_char = {
   { ':', ':' },
   { ':', '-' },
@@ -14,7 +16,7 @@ local table_line_char_insert = {
 ---@param line_number integer
 ---@return integer
 local function check_markdown_table(line_number)
-  local line = vim.api.nvim_buf_get_lines(0, line_number - 1, line_number, true)[1]
+  local line = api.nvim_buf_get_lines(0, line_number - 1, line_number, true)[1]
   return string.match(line, '^|.*|$')
 end
 
@@ -150,7 +152,7 @@ local function format_markdown_table()
 
   -- traversal markdown table lines
   for lnum = table_start_line, table_end_line, 1 do
-    local line = vim.api.nvim_buf_get_lines(0, lnum - 1, lnum, true)[1]
+    local line = api.nvim_buf_get_lines(0, lnum - 1, lnum, true)[1]
     table_to_cells(line, lnum - table_start_line)
   end
 
@@ -159,17 +161,17 @@ local function format_markdown_table()
   table_contents = update_cell_contents(table_contents, width)
   table_contents = cells_to_table(table_contents)
 
-  vim.api.nvim_buf_set_lines(0, table_start_line - 1, table_end_line, true, table_contents)
+  api.nvim_buf_set_lines(0, table_start_line - 1, table_end_line, true, table_contents)
 end
 
 local function format_markdown_table_lines()
-  local current_line = vim.api.nvim_get_current_line()
-  local cursor_pos = vim.api.nvim_win_get_cursor(0)
+  local current_line = api.nvim_get_current_line()
+  local cursor_pos = api.nvim_win_get_cursor(0)
   local char = current_line:sub(cursor_pos[2], cursor_pos[2])
   if char == '|' and cursor_pos[2] ~= 1 then
     format_markdown_table()
-    local length = #vim.api.nvim_get_current_line()
-    vim.api.nvim_win_set_cursor(0, { cursor_pos[1], length })
+    local length = #api.nvim_get_current_line()
+    api.nvim_win_set_cursor(0, { cursor_pos[1], length })
   end
 end
 
