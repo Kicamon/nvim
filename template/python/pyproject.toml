@@ -1,0 +1,5 @@
+[tool.black]
+line-length = 100  # 设置最大行宽
+target-version = ['py38']  # 目标 Python 版本，可以是 'py36', 'py37', 'py38', 'py39', 'py310' 等
+skip-string-normalization = true  # 跳过字符串标准化，保持原有的引号样式
+include = '\.pyi?$'  # 包含的文件

@@ -7,7 +7,7 @@ $(TARGET): $(OBJ)
 	$(CC) -o $@ $^
  
 %.o: %.c
-	$(CC) $< -o $@
+	$(CC) -c $< -o $@
  
 .PHONY: clean
 clean:

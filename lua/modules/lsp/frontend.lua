@@ -1,14 +1,7 @@
 local servers = {
-  bashls = {},
   clangd = {
     capabilities = {
-      textDocument = {
-        completion = {
-          completionItem = {
-            snippetSupport = false,
-          },
-        },
-      },
+      textDocument = { completion = { completionItem = { snippetSupport = false } } },
     },
     cmd = {
       'clangd',
@@ -44,9 +37,7 @@ local servers = {
             'undefined-field',
           },
         },
-        runtime = {
-          version = 'LuaJIT',
-        },
+        runtime = { version = 'LuaJIT' },
         workspace = {
           library = {
             vim.env.VIMRUNTIME .. '/lua',
@@ -55,27 +46,25 @@ local servers = {
           },
           checkThirdParty = false,
         },
-        completion = {
-          callSnippet = 'Replace',
-        },
+        completion = { callSnippet = 'Replace' },
       },
     },
   },
-  jsonls = {},
-  html = {},
-  cssls = {},
-  ts_ls = {},
   pyright = {
     root_dir = function(fname)
       return require('lspconfig').util.root_pattern(unpack({
-        'pyproject.toml',
-        'setup.py',
+        '.pyproject.toml',
         'main.py',
         '.git',
       }))(fname) or require('lspconfig').util.find_git_ancestor(fname)
     end,
     single_file_support = true,
   },
+  bashls = {},
+  jsonls = {},
+  html = {},
+  cssls = {},
+  ts_ls = {},
   vimls = {},
 }
 

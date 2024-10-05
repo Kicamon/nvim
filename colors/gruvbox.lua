@@ -193,7 +193,7 @@ local function setcolor()
     StatusLineEncoding = { fg = colors.fg4 },
     StatlsLineLnum = { fg = colors.fg2 },
     -- pmenu
-    Pmenu = { fg = colors.fg1, bg = colors.bg2 },
+    Pmenu = { fg = '#C5C8C6', bg = '#202020' },
     PmenuSel = { fg = colors.bg2, bg = colors.blue },
     PmenuSbar = { bg = colors.bg2 },
     PmenuThumb = { bg = colors.bg4 },
@@ -202,10 +202,10 @@ local function setcolor()
     PmenuExtra = { fg = colors.fg1, bg = colors.bg2 },
     PmenuExtraSel = { fg = colors.bg2, bg = colors.dblue, bold = true },
     -- cmp
-    Cmp = { fg = '#C5CDD9' },
+    Cmp = { fg = '#C5C8C6' },
     CmpWin = { link = 'Cmp' },
     CmpWinSec = { link = 'Cmp' },
-    CmpWinBor = { link = 'Cmp' },
+    CmpWinBor = { fg = '#4ECCA3' },
     CmpItemAbbrDeprecated = { fg = '#7E8294', strikethrough = true },
     CmpItemAbbrMatch = { fg = '#82AAFF', bold = true },
     CmpItemAbbrMatchFuzzy = { fg = '#82AAFF', bold = true },

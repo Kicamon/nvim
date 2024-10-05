@@ -15,6 +15,13 @@ local commands = {
       'rm -rf "$runfile"',
     },
   },
+  ['make'] = {
+    command = {
+      'make',
+      './"$runfile"',
+      'make clean',
+    },
+  },
   ['c_lib'] = {
     command = 'gcc -c -fPIC -shared "$filename" -o "$runfile".so',
     modus = 'job',

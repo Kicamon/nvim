@@ -18,6 +18,6 @@ packadd({
   'brenoprata10/nvim-highlight-colors',
   lazy = true,
   cmd = 'HighlightColors',
-  event = 'BufEnter */colors/*',
+  event = 'BufRead */colors/*',
   config = conf.colors,
 })
