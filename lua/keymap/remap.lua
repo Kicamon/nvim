@@ -40,7 +40,7 @@ map.nx('<leader>cc', function()
 end, { expr = true })
 
 map.v({
-  ['N'] = ':normal',
+  ['N'] = ':normal ',
   ['Y'] = '"+y',
 })
 

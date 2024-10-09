@@ -10,7 +10,11 @@ $(TARGET): $(OBJ)
  
 %.o: %.cpp
 	$(CXX) $(CXXLAGS) $< -o $@
+
+test: $(TARGET)
+	./$(TARGET)
  
-.PHONY: clean
 clean:
 	rm -f *.o $(TARGET)
+
+.PHONY: clean test

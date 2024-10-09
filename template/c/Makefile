@@ -8,7 +8,11 @@ $(TARGET): $(OBJ)
  
 %.o: %.c
 	$(CC) -c $< -o $@
+
+test: $(TARGET)
+	./$(TARGET)
  
-.PHONY: clean
 clean:
 	rm -f *.o $(TARGET)
+
+.PHONY: clean test

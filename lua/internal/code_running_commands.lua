@@ -17,8 +17,7 @@ local commands = {
   },
   ['make'] = {
     command = {
-      'make',
-      './"$runfile"',
+      'make test',
       'make clean',
     },
   },
