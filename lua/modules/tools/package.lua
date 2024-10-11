@@ -18,7 +18,7 @@ packadd({
 packadd({
   'nvimdev/guard.nvim',
   lazy = true,
-  cmd = 'GuardFmt',
+  cmd = 'Guard',
   config = conf.guard,
 })
 

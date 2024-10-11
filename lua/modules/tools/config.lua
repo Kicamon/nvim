@@ -44,7 +44,6 @@ function config.guard()
     cmd = 'stylua',
     args = { '-' },
     stdin = true,
-    ignore_patterns = '%w_spec%.lua',
   })
   ft('sh'):fmt({
     cmd = 'shfmt',
@@ -52,10 +51,11 @@ function config.guard()
     stdin = true,
   })
   ft('html', 'css', 'javascript', 'json'):fmt('lsp')
-  require('guard').setup({
+
+  vim.g.guard_config = {
     fmt_on_save = false,
     lsp_as_default_formatter = true,
-  })
+  }
 end
 
 function config.flash()

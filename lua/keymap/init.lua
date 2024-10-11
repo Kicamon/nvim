@@ -102,7 +102,7 @@ map.v({
 
 map.nx({
   -- guard
-  [';f'] = cmd('GuardFmt'),
+  [';f'] = cmd('Guard fmt'),
   -- wildfire
   ['<cr>'] = function()
     require('internal.wildfire').wildfire()
