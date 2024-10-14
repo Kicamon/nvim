@@ -6,7 +6,6 @@ local servers = {
     cmd = {
       'clangd',
       '--background-index',
-      '--header-insertion=never',
       '--header-insertion-decorators=false',
     },
     -- init_options = { fallbackFlags = { '-std=c++23' } },
@@ -47,6 +46,19 @@ local servers = {
           checkThirdParty = false,
         },
         completion = { callSnippet = 'Replace' },
+      },
+    },
+  },
+  gopls = {
+    cmd = { 'gopls', 'serve' },
+    settings = {
+      gopls = {
+        usePlaceholders = true,
+        completeUnimported = true,
+        analyses = {
+          unusedparams = true,
+        },
+        staticcheck = true,
       },
     },
   },

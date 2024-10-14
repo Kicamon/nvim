@@ -50,18 +50,12 @@ function config.guard()
     args = { '-' },
     stdin = true,
   })
-  ft('html', 'css', 'javascript', 'json'):fmt('lsp')
+  ft('go', 'html', 'css', 'javascript', 'json'):fmt('lsp')
 
   vim.g.guard_config = {
     fmt_on_save = false,
     lsp_as_default_formatter = true,
   }
-end
-
-function config.flash()
-  require('flash').setup({
-    modes = { char = { enabled = false } },
-  })
 end
 
 return config

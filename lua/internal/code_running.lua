@@ -1,3 +1,4 @@
+---@diagnostic disable: param-type-mismatch
 local win = require('internal.util.window')
 local command = require('internal.code_running_commands').get_commands()
 local api, expand = vim.api, vim.fn.expand
@@ -8,6 +9,7 @@ local infos = {}
 local function get_commands(args)
   local filename = expand('%')
   local runfile = expand('%<')
+  local workspace = vim.lsp.buf.list_workspace_folders()[1]
 
   local opt = command[args]
 
@@ -21,8 +23,8 @@ local function get_commands(args)
     end)
   end
 
-  ---@diagnostic disable-next-line: param-type-mismatch
-  opt.command = opt.command:gsub('$filename', filename):gsub('$runfile', runfile)
+  opt.command =
+    opt.command:gsub('$filename', filename):gsub('$runfile', runfile):gsub('$workspace', workspace)
 
   return opt
 end
@@ -103,6 +105,7 @@ local function running(args)
     elseif opt.modus == 'cmd' then
       vim.cmd(opt.command)
     else
+      center = opt.modus == 'center'
       running_window(opt.command, center)
     end
   else

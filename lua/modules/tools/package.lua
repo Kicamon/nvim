@@ -21,9 +21,3 @@ packadd({
   cmd = 'Guard',
   config = conf.guard,
 })
-
-packadd({
-  'folke/flash.nvim',
-  lazy = true,
-  config = conf.flash,
-})

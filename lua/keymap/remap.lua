@@ -26,6 +26,10 @@ map.n({
   ['<leader>sl'] = cmd('set splitright | vsplit'),
   ['<leader>smv'] = '<c-w>t<c-W>H',
   ['<leader>smh'] = '<c-w>t<c-W>K',
+  ['<up>'] = cmd('res +5'),
+  ['<down>'] = cmd('res -5'),
+  ['<left>'] = cmd('vertical res -5'),
+  ['<right>'] = cmd('vertical res +5'),
   -- open vim config
   ['<leader>vim'] = cmd('edit ' .. vim.fn.stdpath('config') .. '/init.lua | Chdir silent'),
 })

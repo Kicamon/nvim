@@ -109,9 +109,8 @@ map.nx({
   end,
 })
 
-map.nox({
-  -- flash
-  ['s'] = function()
-    require('flash').jump()
+map.ni({
+  ['<c-t>'] = function()
+    require('internal.toggle_mark').toggle_mark()
   end,
 })
