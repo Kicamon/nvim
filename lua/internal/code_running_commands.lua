@@ -23,7 +23,6 @@ local commands = {
     command = {
       'cd $workspace',
       'make test',
-      'make clean',
     },
     modus = 'center',
   },
