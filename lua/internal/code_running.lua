@@ -1,4 +1,3 @@
----@diagnostic disable: param-type-mismatch
 local win = require('internal.util.window')
 local command = require('internal.code_running_commands').get_commands()
 local api, expand = vim.api, vim.fn.expand
@@ -9,18 +8,17 @@ local infos = {}
 local function get_commands(args)
   local filename = expand('%')
   local runfile = expand('%<')
-  local workspace = vim.lsp.buf.list_workspace_folders()[1]
+  local workspace = vim.lsp.buf.list_workspace_folders()[1] or ''
 
-  local opt = command[args]
+  local opt = vim.deepcopy(command[args])
 
   if not opt then
     return opt
   end
 
   if type(opt.command) == 'table' then
-    opt.command = vim.iter(opt.command):fold('', function(acc, item)
-      return acc == '' and item or acc .. ' && ' .. item
-    end)
+    ---@diagnostic disable-next-line: param-type-mismatch
+    opt.command = table.concat(opt.command, ' && ')
   end
 
   opt.command =
@@ -44,7 +42,7 @@ local function get_float_opt(center)
 end
 
 ---create float window to running the command
----@param opt table
+---@param opt string
 ---@param center boolean
 local function running_window(opt, center)
   local float_opt = get_float_opt(center)
@@ -105,7 +103,7 @@ local function running(args)
     elseif opt.modus == 'cmd' then
       vim.cmd(opt.command)
     else
-      center = opt.modus == 'center'
+      center = center or opt.modus == 'center'
       running_window(opt.command, center)
     end
   else

@@ -14,6 +14,7 @@ function config.gitsigns()
 end
 
 function config.indentmini()
+  vim.opt.listchars:append({ tab = '  ' })
   require('indentmini').setup({
     char = '│',
     exclude = {

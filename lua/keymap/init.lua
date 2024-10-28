@@ -19,12 +19,6 @@ map.n({
   ['<leader>ot'] = cmd('Lspsaga outline'),
   ['d['] = cmd('Lspsaga diagnostic_jump_prev'),
   ['d]'] = cmd('Lspsaga diagnostic_jump_next'),
-  -- lsp
-  ['<leader>wa'] = vim.lsp.buf.add_workspace_folder,
-  ['<leader>wr'] = vim.lsp.buf.remove_workspace_folder,
-  ['<leader>wl'] = function()
-    vim.notify(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end,
   -- gitsigns
   ['g['] = cmd('silent lua require"gitsigns".prev_hunk()'),
   ['g]'] = cmd('silent lua require"gitsigns".next_hunk()'),
@@ -106,6 +100,13 @@ map.nx({
   -- wildfire
   ['<cr>'] = function()
     require('internal.wildfire').wildfire()
+  end,
+})
+
+map.nox({
+  -- flash
+  ['s'] = function()
+    require('flash').jump()
   end,
 })
 

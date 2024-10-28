@@ -11,13 +11,12 @@ local servers = {
     -- init_options = { fallbackFlags = { '-std=c++23' } },
     root_dir = function(fname)
       return require('lspconfig').util.root_pattern(unpack({
+        '.git',
         'Makefile',
-        'compile_commands.json',
+        'CMakeLists.txt',
         '.clangd',
         '.clang-tidy',
         '.clang-format',
-        'compile_flags.txt',
-        'configure.ac', -- AutoTools
       }))(fname) or require('lspconfig').util.find_git_ancestor(fname)
     end,
   },
@@ -78,6 +77,7 @@ local servers = {
   cssls = {},
   ts_ls = {},
   vimls = {},
+  cmake = {},
 }
 
 return servers
