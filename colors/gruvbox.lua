@@ -204,7 +204,7 @@ local function setcolor()
     -- cmp
     Cmp = { fg = '#C5C8C6' },
     CmpWin = { link = 'Cmp' },
-    CmpWinSec = { link = 'Cmp' },
+    CmpDocumentation = { link = 'Cmp' },
     CmpWinBor = { fg = '#4ECCA3' },
     CmpItemAbbrDeprecated = { fg = '#7E8294', strikethrough = true },
     CmpItemAbbrMatch = { fg = '#82AAFF', bold = true },

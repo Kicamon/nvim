@@ -24,7 +24,7 @@ function config.completion()
         scrollbar = true,
       },
       documentation = {
-        winhighlight = 'Normal:CmpWinSec,FloatBorder:CmpWinBor,Search:None',
+        winhighlight = 'Normal:CmpDocumentation,FloatBorder:CmpWinBor,Search:None',
         border = 'rounded',
         scrollbar = true,
       },

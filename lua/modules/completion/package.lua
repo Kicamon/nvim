@@ -2,9 +2,7 @@ local conf = require('modules.completion.config')
 
 packadd({
   'hrsh7th/nvim-cmp',
-  commit = '24122371810089d390847d8ba66325c1f1aa64c0',
   lazy = true,
-  event = 'LspAttach',
   config = conf.completion,
   dependencies = {
     'hrsh7th/cmp-nvim-lsp',
