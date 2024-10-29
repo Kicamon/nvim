@@ -1,2 +1,2 @@
-syntax match Normal ")"
-syntax match Normal "}"
+syn match Normal ")"
+syn match Normal "}"
