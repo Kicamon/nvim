@@ -79,6 +79,15 @@ au('BufRead', {
   end,
 })
 
+au('BufLeave', {
+  group = group,
+  callback = function()
+    if vim.bo.modified then
+      vim.cmd('silent! write')
+    end
+  end
+})
+
 -- markdown keymap
 au('FileType', {
   group = group,

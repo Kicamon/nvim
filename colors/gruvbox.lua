@@ -193,8 +193,8 @@ local function setcolor()
     StatusLineEncoding = { fg = colors.fg4 },
     StatlsLineLnum = { fg = colors.fg2 },
     -- pmenu
-    Pmenu = { fg = '#C5C8C6', bg = '#1c1c1c' },
-    PmenuSel = { bg = colors.bg1 },
+    Pmenu = { fg = '#C5C8C6', bg = '#383838' },
+    PmenuSel = { bg = colors.bg2 },
     PmenuSbar = { bg = colors.bg2 },
     PmenuThumb = { bg = colors.bg4 },
     PmenuKind = { fg = colors.violet, bg = colors.bg2 },
