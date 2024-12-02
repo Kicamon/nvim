@@ -8,7 +8,7 @@ local servers = {
       '--background-index',
       '--header-insertion-decorators=false',
     },
-    -- init_options = { fallbackFlags = { '-std=c++23' } },
+    init_options = { fallbackFlags = { vim.bo.filetype == 'cpp' and '-std=c++23' or nil } },
     root_dir = function(fname)
       return require('lspconfig').util.root_pattern(unpack({
         '.git',

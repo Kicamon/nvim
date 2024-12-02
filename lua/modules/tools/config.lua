@@ -44,6 +44,7 @@ function config.guard()
     cmd = 'stylua',
     args = { '-' },
     stdin = true,
+    find = 'stylua.toml',
   })
   ft('sh'):fmt({
     cmd = 'shfmt',
