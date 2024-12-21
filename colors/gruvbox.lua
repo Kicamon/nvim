@@ -208,6 +208,8 @@ local function setcolor()
     BlinkCmpMenuBorder = { link = 'CmpBorder' },
     BlinkCmpDoc = { link = 'Cmp' },
     BlinkCmpDocBorder = { link = 'CmpBorder' },
+    BlinkCmpLabel = { link = 'Cmp' },
+    BlinkCmpLabelMatch = { fg = colors.cyan, bold = true },
     BlinkCmpKind = { link = 'Cmp' },
 
     -- nvim-treesitter

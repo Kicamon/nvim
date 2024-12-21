@@ -23,20 +23,6 @@ function config.blink()
       ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
       ['<CR>'] = { 'accept', 'fallback' },
     },
-    snippets = {
-      expand = function(snippet)
-        require('luasnip').lsp_expand(snippet)
-      end,
-      active = function(filter)
-        if filter and filter.direction then
-          return require('luasnip').jumpable(filter.direction)
-        end
-        return require('luasnip').in_snippet()
-      end,
-      jump = function(direction)
-        require('luasnip').jump(direction)
-      end,
-    },
     appearance = { kind_icons = _G.kind_icons },
     completion = {
       menu = {
@@ -48,7 +34,7 @@ function config.blink()
       },
       documentation = {
         auto_show = true,
-        auto_show_delay_ms = 100,
+        auto_show_delay_ms = 50,
         treesitter_highlighting = true,
         window = {
           border = 'rounded',
