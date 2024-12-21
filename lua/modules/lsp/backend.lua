@@ -8,7 +8,7 @@ function config.lsp()
   end
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+  capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
 
   for server, conf in pairs(servers) do
     require('lspconfig')[server].setup(vim.tbl_deep_extend('force', {

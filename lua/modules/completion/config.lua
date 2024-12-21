@@ -1,80 +1,65 @@
 local config = {}
 
-function config.completion()
-  local has_words_before = function()
+function config.blink()
+  local function has_words_before()
     unpack = unpack or table.unpack
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0
       and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
   end
 
-  local luasnip = require('luasnip')
-  require('luasnip.loaders.from_vscode').lazy_load({
-    paths = vim.fn.stdpath('config') .. '/snippets/',
-  })
-
-  local cmp = require('cmp')
-  cmp.setup({
-    window = {
-      completion = {
-        winhighlight = 'Normal:CmpWin,FloatBorder:CmpWinBor,Search:None',
+  require('blink.cmp').setup({
+    keymap = {
+      ['<Tab>'] = {
+        function(cmp)
+          if has_words_before() then
+            return cmp.show()
+          end
+        end,
+        'select_next',
+        'snippet_forward',
+        'fallback',
+      },
+      ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
+      ['<CR>'] = { 'accept', 'fallback' },
+    },
+    snippets = {
+      expand = function(snippet)
+        require('luasnip').lsp_expand(snippet)
+      end,
+      active = function(filter)
+        if filter and filter.direction then
+          return require('luasnip').jumpable(filter.direction)
+        end
+        return require('luasnip').in_snippet()
+      end,
+      jump = function(direction)
+        require('luasnip').jump(direction)
+      end,
+    },
+    appearance = { kind_icons = _G.kind_icons },
+    completion = {
+      menu = {
         border = 'rounded',
-        col_offset = -3,
-        side_padding = 0,
-        scrollbar = true,
+        winhighlight = 'Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:CursorLine,Search:None',
+        draw = {
+          columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 }, { 'kind' } },
+        },
       },
       documentation = {
-        winhighlight = 'Normal:CmpDocumentation,FloatBorder:CmpWinBor,Search:None',
-        border = 'rounded',
-        scrollbar = true,
+        auto_show = true,
+        treesitter_highlighting = true,
+        window = {
+          border = 'rounded',
+          winhighlight = 'Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,CursorLine:CursorLine,Search:None',
+        },
       },
+      list = { selection = 'manual' },
+      accept = { auto_brackets = { enabled = true } },
+      ghost_text = { enabled = true },
     },
-    formatting = {
-      fields = { 'kind', 'abbr', 'menu' },
-      format = function(_, vim_item)
-        vim_item.menu = ' ' .. (vim_item.kind or '')
-        vim_item.kind = _G.kind_icons[vim_item.kind] or ''
-        return vim_item
-      end,
-    },
-    snippet = {
-      expand = function(args)
-        luasnip.lsp_expand(args.body)
-      end,
-    },
-    sources = cmp.config.sources({
-      { name = 'luasnip' },
-      { name = 'nvim_lsp' },
-      { name = 'buffer' },
-    }),
-    mapping = cmp.mapping.preset.insert({
-      ['<Tab>'] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
-        elseif has_words_before() then
-          cmp.complete()
-        else
-          fallback()
-        end
-      end, { 'i', 's' }),
-
-      ['<S-Tab>'] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
-        else
-          fallback()
-        end
-      end, { 'i', 's' }),
-
-      ['<CR>'] = cmp.mapping.confirm({ select = false }),
-    }),
-    experimental = {
-      ghost_text = true,
-    },
+    sources = { default = { 'snippets', 'lsp', 'path', 'buffer' } },
+    signature = { window = { border = 'rounded' } },
   })
 end
 
