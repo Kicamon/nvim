@@ -59,7 +59,7 @@ function config.blink()
       accept = { auto_brackets = { enabled = true } },
       ghost_text = { enabled = true },
     },
-    sources = { default = { 'snippets', 'lsp', 'path', 'buffer' } },
+    sources = { default = { 'snippets', 'lsp', 'path', 'buffer' }, cmdline = {} },
     signature = { window = { border = 'rounded' } },
   })
 end
