@@ -130,17 +130,14 @@
 
 ### Plugin list
 ```shell
+blink.cmp
 LuaSnip
-cmp-buffer
-cmp-nvim-lsp
-cmp_luasnip
 flash.nvim
 fzf-lua
 gitsigns.nvim
 guard.nvim
 indentmini.nvim
 lspsaga.nvim
-nvim-cmp
 nvim-highlight-colors
 nvim-lspconfig
 nvim-treesitter

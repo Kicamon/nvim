@@ -11,13 +11,13 @@ function config.blink()
   require('blink.cmp').setup({
     keymap = {
       ['<Tab>'] = {
+        'select_next',
+        'snippet_forward',
         function(cmp)
           if has_words_before() then
             return cmp.show()
           end
         end,
-        'select_next',
-        'snippet_forward',
         'fallback',
       },
       ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
