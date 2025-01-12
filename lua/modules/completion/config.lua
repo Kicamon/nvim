@@ -34,14 +34,14 @@ function config.blink()
       },
       documentation = {
         auto_show = true,
-        auto_show_delay_ms = 50,
+        auto_show_delay_ms = 0,
         treesitter_highlighting = true,
         window = {
           border = 'rounded',
           winhighlight = 'Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,CursorLine:CursorLine,Search:None',
         },
       },
-      list = { selection = 'manual' },
+      list = { selection = 'auto_insert' },
       accept = { auto_brackets = { enabled = true } },
       ghost_text = { enabled = true },
     },

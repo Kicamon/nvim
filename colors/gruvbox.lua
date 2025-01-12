@@ -119,6 +119,7 @@ local function setcolor()
     SpellRare = { undercurl = true, sp = colors.purple },
     Whitespace = { fg = colors.bg2 },
     Delimiter = { fg = colors.orange },
+    SnippetTabstop = { link = 'Normal' },
     -- LSP Diagnostic
     DiagnosticError = { fg = colors.red },
     DiagnosticSignError = { fg = colors.red },

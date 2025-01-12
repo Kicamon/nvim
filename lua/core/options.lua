@@ -13,6 +13,7 @@ opt.autoindent = true
 opt.smartindent = true
 opt.ignorecase = true
 opt.smartcase = true
+opt.wildmenu = true
 opt.ttimeoutlen = 0
 opt.timeout = false
 opt.showmode = false

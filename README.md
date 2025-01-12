@@ -148,7 +148,7 @@ nvim-treesitter
 ```shell
 bash-language-server
 clang
-gpls
+gopls
 lua
 lua-language-server
 luarocks
