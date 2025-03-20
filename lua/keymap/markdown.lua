@@ -51,6 +51,10 @@ local function markdown_keymap(bufnr)
   map.nx('<cr>', function()
     require('internal.wiki').open_create()
   end, { buf = bufnr })
+
+  map.i('|', function()
+    require('internal.markdown_table_format').format_markdown_table_lines()
+  end, { buf = bufnr })
 end
 
 return { markdown_keymap = markdown_keymap }

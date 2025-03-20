@@ -41,11 +41,12 @@ function config.blink()
           winhighlight = 'Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,CursorLine:CursorLine,Search:None',
         },
       },
-      list = { selection = 'auto_insert' },
+      list = { selection = { preselect = false, auto_insert = true } },
       accept = { auto_brackets = { enabled = true } },
       ghost_text = { enabled = true },
     },
-    sources = { default = { 'snippets', 'lsp', 'path', 'buffer' }, cmdline = {} },
+    sources = { default = { 'snippets', 'lsp', 'path', 'buffer' } },
+    cmdline = {},
     signature = { window = { border = 'rounded' } },
   })
 end

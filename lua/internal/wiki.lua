@@ -1,6 +1,6 @@
 local api = vim.api
-local note_path = '~/Documents/study/Note/wiki/'
-local index_path = note_path .. 'index.md'
+local note_path = '~/Documents/study/Note/'
+local index_path = note_path .. 'README.md'
 
 local function feedkeys(keys, mode)
   api.nvim_feedkeys(api.nvim_replace_termcodes(keys, true, true, true), mode, true)
