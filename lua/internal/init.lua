@@ -78,7 +78,7 @@ au('BufLeave', {
     if vim.bo.modified then
       vim.cmd('silent! write')
     end
-  end
+  end,
 })
 
 -- markdown keymap
@@ -94,69 +94,75 @@ au('BufEnter', {
   group = group,
   once = true,
   callback = function()
-    -- theme
-    vim.cmd.colorscheme('gruvbox')
+    vim.schedule(function()
+      -- lsp
+      require('internal.lsp').enable_lsp()
+      require('internal.lsp').diagnostic()
 
-    -- keymap
-    require('keymap')
+      -- theme
+      vim.cmd.colorscheme('gruvbox')
 
-    -- statusline
-    require('internal.stl')
+      -- keymap
+      require('keymap')
 
-    -- cursor word
-    require('internal.cursor_word')
+      -- statusline
+      require('internal.stl')
 
-    -- code_running
-    uc('Run', function(args)
-      require('internal.code_running').running(args.args)
-    end, {
-      nargs = '?',
-      complete = function(arg)
-        local list = vim.tbl_extend(
-          'force',
-          require('internal.code_running_commands').commands_list(),
-          { 'center' }
-        )
-        return vim.tbl_filter(function(s)
-          return string.match(s, '^' .. arg)
-        end, list)
-      end,
-    })
+      -- cursor word
+      require('internal.cursor_word')
 
-    -- chdir
-    uc('Chdir', function(args)
-      vim.cmd('silent! lcd %:p:h')
-      if args.args == 'silent' then
-        return
-      end
-      vim.notify('From: ' .. vim.fn.getcwd() .. '\n' .. 'To: ' .. vim.fn.expand('%:p:h'))
-    end, { nargs = '?' })
+      -- code_running
+      uc('Run', function(args)
+        require('internal.code_running').running(args.args)
+      end, {
+        nargs = '?',
+        complete = function(arg)
+          local list = vim.tbl_extend(
+            'force',
+            require('internal.code_running_commands').commands_list(),
+            { 'center' }
+          )
+          return vim.tbl_filter(function(s)
+            return string.match(s, '^' .. arg)
+          end, list)
+        end,
+      })
 
-    -- text
-    uc('Texts', function(args)
-      if args.args == 'tab_to_space' then
-        require('internal.texts').tab_to_space()
-      elseif args.args == 'delete_trailing_space' then
-        require('internal.texts').delete_trailing_space()
-      end
-    end, {
-      nargs = '?',
-      complete = function(arg)
-        local list = { 'tab_to_space', 'delete_trailing_space' }
-        return vim.tbl_filter(function(s)
-          return string.match(s, '^' .. arg)
-        end, list)
-      end,
-    })
+      -- chdir
+      uc('Chdir', function(args)
+        vim.cmd('silent! lcd %:p:h')
+        if args.args == 'silent' then
+          return
+        end
+        vim.notify('From: ' .. vim.fn.getcwd() .. '\n' .. 'To: ' .. vim.fn.expand('%:p:h'))
+      end, { nargs = '?' })
 
-    -- get node
-    uc('GetNode', function(args)
-      require('internal.get_node').operate(args.args)
-    end, {
-      nargs = '?',
-      complete = function()
-        return { 'cap' }
-      end,
-    })
+      -- text
+      uc('Texts', function(args)
+        if args.args == 'tab_to_space' then
+          require('internal.texts').tab_to_space()
+        elseif args.args == 'delete_trailing_space' then
+          require('internal.texts').delete_trailing_space()
+        end
+      end, {
+        nargs = '?',
+        complete = function(arg)
+          local list = { 'tab_to_space', 'delete_trailing_space' }
+          return vim.tbl_filter(function(s)
+            return string.match(s, '^' .. arg)
+          end, list)
+        end,
+      })
+
+      -- get node
+      uc('GetNode', function(args)
+        require('internal.get_node').operate(args.args)
+      end, {
+        nargs = '?',
+        complete = function()
+          return { 'cap' }
+        end,
+      })
+    end)
   end,
 })

@@ -15,7 +15,7 @@ map.n({
   ['<Leader>dw'] = cmd('Lspsaga show_workspace_diagnostics'),
   ['<Leader>db'] = cmd('Lspsaga show_buf_diagnostics'),
   ['<leader>K'] = cmd('Lspsaga hover_doc'),
-  ['<leader>rn'] = cmd('Lspsaga rename ++project'),
+  ['<leader>rn'] = cmd('Lspsaga rename'),
   ['<leader>ca'] = cmd('Lspsaga code_action'),
   ['<leader>ot'] = cmd('Lspsaga outline'),
   ['d['] = cmd('Lspsaga diagnostic_jump_prev'),

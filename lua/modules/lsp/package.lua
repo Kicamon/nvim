@@ -1,11 +1,4 @@
-local conf = require('modules.lsp.backend')
-
-packadd({
-  'neovim/nvim-lspconfig',
-  lazy = true,
-  ft = _G.lsp_fts,
-  config = conf.lsp,
-})
+local conf = require('modules.lsp.config')
 
 packadd({
   'nvimdev/lspsaga.nvim',

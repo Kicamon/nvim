@@ -309,13 +309,6 @@ local function diagnostic_info(severity)
     if not vim.diagnostic.is_enabled({ bufnr = 0 }) then
       return ''
     end
-    -- local ns = api.nvim_get_namespaces()
-    -- local key = vim.iter(ns):find(function(k)
-    --   return k:find('diagnostic/signs')
-    -- end)
-    -- if not key then
-    --   return ''
-    -- end
     ---@diagnostic disable-next-line: param-type-mismatch
     local signs = vim.tbl_get(vim.diagnostic.config(), 'signs', 'text')
     local count = #vim.diagnostic.get(0, { severity = severity })
