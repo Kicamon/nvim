@@ -1,10 +1,22 @@
 return {
-  root_dir = function(fname)
-    return require('lspconfig').util.root_pattern(unpack({
-      '.pyproject.toml',
-      'main.py',
-      '.git',
-    }))(fname) or require('lspconfig').util.find_git_ancestor(fname)
-  end,
-  single_file_support = true,
+  cmd = { 'pyright-langserver', '--stdio' },
+  filetypes = { 'python' },
+  root_markers = {
+    'pyproject.toml',
+    'setup.py',
+    'setup.cfg',
+    'requirements.txt',
+    'Pipfile',
+    'pyrightconfig.json',
+    '.git',
+  },
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        diagnosticMode = 'openFilesOnly',
+      },
+    },
+  },
 }

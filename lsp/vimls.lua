@@ -1,5 +1,4 @@
 return {
-  default_config = {
     cmd = { 'vim-language-server', '--stdio' },
     filetypes = { 'vim' },
     root_dir = function(fname)
@@ -20,5 +19,4 @@ return {
       },
       suggest = { fromVimruntime = true, fromRuntimepath = true },
     },
-  },
 }

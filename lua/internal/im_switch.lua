@@ -1,13 +1,26 @@
 local input_toggle = 0
 
 local switch = {
-  en = 'fcitx5-remote -c',
-  zh = 'fcitx5-remote -o',
-  check = 'fcitx5-remote',
+  en = _G.wsl and '/mnt/c/Windows/im-select.exe 1033' or 'fcitx5-remote -c',
+  zh = _G.wsl and '/mnt/c/Windows/im-select.exe 2052' or 'fcitx5-remote -o',
+  check = _G.wsl and '/mnt/c/Windows/im-select.exe' or 'fcitx5-remote',
 }
+
+local function status_map(status)
+  if not _G.wsl then
+    return status
+  end
+  if status == 1033 then
+    status = 1
+  elseif status == 2052 then
+    status = 2
+  end
+  return status
+end
 
 local function change_to_en()
   local input_status = tonumber(io.popen(switch.check):read('*all'))
+  input_status = status_map(input_status)
   if input_status == 2 then
     input_toggle = 1
     vim.fn.system(switch.en)
@@ -16,6 +29,7 @@ end
 
 local function change_to_zh()
   local input_status = tonumber(io.popen(switch.check):read('*all'))
+  input_status = status_map(input_status)
   if input_status ~= 2 and input_toggle == 1 then
     vim.fn.system(switch.zh)
     input_toggle = 0

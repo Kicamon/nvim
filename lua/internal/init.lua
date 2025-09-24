@@ -57,6 +57,15 @@ au('TextYankPost', {
   group = group,
   callback = function()
     vim.highlight.on_yank({ higroup = 'Visual', timeout = 200 })
+    if _G.wsl then
+      if vim.v.event.regname == '+' then
+        vim.system({
+          '/mnt/c/windows/system32/clip.exe',
+        }, {
+          stdin = vim.fn.getreg('+'),
+        })
+      end
+    end
   end,
 })
 
