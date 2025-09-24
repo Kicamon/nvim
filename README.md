@@ -139,7 +139,6 @@ guard.nvim
 indentmini.nvim
 lspsaga.nvim
 nvim-highlight-colors
-nvim-lspconfig
 nvim-treesitter
 ```
 
@@ -163,6 +162,7 @@ vscode-css-languageserver
 vscode-html-languageserver
 vscode-json-languageserver
 yazi
+im-select #if use wsl
 ```
 
 ## Thanks
