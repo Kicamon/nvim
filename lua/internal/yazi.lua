@@ -51,7 +51,8 @@ local function yazi(open, opt)
   infos.bufnr, infos.winid =
     win:new_float(float_opt, true, true):bufopt('bufhidden', 'hide'):wininfo()
 
-  vim.fn.termopen(string.format('yazi %s --chooser-file="%s"', infos.filename, infos.tempname), {
+  vim.fn.jobstart(string.format('yazi %s --chooser-file="%s"', infos.filename, infos.tempname), {
+    term = true,
     on_exit = function()
       if api.nvim_win_is_valid(infos.winid) then
         api.nvim_win_close(infos.winid, true)

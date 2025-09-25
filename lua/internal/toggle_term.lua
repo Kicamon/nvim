@@ -31,7 +31,8 @@ function toggle_term.new()
   infos.idx = infos.idx + 1
   infos.bufnr, infos.winid =
     win:new_float(float_opt, true, true):bufopt('bufhidden', 'hide'):wininfo()
-  vim.fn.termopen(os.getenv('SHELL'), {
+  vim.fn.jobstart(os.getenv('SHELL'), {
+    term = true,
     on_exit = function()
       toggle_term.quit()
     end,

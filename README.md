@@ -163,9 +163,6 @@ yazi
 im-select #if use wsl
 ```
 
-### TodoList
-replace `vim.fn.termopen`
-
 ## Thanks
 - [glepnir](https://github.com/glepnir/nvim)
 - [theniceboy](https://github.com/theniceboy/nvim/tree/lua-migration)
