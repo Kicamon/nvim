@@ -1,6 +1,4 @@
-local config = {}
-
-function config.lspsaga()
+return function ()
   require('lspsaga').setup({
     ui = {
       devicon = false,
@@ -25,5 +23,3 @@ function config.lspsaga()
     },
   })
 end
-
-return config

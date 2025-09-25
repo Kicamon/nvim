@@ -131,14 +131,12 @@
 ### Plugin list
 ```shell
 blink.cmp
-LuaSnip
 flash.nvim
 fzf-lua
 gitsigns.nvim
 guard.nvim
 indentmini.nvim
 lspsaga.nvim
-nvim-highlight-colors
 nvim-treesitter
 ```
 
@@ -164,6 +162,9 @@ vscode-json-languageserver
 yazi
 im-select #if use wsl
 ```
+
+### TodoList
+replace `vim.fn.termopen`
 
 ## Thanks
 - [glepnir](https://github.com/glepnir/nvim)
