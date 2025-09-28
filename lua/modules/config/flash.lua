@@ -1,5 +1,5 @@
 return function()
   require('flash').setup({
-    modes = { char = { enable = false } },
+    modes = { char = { enabled = false } },
   })
 end
