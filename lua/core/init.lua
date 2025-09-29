@@ -32,7 +32,7 @@ _G.lsp_fts = {
   'vim',
   'sh',
 }
-_G.kind_icons = {
+_G.icons = {
   Text = ' 󰉿 ',
   Method = ' 󰆧 ',
   Function = ' 󰡱 ',

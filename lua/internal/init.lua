@@ -57,7 +57,7 @@ au('TextYankPost', {
   group = group,
   callback = function()
     vim.highlight.on_yank({ higroup = 'Visual', timeout = 200 })
-    if _G.wsl then
+    if wsl then
       if vim.v.event.regname == '+' then
         vim.system({
           '/mnt/c/windows/system32/clip.exe',
@@ -145,23 +145,6 @@ au('BufEnter', {
         end
         vim.notify('From: ' .. vim.fn.getcwd() .. '\n' .. 'To: ' .. vim.fn.expand('%:p:h'))
       end, { nargs = '?' })
-
-      -- text
-      uc('Texts', function(args)
-        if args.args == 'tab_to_space' then
-          require('internal.texts').tab_to_space()
-        elseif args.args == 'delete_trailing_space' then
-          require('internal.texts').delete_trailing_space()
-        end
-      end, {
-        nargs = '?',
-        complete = function(arg)
-          local list = { 'tab_to_space', 'delete_trailing_space' }
-          return vim.tbl_filter(function(s)
-            return string.match(s, '^' .. arg)
-          end, list)
-        end,
-      })
 
       -- get node
       uc('GetNode', function(args)

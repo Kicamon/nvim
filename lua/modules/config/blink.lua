@@ -21,7 +21,7 @@ return function ()
       ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
       ['<CR>'] = { 'accept', 'fallback' },
     },
-    appearance = { kind_icons = _G.kind_icons },
+    appearance = { kind_icons = icons },
     completion = {
       menu = {
         border = 'rounded',

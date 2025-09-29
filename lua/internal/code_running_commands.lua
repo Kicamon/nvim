@@ -39,7 +39,7 @@ local commands = {
     command = 'bash "$filename"',
   },
   ['html'] = {
-    command = 'live-server --browser=' .. _G.browser,
+    command = 'live-server --browser=' .. browser,
     modus = 'job',
   },
   ['markdown'] = {

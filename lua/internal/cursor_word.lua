@@ -43,7 +43,7 @@ end
 local function on_win(_, winid, bufnr)
   if
     bufnr ~= api.nvim_get_current_buf()
-    or not vim.iter(_G.lsp_fts):any(function(v)
+    or not vim.iter(lsp_fts):any(function(v)
       return v == vim.bo[bufnr].ft
     end)
     or api.nvim_get_mode().mode:find('i')
