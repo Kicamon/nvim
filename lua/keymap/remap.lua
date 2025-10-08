@@ -9,16 +9,16 @@ map.n({
   ['<leader>sc'] = cmd('set spell!'),
   ['<leader>sw'] = cmd('set wrap!'),
   ['<leader><cr>'] = cmd('noh'),
-  ['<leader><leader>'] = '/<++><CR>:noh<CR>"_c4l',
+  ['<leader><leader>'] = '/<++><cr>:noh<cr>"_c4l',
   ['j'] = 'gj',
   ['k'] = 'gk',
   ['J'] = '<c-d>',
   ['K'] = '<c-u>',
   -- window
-  ['<C-h>'] = '<C-w>h',
-  ['<C-j>'] = '<C-w>j',
-  ['<C-k>'] = '<C-w>k',
-  ['<C-l>'] = '<C-w>l',
+  ['<c-h>'] = '<c-w>h',
+  ['<c-j>'] = '<c-w>j',
+  ['<c-k>'] = '<c-w>k',
+  ['<c-l>'] = '<c-w>l',
   ['<leader>W'] = '<c-w>w',
   ['<leader>sh'] = cmd('set nosplitright | vsplit'),
   ['<leader>sj'] = cmd('set splitbelow | split'),
@@ -49,12 +49,12 @@ map.v({
 })
 
 map.t({
-  ['<c-o>'] = '<C-\\><C-N>',
+  ['<c-o>'] = '<c-\\><c-n>',
 })
 
 map.ic({
-  ['<c-h>'] = '<Left>',
-  ['<c-l>'] = '<Right>',
-  ['<c-a>'] = '<Home>',
-  ['<c-e>'] = '<End>',
+  ['<c-h>'] = '<left>',
+  ['<c-l>'] = '<right>',
+  ['<c-a>'] = '<home>',
+  ['<c-e>'] = '<end>',
 })

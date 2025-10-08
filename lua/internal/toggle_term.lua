@@ -1,92 +1,78 @@
 local win = require('internal.util.window')
 local api = vim.api
-local buffers = {}
-local toggle_term = {}
-local infos = {
-  idx = 0,
-}
+local infos = {}
+local float_opt = {}
 
-local float_opt = {
-  width = 0.8,
-  height = 0.8,
-  title = ' Terminal ',
-  relative = 'editor',
-  row = 'c',
-  col = 'c',
-}
+local function get_float_opt(opt)
+  if opt == 'right' then
+    return {
+      width = 0.25,
+      height = 0.9,
+      title = ' Terminal ',
+      relative = 'editor',
+      row = 't',
+      col = 'r',
+    }
+  end
+  return {
+    width = 0.8,
+    height = 0.8,
+    title = ' Terminal ',
+    relative = 'editor',
+    row = 'c',
+    col = 'c',
+  }
+end
 
 local function toggle_open(bufnr)
   api.nvim_set_option_value('modified', false, { buf = bufnr })
-  return win
+  infos.bufnr, infos.winid = win
     :new_float(vim.tbl_extend('force', float_opt, { bufnr = bufnr }), true, true)
     :bufopt('bufhidden', 'hide')
     :wininfo()
+  vim.cmd('startinsert')
 end
 
-function toggle_term.new()
-  if infos.winid then
-    toggle_term.quit()
-  end
-
-  infos.idx = infos.idx + 1
-  infos.bufnr, infos.winid =
-    win:new_float(float_opt, true, true):bufopt('bufhidden', 'hide'):wininfo()
-  vim.fn.jobstart(os.getenv('SHELL'), {
-    term = true,
-    on_exit = function()
-      toggle_term.quit()
-    end,
-  })
-  table.insert(buffers, infos.bufnr)
-end
-
-function toggle_term.toggle()
-  if not next(buffers) then
-    toggle_term.new()
-    return
-  end
-
-  if infos.winid then
-    toggle_term.quit()
-  else
-    infos.bufnr = buffers[infos.idx]
-    infos.bufnr, infos.winid = toggle_open(infos.bufnr)
-    vim.cmd('startinsert')
-  end
-end
-
-function toggle_term.quit()
+local function quit_term()
   pcall(api.nvim_win_close, infos.winid, true)
   infos.winid = nil
 end
 
-function toggle_term.delete()
-  table.remove(buffers, infos.idx)
-  infos.idx = infos.idx - 1 > 0 and infos.idx - 1 or #buffers
-  toggle_term.quit()
-  api.nvim_buf_delete(infos.bufnr, { force = true })
+local function new_term()
+  if infos.winid then
+    quit_term()
+  end
+
+  infos.bufnr, infos.winid =
+    win:new_float(float_opt, true, true):bufopt('bufhidden', 'hide'):wininfo()
+  ---@diagnostic disable-next-line: param-type-mismatch
+  vim.fn.jobstart(os.getenv('SHELL'), {
+    term = true,
+    on_exit = function()
+      quit_term()
+    end,
+  })
 end
 
-function toggle_term.next()
-  if not infos.winid then
+local function toggle_term(opt)
+  if opt ~= nil then
+    quit_term()
+    float_opt = get_float_opt(opt)
+    toggle_open(infos.bufnr)
     return
   end
 
-  toggle_term.quit()
-  infos.idx = infos.idx + 1 <= #buffers and infos.idx + 1 or 1
-  infos.bufnr = buffers[infos.idx]
-  infos.bufnr, infos.winid = toggle_open(infos.bufnr)
-end
-
-function toggle_term.prev()
-  if not infos.winid then
+  if infos.bufnr == nil then
+    float_opt = get_float_opt()
+    new_term()
     return
   end
 
-  toggle_term.quit()
-  infos.idx = infos.idx - 1 > 0 and infos.idx - 1 or #buffers
-  infos.bufnr = buffers[infos.idx]
-  infos.bufnr, infos.winid = toggle_open(infos.bufnr)
+  if infos.winid then
+    quit_term()
+  else
+    toggle_open(infos.bufnr)
+  end
 end
 
-return toggle_term
+return { toggle_term = toggle_term }

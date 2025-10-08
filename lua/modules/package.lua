@@ -14,7 +14,7 @@ packadd({
   lazy = true,
   event = 'LspAttach',
   config = conf('blink'),
-  version = 'v0.*',
+  version = 'v1.*',
 })
 
 packadd({

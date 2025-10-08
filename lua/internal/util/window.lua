@@ -66,24 +66,25 @@ end
 local function make_floating_popup_options(opts)
   local ui = api.nvim_list_uis()[1]
   local anchor = opts.anchor or make_floating_popup_anchor(opts)
-  opts.width, opts.height = make_floating_popup_size(opts, ui)
-  local row, col = get_position(opts, ui)
+  local conf = vim.deepcopy(opts)
+  conf.width, conf.height = make_floating_popup_size(conf, ui)
+  local row, col = get_position(conf, ui)
 
   return {
     anchor = anchor,
-    bufpos = opts.relative == 'win' and opts.bufpos or nil,
+    bufpos = conf.relative == 'win' and conf.bufpos or nil,
     row = row,
     col = col,
-    focusable = opts.focusable or true,
-    relative = opts.relative or 'cursor',
+    focusable = conf.focusable or true,
+    relative = conf.relative or 'editor',
     style = 'minimal',
-    width = opts.width,
-    height = opts.height,
-    border = opts.border or 'rounded',
-    title = opts.title or '',
-    title_pos = opts.title_pos or 'center',
-    zindex = opts.zindex or 50,
-    noautocmd = opts.noautocmd or false,
+    width = conf.width,
+    height = conf.height,
+    border = conf.border or 'rounded',
+    title = conf.title or '',
+    title_pos = conf.title_pos or 'center',
+    zindex = conf.zindex or 50,
+    noautocmd = conf.noautocmd or false,
   }
 end
 

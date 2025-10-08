@@ -20,7 +20,7 @@
 | `<leader>sc`       | toggle spell check                     | n    |
 | `<leader>sw`       | toggle wrap                            | n    |
 | `<leader><cr>`     | nohlsearch                             | n    |
-| `<C-n>`            | escape from terminal input mode        | t    |
+| `<C-o>`            | escape from terminal input mode        | t    |
 | `<leader><leader>` | goto the next placeholder `<++>`       | n, i |
 
 #### 2 Move
@@ -81,14 +81,11 @@
 | `<C-v>`      | vsplit and edit selected definition        | n    |
 | `<leader>pr` | peek references with telescope             | n    |
 | `<leader>K`  | show hover doc with lspsaga                | n    |
-| `<leader>wa` | add workspace folder                       | n    |
-| `<leader>wr` | remove workspace folder                    | n    |
-| `<leader>wl` | list workspace folders                     | n    |
 | `<leader>rn` | rename selected variable name with lspsaga | n    |
 | `<leader>ca` | show code action with lspsaga              | n    |
 | `<leader>ot` | open outline with lspsaga                  | n    |
-| `<leader>d[` | goto diangostics prev                      | n    |
-| `<leader>d]` | goto diangostics next                      | n    |
+| `d[`         | goto diangostics prev                      | n    |
+| `d]`         | goto diangostics next                      | n    |
 
 #### 6 File Explorer
 | Shortcut     | Action                               | Mode |
@@ -100,6 +97,8 @@
 | `<leader>rl` | split right and edit file            | n    |
 | `<leader>ff` | fuzzy search files with file name    | n    |
 | `<leader>fw` | fuzzy search files with file content | n    |
+| `<leader>fb` | fuzzy search files with buffer       | n    |
+| `<leader>fo` | fuzzy search oldfiles                | n    |
 
 ![yazi](https://s21.ax1x.com/2024/08/05/pkvTBgs.png)
 
@@ -110,21 +109,17 @@
 | `g]`         | goto git next hunk      | n    |
 | `<leader>H`  | git preview hunk inline | n    |
 | `<leader>gd` | git diffthis            | n    |
+| `<leader>gr` | git reset hunk          | n    |
 
 #### 8 Other tools
 | Shortcut        | Action                                                             | Mode |
 |-----------------|--------------------------------------------------------------------|------|
 | `:Chdir`        | jump to the directory where the current buffer                     | n    |
 | `:Chdir silent` | jump to the directory where the current buffer without notify      | n    |
-| `<leader>N`     | get treesitter node in current                                     | n    |
 | `<cr>`          | quickly select the closest text object among a group of candidates | n    |
 | `<leader>ww`    | note manager                                                       | n    |
 | `<cr>`          | create or enter note in wiki                                       | n    |
 | `<c-f>`         | toggle float terminal if have not term, create it                  | n, t |
-| `<c-p>`         | goto prev float terminal                                           | t    |
-| `<c-n>`         | goto next float terminal                                           | t    |
-| `<c-a>`         | add a float terminal                                               | t    |
-| `<c-d>`         | delete a float terminal                                            | t    |
 | `<c-r>`         | move float terminal right                                          | t    |
 | `<c-c>`         | move float terminal center                                         | t    |
 

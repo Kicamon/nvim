@@ -1,4 +1,4 @@
-return function ()
+return function()
   local function has_words_before()
     unpack = unpack or table.unpack
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -46,5 +46,10 @@ return function ()
     sources = { default = { 'snippets', 'lsp', 'path', 'buffer' } },
     cmdline = {},
     signature = { window = { border = 'rounded' } },
+    opts = {
+      fuzzy = {
+        implementation = 'lua',
+      },
+    },
   })
 end

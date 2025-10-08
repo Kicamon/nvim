@@ -21,10 +21,21 @@ map.n({
   ['d['] = cmd('Lspsaga diagnostic_jump_prev'),
   ['d]'] = cmd('Lspsaga diagnostic_jump_next'),
   -- gitsigns
-  ['g['] = cmd('silent lua require"gitsigns".prev_hunk()'),
-  ['g]'] = cmd('silent lua require"gitsigns".next_hunk()'),
-  ['<leader>H'] = cmd('lua require"gitsigns".preview_hunk_inline()'),
-  ['<leader>gd'] = cmd('lua require"gitsigns".diffthis("~")'),
+  ['g['] = function()
+    require('gitsigns').nav_hunk('prev', { wrap = true })
+  end,
+  ['g]'] = function()
+    require('gitsigns').nav_hunk('next', { wrap = true })
+  end,
+  ['<leader>H'] = function()
+    require('gitsigns').preview_hunk_inline()
+  end,
+  ['<leader>gd'] = function()
+    require('gitsigns').diffthis('~')
+  end,
+  ['<leader>gr'] = function()
+    require('gitsigns').reset_hunk()
+  end,
   -- code_running
   ['<F5>'] = cmd('Run'),
   ['<F10>'] = cmd('Run center'),
@@ -61,26 +72,20 @@ map.n({
   end,
   -- toggle term
   ['<c-f>'] = function()
-    require('internal.toggle_term').toggle()
+    require('internal.toggle_term').toggle_term()
   end,
 })
 
 map.t({
   -- toggle term
   ['<c-f>'] = function()
-    require('internal.toggle_term').toggle()
+    require('internal.toggle_term').toggle_term()
   end,
-  ['<c-p>'] = function()
-    require('internal.toggle_term').prev()
+  ['<c-r>'] = function()
+    require('internal.toggle_term').toggle_term('right')
   end,
-  ['<c-n>'] = function()
-    require('internal.toggle_term').next()
-  end,
-  ['<c-a>'] = function()
-    require('internal.toggle_term').new()
-  end,
-  ['<c-d>'] = function()
-    require('internal.toggle_term').delete()
+  ['<c-c>'] = function()
+    require('internal.toggle_term').toggle_term('center')
   end,
 })
 

@@ -32,7 +32,7 @@ end
 ---@return table
 local function get_float_opt(center)
   return {
-    width = center and 0.8 or -0.25,
+    width = center and 0.8 or 0.25,
     height = center and 0.8 or 0.9,
     relative = 'editor',
     title = ' Code Running ',

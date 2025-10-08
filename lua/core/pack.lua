@@ -17,6 +17,7 @@ function pack:boot_strap()
   require('lazy').setup(self.repos, {
     ---@diagnostic disable-next-line: param-type-mismatch
     lockfile = vim.fs.joinpath(self.data_path, 'lazy-lock.json'),
+    dev = { path = '~/Documents/project/nvim' },
     ui = {
       border = 'rounded',
       size = {
