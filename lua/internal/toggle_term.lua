@@ -2,9 +2,10 @@ local win = require('internal.util.window')
 local api = vim.api
 local infos = {}
 local float_opt = {}
+local pos = 1
 
 local function get_float_opt(opt)
-  if opt == 'right' then
+  if opt == 1 then
     return {
       width = 0.25,
       height = 0.9,
@@ -55,9 +56,10 @@ local function new_term()
 end
 
 local function toggle_term(opt)
-  if opt ~= nil then
+  if opt == 'pos' then
     quit_term()
-    float_opt = get_float_opt(opt)
+    float_opt = get_float_opt(pos)
+    pos = 1 - pos
     toggle_open(infos.bufnr)
     return
   end

@@ -82,10 +82,7 @@ map.t({
     require('internal.toggle_term').toggle_term()
   end,
   ['<c-r>'] = function()
-    require('internal.toggle_term').toggle_term('right')
-  end,
-  ['<c-c>'] = function()
-    require('internal.toggle_term').toggle_term('center')
+    require('internal.toggle_term').toggle_term('pos')
   end,
 })
 
