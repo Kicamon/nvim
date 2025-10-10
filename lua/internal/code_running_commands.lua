@@ -23,7 +23,11 @@ local commands = {
     modus = 'center',
   },
   ['c_lib'] = {
-    command = 'gcc -c -fPIC -shared "$filename" -o "$runfile".so',
+    command = 'gcc -c -fPIC -shared "$filename" -o lib"$runfile".so',
+    modus = 'job',
+  },
+  ['cpp_lib'] = {
+    command = 'g++ -c -fPIC -shared "$filename" -o lib"$runfile".so',
     modus = 'job',
   },
   ['go'] = {
