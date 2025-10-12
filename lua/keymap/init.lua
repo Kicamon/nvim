@@ -91,10 +91,6 @@ map.v({
   ['S'] = function()
     require('internal.surround').add_surround()
   end,
-  --  quick_substitute
-  ['<leader>ss'] = function()
-    require('internal.quick_substitute').quick_substitute()
-  end,
 })
 
 map.nx({

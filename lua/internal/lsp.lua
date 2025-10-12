@@ -19,7 +19,14 @@ local function diagnostic()
     },
   })
 
-  vim.diagnostic.config({ signs = { text = { 'E', 'W', 'I', 'H' } } })
+  vim.diagnostic.config({
+    signs = {
+      text = { 'E', 'W', 'I', 'H' },
+    },
+    float = {
+      border = 'rounded',
+    },
+  })
 end
 
 return {

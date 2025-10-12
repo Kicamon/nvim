@@ -3,8 +3,17 @@ local api = vim.api
 local function get_signs(name)
   return function()
     local bufnr = api.nvim_win_get_buf(vim.g.statusline_winid)
+    local lnum = vim.v.lnum
     local it = vim
-      .iter(api.nvim_buf_get_extmarks(bufnr, -1, 0, -1, { details = true, type = 'sign' }))
+      .iter(
+        api.nvim_buf_get_extmarks(
+          bufnr,
+          -1,
+          { lnum - 1, 0 },
+          { lnum - 1, -1 },
+          { details = true, type = 'sign' }
+        )
+      )
       :find(function(item)
         return item[2] == vim.v.lnum - 1
           and item[4].sign_hl_group

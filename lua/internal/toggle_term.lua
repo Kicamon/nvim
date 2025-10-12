@@ -51,6 +51,7 @@ local function new_term()
     term = true,
     on_exit = function()
       quit_term()
+      infos.bufnr = nil
     end,
   })
 end

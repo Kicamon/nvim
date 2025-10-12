@@ -58,3 +58,12 @@ packadd({
   event = 'BufRead',
   config = conf('indentmini'),
 })
+
+packadd({
+  'brenoprata10/nvim-highlight-colors',
+  lazy = true,
+  cmd = 'HighlightColors',
+  event = 'BufRead */colors/*',
+  ft = { 'html', 'css', 'javascript' },
+  config = conf('colors'),
+})

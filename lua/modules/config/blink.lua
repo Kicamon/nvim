@@ -46,10 +46,5 @@ return function()
     sources = { default = { 'snippets', 'lsp', 'path', 'buffer' } },
     cmdline = {},
     signature = { window = { border = 'rounded' } },
-    opts = {
-      fuzzy = {
-        implementation = 'lua',
-      },
-    },
   })
 end

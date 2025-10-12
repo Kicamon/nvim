@@ -43,7 +43,7 @@ local commands = {
     command = 'bash "$filename"',
   },
   ['html'] = {
-    command = 'live-server --browser=' .. browser,
+    command = 'live-server --browser=' .. vim.g.browser,
     modus = 'job',
   },
   ['markdown'] = {

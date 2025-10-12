@@ -1,8 +1,10 @@
-return function ()
+return function()
   require('lspsaga').setup({
     ui = {
       devicon = false,
-      border = 'single',
+    },
+    lightbulb = {
+      enable = false,
     },
     outline = {
       keys = {
