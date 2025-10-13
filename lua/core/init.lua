@@ -59,6 +59,7 @@ _G.icons = {
   Operator = ' 󰆕 ',
   TypeParameter = ' 󰅲 ',
 }
+_G.diagnostic_signs = { 'E', 'W', 'I', 'H' }
 
 require('core.options')
 require('core.pack'):boot_strap()

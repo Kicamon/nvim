@@ -21,7 +21,7 @@ local function diagnostic()
 
   vim.diagnostic.config({
     signs = {
-      text = { 'E', 'W', 'I', 'H' },
+      text = diagnostic_signs,
     },
     float = {
       border = 'rounded',

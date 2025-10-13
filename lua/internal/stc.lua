@@ -1,39 +1,48 @@
 local api = vim.api
 
-local function get_signs(name)
-  return function()
-    local bufnr = api.nvim_win_get_buf(vim.g.statusline_winid)
-    local lnum = vim.v.lnum
-    local it = vim
-      .iter(
-        api.nvim_buf_get_extmarks(
-          bufnr,
-          -1,
-          { lnum - 1, 0 },
-          { lnum - 1, -1 },
-          { details = true, type = 'sign' }
-        )
-      )
-      :find(function(item)
-        return item[2] == vim.v.lnum - 1
-          and item[4].sign_hl_group
-          and item[4].sign_hl_group:find(name)
-      end)
-    return not it and '  ' or ('%%#%s#%s%%*'):format(it[4].sign_hl_group, it[4].sign_text)
+local function get_diagnostic_signs(bufnr, lnum)
+  local diagnostic = vim.diagnostic.get(bufnr, { lnum = lnum })
+  if #diagnostic == 0 then
+    return '  '
   end
+  return ('%%#%s#%s%%*'):format(
+    'Diagnostic' .. vim.diagnostic.severity[diagnostic[1].severity],
+    diagnostic_signs[diagnostic[1].severity]
+  )
+end
+
+local function show_break(lnum, virtnum)
+  if virtnum > 0 then
+    return (' '):rep(math.floor(math.ceil(math.log10(lnum))) - 1) .. '┆'
+  end
+  return virtnum < 0 and '' or lnum
+end
+
+local function get_git_signs(bufnr, lnum)
+  local mark = vim
+    .iter(
+      api.nvim_buf_get_extmarks(
+        bufnr,
+        -1,
+        { lnum, 0 },
+        { lnum, -1 },
+        { details = true, type = 'sign' }
+      )
+    )
+    :find(function(item)
+      return item[2] == lnum and item[4].sign_hl_group and item[4].sign_hl_group:find('GitSign')
+    end)
+  return not mark and '  ' or ('%%#%s#%s%%*'):format(mark[4].sign_hl_group, mark[4].sign_text)
 end
 
 local function stc()
-  local stc_diagnostic = get_signs('Diagnostic')
-  local stc_gitsign = get_signs('GitSign')
-
-  local function show_break()
-    if vim.v.virtnum > 0 then
-      return (' '):rep(math.floor(math.ceil(math.log10(vim.v.lnum))) - 1) .. '┆'
-    end
-    return vim.v.virtnum < 0 and '' or vim.v.lnum
-  end
-  return ('%s%%=%s%s'):format(stc_diagnostic(), show_break(), stc_gitsign())
+  local bufnr = api.nvim_win_get_buf(vim.g.statusline_winid)
+  local lnum, virtnum = vim.v.lnum, vim.v.virtnum
+  return ('%s%%=%s%s'):format(
+    get_diagnostic_signs(bufnr, lnum - 1),
+    show_break(lnum, virtnum),
+    get_git_signs(bufnr, lnum - 1)
+  )
 end
 
 return { stc = stc }
