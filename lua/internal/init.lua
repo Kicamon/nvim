@@ -153,6 +153,15 @@ au('BufEnter', {
           return { 'cap' }
         end,
       })
+
+      -- open
+      uc('Google', function(args)
+        local keyword = vim.fn.expand('<cword>')
+        if args.args ~= '' then
+          keyword = args.args
+        end
+        vim.fn.jobstart(('%s "https://google.com/search?q=%s"'):format(vim.g.browser, keyword))
+      end, { nargs = '*' })
     end)
   end,
 })

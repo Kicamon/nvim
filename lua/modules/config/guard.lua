@@ -1,4 +1,4 @@
-return function ()
+return function()
   local ft = require('guard.filetype')
   ft('c,cpp'):fmt({
     cmd = 'clang-format',
