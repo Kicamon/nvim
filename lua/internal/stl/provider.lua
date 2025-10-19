@@ -276,22 +276,21 @@ function pd.recording()
 end
 
 function pd.vnumber()
-  local function stl_vnumber()
-    local sl, sr = vim.fn.getpos('v')[2], vim.fn.getpos('v')[3]
-    local el, er = vim.fn.getpos('.')[2], vim.fn.getpos('.')[3]
-    local str = ''
-    if sl == el then
-      str = ' ' .. tostring(math.abs(sr - er) + 1)
-    else
-      str = ' ' .. tostring(math.abs(sl - el) + 1)
-    end
-    if vim.api.nvim_get_mode().mode ~= 'v' and vim.api.nvim_get_mode().mode ~= 'V' then
-      str = ''
-    end
-    return str
-  end
   local result = {
-    stl = stl_vnumber,
+    stl = function()
+      local sl, sr = vim.fn.getpos('v')[2], vim.fn.getpos('v')[3]
+      local el, er = vim.fn.getpos('.')[2], vim.fn.getpos('.')[3]
+      local str = ''
+      if sl == el then
+        str = ' ' .. tostring(math.abs(sr - er) + 1)
+      else
+        str = ' ' .. tostring(math.abs(sl - el) + 1)
+      end
+      if vim.api.nvim_get_mode().mode ~= 'v' and vim.api.nvim_get_mode().mode ~= 'V' then
+        str = ''
+      end
+      return str
+    end,
     name = 'vnumber',
     attr = {
       fg = '#afd787',
@@ -301,6 +300,25 @@ function pd.vnumber()
 
   result.attr.bold = true
 
+  return result
+end
+
+function pd.search()
+  local result = {
+    stl = function()
+      if vim.v.hlsearch == 0 then
+        return ''
+      end
+      local search_info = vim.fn.searchcount({ maxcount = 0, timeout = 100 })
+      return ('[%s/%s]'):format(search_info.current, search_info.total)
+    end,
+    name = 'search',
+    attr = {
+      fg = '#afd787',
+    },
+    event = { 'CursorMoved' },
+  }
+  result.attr.bold = true
   return result
 end
 
@@ -325,24 +343,23 @@ function pd.diagnostic(diag_t)
   }
 end
 
-function pd.filesize()
+local function get_filesize()
   local size_unit = { 'b', 'k', 'm', 'g' }
-  local function get_size()
-    local size = vim.fn.getfsize(vim.fn.expand('%'))
-    local idx = 1
-    while size >= 1024 and idx < #size_unit do
-      size = size / 1024
-      idx = idx + 1
-    end
-    vim.api.nvim_buf_get_name(0)
-    return ('%.1f%s'):format(size, size_unit[idx])
+  local size = vim.fn.getfsize(vim.fn.expand('%'))
+  local idx = 1
+  while size >= 1024 and idx < #size_unit do
+    size = size / 1024
+    idx = idx + 1
   end
+  vim.api.nvim_buf_get_name(0)
+  return ('%.1f%s'):format(size, size_unit[idx])
+end
+
+function pd.filesize()
   local result = {
-    stl = function()
-      return get_size()
-    end,
+    stl = get_filesize,
     name = 'filesize',
-    default = get_size(),
+    default = get_filesize(),
     event = { 'BufEnter', 'BufModifiedSet' },
   }
 

@@ -37,7 +37,12 @@ return function()
       ghost_text = { enabled = true },
     },
     sources = { default = { 'snippets', 'lsp', 'path', 'buffer' } },
-    cmdline = {},
+    cmdline = {
+      completion = {
+        menu = { auto_show = true },
+        list = { selection = { preselect = false } },
+      },
+    },
     signature = { window = { border = 'rounded' } },
   })
 end

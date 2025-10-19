@@ -16,12 +16,12 @@ g.loaded_logiPat = 1
 g.loaded_rrhelper = 1
 g.loaded_netrwPlugin = 1
 g.c_syntax_for_h = 1
-g.browser = 'wyeb'
+g.browser = 'chromium'
 _G.wsl = vim.fn.has('wsl') == 1
 _G.lsp_fts = {
   'c',
   'cpp',
-  'rust',
+  'go',
   'lua',
   'python',
   'javascript',
@@ -31,6 +31,7 @@ _G.lsp_fts = {
   'css',
   'vim',
   'sh',
+  'zsh',
 }
 _G.icons = {
   Text = ' 󰉿 ',
