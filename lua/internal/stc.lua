@@ -1,14 +1,20 @@
 local api = vim.api
+local diagnostic_signs_temp
 
 local function get_diagnostic_signs(bufnr, lnum)
+  if vim.fn.mode() == 'i' then
+    return diagnostic_signs_temp
+  end
   local diagnostic = vim.diagnostic.get(bufnr, { lnum = lnum })
   if #diagnostic == 0 then
-    return '  '
+    diagnostic_signs_temp = '  '
+  else
+    diagnostic_signs_temp = ('%%#%s#%s%%*'):format(
+      'Diagnostic' .. vim.diagnostic.severity[diagnostic[1].severity],
+      diagnostic_signs[diagnostic[1].severity]
+    )
   end
-  return ('%%#%s#%s%%*'):format(
-    'Diagnostic' .. vim.diagnostic.severity[diagnostic[1].severity],
-    diagnostic_signs[diagnostic[1].severity]
-  )
+  return diagnostic_signs_temp
 end
 
 local function show_break(lnum, virtnum)
