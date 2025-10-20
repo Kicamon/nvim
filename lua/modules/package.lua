@@ -21,7 +21,7 @@ packadd({
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
   lazy = true,
-  event = { 'BufRead', 'BufNewFile' },
+  event = { 'BufReadPre', 'BufNewFile' },
   config = conf('treesitter'),
 })
 
@@ -55,7 +55,7 @@ packadd({
 packadd({
   'nvimdev/indentmini.nvim',
   lazy = true,
-  event = 'BufRead',
+  event = 'BufEnter',
   config = conf('indentmini'),
 })
 
