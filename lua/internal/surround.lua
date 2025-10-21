@@ -6,19 +6,19 @@ local function feedkeys(keys, mode)
 end
 
 local keys = {
-  ['('] = { st = '(', ed = ')' },
-  ['['] = { st = '[', ed = ']' },
-  ['{'] = { st = '{', ed = '}' },
-  ['<'] = { st = '<', ed = '>' },
+  ['('] = { left = '(', right = ')' },
+  ['['] = { left = '[', right = ']' },
+  ['{'] = { left = '{', right = '}' },
+  ['<'] = { left = '<', right = '>' },
 
-  [')'] = { st = '( ', ed = ' )' },
-  [']'] = { st = '[ ', ed = ' ]' },
-  ['}'] = { st = '{ ', ed = ' }' },
-  ['>'] = { st = '< ', ed = ' >' },
+  [')'] = { left = '( ', right = ' )' },
+  [']'] = { left = '[ ', right = ' ]' },
+  ['}'] = { left = '{ ', right = ' }' },
+  ['>'] = { left = '< ', right = ' >' },
 
-  ['"'] = { st = '"', ed = '"' },
-  ["'"] = { st = "'", ed = "'" },
-  ['`'] = { st = '`', ed = '`' },
+  ['"'] = { left = '"', right = '"' },
+  ["'"] = { left = "'", right = "'" },
+  ['`'] = { left = '`', right = '`' },
 }
 
 ---get surround char
@@ -58,21 +58,21 @@ local function add_surround()
   end
 
   local char = Char[2]
-  local sr, sc, er, ec = getsurround.visual() -- get visual pos
+  local line_frome, col_frome, line_to, col_to = getsurround.visual() -- get visual pos
   -- if mode is visual line, update start and end row's pos
   if vim.fn.mode() == 'V' then
-    sc, ec = vim.fn.indent(sr) + 1, vim.fn.getline(er):len()
+    col_frome, col_to = vim.fn.indent(line_frome) + 1, vim.fn.getline(line_to):len()
   end
   -- if is ends in zh, move the endrow back by 2
-  if check_zh(er, ec) then
-    ec = ec + 2
+  if check_zh(line_to, col_to) then
+    col_to = col_to + 2
   end
 
   -- add pair to the selection
-  local lines = api.nvim_buf_get_text(0, sr - 1, sc - 1, er - 1, ec, {})
-  lines[1] = keys[char].st .. lines[1]
-  lines[#lines] = lines[#lines] .. keys[char].ed
-  api.nvim_buf_set_text(0, sr - 1, sc - 1, er - 1, ec, lines)
+  local lines = api.nvim_buf_get_text(0, line_frome - 1, col_frome - 1, line_to - 1, col_to, {})
+  lines[1] = keys[char].left .. lines[1]
+  lines[#lines] = lines[#lines] .. keys[char].right
+  api.nvim_buf_set_text(0, line_frome - 1, col_frome - 1, line_to - 1, col_to, lines)
 
   feedkeys('<ESC>', 'n')
 end
@@ -106,7 +106,7 @@ local function change_surround()
 
   local char_new = keys[char[2]]
   local pos = getsurround.get_surround_pos(char_odd)
-  change_line(pos, char_new.st, char_new.ed)
+  change_line(pos, char_new.left, char_new.right)
 end
 
 return {

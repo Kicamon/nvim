@@ -155,6 +155,7 @@ vscode-css-languageserver
 vscode-html-languageserver
 vscode-json-languageserver
 yazi
+xclip
 im-select #if use wsl
 ```
 

@@ -1,6 +1,6 @@
 local au = vim.api.nvim_create_autocmd
 local uc = vim.api.nvim_create_user_command
-local group = vim.api.nvim_create_augroup('KicamonGroup', {})
+local group = vim.api.nvim_create_augroup('KicamonIceGroup', {})
 
 -- im_switch
 au('InsertLeave', {
@@ -81,15 +81,6 @@ au('BufLeave', {
     if vim.bo.modified then
       vim.cmd('silent! write')
     end
-  end,
-})
-
--- markdown keymap
-au('FileType', {
-  group = group,
-  pattern = 'markdown',
-  callback = function(opt)
-    require('keymap.markdown').markdown_keymap(opt.buf)
   end,
 })
 

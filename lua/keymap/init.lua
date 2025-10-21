@@ -9,6 +9,7 @@ map.n({
   ['<leader>fh'] = cmd('FzfLua helptags'),
   ['<leader>fo'] = cmd('FzfLua oldfiles'),
   ['<leader>fb'] = cmd('FzfLua buffers'),
+  ['<leader>fk'] = cmd('FzfLua keymaps'),
   -- lspsaga
   ['<leader>pd'] = cmd('Lspsaga peek_definition'),
   ['<leader>pr'] = cmd('Lspsaga finder ref'),

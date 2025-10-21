@@ -1,5 +1,5 @@
 local map = require('core.keymap')
-local function markdown_keymap(bufnr)
+local function keymap(bufnr)
   -- markdonw snippets
   map.i({
     ['<leader><leader>'] = '<Esc>/<++><CR>:nohlsearch<CR>"_c4l',
@@ -56,5 +56,4 @@ local function markdown_keymap(bufnr)
     require('internal.markdown_table_format').format_markdown_table_lines()
   end, { buf = bufnr })
 end
-
-return { markdown_keymap = markdown_keymap }
+keymap(vim.api.nvim_get_current_buf())
