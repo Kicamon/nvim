@@ -22,9 +22,9 @@ local function find_char_pos(row, col, idx, num)
   local char, _char = surround_chars[idx][num], surround_chars[idx][3 - num]
 
   local lens, stack = 0, 0
-  local end_line, range = pre and 1 or vim.fn.line('$'), pre and -1 or 1
+  local end_row, range = pre and 1 or vim.fn.line('$'), pre and -1 or 1
 
-  for l = row, end_line, range do
+  for l = row, end_row, range do
     local line = vim.fn.getline(l)
     local start_col = (l == row) and col or (pre and #line or 1)
     local end_col = pre and 1 or #line
@@ -48,7 +48,7 @@ end
 
 ---update surround positions
 ---@param distance integer distance of surround chars, used to ensure that the found location is the cloest
----@param area table {integer:line_from, integer:col_from,integer:line_to,integer:col_to}
+---@param area table {integer:row_from, integer:col_from,integer:row_to,integer:col_to}
 ---@param idx integer sequence number of surround chars
 ---@return nil|table {integer:distance, table:charpos}
 local function update(distance, area, idx)
@@ -81,33 +81,61 @@ local function update(distance, area, idx)
   return nil
 end
 
+---init search's start positions
+---@param area table { integer:row_from, integer:col_from, integer:row_to, integer:col_to }
+---@return table { integer:row_from, integer:col_from, integer:row_to, integer:col_to }
+local function init_area(area)
+  local mode = vim.fn.mode()
+  if mode == 'v' then -- if in visual mode, skip the current surround
+    area[2] = area[2] - 2
+    area[4] = area[4] + 2
+  elseif mode == 'n' then -- if in normal mode, check the char under cursor, if is surround chars, skip it
+    local line = vim.api.nvim_get_current_line()
+    local col = area[2]
+    local cursor_char = line:sub(col, col)
+    local cursor_char_prev = col > 1 and line:sub(col - 1, col - 1)
+    local cursor_char_next = col < #line and line:sub(col + 1, col + 1)
+    for _, val in ipairs(surround_chars) do
+      if cursor_char == val[1] and cursor_char_next == val[2] then
+        area[2] = area[2] - 1
+        area[4] = area[4] + 2
+      elseif cursor_char == val[2] and cursor_char_prev == val[1] then
+        area[2] = area[2] - 2
+        area[4] = area[4] + 1
+      elseif cursor_char == val[1] or cursor_char == val[2] then
+        area[2] = area[2] - 1
+        area[4] = area[4] + 1
+      end
+    end
+  end
+
+  return area
+end
+
 ---get visual area
----@return integer line_from
+---@return integer row_from
 ---@return integer col_from
----@return integer line_to
+---@return integer row_to
 ---@return integer col_to
 function pos.visual()
-  local line_from, col_from, line_to, col_to
-  line_from, col_from = vim.fn.getpos('v')[2], vim.fn.getpos('v')[3]
-  line_to, col_to = vim.fn.getpos('.')[2], vim.fn.getpos('.')[3]
+  local row_from, col_from, row_to, col_to
+  row_from, col_from = vim.fn.getpos('v')[2], vim.fn.getpos('v')[3]
+  row_to, col_to = vim.fn.getpos('.')[2], vim.fn.getpos('.')[3]
 
   -- make sure from position befroe to postion
-  if line_from > line_to then
-    line_from, line_to = line_to, line_from
+  if row_from > row_to then
+    row_from, row_to = row_to, row_from
     col_from, col_to = col_to, col_from
-  elseif line_from == line_to and col_from > col_to then
+  elseif row_from == row_to and col_from > col_to then
     col_from, col_to = col_to, col_from
   end
 
-  return line_from, col_from, line_to, col_to
+  return row_from, col_from, row_to, col_to
 end
 
 function pos.get_surround_pos(char)
   local area = { pos.visual() }
-  if vim.fn.mode() == 'v' then
-    area[2] = area[2] - 2
-    area[4] = area[4] + 2
-  end
+  area = init_area(area)
 
   local charpos = {}
   if char then

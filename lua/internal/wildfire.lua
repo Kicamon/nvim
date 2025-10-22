@@ -4,6 +4,8 @@ local cursor
 local function changemode()
   if vim.fn.mode() == 'v' then
     vim.cmd('normal! v')
+  else
+    cursor = api.nvim_win_get_cursor(0)
   end
 end
 
@@ -19,10 +21,6 @@ local wildfire = coroutine.create(function()
   while true do
     local pos = require('internal.util.surround_tools').get_surround_pos()
     if next(pos) then
-      -- record cursor position
-      if cursor == nil then
-        cursor = api.nvim_win_get_cursor(0)
-      end
       changemode()
       pos = update_position(pos)
       api.nvim_win_set_cursor(0, { pos[3], pos[4] - 2 })

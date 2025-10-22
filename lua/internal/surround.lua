@@ -58,21 +58,21 @@ local function add_surround()
   end
 
   local char = Char[2]
-  local line_frome, col_frome, line_to, col_to = getsurround.visual() -- get visual pos
+  local row_from, col_frome, row_to, col_to = getsurround.visual() -- get visual pos
   -- if mode is visual line, update start and end row's pos
   if vim.fn.mode() == 'V' then
-    col_frome, col_to = vim.fn.indent(line_frome) + 1, vim.fn.getline(line_to):len()
+    col_frome, col_to = vim.fn.indent(row_from) + 1, vim.fn.getline(row_to):len()
   end
   -- if is ends in zh, move the endrow back by 2
-  if check_zh(line_to, col_to) then
+  if check_zh(row_to, col_to) then
     col_to = col_to + 2
   end
 
   -- add pair to the selection
-  local lines = api.nvim_buf_get_text(0, line_frome - 1, col_frome - 1, line_to - 1, col_to, {})
+  local lines = api.nvim_buf_get_text(0, row_from - 1, col_frome - 1, row_to - 1, col_to, {})
   lines[1] = keys[char].left .. lines[1]
   lines[#lines] = lines[#lines] .. keys[char].right
-  api.nvim_buf_set_text(0, line_frome - 1, col_frome - 1, line_to - 1, col_to, lines)
+  api.nvim_buf_set_text(0, row_from - 1, col_frome - 1, row_to - 1, col_to, lines)
 
   feedkeys('<ESC>', 'n')
 end

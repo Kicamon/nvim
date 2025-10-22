@@ -1,4 +1,4 @@
-local api, fn, ffi = vim.api, vim.fn, require('ffi')
+local api, fn, ffi, co = vim.api, vim.fn, require('ffi'), coroutine
 
 ffi.cdef([[
   typedef int32_t linenr_T;
@@ -37,13 +37,13 @@ local function format_cell(cell, width)
 end
 
 local function find_table_range(cursor_pos, range)
-  local start_line_number, end_line_number = cursor_pos[1], range == -1 and 1 or fn.line('$')
+  local start_row, end_row = cursor_pos[1], range == -1 and 1 or fn.line('$')
 
-  for i = start_line_number, end_line_number, range do
+  for i = start_row, end_row, range do
     if not check_line_is_table(i) then
       return i - range
     end
-    if i == end_line_number then
+    if i == end_row then
       return i
     end
   end
@@ -85,14 +85,10 @@ end
 local function get_table_infos()
   local table_infos = {}
   local cursor_pos = api.nvim_win_get_cursor(0)
-  table_infos.table_start_line_number, table_infos.table_end_line_number =
+  table_infos.table_start_row, table_infos.table_end_row =
     find_table_range(cursor_pos, -1), find_table_range(cursor_pos, 1)
-  table_infos.current_table = api.nvim_buf_get_lines(
-    0,
-    table_infos.table_start_line_number - 1,
-    table_infos.table_end_line_number,
-    true
-  )
+  table_infos.current_table =
+    api.nvim_buf_get_lines(0, table_infos.table_start_row - 1, table_infos.table_end_row, true)
   table_infos.cells = table_to_cells(table_infos.current_table)
   table_infos.max_cells_width = get_max_cells_width(table_infos.cells)
   return table_infos
@@ -139,8 +135,8 @@ local function add_new_col(table_infos)
 
   api.nvim_buf_set_lines(
     0,
-    table_infos.table_start_line_number - 1,
-    table_infos.table_end_line_number,
+    table_infos.table_start_row - 1,
+    table_infos.table_end_row,
     true,
     table_infos.current_table
   )
@@ -152,13 +148,7 @@ local function format_markdown_table()
   end
   local table_infos = get_table_infos()
   local lines = cells_to_table(table_infos.cells, table_infos.max_cells_width)
-  api.nvim_buf_set_lines(
-    0,
-    table_infos.table_start_line_number - 1,
-    table_infos.table_end_line_number,
-    true,
-    lines
-  )
+  api.nvim_buf_set_lines(0, table_infos.table_start_row - 1, table_infos.table_end_row, true, lines)
 end
 
 local function format_markdown_table_lines()
@@ -169,7 +159,7 @@ local function format_markdown_table_lines()
 
   if check_line_is_table(fn.line('.')) then
     local table_infos = get_table_infos()
-    if cursor_pos[1] == table_infos.table_start_line_number then
+    if cursor_pos[1] == table_infos.table_start_row then
       add_new_col(table_infos)
     end
     format_markdown_table()
@@ -180,6 +170,14 @@ local function format_markdown_table_lines()
 end
 
 return {
-  format_markdown_table = format_markdown_table,
-  format_markdown_table_lines = format_markdown_table_lines,
+  format_markdown_table = function()
+    vim.schedule(function()
+      co.resume(co.create(format_markdown_table))
+    end)
+  end,
+  format_markdown_table_lines = function()
+    vim.schedule(function()
+      co.resume(co.create(format_markdown_table_lines))
+    end)
+  end,
 }
