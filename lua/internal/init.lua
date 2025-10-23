@@ -2,6 +2,33 @@ local au = vim.api.nvim_create_autocmd
 local uc = vim.api.nvim_create_user_command
 local group = vim.api.nvim_create_augroup('KicamonIceGroup', {})
 
+------------ auto commands ------------
+
+-- initialization
+au('UIEnter', {
+  group = group,
+  once = true,
+  callback = function()
+    vim.schedule(function()
+      -- lsp
+      require('internal.lsp').enable_lsp()
+      require('internal.lsp').diagnostic()
+
+      -- theme
+      vim.cmd.colorscheme('gruvbox')
+
+      -- keymap
+      require('keymap')
+
+      -- statusline
+      require('internal.stl')
+
+      -- cursor word
+      require('internal.cursor_word')
+    end)
+  end,
+})
+
 -- im_switch
 au('InsertLeave', {
   group = group,
@@ -84,71 +111,49 @@ au('BufLeave', {
   end,
 })
 
-au('BufEnter', {
-  group = group,
-  once = true,
-  callback = function()
-    vim.schedule(function()
-      -- lsp
-      require('internal.lsp').enable_lsp()
-      require('internal.lsp').diagnostic()
+------------ user commands ------------
 
-      -- theme
-      vim.cmd.colorscheme('gruvbox')
-
-      -- keymap
-      require('keymap')
-
-      -- statusline
-      require('internal.stl')
-
-      -- cursor word
-      require('internal.cursor_word')
-
-      -- code_running
-      uc('Run', function(args)
-        require('internal.code_running').running(args.args)
-      end, {
-        nargs = '?',
-        complete = function(arg)
-          local list = vim.tbl_extend(
-            'force',
-            require('internal.code_running_commands').commands_list(),
-            { 'center' }
-          )
-          return vim.tbl_filter(function(s)
-            return string.match(s, '^' .. arg)
-          end, list)
-        end,
-      })
-
-      -- chdir
-      uc('Chdir', function(args)
-        vim.cmd('silent! lcd %:p:h')
-        if args.args == 'silent' then
-          return
-        end
-        vim.notify('From: ' .. vim.fn.getcwd() .. '\n' .. 'To: ' .. vim.fn.expand('%:p:h'))
-      end, { nargs = '?' })
-
-      -- get node
-      uc('GetNode', function(args)
-        require('internal.get_node').operate(args.args)
-      end, {
-        nargs = '?',
-        complete = function()
-          return { 'cap' }
-        end,
-      })
-
-      -- open
-      uc('Google', function(args)
-        local keyword = vim.fn.expand('<cword>')
-        if args.args ~= '' then
-          keyword = args.args
-        end
-        vim.fn.jobstart(('%s "https://google.com/search?q=%s"'):format(vim.g.browser, keyword))
-      end, { nargs = '*' })
-    end)
+-- code_running
+uc('Run', function(args)
+  require('internal.code_running').running(args.args)
+end, {
+  nargs = '?',
+  complete = function(arg)
+    local list = vim.tbl_extend(
+      'force',
+      require('internal.code_running_commands').commands_list(),
+      { 'center' }
+    )
+    return vim.tbl_filter(function(s)
+      return string.match(s, '^' .. arg)
+    end, list)
   end,
 })
+
+-- change directory
+uc('Chdir', function(args)
+  vim.cmd('silent! lcd %:p:h')
+  if args.args == 'silent' then
+    return
+  end
+  vim.notify('From: ' .. vim.fn.getcwd() .. '\n' .. 'To: ' .. vim.fn.expand('%:p:h'))
+end, { nargs = '?' })
+
+-- get node
+uc('GetNode', function(args)
+  require('internal.get_node').operate(args.args)
+end, {
+  nargs = '?',
+  complete = function()
+    return { 'cap' }
+  end,
+})
+
+-- open
+uc('Google', function(args)
+  local keyword = vim.fn.expand('<cword>')
+  if args.args ~= '' then
+    keyword = args.args
+  end
+  vim.ui.open(("https://google.com/search?q=%s"):format(keyword))
+end, { nargs = '*' })

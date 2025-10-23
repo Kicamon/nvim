@@ -55,7 +55,7 @@ packadd({
 packadd({
   'nvimdev/indentmini.nvim',
   lazy = true,
-  event = 'BufEnter',
+  event = 'BufReadPre',
   config = conf('indentmini'),
 })
 
