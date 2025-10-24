@@ -5,7 +5,7 @@ local function stl_format(name, val)
 end
 
 local function default()
-  local p = require('internal.stl.provider')
+  local p = require('internal.status.stl')
   local comps = {
     --left
     p.sep(),
@@ -80,6 +80,9 @@ local function render(comps, events, pieces)
 end
 
 vim.defer_fn(function()
+  -- statuscolumn
+  vim.opt.stc = '%!v:lua.require("internal.status.stc").stc()'
+  -- statusline
   local comps, events, pieces = default()
   local stl_render = render(comps, events, pieces)
   for _, e in ipairs(vim.tbl_keys(events)) do

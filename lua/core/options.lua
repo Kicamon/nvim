@@ -49,4 +49,3 @@ opt.colorcolumn = '0'
 opt.undofile = true
 opt.updatetime = 100
 opt.redrawtime = 1500
-opt.stc = '%!v:lua.require("internal.stc").stc()'

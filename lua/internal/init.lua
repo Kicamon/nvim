@@ -10,18 +10,18 @@ au('UIEnter', {
   once = true,
   callback = function()
     vim.schedule(function()
+      -- colorscheme
+      vim.cmd.colorscheme('gruvbox')
+
+      -- status ui
+      require('internal.status')
+
       -- lsp
       require('internal.lsp').enable_lsp()
       require('internal.lsp').diagnostic()
 
-      -- theme
-      vim.cmd.colorscheme('gruvbox')
-
       -- keymap
       require('keymap')
-
-      -- statusline
-      require('internal.stl')
 
       -- cursor word
       require('internal.cursor_word')
@@ -155,5 +155,5 @@ uc('Google', function(args)
   if args.args ~= '' then
     keyword = args.args
   end
-  vim.ui.open(("https://google.com/search?q=%s"):format(keyword))
+  vim.ui.open(('https://google.com/search?q=%s'):format(keyword))
 end, { nargs = '*' })
