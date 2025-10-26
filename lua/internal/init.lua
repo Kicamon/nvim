@@ -9,23 +9,20 @@ au('UIEnter', {
   group = group,
   once = true,
   callback = function()
-    vim.schedule(function()
-      -- colorscheme
-      vim.cmd.colorscheme('gruvbox')
+    -- colorscheme
+    vim.cmd.colorscheme('gruvbox')
 
-      -- status ui
-      require('internal.status')
+    -- status ui
+    require('internal.status')
 
-      -- lsp
-      require('internal.lsp').enable_lsp()
-      require('internal.lsp').diagnostic()
+    -- lsp
+    require('internal.lsp')
 
-      -- keymap
-      require('keymap')
+    -- keymap
+    require('keymap')
 
-      -- cursor word
-      require('internal.cursor_word')
-    end)
+    -- cursor word
+    require('internal.cursor_word')
   end,
 })
 

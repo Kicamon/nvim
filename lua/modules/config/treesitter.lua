@@ -4,7 +4,7 @@ return function ()
       'bash',
       'c',
       'cpp',
-      'rust',
+      'go',
       'html',
       'javascript',
       'lua',

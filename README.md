@@ -14,14 +14,13 @@
 | `W`                | save file                              | n    |
 | `Q`                | quit file                              | n    |
 | `B`                | delete current buffer                  | n    |
-| `N`                | :nomal                                 | v    |
+| `N`                | :normal                                | v    |
 | `Y`                | copy selected text to system clipboard | v    |
 | `ca`               | copy full text to system clipboard     | n    |
 | `<leader>sc`       | toggle spell check                     | n    |
 | `<leader>sw`       | toggle wrap                            | n    |
-| `<leader><cr>`     | nohlsearch                             | n    |
 | `<C-o>`            | escape from terminal input mode        | t    |
-| `<leader><leader>` | goto the next placeholder `<++>`       | n, i |
+| `<leader><leader>` | move to the next placeholder `<++>`    | n, i |
 
 #### 2 Move
 | Shortcut | Action                          | Mode |
@@ -36,20 +35,20 @@
 | `s`      | flash jump                      | n，v |
 
 #### 3 Panes and tmux
-| Shortcut      | Action                                                                      | Mode |
-|---------------|-----------------------------------------------------------------------------|------|
-| `<leader>sh`  | create a new vertical split screen and place it left to the current window  | n    |
-| `<leader>sj`  | create a new split screen and place it below to the current window          | n    |
-| `<leader>sk`  | create a new split screen and place it above to the current window          | n    |
-| `<leader>sl`  | create a new vertical split screen and place it right to the current window | n    |
-| `<leader>smv` | rotate splits and arrange splits vertically                                 | n    |
-| `<leader>smh` | rotate splits and arrange splits horizontally                               | n    |
-| `<C-h>`       | move cursor one window left                                                 | n    |
-| `<C-j>`       | move cursor one window down                                                 | n    |
-| `<C-k>`       | move cursor one window up                                                   | n    |
-| `<C-l>`       | move cursor one window right                                                | n    |
+| Shortcut      | Action                                                                | Mode |
+|---------------|-----------------------------------------------------------------------|------|
+| `<leader>sh`  | create a new vertical split screen to the left of the current window  | n    |
+| `<leader>sj`  | create a new split screen to the below of current window              | n    |
+| `<leader>sk`  | create a new split screen to the above of current window              | n    |
+| `<leader>sl`  | create a new vertical split screen to the right of the current window | n    |
+| `<leader>smv` | rotate splits and arrange splits vertically                           | n    |
+| `<leader>smh` | rotate splits and arrange splits horizontally                         | n    |
+| `<C-h>`       | move cursor one window left                                           | n    |
+| `<C-j>`       | move cursor one window down                                           | n    |
+| `<C-k>`       | move cursor one window up                                             | n    |
+| `<C-l>`       | move cursor one window right                                          | n    |
 
-#### 4 Edite
+#### 4 Edit
 | Shortcut                      | Action                           | Mode |
 |-------------------------------|----------------------------------|------|
 | `S`                           | add surround chars               | v    |
@@ -57,19 +56,19 @@
 | `:Text tab_to_space`          | replace leading tabs with spaces | n    |
 | `:Text delete_trailing_space` | delete trailing spaces           | n    |
 | `<leader>ss`                  | quick substitute                 | v    |
-| `<leader>P`                   | paste image under `x11`          | v    |
+| `<leader>P`                   | paste image based `xclip`        | v    |
 
-#### 5 Codeing
+#### 5 Coding
 ##### 5.1 Base
-| Shortcut     | Action                            | Mode |
-|--------------|-----------------------------------|------|
-| `;f`         | formating code                    | n    |
-| `<leader>cc` | comment code                      | n, v |
-| `<Tab>`      | select next item                  | i, s |
-| `<S-Tab>`    | select prev item                  | i, s |
-| `<CR>`       | accept selected item              | i    |
-| `<F5>`       | code runing                       | n    |
-| `<F10>`      | code runing with center float win | n    |
+| Shortcut     | Action                             | Mode |
+|--------------|------------------------------------|------|
+| `;f`         | formating code                     | n    |
+| `<leader>cc` | comment code                       | n, v |
+| `<Tab>`      | select next item                   | i, s |
+| `<S-Tab>`    | select prev item                   | i, s |
+| `<CR>`       | accept selected item               | i    |
+| `<F5>`       | code running                       | n    |
+| `<F10>`      | code running with center float win | n    |
 
 ![pkvTyD0.md.png](https://s21.ax1x.com/2024/08/05/pkvTyD0.md.png)
 
@@ -84,8 +83,8 @@
 | `<leader>rn` | rename selected variable name with lspsaga | n    |
 | `<leader>ca` | show code action with lspsaga              | n    |
 | `<leader>ot` | open outline with lspsaga                  | n    |
-| `d[`         | goto diangostics prev                      | n    |
-| `d]`         | goto diangostics next                      | n    |
+| `d[`         | goto diagnostics prev                      | n    |
+| `d]`         | goto diagnostics next                      | n    |
 
 #### 6 File Explorer
 | Shortcut     | Action                               | Mode |
@@ -125,14 +124,15 @@
 
 ### Plugin list
 ```shell
-blink.cmp
-flash.nvim
-fzf-lua
-gitsigns.nvim
-guard.nvim
-indentmini.nvim
-lspsaga.nvim
-nvim-treesitter
+nvimdev/lspsaga.nvim
+saghen/blink.cmp
+nvim-treesitter/nvim-treesitter
+ibhagwan/fzf-lua
+nvimdev/guard.nvim
+folke/flash.nvim
+lewis6991/gitsigns.nvim
+nvimdev/indentmini.nvim
+brenoprata10/nvim-highlight-colors
 ```
 
 

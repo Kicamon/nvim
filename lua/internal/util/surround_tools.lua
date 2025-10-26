@@ -1,12 +1,18 @@
+local ffi = require('ffi')
 local pos = {}
 
+ffi.cdef([[
+  typedef int32_t linenr_T;
+  char *ml_get(linenr_T lnum);
+]])
+
 local surround_chars = {
-  { '(', ')' },
-  { '[', ']' },
-  { '{', '}' },
-  { '<', '>' },
-  { '"', '"' },
-  { "'", "'" },
+  { '(', ')', inline = false },
+  { '[', ']', inline = false },
+  { '{', '}', inline = false },
+  { '<', '>', inline = true },
+  { '"', '"', inline = true },
+  { "'", "'", inline = true },
 }
 
 local function get_surround_char_idx(char)
@@ -25,7 +31,7 @@ local function find_char_pos(row, col, idx, num)
   local end_row, range = pre and 1 or vim.fn.line('$'), pre and -1 or 1
 
   for l = row, end_row, range do
-    local line = vim.fn.getline(l)
+    local line = ffi.string(ffi.C.ml_get(l))
     local start_col = (l == row) and col or (pre and #line or 1)
     local end_col = pre and 1 or #line
 
@@ -59,10 +65,7 @@ local function update(distance, area, idx)
     return nil
   end
 
-  if
-    surround_chars[idx][1] == surround_chars[idx][2]
-    and prev_char_pos.line_num ~= next_char_pos.line_num
-  then
+  if surround_chars[idx].inline and prev_char_pos.line_num ~= next_char_pos.line_num then
     return nil
   end
 

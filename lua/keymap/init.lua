@@ -67,10 +67,6 @@ map.n({
   ['rs'] = function()
     require('internal.surround').remove_surround()
   end,
-  -- invert_word
-  ['<leader>iw'] = function()
-    require('internal.invert_word').invert_word()
-  end,
   -- toggle term
   ['<c-f>'] = function()
     require('internal.toggle_term').toggle_term()

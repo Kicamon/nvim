@@ -1,4 +1,5 @@
-local function enable_lsp()
+vim.schedule(function()
+  -- lsp config
   local config_dir = vim.fn.stdpath('config') .. '/lsp'
 
   local config_files = vim.fn.glob(config_dir .. '/*.lua', false, true)
@@ -10,9 +11,8 @@ local function enable_lsp()
   end
 
   vim.lsp.enable(servers)
-end
 
-local function diagnostic()
+  -- diagnostic config
   vim.diagnostic.config({
     virtual_text = {
       prefix = '❯',
@@ -27,9 +27,4 @@ local function diagnostic()
       border = 'rounded',
     },
   })
-end
-
-return {
-  enable_lsp = enable_lsp,
-  diagnostic = diagnostic,
-}
+end)

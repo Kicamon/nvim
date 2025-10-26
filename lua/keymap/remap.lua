@@ -8,7 +8,6 @@ map.n({
   ['ca'] = cmd('silent %y+'),
   ['<leader>sc'] = cmd('set spell!'),
   ['<leader>sw'] = cmd('set wrap!'),
-  ['<leader><cr>'] = cmd('noh'),
   ['<leader><leader>'] = '/<++><cr>:noh<cr>"_c4l',
   ['j'] = 'gj',
   ['k'] = 'gk',

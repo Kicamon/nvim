@@ -1,10 +1,16 @@
 local input_toggle = 0
 
-local switch = {
-  en = wsl and '/mnt/c/Windows/im-select.exe 1033' or 'fcitx5-remote -c',
-  zh = wsl and '/mnt/c/Windows/im-select.exe 2052' or 'fcitx5-remote -o',
-  check = wsl and '/mnt/c/Windows/im-select.exe' or 'fcitx5-remote',
-}
+local switch = wsl
+    and {
+      en = '/mnt/c/Windows/im-select.exe 1033',
+      zh = '/mnt/c/Windows/im-select.exe 2052',
+      check = '/mnt/c/Windows/im-select.exe',
+    }
+  or {
+    en = 'fcitx5-remote -c',
+    zh = 'fcitx5-remote -o',
+    check = 'fcitx5-remote',
+  }
 
 local function status_map(status)
   if status == 1033 then
