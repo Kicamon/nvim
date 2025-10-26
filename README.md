@@ -2,7 +2,7 @@
   Personal Neovim Config“
 </h1>
 
-![demo](https://ice.frostsky.com/2024/09/19/08ca320f952cc6422dd6c0506fbd9afe.png)
+![demo](https://private-user-images.githubusercontent.com/96783720/505765842-2a7ecfb9-46e5-40f9-ab1b-7cb7510d3f44.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjE1MTMyMTksIm5iZiI6MTc2MTUxMjkxOSwicGF0aCI6Ii85Njc4MzcyMC81MDU3NjU4NDItMmE3ZWNmYjktNDZlNS00MGY5LWFiMWItN2NiNzUxMGQzZjQ0LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTEwMjYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUxMDI2VDIxMDgzOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTlkMmM1OWMxMThhNzMyMzQyYzc5OTg3YzZlZThlZmJiOWI4ZTEyNmI4Nzk1MDAwNGI4NmJhNWI4ZTUwNmMyZDYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.NjV7gQtZEgXnUChaUU9E5T7iWdnRmiJ0Od_5YIea_Xs)
 
 ### Keyboard Shortcuts
 
@@ -31,10 +31,13 @@
 | `J`      | cursor down 10 terminal lines   | n    |
 | `K`      | cursor up 10 terminal lines     | n    |
 | `L`      | cursor to the end of the line   | n    |
-| `<C-l>`  | move cursor right               | i    |
+| `<C-h>`  | `<left>`                        | i, c |
+| `<C-j>`  | `<down>`                        | i, c |
+| `<C-k>`  | `<up>`                          | i, c |
+| `<C-l>`  | `<right>`                       | i, c |
 | `s`      | flash jump                      | n，v |
 
-#### 3 Panes and tmux
+#### 3 Panes
 | Shortcut      | Action                                                                | Mode |
 |---------------|-----------------------------------------------------------------------|------|
 | `<leader>sh`  | create a new vertical split screen to the left of the current window  | n    |
@@ -49,14 +52,13 @@
 | `<C-l>`       | move cursor one window right                                          | n    |
 
 #### 4 Edit
-| Shortcut                      | Action                           | Mode |
-|-------------------------------|----------------------------------|------|
-| `S`                           | add surround chars               | v    |
-| `cs`                          | change surround chars            | n    |
-| `:Text tab_to_space`          | replace leading tabs with spaces | n    |
-| `:Text delete_trailing_space` | delete trailing spaces           | n    |
-| `<leader>ss`                  | quick substitute                 | v    |
-| `<leader>P`                   | paste image based `xclip`        | v    |
+| Shortcut     | Action                    | Mode |
+|--------------|---------------------------|------|
+| `S`          | add surround chars        | v    |
+| `cs`         | change surround chars     | n    |
+| `rs`         | remove surround chars     | n    |
+| `<leader>ss` | quick substitute          | v    |
+| `<leader>P`  | paste image based `xclip` | v    |
 
 #### 5 Coding
 ##### 5.1 Base
@@ -70,7 +72,7 @@
 | `<F5>`       | code running                       | n    |
 | `<F10>`      | code running with center float win | n    |
 
-![pkvTyD0.md.png](https://s21.ax1x.com/2024/08/05/pkvTyD0.md.png)
+![code running](https://private-user-images.githubusercontent.com/96783720/505765979-0a1806fa-9f4b-43eb-a93f-ea8067947efb.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjE1MTMzMjcsIm5iZiI6MTc2MTUxMzAyNywicGF0aCI6Ii85Njc4MzcyMC81MDU3NjU5NzktMGExODA2ZmEtOWY0Yi00M2ViLWE5M2YtZWE4MDY3OTQ3ZWZiLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTEwMjYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUxMDI2VDIxMTAyN1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTI0ODVjNTAxNDllN2RhMWU1YTliNTJhNGY4YTQyMzQwYzU5Yjk0YjViMzhlNzUxMzJlNTQ3ODZkMjJmYmUxYjkmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.hCaf5FzV98FIwlbdieN8Hqa8KDK9VgpcrN4JxZ4F0u8)
 
 ##### 5.2 Lsp
 | Shortcut     | Action                                     | Mode |
@@ -99,7 +101,7 @@
 | `<leader>fb` | fuzzy search files with buffer       | n    |
 | `<leader>fo` | fuzzy search oldfiles                | n    |
 
-![yazi](https://s21.ax1x.com/2024/08/05/pkvTBgs.png)
+![yazi](https://private-user-images.githubusercontent.com/96783720/505765843-8976e340-62f4-4708-92b5-327d3d2ebfd0.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjE1MTMyMTksIm5iZiI6MTc2MTUxMjkxOSwicGF0aCI6Ii85Njc4MzcyMC81MDU3NjU4NDMtODk3NmUzNDAtNjJmNC00NzA4LTkyYjUtMzI3ZDNkMmViZmQwLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTEwMjYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUxMDI2VDIxMDgzOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWY0Zjc0YTNhZGYxZWJhMTg0NGQ1ZTYzNjg3NjM2NzczZjQ3YzkyZTdlYmY1ZjJjZmM5ZWQ3YWMxYTNlMjgxNzMmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.2CaE3wnKi78O_YMyRX_mHkQ4kXbuXchzKOLCBMD6RT8)
 
 #### 7 Git
 | Shortcut     | Action                  | Mode |
