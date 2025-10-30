@@ -13,5 +13,4 @@ return {
     },
   },
   filetypes = { 'bash', 'sh', 'zsh' },
-  root_markers = { '.git' },
 }
