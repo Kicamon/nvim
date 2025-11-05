@@ -93,10 +93,6 @@ map.v({
 map.nx({
   -- guard
   [';f'] = cmd('Guard fmt'),
-  -- wildfire
-  ['<cr>'] = function()
-    require('internal.wildfire').wildfire()
-  end,
 })
 
 map.nox({
@@ -107,7 +103,7 @@ map.nox({
 })
 
 map.ni({
-  ['<c-t>'] = function()
+  ['<c-m>'] = function()
     require('internal.toggle_mark').toggle_mark()
   end,
 })

@@ -15,10 +15,6 @@ local keys = {
   [']'] = { left = '[ ', right = ' ]' },
   ['}'] = { left = '{ ', right = ' }' },
   ['>'] = { left = '< ', right = ' >' },
-
-  ['"'] = { left = '"', right = '"' },
-  ["'"] = { left = "'", right = "'" },
-  ['`'] = { left = '`', right = '`' },
 }
 
 ---get surround char
@@ -69,9 +65,14 @@ local function add_surround()
   end
 
   -- add pair to the selection
+  local left, right = char, char
+  if keys[char] then
+    left = keys[char].left
+    right = keys[char].right
+  end
   local lines = api.nvim_buf_get_text(0, row_from - 1, col_frome - 1, row_to - 1, col_to, {})
-  lines[1] = keys[char].left .. lines[1]
-  lines[#lines] = lines[#lines] .. keys[char].right
+  lines[1] = left .. lines[1]
+  lines[#lines] = lines[#lines] .. right
   api.nvim_buf_set_text(0, row_from - 1, col_frome - 1, row_to - 1, col_to, lines)
 
   feedkeys('<ESC>', 'n')

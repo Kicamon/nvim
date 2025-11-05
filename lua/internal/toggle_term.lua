@@ -16,8 +16,8 @@ local function get_float_opt(opt)
     }
   end
   return {
-    width = 0.8,
-    height = 0.8,
+    width = 0.7,
+    height = 0.7,
     title = ' Terminal ',
     relative = 'editor',
     row = 'c',
