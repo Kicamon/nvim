@@ -58,6 +58,4 @@ local function keymap(bufnr)
     require('internal.markdown_table_format').format_markdown_table_lines()
   end, { buf = bufnr })
 end
-vim.schedule(function()
-  keymap(vim.api.nvim_get_current_buf())
-end)
+keymap(vim.api.nvim_get_current_buf())

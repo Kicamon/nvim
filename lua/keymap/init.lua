@@ -103,7 +103,7 @@ map.nox({
 })
 
 map.ni({
-  ['<c-m>'] = function()
+  ['<c-t>'] = function()
     require('internal.toggle_mark').toggle_mark()
   end,
 })
