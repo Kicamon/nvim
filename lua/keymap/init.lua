@@ -18,7 +18,6 @@ map.n({
   ['<leader>K'] = cmd('Lspsaga hover_doc'),
   ['<leader>rn'] = cmd('Lspsaga rename'),
   ['<leader>ca'] = cmd('Lspsaga code_action'),
-  ['<leader>ot'] = cmd('Lspsaga outline'),
   ['d['] = cmd('Lspsaga diagnostic_jump_prev'),
   ['d]'] = cmd('Lspsaga diagnostic_jump_next'),
   -- gitsigns

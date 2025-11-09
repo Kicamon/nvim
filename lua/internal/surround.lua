@@ -15,6 +15,10 @@ local keys = {
   [']'] = { left = '[ ', right = ' ]' },
   ['}'] = { left = '{ ', right = ' }' },
   ['>'] = { left = '< ', right = ' >' },
+
+  ["'"] = { left = "'", right = "'" },
+  ['"'] = { left = '"', right = '"' },
+  ['`'] = { left = '`', right = '`' },
 }
 
 ---get surround char
@@ -93,7 +97,7 @@ end
 local function change_surround()
   -- enter the char to be replaced
   local char = getchar()
-  -- if no char are inputed or char is <esc>, return
+  -- if no char inputed or char is <esc>, return
   if not char[1] then
     return
   end
@@ -105,9 +109,14 @@ local function change_surround()
     return
   end
 
-  local char_new = keys[char[2]]
+  char = char[2]
+  local left, right = char, char
+  if keys[char] then
+    left = keys[char].left
+    right = keys[char].right
+  end
   local pos = getsurround.get_surround_pos(char_odd)
-  change_line(pos, char_new.left, char_new.right)
+  change_line(pos, left, right)
 end
 
 return {
