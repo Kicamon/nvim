@@ -1,5 +1,5 @@
-local win = require('internal.util.window')
-local command = require('internal.code_running_commands').get_commands()
+local win = require('internal.window')
+local command = require('internal.code_running.code_running_commands').get_commands()
 local api, expand = vim.api, vim.fn.expand
 local infos = {}
 

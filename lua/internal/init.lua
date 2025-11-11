@@ -112,13 +112,13 @@ au('BufLeave', {
 
 -- code_running
 uc('Run', function(args)
-  require('internal.code_running').running(args.args)
+  require('internal.code_running.code_running').running(args.args)
 end, {
   nargs = '?',
   complete = function(arg)
     local list = vim.tbl_extend(
       'force',
-      require('internal.code_running_commands').commands_list(),
+      require('internal.code_running.code_running_commands').commands_list(),
       { 'center' }
     )
     return vim.tbl_filter(function(s)

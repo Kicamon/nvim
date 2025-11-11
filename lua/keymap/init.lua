@@ -61,10 +61,10 @@ map.n({
   end,
   -- surround
   ['cs'] = function()
-    require('internal.surround').change_surround()
+    require('internal.surround').surround('change')
   end,
   ['rs'] = function()
-    require('internal.surround').remove_surround()
+    require('internal.surround').surround('remove')
   end,
   -- toggle term
   ['<c-f>'] = function()
@@ -85,7 +85,7 @@ map.t({
 map.v({
   -- surround
   ['S'] = function()
-    require('internal.surround').add_surround()
+    require('internal.surround').surround('add')
   end,
 })
 

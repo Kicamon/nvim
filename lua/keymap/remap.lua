@@ -30,7 +30,7 @@ map.n({
   ['<left>'] = cmd('vertical res -5'),
   ['<right>'] = cmd('vertical res +5'),
   -- open vim config
-  ['<leader>vim'] = cmd('edit ' .. vim.fn.stdpath('config') .. '/init.lua | Chdir silent'),
+  ['<leader>vim'] = cmd('edit $MYVIMRC | Chdir silent'),
 })
 
 map.nox({

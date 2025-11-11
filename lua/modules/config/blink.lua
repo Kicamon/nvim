@@ -39,7 +39,7 @@ return function()
     sources = { default = { 'snippets', 'lsp', 'path', 'buffer' } },
     cmdline = {
       completion = {
-        menu = { auto_show = true },
+        menu = { auto_show = false },
         list = { selection = { preselect = false } },
       },
     },

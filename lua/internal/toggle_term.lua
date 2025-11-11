@@ -1,4 +1,4 @@
-local win = require('internal.util.window')
+local win = require('internal.window')
 local api = vim.api
 local infos = {}
 local float_opt = {}

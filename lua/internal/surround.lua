@@ -1,8 +1,7 @@
 local api = vim.api
-local getsurround = require('internal.util.surround_tools')
 
 local function feedkeys(keys, mode)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), mode, true)
+  api.nvim_feedkeys(api.nvim_replace_termcodes(keys, true, true, true), mode, true)
 end
 
 local keys = {
@@ -31,96 +30,59 @@ local function getchar()
   return { ok, char }
 end
 
----check if have zh
----@param lnum integer
----@param cnum integer
----@return boolean
-local function check_zh(lnum, cnum)
-  return (vim.fn.getline(lnum):sub(cnum):find('[\227-\233\128-\191]') == 1)
-end
-
----change text inline
----@param pos table
----@param chars1 string
----@param chars2 string
-local function change_line(pos, chars1, chars2)
-  api.nvim_buf_set_text(0, pos[3] - 1, pos[4] - 1, pos[3] - 1, pos[4], { chars2 })
-  api.nvim_buf_set_text(0, pos[1] - 1, pos[2] - 1, pos[1] - 1, pos[2], { chars1 })
-end
-
 ---add surround chars
-local function add_surround()
-  local Char = getchar()
-  -- if no char are inputed or char is <esc>, return
-  if not Char[1] then
-    feedkeys('<ESC>', 'n')
-    return
-  end
+local function add_surround(char)
+  local left = keys[char] and keys[char].left or char
+  local right = keys[char] and keys[char].right or char
 
-  local char = Char[2]
-  local row_from, col_frome, row_to, col_to = getsurround.visual() -- get visual pos
-  -- if mode is visual line, update start and end row's pos
-  if vim.fn.mode() == 'V' then
-    col_frome, col_to = vim.fn.indent(row_from) + 1, vim.fn.getline(row_to):len()
-  end
-  -- if is ends in zh, move the endrow back by 2
-  if check_zh(row_to, col_to) then
-    col_to = col_to + 2
-  end
-
-  -- add pair to the selection
-  local left, right = char, char
-  if keys[char] then
-    left = keys[char].left
-    right = keys[char].right
-  end
-  local lines = api.nvim_buf_get_text(0, row_from - 1, col_frome - 1, row_to - 1, col_to, {})
-  lines[1] = left .. lines[1]
-  lines[#lines] = lines[#lines] .. right
-  api.nvim_buf_set_text(0, row_from - 1, col_frome - 1, row_to - 1, col_to, lines)
-
+  vim.cmd('normal! "ad')
   feedkeys('<ESC>', 'n')
+  return left .. vim.fn.getreg('"') .. right
 end
 
 ---remove surround chars
-local function remove_surround()
-  local Char = getchar()
-  if not Char[1] then
-    return
-  end
-
-  local pos = getsurround.get_surround_pos(Char[2])
-  change_line(pos, '', '')
+local function remove_surround(char)
+  vim.cmd('normal! "ada' .. char)
+  return vim.fn.getreg('a'):sub(2, -2)
 end
 
 ---change surround chars
-local function change_surround()
-  -- enter the char to be replaced
-  local char = getchar()
-  -- if no char inputed or char is <esc>, return
-  if not char[1] then
+local function change_surround(char)
+  local new_char = getchar()
+  if not new_char[1] then
     return
   end
 
-  local char_odd = char[2]
-  -- enter the char to replace
-  char = getchar()
-  if not char[1] then
-    return
-  end
+  new_char = new_char[2]
+  local left = keys[new_char] and keys[new_char].left or new_char
+  local right = keys[new_char] and keys[new_char].right or new_char
 
-  char = char[2]
-  local left, right = char, char
-  if keys[char] then
-    left = keys[char].left
-    right = keys[char].right
-  end
-  local pos = getsurround.get_surround_pos(char_odd)
-  change_line(pos, left, right)
+  vim.cmd('normal! ""da' .. char)
+  return left .. vim.fn.getreg('"'):sub(2, -2) .. right
 end
 
-return {
-  add_surround = add_surround,
-  change_surround = change_surround,
-  remove_surround = remove_surround,
-}
+---surround function
+---@param mode string{'add', 'remove', 'change'}
+local function surround(mode)
+  local cursor_pos = api.nvim_win_get_cursor(0)
+
+  local char = getchar()
+  if not char[1] then
+    feedkeys('<esc>', 'n')
+    return
+  end
+
+  if mode == 'add' then
+    char[2] = add_surround(char[2])
+  elseif mode == 'remove' then
+    char[2] = remove_surround(char[2])
+  elseif mode == 'change' then
+    char[2] = change_surround(char[2])
+  end
+
+  vim.fn.setreg('"', char[2], 'b')
+  vim.cmd('normal! ""P')
+  api.nvim_win_set_cursor(0, cursor_pos)
+end
+
+return { surround = surround }

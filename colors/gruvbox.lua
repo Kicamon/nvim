@@ -56,7 +56,7 @@ local function setcolor()
     Visual = { reverse = true },
     VisualNOS = { link = 'Visual' },
     Search = { fg = colors.yellow, bg = colors.bg0, reverse = true },
-    IncSearch = { fg = colors.orange, bg = colors.bg0, reverse = true },
+    IncSearch = { fg = colors.red, bg = colors.bg0, reverse = true },
     CurSearch = { link = 'IncSearch' },
     QuickFixLine = { fg = colors.bg0, bg = colors.yellow, bold = true },
     Underlined = { fg = colors.dblue, underline = true },

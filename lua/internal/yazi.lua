@@ -1,5 +1,5 @@
 local api = vim.api
-local win = require('internal.util.window')
+local win = require('internal.window')
 local infos = {}
 
 local float_opt = {
