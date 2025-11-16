@@ -2,7 +2,7 @@ local map = require('core.keymap')
 local function keymap(bufnr)
   -- markdonw snippets
   map.i({
-    ['<leader><leader>'] = '<c-o>/<++><CR>:nohlsearch<CR>"_c4l',
+    ['<leader><leader>'] = '<esc>/<++><CR>:nohlsearch<CR>"_c4l',
     ['《'] = '《》<c-o>i',
     ['》'] = '> ',
     ['（'] = '（）<c-o>i',

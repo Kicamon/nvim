@@ -1,4 +1,4 @@
-local api = vim.api
+local api, fn = vim.api, vim.fn
 
 local function feedkeys(keys, mode)
   api.nvim_feedkeys(api.nvim_replace_termcodes(keys, true, true, true), mode, true)
@@ -20,45 +20,48 @@ local keys = {
   ['`'] = { left = '`', right = '`' },
 }
 
----get surround char
----@return table {ok: boolen, char: string}
+---get char
+---@return boolean
+---@return string
 local function getchar()
-  local ok, char = pcall(vim.fn.getcharstr)
-  if char == '\x1b' then
-    ok = false
-  end
-  return { ok, char }
+  local ok, char = pcall(fn.getcharstr)
+  return ok and char ~= '\x1b', char
 end
 
 ---add surround chars
-local function add_surround(char)
+---@param char string
+---@return string
+local function add(char)
   local left = keys[char] and keys[char].left or char
   local right = keys[char] and keys[char].right or char
 
-  vim.cmd('normal! "ad')
+  vim.cmd('normal! d')
   feedkeys('<ESC>', 'n')
-  return left .. vim.fn.getreg('"') .. right
+  return left .. fn.getreg('"') .. right
 end
 
 ---remove surround chars
-local function remove_surround(char)
-  vim.cmd('normal! "ada' .. char)
-  return vim.fn.getreg('a'):sub(2, -2)
+---@param char string
+---@return string
+local function remove(char)
+  vim.cmd('normal! da' .. char)
+  return fn.getreg('"'):sub(2, -2)
 end
 
 ---change surround chars
-local function change_surround(char)
-  local new_char = getchar()
-  if not new_char[1] then
-    return
+---@param char string
+---@return string
+local function change(char)
+  local ok, new_char = getchar()
+  if not ok then
+    return ''
   end
 
-  new_char = new_char[2]
   local left = keys[new_char] and keys[new_char].left or new_char
   local right = keys[new_char] and keys[new_char].right or new_char
 
-  vim.cmd('normal! ""da' .. char)
-  return left .. vim.fn.getreg('"'):sub(2, -2) .. right
+  vim.cmd('normal! da' .. char)
+  return left .. fn.getreg('"'):sub(2, -2) .. right
 end
 
 ---surround function
@@ -66,22 +69,25 @@ end
 local function surround(mode)
   local cursor_pos = api.nvim_win_get_cursor(0)
 
-  local char = getchar()
-  if not char[1] then
-    feedkeys('<esc>', 'n')
-    return
+  local ok, char = getchar()
+  if not ok then
+    return feedkeys('<esc>', 'n')
   end
 
-  if mode == 'add' then
-    char[2] = add_surround(char[2])
-  elseif mode == 'remove' then
-    char[2] = remove_surround(char[2])
-  elseif mode == 'change' then
-    char[2] = change_surround(char[2])
+  char = ({
+    add = add,
+    remove = remove,
+    change = change,
+  })[mode](char)
+
+  fn.setreg('"', char, 'b')
+
+  if fn.col("'[") > #api.nvim_get_current_line() then
+    vim.cmd('normal! p')
+  else
+    vim.cmd('normal! P')
   end
 
-  vim.fn.setreg('"', char[2], 'b')
-  vim.cmd('normal! ""P')
   api.nvim_win_set_cursor(0, cursor_pos)
 end
 

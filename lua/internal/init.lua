@@ -133,7 +133,7 @@ uc('Chdir', function(args)
   if args.args == 'silent' then
     return
   end
-  vim.notify('From: ' .. vim.fn.getcwd() .. '\n' .. 'To: ' .. vim.fn.expand('%:p:h'))
+  vim.notify(('Form: %s\nTo: %s'):format(vim.fn.getcwd(), vim.fn.expand('%:p:h')))
 end, { nargs = '?' })
 
 -- get node
