@@ -45,7 +45,8 @@ end
 ---@return string
 local function remove(char)
   vim.cmd('normal! da' .. char)
-  return fn.getreg('"'):sub(2, -2)
+  local new_str = fn.getreg('"'):gsub('^(%s*)%S(.*)%S(%s*)$', '%1%2%3')
+  return new_str
 end
 
 ---change surround chars
@@ -61,7 +62,8 @@ local function change(char)
   local right = keys[new_char] and keys[new_char].right or new_char
 
   vim.cmd('normal! da' .. char)
-  return left .. fn.getreg('"'):sub(2, -2) .. right
+  local new_str = fn.getreg('"'):gsub('^(%s*)%S(.*)%S(%s*)$', '%1' .. left .. '%2' .. right .. '%3')
+  return new_str
 end
 
 ---surround function
