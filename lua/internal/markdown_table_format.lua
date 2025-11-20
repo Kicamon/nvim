@@ -151,44 +151,24 @@ local function format_markdown_table()
   api.nvim_buf_set_lines(0, table_infos.table_start_row - 1, table_infos.table_end_row, true, lines)
 end
 
-local fmt = co.create(function()
-  while true do
-    format_markdown_table()
-    co.yield()
-  end
-end)
+local function format_markdown_table_lines()
+  local current_line = api.nvim_get_current_line()
+  local cursor_pos = api.nvim_win_get_cursor(0)
+  current_line = add_char_inline(current_line, '|', cursor_pos[2])
+  api.nvim_buf_set_lines(0, cursor_pos[1] - 1, cursor_pos[1], true, { current_line })
 
-local fmtl = co.create(function()
-  while true do
-    local current_line = api.nvim_get_current_line()
-    local cursor_pos = api.nvim_win_get_cursor(0)
-    current_line = add_char_inline(current_line, '|', cursor_pos[2])
-    api.nvim_buf_set_lines(0, cursor_pos[1] - 1, cursor_pos[1], true, { current_line })
-
-    if check_line_is_table(fn.line('.')) then
-      local table_infos = get_table_infos()
-      if cursor_pos[1] == table_infos.table_start_row then
-        add_new_col(table_infos)
-      end
-      format_markdown_table()
+  if check_line_is_table(fn.line('.')) then
+    local table_infos = get_table_infos()
+    if cursor_pos[1] == table_infos.table_start_row then
+      add_new_col(table_infos)
     end
-
-    local length = string.len(api.nvim_get_current_line())
-    api.nvim_win_set_cursor(0, { cursor_pos[1], length })
-
-    co.yield()
+    format_markdown_table()
   end
-end)
 
+  local length = string.len(api.nvim_get_current_line())
+  api.nvim_win_set_cursor(0, { cursor_pos[1], length })
+end
 return {
-  format_markdown_table = function()
-    vim.schedule(function()
-      co.resume(fmt)
-    end)
-  end,
-  format_markdown_table_lines = function()
-    vim.schedule(function()
-      co.resume(fmtl)
-    end)
-  end,
+  format_markdown_table = format_markdown_table,
+  format_markdown_table_lines = format_markdown_table_lines,
 }
