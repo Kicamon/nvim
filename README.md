@@ -2,8 +2,6 @@
   Personal Neovim Config“
 </h1>
 
-![demo](https://private-user-images.githubusercontent.com/96783720/505765842-2a7ecfb9-46e5-40f9-ab1b-7cb7510d3f44.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjMyMTcxMjQsIm5iZiI6MTc2MzIxNjgyNCwicGF0aCI6Ii85Njc4MzcyMC81MDU3NjU4NDItMmE3ZWNmYjktNDZlNS00MGY5LWFiMWItN2NiNzUxMGQzZjQ0LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTExMTUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUxMTE1VDE0MjcwNFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWQwZmZhNTliYTk5ODNhNzkzMWJhZmUxYzcyNzlkZDE4MDM5ZGRkYjg0OWU4YWZmMjUyOTYxNDRjNjRhMmVjNmImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.hNkC4iuNNV8tRkKQB5_O2j5VjLsc2H54Uv44fPzjWWQ)
-
 ### Keyboard Shortcuts
 
 `<leader> = <space>`
@@ -72,8 +70,6 @@
 | `<F5>`       | code running                       | n    |
 | `<F10>`      | code running with center float win | n    |
 
-![code running](https://private-user-images.githubusercontent.com/96783720/505765979-0a1806fa-9f4b-43eb-a93f-ea8067947efb.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjMyMTcxMjQsIm5iZiI6MTc2MzIxNjgyNCwicGF0aCI6Ii85Njc4MzcyMC81MDU3NjU5NzktMGExODA2ZmEtOWY0Yi00M2ViLWE5M2YtZWE4MDY3OTQ3ZWZiLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTExMTUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUxMTE1VDE0MjcwNFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWJhODFlN2U0MmNlY2M5MjI3M2YzZjY1Y2M4MTA4NTlmMDA1MGJiYzc3NWVlYTQ2NjZlYTQyNDFjNjFhN2QxODImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.FBiHrP1qUZQRVksdxpAvdiBWFKO_lj3wNQR769hl2AI)
-
 ##### 5.2 Lsp
 | Shortcut     | Action                                     | Mode |
 |--------------|--------------------------------------------|------|
@@ -101,8 +97,6 @@
 | `<leader>fb` | fuzzy search files with buffer       | n    |
 | `<leader>fo` | fuzzy search oldfiles                | n    |
 
-![yazi](https://private-user-images.githubusercontent.com/96783720/505765843-8976e340-62f4-4708-92b5-327d3d2ebfd0.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjMyMTcxMjQsIm5iZiI6MTc2MzIxNjgyNCwicGF0aCI6Ii85Njc4MzcyMC81MDU3NjU4NDMtODk3NmUzNDAtNjJmNC00NzA4LTkyYjUtMzI3ZDNkMmViZmQwLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTExMTUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUxMTE1VDE0MjcwNFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTNkN2UwZmNkODQ2YTliOTU3ODg0ZmM5MDE4NjlkM2UzYTIxZWMxN2UwMmEwZjhhNmE4ZTAxMjRlNmZiNTFhMDUmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.tPFijhZhSSCuGdtqbui5EZV6TzYk4tk6lwwhH1HWq5o)
-
 #### 7 Git
 | Shortcut     | Action                  | Mode |
 |--------------|-------------------------|------|
@@ -117,24 +111,21 @@
 |-----------------|--------------------------------------------------------------------|------|
 | `:Chdir`        | jump to the directory where the current buffer                     | n    |
 | `:Chdir silent` | jump to the directory where the current buffer without notify      | n    |
-| `<cr>`          | quickly select the closest text object among a group of candidates | n    |
 | `<leader>ww`    | note manager                                                       | n    |
 | `<cr>`          | create or enter note in wiki                                       | n    |
 | `<c-f>`         | toggle float terminal if have not term, create it                  | n, t |
-| `<c-r>`         | move float terminal right                                          | t    |
-| `<c-c>`         | move float terminal center                                         | t    |
+| `<c-r>`         | toggle float terminal positions(center/right)                      | t    |
 
 ### Plugin list
 ```shell
 nvimdev/lspsaga.nvim
 saghen/blink.cmp
 nvim-treesitter/nvim-treesitter
+nvim-treesitter/nvim-treesitter-textobjects
 ibhagwan/fzf-lua
 nvimdev/guard.nvim
-folke/flash.nvim
 lewis6991/gitsigns.nvim
 nvimdev/indentmini.nvim
-brenoprata10/nvim-highlight-colors
 ```
 
 
