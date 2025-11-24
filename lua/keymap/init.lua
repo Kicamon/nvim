@@ -94,15 +94,32 @@ map.nx({
   [';f'] = cmd('Guard fmt'),
 })
 
-map.nox({
-  -- flash
-  ['s'] = function()
-    require('flash').jump()
-  end,
-})
-
 map.ni({
   ['<c-t>'] = function()
     require('internal.toggle_mark').toggle_mark()
+  end,
+})
+
+map.xo({
+  ['if'] = function()
+    require('nvim-treesitter-textobjects.select').select_textobject(
+      '@function.inner',
+      'textobjects'
+    )
+  end,
+  ['af'] = function()
+    require('nvim-treesitter-textobjects.select').select_textobject(
+      '@function.outer',
+      'textobjects'
+    )
+  end,
+  ['ic'] = function()
+    require('nvim-treesitter-textobjects.select').select_textobject('@class.inner', 'textobjects')
+  end,
+  ['ac'] = function()
+    require('nvim-treesitter-textobjects.select').select_textobject('@class.outer', 'textobjects')
+  end,
+  ['as'] = function()
+    require('nvim-treesitter-textobjects.select').select_textobject('@local.scope', 'locals')
   end,
 })
