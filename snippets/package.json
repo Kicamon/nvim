@@ -14,16 +14,12 @@
         "path": "lua.json"
       },
       {
-        "language": "rust",
-        "path": "rust.json"
-      },
-      {
         "language": "html",
-        "path": "./html.json"
+        "path": "html.json"
       },
       {
         "language": "css",
-        "path": "./css.json"
+        "path": "css.json"
       },
       {
         "language": "javascriptreact",

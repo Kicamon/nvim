@@ -33,7 +33,7 @@
 | `<C-j>`  | `<down>`                        | i, c |
 | `<C-k>`  | `<up>`                          | i, c |
 | `<C-l>`  | `<right>`                       | i, c |
-| `s`      | flash jump                      | n，v |
+| `s`      | quick jump                      | n，v |
 
 #### 3 Panes
 | Shortcut      | Action                                                                | Mode |
@@ -133,7 +133,6 @@ nvimdev/indentmini.nvim
 ```shell
 bash-language-server
 clang
-gopls
 lua
 lua-language-server
 luarocks

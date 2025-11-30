@@ -28,6 +28,12 @@ local function getchar()
   return ok and char ~= '\x1b', char
 end
 
+---get surround char
+---@param char string
+---@param mode string
+---@return string
+---@return string
+---@return string
 local function get_surround_char(char, mode)
   local str = fn.getreg('"')
 
