@@ -15,6 +15,7 @@ g.loaded_rrhelper = 1
 g.loaded_netrwPlugin = 1
 g.c_syntax_for_h = 1
 g.browser = 'chromium'
+g.workspace = ''
 _G.wsl = vim.fn.has('wsl') == 1
 _G.lsp_fts = {
   'c',

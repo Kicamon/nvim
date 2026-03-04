@@ -99,6 +99,14 @@ au('BufRead', {
   end,
 })
 
+au('LspAttach', {
+  group = group,
+  callback = function()
+    -- work tools
+    require('internal.work_tools').wt()
+  end,
+})
+
 au('BufLeave', {
   group = group,
   callback = function()
