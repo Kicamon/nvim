@@ -10,7 +10,7 @@ local function dofiles(conf, opt)
       if not name then
         break
       end
-      if type == 'file' then
+      if type == 'file' and name:match('%.([^%.]+)$') == 'lua' then
         opt(conf, name)
       end
     end
