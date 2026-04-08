@@ -1,4 +1,4 @@
-return function ()
+return function()
   require('nvim-treesitter.configs').setup({
     ensure_installed = {
       'bash',
@@ -20,8 +20,6 @@ return function ()
       enable = true,
       disable = {},
     },
-    indent = {
-      enable = true,
-    },
+    textobjects = { enable = true },
   })
 end

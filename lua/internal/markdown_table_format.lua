@@ -1,4 +1,4 @@
-local api, fn, ffi, co = vim.api, vim.fn, require('ffi'), coroutine
+local api, fn, ffi = vim.api, vim.fn, require('ffi')
 
 ffi.cdef([[
   typedef int32_t linenr_T;
