@@ -1,28 +1,27 @@
-local function conf(config)
-  return require('modules.config.' .. config)
-end
+local conf = require('modules.config')
 
 packadd({
   'nvimdev/lspsaga.nvim',
   lazy = true,
   event = 'LspAttach',
-  config = conf('lspsaga'),
+  config = conf.lspsaga,
 })
 
 packadd({
   'saghen/blink.cmp',
   lazy = true,
   event = 'LspAttach',
-  config = conf('blink'),
   version = 'v1.*',
+  config = conf.blink,
 })
 
 packadd({
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
+  branch = 'main',
   lazy = true,
   event = { 'BufReadPre', 'BufNewFile' },
-  config = conf('treesitter'),
+  config = conf.treesitter,
 })
 
 packadd({
@@ -43,19 +42,19 @@ packadd({
   'nvimdev/guard.nvim',
   lazy = true,
   cmd = 'Guard',
-  config = conf('guard'),
+  config = conf.guard,
 })
 
 packadd({
   'lewis6991/gitsigns.nvim',
   lazy = true,
   event = 'BufRead',
-  config = conf('gitsigns'),
+  config = conf.gitsigns,
 })
 
 packadd({
   'nvimdev/indentmini.nvim',
   lazy = true,
   event = 'BufReadPre',
-  config = conf('indentmini'),
+  config = conf.indentmini,
 })
