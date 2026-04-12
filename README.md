@@ -141,6 +141,7 @@ python
 python-black
 python-pynvim
 shfmt
+tree-sitter-cli
 typescript-language-server
 vim-language-server
 vscode-css-languageserver

@@ -143,22 +143,3 @@ uc('Chdir', function(args)
   end
   vim.notify(('Form: %s\nTo: %s'):format(vim.fn.getcwd(), vim.fn.expand('%:p:h')))
 end, { nargs = '?' })
-
--- get node
-uc('GetNode', function(args)
-  require('internal.get_node').operate(args.args)
-end, {
-  nargs = '?',
-  complete = function()
-    return { 'cap' }
-  end,
-})
-
--- open
-uc('Google', function(args)
-  local keyword = vim.fn.expand('<cword>')
-  if args.args ~= '' then
-    keyword = args.args
-  end
-  vim.ui.open(('https://google.com/search?q=%s'):format(keyword))
-end, { nargs = '*' })

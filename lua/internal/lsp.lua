@@ -27,4 +27,6 @@ vim.schedule(function()
       border = 'rounded',
     },
   })
+
+  vim.lsp.document_color.enable(true, {}, { style = 'virtual' })
 end)
