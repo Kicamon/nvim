@@ -8,11 +8,6 @@ config.lspsaga = function()
     lightbulb = {
       enable = false,
     },
-    outline = {
-      keys = {
-        toggle_or_jump = '<cr>',
-      },
-    },
     finder = {
       keys = {
         edit = '<C-o>',

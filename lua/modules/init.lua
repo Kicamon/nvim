@@ -1,93 +1,113 @@
 local conf = require('modules.config')
-local P = {}
 
-local function normalize_url(s)
+local function to_url(s)
   return s:match('^https?://') and s or 'https://github.com/' .. s
 end
 
-local function normalize_spec(spec)
-  if type(spec) == 'string' then
-    return normalize_url(spec)
-  end
-  if spec.src then
-    return vim.tbl_extend('force', spec, { src = normalize_url(spec.src) })
-  end
-  return spec
+local function to_name(s)
+  return s:sub(s:find('/') + 1)
 end
 
-local function ensure_list(specs)
-  return (type(specs) == 'string' or (type(specs) == 'table' and specs.src)) and { specs } or specs
-end
-
-local function on_cmd(cmd, pkg_name, setup_fn)
+local function load(pkg_name, events, cmd, config)
+  if not config then
+    return false
+  end
   return function()
-    vim.api.nvim_create_user_command(cmd, function(data)
-      vim.api.nvim_del_user_command(cmd)
-      vim.cmd.packadd(pkg_name)
-      if setup_fn then
-        setup_fn()
-      end
-      vim.cmd(('%s %s'):format(cmd, data.args))
-    end, { nargs = '?' })
+    if events then
+      vim.api.nvim_create_autocmd(events, {
+        once = true,
+        callback = function()
+          vim.cmd.packadd(pkg_name)
+          if config then
+            config()
+          end
+        end,
+      })
+    end
+    if cmd then
+      vim.api.nvim_create_user_command(cmd, function(data)
+        vim.api.nvim_del_user_command(cmd)
+        vim.cmd.packadd(pkg_name)
+        if config then
+          config()
+        end
+        vim.cmd(('%s %s'):format(cmd, data.args))
+      end, { nargs = '?' })
+    end
   end
 end
 
-local function on_event(events, pkg_name, setup_fn)
-  return function()
-    vim.api.nvim_create_autocmd(events, {
-      once = true,
-      callback = function()
-        for _, p in ipairs(ensure_list(pkg_name)) do
-          vim.cmd.packadd(p)
-        end
-        if setup_fn then
-          setup_fn()
-        end
-      end,
-    })
+local function get_pack_info(info, version)
+  local pkg_name = to_name(info)
+  local pkg_url
+  if version then
+    pkg_url = { {
+      src = to_url(info),
+      version = version,
+    } }
+  else
+    pkg_url = { to_url(info) }
   end
+
+  return pkg_name, pkg_url
 end
 
-function P:add(specs, opts)
-  specs = vim.tbl_map(normalize_spec, ensure_list(specs))
-  vim.pack.add(specs, vim.tbl_extend('keep', opts or {}, { confirm = false }))
-  return self
+local function packadd(info)
+  local pkg_name, pkg_url = get_pack_info(info[1], info.version)
+  vim.pack.add(
+    pkg_url,
+    vim.tbl_extend(
+      'keep',
+      { load = load(pkg_name, info.events, info.cmd, info.config) } or {},
+      { confirm = false }
+    )
+  )
 end
 
-P:add('nvimdev/lspsaga.nvim', {
-  load = on_event('LspAttach', 'lspsaga.nvim', function()
-    vim.cmd('redraw')
-    conf.lspsaga()
-  end),
+packadd({
+  'nvimdev/lspsaga.nvim',
+  events = 'BufReadPre',
+  config = conf.lspsaga,
 })
-P:add({ src = 'saghen/blink.cmp', version = vim.version.range('^1') }, {
-  load = on_event('LspAttach', 'blink.cmp', function()
-    conf.blink()
-  end),
+
+packadd({
+  'saghen/blink.cmp',
+  version = vim.version.range('^1'),
+  events = 'LspAttach',
+  config = conf.blink,
 })
-P:add({ src = 'nvim-treesitter/nvim-treesitter', version = 'main' }, {
-  load = on_event({ 'BufReadPre', 'BufNewFile' }, 'nvim-treesitter', function()
-    conf.treesitter()
-  end),
+
+packadd({
+  'nvim-treesitter/nvim-treesitter',
+  version = 'main',
+  events = 'BufReadPre',
+  config = conf.treesitter,
 })
-P:add({ src = 'nvim-treesitter/nvim-treesitter-textobjects', version = 'main' }, { load = false })
-P:add('ibhagwan/fzf-lua', {
-  load = on_cmd('FzfLua', 'fzf-lua', function()
-    require('fzf-lua').setup()
-  end),
+
+packadd({
+  'nvim-treesitter/nvim-treesitter-textobjects',
+  version = 'main',
 })
-P:add('nvimdev/guard.nvim', {
-  load = on_cmd('Guard', 'guard.nvim', function()
-    conf.guard()
-  end),
+
+packadd({
+  'ibhagwan/fzf-lua',
+  cmd = 'FzfLua',
 })
-P:add('lewis6991/gitsigns.nvim', {
-  load = on_event('BufRead', 'gitsigns.nvim', function()
-    conf.gitsigens()
-  end),
+
+packadd({
+  'nvimdev/guard.nvim',
+  cmd = 'Guard',
+  config = conf.guard,
 })
-P:add('nvimdev/indentmini.nvim', {
-  load = on_event('BufReadPre', 'indentmini.nvim', function()
-    conf.indentmini()
-  end),
+
+packadd({
+  'lewis6991/gitsigns.nvim',
+  events = 'BufRead',
+  config = conf.gitsigens,
+})
+
+packadd({
+  'nvimdev/indentmini.nvim',
+  events = 'BufReadPre',
+  config = conf.indentmini,
 })
