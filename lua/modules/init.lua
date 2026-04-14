@@ -1,3 +1,4 @@
+local api = vim.api
 local conf = require('modules.config')
 
 local function to_url(s)
@@ -14,7 +15,7 @@ local function load(pkg_name, events, cmd, config)
   end
   return function()
     if events then
-      vim.api.nvim_create_autocmd(events, {
+      api.nvim_create_autocmd(events, {
         once = true,
         callback = function()
           vim.cmd.packadd(pkg_name)
@@ -25,8 +26,8 @@ local function load(pkg_name, events, cmd, config)
       })
     end
     if cmd then
-      vim.api.nvim_create_user_command(cmd, function(data)
-        vim.api.nvim_del_user_command(cmd)
+      api.nvim_create_user_command(cmd, function(data)
+        api.nvim_del_user_command(cmd)
         vim.cmd.packadd(pkg_name)
         if config then
           config()
@@ -48,7 +49,6 @@ local function get_pack_info(info, version)
   else
     pkg_url = { to_url(info) }
   end
-
   return pkg_name, pkg_url
 end
 
@@ -80,7 +80,7 @@ packadd({
 packadd({
   'nvim-treesitter/nvim-treesitter',
   version = 'main',
-  events = 'BufReadPre',
+  events = { 'BufReadPre', 'BufNewFile' },
   config = conf.treesitter,
 })
 
