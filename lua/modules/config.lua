@@ -76,22 +76,6 @@ config.treesitter = function()
   require('nvim-treesitter').setup({
     install_dir = vim.fn.stdpath('data') .. '/site',
   })
-  require('nvim-treesitter').install({
-    'bash',
-    'c',
-    'cpp',
-    'go',
-    'html',
-    'javascript',
-    'lua',
-    'markdown',
-    'markdown_inline',
-    'python',
-    'typescript',
-    'vim',
-    'json',
-    'vimdoc',
-  })
 end
 
 config.guard = function()

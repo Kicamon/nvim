@@ -70,6 +70,9 @@ map.n({
   ['<c-f>'] = function()
     require('internal.toggle_term').toggle_term()
   end,
+})
+
+map.a({
   -- quick jump
   ['s'] = function()
     require('internal.jump').jump()

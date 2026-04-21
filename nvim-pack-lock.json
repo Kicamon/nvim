@@ -6,11 +6,11 @@
       "version": "1.0.0 - 2.0.0"
     },
     "fzf-lua": {
-      "rev": "1e866cce085cc6df3d3e4fb59f00105fa84cef6c",
+      "rev": "beaa4e83e6be4174af291a464e4f49548c943963",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
-      "rev": "8d82c240f190fc33723d48c308ccc1ed8baad69d",
+      "rev": "6d808f99bd63303646794406e270bd553ad7792e",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "guard.nvim": {
@@ -22,7 +22,7 @@
       "src": "https://github.com/nvimdev/indentmini.nvim"
     },
     "lspsaga.nvim": {
-      "rev": "562d9724e3869ffd1801c572dd149cc9f8d0cc36",
+      "rev": "c532fb86c3d211c5829ad58d2a0783012739bb65",
       "src": "https://github.com/nvimdev/lspsaga.nvim"
     },
     "nvim-treesitter": {

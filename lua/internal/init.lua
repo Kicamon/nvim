@@ -116,6 +116,37 @@ au('BufLeave', {
   end,
 })
 
+au('PackChanged', {
+  group = group,
+  once = true,
+  callback = function(ev)
+    local name, active, kind = ev.data.spec.name, ev.data.spec.active, ev.data.spec.kind
+    if name == 'nvim-treesitter' then
+      if not active then
+        vim.cmd.packadd(name)
+      end
+      if kind == 'install' or kind == 'update' then
+        require(name).install({
+          'bash',
+          'c',
+          'cpp',
+          'go',
+          'html',
+          'javascript',
+          'lua',
+          'markdown',
+          'markdown_inline',
+          'python',
+          'typescript',
+          'vim',
+          'json',
+          'vimdoc',
+        }, { summary = true })
+      end
+    end
+  end,
+})
+
 ------------ user commands ------------
 
 -- code_running
